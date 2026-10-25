@@ -1,0 +1,7 @@
+source,rows,beer_unique,beer_duplicates,beer_id_unique_as_text,beer_id_scientific_notation_n,category_missing_n,check_type,pair,matched_beer_n,left_only_n,right_only_n,category_mismatch_n
+1.csv,250.0,250.0,0.0,250.0,0.0,0.0,within_table,,,,,
+4.csv,250.0,250.0,0.0,96.0,213.0,0.0,within_table,,,,,
+7.csv,250.0,250.0,0.0,96.0,213.0,0.0,within_table,,,,,
+,,,,,,,between_tables,1.csv vs 4.csv,250.0,0.0,0.0,0.0
+,,,,,,,between_tables,1.csv vs 7.csv,250.0,0.0,0.0,0.0
+,,,,,,,between_tables,4.csv vs 7.csv,250.0,0.0,0.0,0.0
