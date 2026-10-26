@@ -1,0 +1,9 @@
+﻿beer,style,style_n,shared_floor_n,detected_among_142,within_style_floor_percentile,style_floor_min,style_floor_median,style_floor_max,pattern_interpretation,small_style_warning
+157,Tripel,28,102,40,1.0,9,26.5,102,同风格中未检出峰偏多,False
+234,Blond,31,88,54,0.967741935483871,9,23.0,94,同风格中未检出峰偏多,False
+103,Stout/Porter,13,101,41,1.0,15,24.0,101,同风格中未检出峰偏多,False
+10,Low/No alcohol,8,49,93,1.0,27,35.0,49,同风格中未检出峰偏多,False
+101,Blond,31,94,48,1.0,9,23.0,94,同风格中未检出峰偏多,False
+223,Low/No alcohol,8,34,108,0.5,27,35.0,49,未检出数量本身不极端,False
+150,Brett/cofermented,6,86,56,1.0,10,23.0,86,同风格中未检出峰偏多,True
+192,Brut,4,96,46,1.0,20,28.5,96,同风格中未检出峰偏多,True
