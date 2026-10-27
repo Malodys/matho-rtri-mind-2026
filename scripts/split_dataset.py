@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 def split_dataset(seed: int = 0) -> Path:
     project = Path(__file__).resolve().parents[1]
-    raw = project / 'raw_data'
+    raw = project / 'data' / 'raw'
     output = project / 'data' / 'splits' / f'seed_{seed}'
     chemical = pd.read_csv(raw / '1.csv', dtype=str, keep_default_na=False)
     sensory = pd.read_csv(raw / '4.csv', dtype=str, keep_default_na=False)
