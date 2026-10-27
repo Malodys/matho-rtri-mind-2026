@@ -1,0 +1,9 @@
+model_group,max_depth,max_features,min_samples_leaf,inner_best_neg_MSE
+esters,,0.6,3,-0.2260392509924619
+faults,8.0,0.6,3,-0.2337138667197197
+hops,,0.6,3,-0.2177743465075735
+malt,8.0,0.6,3,-0.2419237065565996
+mouthfeel,,0.6,3,-0.2341492345599396
+overall,,0.6,3,-0.2505372166898207
+spices,8.0,0.3,6,-0.3039608714114681
+wild_fermentation,8.0,0.6,3,-0.1815861851599333

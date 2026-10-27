@@ -1,0 +1,52 @@
+﻿label,sensory_dimension,chemical_sensory_family,paper_name,paper_name_long,panel_form_name,source_item_type,model_target_type
+A_malt_all,Aroma,Malt,Malt - overall,Malt aroma,Malt aroma - overall,numeric,continuous_regression
+A_malt_grain,Aroma,Malt,Malt - grain,Malt aroma - grain,Malt aroma - grain,categorical,continuous_regression
+A_malt_bread,Aroma,Malt,Malt - bread,Malt aroma - bread,Malt aroma - bread,categorical,continuous_regression
+A_malt_cara,Aroma,Malt,Malt - caramel,Malt aroma - caramel,Malt aroma - caramel,categorical,continuous_regression
+A_malt_burn,Aroma,Malt,Malt - smoked,Malt aroma - smoked,Malt aroma - smoked,categorical,continuous_regression
+A_hops_all,Aroma,Hops,Hops - overall,Hops aroma,Hops aroma - overall,numeric,continuous_regression
+A_hops_citrus,Aroma,Hops,Hops - citrus,Hops aroma - citrus,Hops aroma - citrus,categorical,continuous_regression
+A_hops_tropical,Aroma,Hops,Hops - tropical fruit,Hops aroma - tropical fruit,Hops aroma - tropical fruit,categorical,continuous_regression
+A_hops_noble,Aroma,Hops,Hops - grassy,Hops aroma - grassy,Hops aroma - grassy,categorical,continuous_regression
+A_hops_woody,Aroma,Hops,Hops - woody,Hops aroma - woody,Hops aroma - woody,categorical,continuous_regression
+A_esters_all,Aroma,Yeast,Esters - overall,Esters aroma,Esters aroma - overall,numeric,continuous_regression
+A_esters_ethac,Aroma,Yeast,Esters - nail polish,Esters aroma - nail polish,Esters aroma - nail polish,categorical,continuous_regression
+A_esters_isoaa,Aroma,Yeast,Esters - banana,Esters aroma - banana,Esters aroma - banana,categorical,continuous_regression
+A_esters_flower,Aroma,Yeast,Esters - floral,Esters aroma - floral,Esters aroma - floral,categorical,continuous_regression
+A_esters_fruity,Aroma,Yeast,Esters - fruity,Esters aroma - fruity,Esters aroma - fruity,categorical,continuous_regression
+F_malt_all,Taste,Malt,Malt - overall,Malt taste,Malt taste - overall,numeric,continuous_regression
+F_malt_grain,Taste,Malt,Malt - grain,Malt taste - grain,Malt taste - grain,categorical,continuous_regression
+F_malt_bread,Taste,Malt,Malt - bread,Malt taste - bread,Malt taste - bread,categorical,continuous_regression
+F_malt_cara,Taste,Malt,Malt - caramel,Malt taste - caramel,Malt taste - caramel,categorical,continuous_regression
+F_malt_burn,Taste,Malt,Malt - smoked,Malt taste - smoked,Malt taste - smoked,categorical,continuous_regression
+F_hops_all,Taste,Hops,Hops - overall,Hops taste,Hops taste - overall,numeric,continuous_regression
+F_hops_citrus,Taste,Hops,Hops - citrus,Hops taste - citrus,Hops taste - citrus,categorical,continuous_regression
+F_hops_tropical,Taste,Hops,Hops - tropical fruit,Hops taste - tropical fruit,Hops taste - tropical fruit,categorical,continuous_regression
+F_hops_noble,Taste,Hops,Hops - grassy,Hops taste - grassy,Hops taste - grassy,categorical,continuous_regression
+F_hops_woody,Taste,Hops,Hops - woody,Hops taste - woody,Hops taste - woody,categorical,continuous_regression
+F_esters_all,Taste,Yeast,Esters - overall,Esters taste,Esters taste - overall,numeric,continuous_regression
+F_esters_ethac,Taste,Yeast,Esters - nail polish,Esters taste - nail polish,Esters taste - nail polish,categorical,continuous_regression
+F_esters_isoaa,Taste,Yeast,Esters - banana,Esters taste - banana,Esters taste - banana,categorical,continuous_regression
+F_esters_flower,Taste,Yeast,Esters - floral,Esters taste - floral,Esters taste - floral,categorical,continuous_regression
+F_esters_fruity,Taste,Yeast,Esters - fruity,Esters taste - fruity,Esters taste - fruity,categorical,continuous_regression
+acidity,Taste,Others,Acidity,Acidity,Acidity,numeric,continuous_regression
+bitternes,Taste,Others,Bitterness,Bitterness,Bitterness,numeric,continuous_regression
+sweetness,Taste,Others,Sweetness,Sweetness,Sweetness,numeric,continuous_regression
+X4vg,Taste,Others,4-vinyl guaiacol,4-vinyl guaiacol,4-vinyl guaiacol,numeric,continuous_regression
+diacetyl,Taste,Others,Diacetyl,Diacetyl,Diacetyl,numeric,continuous_regression
+dms,Taste,Others,Dimethyl sulfide,Dimethyl sulfide,Dimethyl sulfide,numeric,continuous_regression
+metallic,Taste,Others,Metallic,Metallic,Metallic,numeric,continuous_regression
+stale_hops,Taste,Others,Stale hops,Stale hops,Stale hops,numeric,continuous_regression
+t2n,Taste,Others,Trans-2-nonenal,Aging aroma - cardboard,Trans-2-nonenal,numeric,continuous_regression
+orange,Taste,Others,Orange,Hops taste - citrus,Orange,numeric,continuous_regression
+coriander,Taste,Others,Coriander,Coriander,Coriander,numeric,continuous_regression
+clove,Taste,Others,Clove,Clove,Clove,numeric,continuous_regression
+lactic,Taste,Wild flora,Lactic acid,Lactic acid,Lactic acid,numeric,continuous_regression
+acetic,Taste,Wild flora,Acetic acid,Acetic acid,Acetic acid,numeric,continuous_regression
+barnyard,Taste,Wild flora,Barnyard,Barnyard,Barnyard,numeric,continuous_regression
+alcohol,Palate,Yeast,Alcohol,Alcohol,Alcohol,numeric,continuous_regression
+aftertaste,Palate,,Aftertaste,Aftertaste,Aftertaste,numeric,continuous_regression
+body,Palate,,Body,Body fullness,Body,numeric,continuous_regression
+co2,Palate,Yeast,Carbonation,Carbonation,Carbonation,numeric,continuous_regression
+overall,Overall,,Overall appreciation,Overall appreciation,"Overall appreciation_x000D_
+(Trained panel)",numeric,continuous_regression

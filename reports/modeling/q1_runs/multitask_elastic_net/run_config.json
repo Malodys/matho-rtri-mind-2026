@@ -1,0 +1,44 @@
+{
+  "outer_evaluation": "fixed 70/30 holdout",
+  "train_n": 175,
+  "test_n": 75,
+  "style_used_as_model_feature": false,
+  "models": [
+    "multitask_elastic_net"
+  ],
+  "primary_metric": "Macro_RMSE",
+  "tuning": {
+    "ridge_alpha": "logspace(-3,4,40)",
+    "pls2_n_components": [
+      2,
+      5,
+      10,
+      15,
+      20
+    ],
+    "multitask_elastic_net_l1_ratio": [
+      0.2,
+      0.5,
+      0.8,
+      0.95,
+      1.0
+    ],
+    "multitask_elastic_net_alpha": "logspace(-2.5,0.5,16)",
+    "extra_trees": {
+      "n_estimators": 500,
+      "max_features": [
+        0.3,
+        0.6
+      ],
+      "min_samples_leaf": [
+        3,
+        6
+      ],
+      "max_depth": [
+        null,
+        8
+      ]
+    },
+    "independent_gbr_selection_metric": "R2"
+  }
+}

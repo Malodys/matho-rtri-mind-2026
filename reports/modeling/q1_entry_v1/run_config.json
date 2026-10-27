@@ -1,0 +1,14 @@
+{
+  "mode": "collected_independent_runs",
+  "runs_dir": "/Users/thomasbuch/Documents/work_for_me/public/reports/modeling/q1_runs",
+  "models": [
+    "independent_gbr",
+    "grouped_extra_trees",
+    "global_extra_trees",
+    "pls2",
+    "multitask_elastic_net",
+    "ridge",
+    "global_mean"
+  ],
+  "primary_metric": "Macro_RMSE"
+}
