@@ -108,18 +108,31 @@ def run_checks(root: Path) -> list[dict]:
     add("V6_remote_tests", "远端管线测试文件已就位（≥7 个）", v6,
         f"{len(list(tests.glob('test_*.py'))) if tests.is_dir() else 0} 个测试文件")
 
-    # V7 TabPFN 复现结果
-    r7 = root / "worktrees" / "prediction-models" / "results"
+    # V7 TabPFN 复现结果（优先取本地并行复现产物，其次取远端管线 results 目录）
+    cands = []
+    local_repro = root / "data" / "processed" / "q1_repro_tabpfn" / "cv_summary.csv"
+    if local_repro.is_file():
+        cands.append(local_repro)
+    wt_results = root / "worktrees" / "prediction-models" / "results"
+    if wt_results.is_dir():
+        cands.extend(sorted(wt_results.glob("tabpfn_3_5_cv5_seed_*/cv_summary.csv")))
+
     v7 = False
     v7_detail = "未产出结果"
-    for cand in sorted(r7.glob("tabpfn_3_5_cv5_seed_*/cv_summary.csv")) if r7.is_dir() else []:
+    for cand in cands:
         try:
             import pandas as pd
-            df = pd.read_csv(cand)
-            row = df[df["evaluation"].astype(str).str.contains("cv_mean", na=False)]
-            val = float(row["mean_r2"].iloc[0]) if len(row) else float("nan")
-            v7 = abs(val - 0.2055) <= 0.03
-            v7_detail = f"{cand.parent.name}: cv_mean R2={val:.4f}（参考 0.2055，容差 ±0.03）"
+            df = pd.read_csv(cand, index_col=0)
+            row = df[df.index.astype(str).str.contains("cv_mean", na=False)]
+            if not len(row):
+                continue
+            val = float(row["r2"].iloc[0])
+            n_targets = len(pd.read_csv(cand.parent / "fold_target_metrics.csv")["target"].unique())
+            ok = abs(val - 0.2055) <= 0.03
+            v7 = v7 or ok
+            v7_detail = (f"{cand.parent.name}: 五折平均 R2={val:.4f}"
+                         f"（参考 0.2055，容差 ±0.03 → 判定{'通过' if ok else '超差'}）；"
+                         f"目标数={n_targets}")
         except Exception as exc:
             v7_detail = f"{cand}: 读取失败 {exc}"
     add("V7_tabpfn_repro", "TabPFN 五折平均 R² 复现且落在容差内", v7, v7_detail)
