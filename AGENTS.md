@@ -70,21 +70,56 @@
 
 ## Testing instructions
 
-- 单元测试：`pytest worktrees/prediction-models/tests -q`（7 个测试文件，改动建模脚本后必须全绿）
+- 数据层回归测试：`pytest tests -q`（20 项：数据契约 / 标度审计 / 相关类型，锁定本轮裁定，改动 `scripts/data_contract.py` 必须全绿）
+- 建模管线单元测试：`pytest worktrees/prediction-models/tests -q`（7 个测试文件，改动建模脚本后必须全绿）
 - 指标口径：按感官维度分别计算后取平均；R² 越大越好，MAE/RMSE 越小越好
-- 数据划分：按 `tasting_category_fine` 分层，固定 seed，训练/留出比 175:75
+- 数据划分：按 `tasting_category_fine` 分层，固定 seed，训练/留出比 175:75（`data/splits/seed_0`，只读勿改）
 - 新增行为都要补测试；提 PR 前测试必须全绿
+- 交付前跑 `python scripts/acceptance_check.py`，V1–V15 必须全 PASS
 
-## 数据语义备忘（避免重复探查）
+## 数据语义备忘（避免重复探查；均为本轮实测裁定，附回归测试）
 
-- `1.csv` 化合物丰度含**对数变换后的值**（负值对应原始浓度 < 1）；`ethanol / color / bitterness / pH / CO2` 等理化参数保留原量纲。**对数底数（log10 还是 ln）需自行核实**，正负值与原浓度的对应关系必须写清。
-- `2.csv` 化合物相关性矩阵（方阵）、`5.csv` 感官属性相关性矩阵（方阵）、`6.csv` 为 46 化学/理化指标 × 50 感官属性的**非方阵**交叉相关矩阵。
-- `2.csv / 5.csv / 6.csv` 的相关类型（Pearson 还是 Spearman）与是否在 log 变换量上计算——**尚未最终裁定**，引用前先用 `scripts/resolve_corr_type.py` 与 `scripts/align_and_confirm.py` 复核。
-- `3.xlsx` 为品评卡：sheet `beer_1..beer_12` 各 100 行 × 33 列，`summary` sheet 汇总各啤酒的感官属性（Aroma / Flavour 等维度）。
-- `4.csv` 是**标准化/中心化后的连续值**，不是原始 0–6 分制打分。
-- `7.csv` 为 250 样本 × 187 感官描述符的论坛评述数据，同样经标准化/中心化（存在负值，部分列含 `NA`），与 `4.csv` 的冗余/互补性见 `scripts/explore_7csv.py`、`scripts/probe_7csv_value.py`。
-- `8.xlsx` 提供两套名称桥：`Sensory thresholds`（`field_name_R`/`field_name_python` ↔ `chemical_name`）与 `Sensory names`（`R_name` ↔ `CleanName_PanelFeedback`）。
-- `tasting_category_fine` 为风格标签；缺陷化合物阈值项为 DMS / Diacetyl / 4VG / trans-2-nonenal / Stale hops。
+> 权威入口：`scripts/data_contract.py` —— **唯一允许读 `data/raw/` 的模块**。
+> 回归测试：`tests/test_data_contract.py`、`tests/test_scale_audit.py`、`tests/test_corr_type.py`（20 项，全绿）。
+> 裁定产物：`data/interim/bridges_v1.csv`、`chem_scale_audit_v1.csv`、`defect_thresholds_v1.csv`。
+
+- **对数底数 = log10，但 1.csv 是混合标度**。以 8.xlsx「Calibrated chemical dataset」的原始浓度回归：37 列严格
+  `file1 = log10(原浓度)`（斜率 1.0000、r=1.000000）；33 列存的是**原始浓度本身**（如 `X2.3.butanedione`
+  中位 0.2847 mg/L）。`ln` 假设斜率恒为 2.302585，据此排除。
+  **任何脚本都不得对全表盲做 `10 ** x`** —— 用 `data_contract.to_unified_scale()` 取已统一的 log10(mg/L) 矩阵
+  （`data/interim/chem_log10_matrix_v1.csv`，250×231，已剔除 4 个 `*_sum` 派生列后为 227 特征）。
+  逐列裁定见 `data/interim/chem_scale_audit_v1.csv`（LOG10=37 / RAW=19 / RAW_APPROX=10 / AMBIG=4，与队友
+  provenance 表 70/70 一致；4 列 AMBIG 因文件8 标定值与文件1 存储值存在系统性差异，采信 provenance 的 `original`）。
+- **2.csv / 5.csv / 6.csv 全部是 Spearman，不是 Pearson**。逐元素复算比对：Spearman 下 `max|Δ|=0`、
+  `frac<1e-8=1.0000`（Pearson 下 `median|Δ|≈0.04`）。2.csv 是在**文件1 原始存储标度**上直接算的（未做单位统一）。
+  ⚠️ **官方 PDF 称「表格 2 单元格为皮尔逊相关系数」与此矛盾**，《数据说明.txt》的 Spearman 表述才正确；
+  论文必须显式勘误并附证据表。
+- **名称桥**（`data/interim/bridges_v1.csv`）：化学桥 2.csv(231)+6.csv(44) **275/275 全解析**；
+  感官桥 5.csv(50)+6.csv(50) **100/100 全解析**。
+  - 化学：矩阵名 → `Sensory thresholds.chemical_name` → `field_name_R` → 1.csv 列名；兜底四级
+    （归一化 → field_name_python → 归一化 chemical_name）。**归一化必须先音译希腊字母再剥除非字母数字**，
+    否则 `E-α-ionone` 与 `E-β-ionone` 会塌缩成同一键 `eionone` 造成静默错配。
+  - 感官：矩阵名 → `Sensory names.CleanName_PanelFeedback` → `R_name` → 4.csv 列名；
+    矩阵侧名称可能带 `(Trained panel)` 后缀与换行，查表前须清洗。
+- **3.xlsx 是空白品评卡模板，不含任何评分数据**。12 张 `beer_N` 只有属性名与 0–6 刻度，无品评员打分行；
+  `summary` 表 600 个数值格全为 0，数值单元格是公式（`=beer_1!$Q$7` 等）。
+  **附件中不存在原始 0–6 分数**，4.csv 的标准化值是唯一标签源（mean≈0、std∈[0.37,0.86]，非 z 分数，
+  原始尺度不可反解）。→ 论文的「0–6 分制」必须显式构造并声明（相对七分位分级 + 阈值锚定双轨）。
+  3.xlsx 公式本身有价值：它确认了属性→维度映射（`A_malt_grain→Q10`、`A_hops_citrus→Q23` …）。
+  语义锚点：0 = `Not present`，6 = `Predominant/overwhelming`。
+- **感官维度全集 = 50**：Aroma 15（`A_*`）+ Flavour 15（`F_*`）+ 通用 20；
+  `8.xlsx/Sensory names` 的 Trained panel 50 行与 4.csv 的 50 个目标列**集合完全相同**（已验证）。
+  `Category_Paper` 分布：Aroma 15 / Taste 30 / Palate 4 / Overall 1。题面「约 40 个」为「约」数，交付全 50 维即可覆盖。
+- **缺陷化合物阈值**（统一矩阵 log10(mg/L) 口径，见 `defect_table()`）：
+  DMS 阈值 −1.7632（17.25 µg/L，超标 168/250=67.2%）；Diacetyl 阈值 −0.5240（0.29925 mg/L，112/250=44.8%）；
+  4VG 阈值 −0.6854（0.206333 mg/L，16/250=6.4%）；**trans-2-nonenal 在文件8 中无阈值**（以「迁移后不恶化」兜底）；
+  `stale_hops` 是 4.csv 的**感官维度**而非化合物。
+- `7.csv` = 250×187 论坛评述派生描述符（已标准化，仅 3 列含 NA 共 750 格），与 4.csv 互补。
+- `8.xlsx` 其余 sheet：`GBM importance MDI`（231 行，原论文模型重要性先验）、`GBM SHAP Values`（500 行，
+  `base_prediction` 为常数 −0.3263 即模型截距）、`Calibrated chemical dataset`（250×73，**含 70 个化合物的原始浓度**，
+  是裁定对数底数与标度的基准）、`Beer Prices`。
+- `tasting_category_fine` 为风格标签（22 类，Blond 31 / Tripel 28 最大，Faro 3 / Brut 4 最小）；
+  问题三的 Copula 条件边际对 n<10 的风格需向全局边际收缩（λ = n/(n+10)）。
 
 ## PR & commit conventions
 

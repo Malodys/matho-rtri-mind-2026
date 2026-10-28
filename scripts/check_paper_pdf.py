@@ -56,7 +56,8 @@ def collect(path: Path):
     return n_pages, pages_text, top_text, bottom_text
 
 
-def check(path: Path, max_body_pages: int, docx_path: Path | None = None):
+def check(path: Path, max_body_pages: int, docx_path: Path | None = None,
+          appendix_marker: str = "附录"):
     reader = PdfReader(str(path))
     n_pdf_pages = len(reader.pages)
     n_pages, pages_text, top_text, bottom_text = collect(path)
@@ -64,13 +65,26 @@ def check(path: Path, max_body_pages: int, docx_path: Path | None = None):
 
     results = []
 
-    # 1 页数
-    ok_pages = 1 <= n_pages <= max_body_pages
+    # 1 页数：官方规范为「正文控制在 30 页以内，附录页数不限」。
+    #    正文页 = 带页脚页码的页；封面与目录不带页码，自然不计入正文。
+    #    附录页 = 正文中出现附录标题之后的页；其页数不计入正文限额。
+    numbered = [i for i, bt in enumerate(bottom_text)
+                if PAGE_NUM_RE.search(bt)]
+    appendix_start = None
+    for i in numbered:
+        if appendix_marker and appendix_marker in pages_text[i]:
+            appendix_start = i
+            break
+    body_pages = len(numbered)
+    appendix_pages = (body_pages - appendix_start) if appendix_start is not None else 0
+    body_only = body_pages - appendix_pages
+    ok_pages = 1 <= body_only <= max_body_pages
     results.append({
         "id": "page_count",
-        "desc": f"页数在 1..{max_body_pages} 之间（正文上限 30 页，附录不限）",
+        "desc": f"正文页数在 1..{max_body_pages} 之间（正文上限 30 页，附录页数不限）",
         "passed": ok_pages,
-        "detail": f"pdfplumber 抽取 {n_pages} 页；pypdf 读取 {n_pdf_pages} 页",
+        "detail": f"PDF 共 {n_pages} 页；其中正文 {body_only} 页"
+                  f"（附录 {appendix_pages} 页，前置部分 {n_pages - body_pages} 页不计）",
     })
 
     # 2 中文可抽取、无乱码
@@ -148,6 +162,8 @@ def check(path: Path, max_body_pages: int, docx_path: Path | None = None):
     return {
         "pdf": str(path),
         "pages": n_pages,
+        "body_pages": body_only,
+        "appendix_pages": appendix_pages,
         "footer_page_sequence": seq,
         "results": results,
         "all_passed": all(r["passed"] for r in results),
@@ -160,6 +176,8 @@ def main() -> int:
     ap.add_argument("--docx", dest="docx", default=None,
                     help="论文源 DOCX 路径（提供时以 DOCX 页眉对象作为权威依据）")
     ap.add_argument("--max-body-pages", type=int, default=30, help="正文页数上限（默认 30）")
+    ap.add_argument("--appendix-marker", default="附录",
+                    help="附录标题标记；该标题之后的页数不计入正文限额")
     ap.add_argument("--json", dest="json_out", default=None, help="JSON 报告输出路径")
     ap.add_argument("--quiet", action="store_true", help="仅输出结论")
     args = ap.parse_args()
@@ -170,10 +188,13 @@ def main() -> int:
         return 1
 
     report = check(path, args.max_body_pages,
-                   Path(args.docx) if args.docx else None)
+                   Path(args.docx) if args.docx else None,
+                   appendix_marker=args.appendix_marker)
     buf = io.StringIO()
     buf.write(f"论文 PDF 合规校验报告\n")
-    buf.write(f"文件: {report['pdf']}\n页数: {report['pages']}\n\n")
+    buf.write(f"文件: {report['pdf']}\n")
+    buf.write(f"总页数: {report['pages']}（正文 {report['body_pages']} 页，"
+              f"附录 {report['appendix_pages']} 页）\n\n")
     for r in report["results"]:
         flag = "PASS" if r["passed"] else "FAIL"
         buf.write(f"[{flag}] {r['id']} — {r['desc']}\n       {r['detail']}\n")
