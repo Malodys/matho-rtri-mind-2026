@@ -67,3 +67,8 @@ worktrees/
 
 # Paper smoke-test artifacts (docx -> PDF pipeline)
 data/processed/paper_smoke/
+
+# Regenerable acceptance report artifacts (scripts/acceptance_check.py output)
+data/processed/_acc_console.txt
+data/processed/acceptance_report.json
+data/processed/acceptance_report.txt

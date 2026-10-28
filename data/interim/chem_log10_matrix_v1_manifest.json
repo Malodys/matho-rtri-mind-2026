@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "rows": 250,
+  "chemical_features": 231,
+  "nondetect_rule": "half_min on the variable's retained modeling scale",
+  "aroma_hops_sum_method": "nnls",
+  "aroma_validation_repeats": 100,
+  "sha256": "94ef7d4a7fb262e1d4c117d0318d5d4c5dc8e40f007f2aedca4e06575bdaad01",
+  "next_stage_input": "chem_log10_matrix_v1.csv"
+}

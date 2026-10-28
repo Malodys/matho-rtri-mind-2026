@@ -1,0 +1,147 @@
+﻿beer,style,column,block,value,reference,robust_z,global_robust_z,direction,imputed
+139,Pils/Lager,acetaldehyde,GC-FID/FPD 目标定量,-0.844375541,within_style_and_global,-5.63391735803302,-4.744734537288127,low,False
+128,Amber,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-8.217014952521554,-10.30366498290039,low,False
+92,Amber,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-8.217014952521554,-10.30366498290039,low,False
+247,Fruitbeer,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-11.787439139043885,-10.30366498290039,low,False
+227,Fruitbeer,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-11.787439139043885,-10.30366498290039,low,False
+39,Hoppy,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-10.277599703943693,-10.30366498290039,low,False
+220,Kriek,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-17.40330358405726,-10.30366498290039,low,False
+7,Saison,H2S,GC-FID/FPD 目标定量,-4.2850418900000005,within_style_and_global,-6.143775567369906,-9.070339563527908,low,False
+61,Stout/Porter,H2S,GC-FID/FPD 目标定量,-4.586071886,within_style_and_global,-8.940913313174523,-10.30366498290039,low,False
+115,Lambic,isoamyl_alcohol,GC-MS 校准化合物,-0.730837435,within_style_and_global,-16.734465471118465,-13.968921577177149,low,False
+231,Stout/Porter,isoamyl_alcohol,GC-MS 校准化合物,-0.429807439,within_style_and_global,-8.986703626453572,-12.170903344325652,low,False
+175,Strong ale,isoamyl_alcohol,GC-MS 校准化合物,-0.730837435,within_style_and_global,-17.505863097296828,-13.968921577177149,low,False
+11,Amber,isobutanol,GC-MS 校准化合物,-1.02008759,within_style_and_global,-8.449480821764672,-9.843063220887332,low,False
+193,Blond,isobutanol,GC-MS 校准化合物,-1.321117585,within_style_and_global,-13.602387735394927,-11.279271561693877,low,False
+119,Pils/Lager,isobutanol,GC-MS 校准化合物,-1.321117585,within_style_and_global,-19.61452758650414,-11.279271561693877,low,False
+37,Strong ale,isobutanol,GC-MS 校准化合物,-1.321117585,within_style_and_global,-16.80018034412639,-11.279271561693877,low,False
+228,Tripel,isobutanol,GC-MS 校准化合物,-1.321117585,within_style_and_global,-16.186067812450045,-11.279271561693877,low,False
+135,Tripel,isobutanol,GC-MS 校准化合物,-1.321117585,within_style_and_global,-16.186067812450045,-11.279271561693877,low,False
+104,Strong ale,SO2.mg.L.,标准理化指标,-1.0,within_style_and_global,-6.327889644710208,-6.02954429853032,low,False
+69,Tripel,SO2.mg.L.,标准理化指标,-0.698970004,within_style_and_global,-6.380928622389614,-4.645844391076109,low,False
+39,Hoppy,betaglucan.mg.L.,标准理化指标,0.096910013,within_style_and_global,-4.867989035600859,-5.5854089149353605,low,False
+134,Strong ale,betaglucan.mg.L.,标准理化指标,0.096910013,within_style_and_global,-7.804829836314027,-5.5854089149353605,low,False
+157,Tripel,betaglucan.mg.L.,标准理化指标,0.096910013,within_style_and_global,-6.675241686873277,-5.5854089149353605,low,False
+96,Pils/Lager,unfermentables,标准理化指标,0.390935107,within_style_and_global,-20.894326537458554,-6.792384956056285,low,False
+44,Wheat,unfermentables,标准理化指标,0.598790507,within_style_and_global,-7.047443356601297,-5.504286628593371,low,False
+40,Low/No alcohol,kcalperc,标准理化指标,0.955286362,within_style_and_global,-28.887811917350806,-7.015172463152442,low,False
+71,Blond,X2.3.butanedione,GC-MS 校准化合物,-7.229147988357856,within_style_and_global,-8.176033084308974,-9.295131104120834,low,False
+108,Brown,X2.3.butanedione,GC-MS 校准化合物,-4.301029995663981,within_style_and_global,-5.166278016250233,-5.222823510829575,low,False
+16,Dubbel,X2.3.butanedione,GC-MS 校准化合物,-4.048176964684088,within_style_and_global,-14.601413280633741,-4.871165783710865,low,False
+221,Dubbel,X2.3.butanedione,GC-MS 校准化合物,-5.200659450546418,within_style_and_global,-19.20377687626349,-6.473991622704647,low,False
+242,Saison,X2.3.butanedione,GC-MS 校准化合物,-4.801342913045577,within_style_and_global,-5.32137263243601,-5.918638398603389,low,False
+235,Strong ale,X2.3.butanedione,GC-MS 校准化合物,-3.9280664692863327,within_style_and_global,-6.027000738231764,-4.70412098440199,low,False
+57,Tripel,X2.3.butanedione,GC-MS 校准化合物,-4.050609993355088,within_style_and_global,-4.535251796717922,-4.874549541181134,low,False
+163,Tripel,X2.3.butanedione,GC-MS 校准化合物,-6.882728704344236,within_style_and_global,-8.192073320092353,-8.81334523201077,low,False
+85,Tripel,X2.3.butanedione,GC-MS 校准化合物,-4.121478204498794,within_style_and_global,-4.626756576806337,-4.973110171279914,low,False
+208,Wheat,X2.3.butanedione,GC-MS 校准化合物,-4.97061622231479,within_style_and_global,-5.7776560613474715,-6.154056842941545,low,False
+71,Blond,X3.methylbutanal,文件8无校准标记,-6.057991946977687,within_style_and_global,-11.62597064315622,-8.912970587839222,low,False
+129,Brown,X3.methylbutanal,文件8无校准标记,-4.356547323513813,within_style_and_global,-8.370833332070472,-5.93551452209786,low,False
+38,Christmas,X3.methylbutanal,文件8无校准标记,-4.892790030352131,within_style_and_global,-7.435919644176292,-6.873916558912206,low,False
+102,Christmas,X3.methylbutanal,文件8无校准标记,-5.943095148663527,within_style_and_global,-9.362531470624265,-8.711906054584949,low,False
+221,Dubbel,X3.methylbutanal,文件8无校准标记,-4.070070439915412,within_style_and_global,-6.471879835500279,-5.434192102900799,low,False
+9,Hoppy,X3.methylbutanal,文件8无校准标记,2.104005798690608,within_style_and_global,6.125144441097948,5.370179954511285,high,False
+242,Saison,X3.methylbutanal,文件8无校准标记,-4.007004901568658,within_style_and_global,-5.467275501072343,-5.323830080475699,low,False
+134,Strong ale,X3.methylbutanal,文件8无校准标记,-4.995678626217358,within_style_and_global,-9.254008159143112,-7.0539672462104255,low,False
+34,Tripel,X3.methylbutanal,文件8无校准标记,1.8969902163911871,within_style_and_global,6.1230864579119135,5.007911448842532,high,False
+163,Tripel,X3.methylbutanal,文件8无校准标记,-5.91721462968355,within_style_and_global,-10.798752103413383,-8.666616241940568,low,False
+85,Tripel,X3.methylbutanal,文件8无校准标记,-4.995678626217358,within_style_and_global,-8.80314490008583,-7.0539672462104255,low,False
+152,Wheat,X3.methylbutanal,文件8无校准标记,-5.578396073130169,within_style_and_global,-7.5368283782913625,-8.073698110792813,low,False
+73,Blond,X2.methyltetrahydrofuran.3.one,GC-MS 校准化合物,1.1146924885211538,within_style_and_global,6.582647501807028,5.139184876634234,high,False
+177,Fruitbeer,X2.methyltetrahydrofuran.3.one,GC-MS 校准化合物,1.8855466880106089,within_style_and_global,4.629417473648078,6.79565619815454,high,False
+9,Hoppy,X2.methyltetrahydrofuran.3.one,GC-MS 校准化合物,0.8725295366476792,within_style_and_global,10.760240292701987,4.618806334000893,high,False
+156,Kriek,X2.methyltetrahydrofuran.3.one,GC-MS 校准化合物,4.100247576529623,within_style_and_global,11.4989466751667,11.554777326387393,high,False
+7,Saison,X2.methyltetrahydrofuran.3.one,GC-MS 校准化合物,1.368282894768375,within_style_and_global,9.253133780472487,5.684119619987022,high,False
+34,Tripel,X2.methyltetrahydrofuran.3.one,GC-MS 校准化合物,1.4948978600915297,within_style_and_global,8.74618339602943,5.956199682691491,high,False
+19,Amber,furfural,GC-MS 校准化合物,-5.928117992693875,within_style_and_global,-7.108848575028843,-5.505242096986938,low,False
+113,Blond,furfural,GC-MS 校准化合物,-7.1904402853647325,within_style_and_global,-13.35476229022846,-7.311746081515744,low,False
+59,Blond,furfural,GC-MS 校准化合物,-6.570247719997592,within_style_and_global,-11.68493528128192,-6.424191178131801,low,False
+5,Blond,X3Z.hexenol,GC-MS 校准化合物,0.4745339555166336,within_style_and_global,6.888405622224323,6.320592866962971,high,False
+181,Christmas,X3Z.hexenol,GC-MS 校准化合物,0.4780360528970488,within_style_and_global,8.321156473439686,6.331227805551555,high,False
+9,Hoppy,X3Z.hexenol,GC-MS 校准化合物,0.5344513581879357,within_style_and_global,8.099806262221984,6.502546087727291,high,False
+7,Saison,X3Z.hexenol,GC-MS 校准化合物,0.0157568467895997,within_style_and_global,6.875124510470546,4.927408769785676,high,False
+72,Hoppy,amyl.acetate,GC-MS 校准化合物,-9.0,within_style_and_global,-11.243018425811815,-5.526720904215828,low,False
+40,Low/No alcohol,amyl.acetate,GC-MS 校准化合物,-7.903089986991944,within_style_and_global,-9.181501295665372,-4.573874866342288,low,False
+157,Tripel,benzyl.alcohol,GC-MS 校准化合物,-6.540607512240769,within_style_and_global,-5.140165826860001,-4.697400878920426,low,False
+224,Wheat,benzyl.alcohol,GC-MS 校准化合物,-7.54515513999149,within_style_and_global,-14.093418679164039,-5.870694563771876,low,False
+41,Lambic,phenylacetaldehyde,GC-MS 校准化合物,-5.350665141287858,within_style_and_global,-6.590732865267226,-5.561583905098713,low,False
+162,Lambic,phenylacetaldehyde,GC-MS 校准化合物,-6.614393726401688,within_style_and_global,-9.583861810723372,-7.634844285609395,low,False
+21,Lambic,phenylacetaldehyde,GC-MS 校准化合物,-6.010105436281227,within_style_and_global,-8.152610833365102,-6.643455007032267,low,False
+234,Blond,ortho.cresol,GC-MS 相对丰度,3.549931154,within_style_and_global,-4.898452023249599,-4.873808229972574,low,False
+157,Tripel,ethyl.5.methylhexanoate,GC-MS 相对丰度,3.814330155,within_style_and_global,-6.727866590947359,-4.814350277956949,low,False
+95,Christmas,n.octanol,GC-MS 相对丰度,4.961776457,within_style_and_global,-6.269792738317276,-5.242309925045976,low,False
+103,Stout/Porter,n.octanol,GC-MS 相对丰度,4.772159806,within_style_and_global,-5.092867052357666,-5.739918764291292,low,False
+157,Tripel,n.octanol,GC-MS 相对丰度,5.095238097,within_style_and_global,-5.632201224121753,-4.892068048006515,low,False
+102,Christmas,nonan.2.ol,GC-MS 相对丰度,4.51232489,within_style_and_global,-6.63746711066977,-4.659428651485787,low,False
+95,Christmas,neo.allo.ocimene,GC-MS 相对丰度,8.086688944,within_style_and_global,8.627664361458125,9.838531693512637,high,False
+73,Blond,x.methyl.1.octanol,GC-MS 相对丰度,4.448093146,within_style_and_global,-7.566954086536202,-4.886140721109051,low,False
+57,Tripel,x.methyl.1.octanol,GC-MS 相对丰度,4.325775492,within_style_and_global,-5.335633444324707,-5.261415085509399,low,False
+73,Blond,camphor,GC-MS 相对丰度,7.626943123,within_style_and_global,6.895079563149388,4.862954254720576,high,False
+115,Lambic,camphor,GC-MS 相对丰度,7.660943161,within_style_and_global,9.75133343777373,4.922584446755308,high,False
+34,Tripel,X.E..2.nonenal,GC-MS 校准化合物,1.0397912581268087,within_style_and_global,4.892783067370014,4.614283803842078,high,False
+103,Stout/Porter,ethyl.benzoate,GC-MS 相对丰度,3.925500673,within_style_and_global,-4.716056627322832,-4.922154177174093,low,False
+116,Lambic,ethyl.nicotinate,GC-MS 校准化合物,-6.419075024324381,within_style_and_global,-10.483387085695146,-5.174476192653782,low,False
+101,Blond,E.ocimenone,GC-MS 相对丰度,3.310340666,within_style_and_global,-6.253890864366404,-4.9332388465165256,low,False
+42,Lambic,E.ocimenone,GC-MS 相对丰度,3.253937309,within_style_and_global,-10.070978785337756,-5.114682702385941,low,False
+101,Blond,ethyl.phenylacetate,GC-MS 相对丰度,4.547853982,within_style_and_global,-6.002330348392285,-5.109806929094153,low,False
+126,Amber,geraniol,GC-MS 校准化合物,-4.108462542327436,within_style_and_global,-5.048555894415012,-4.804521143312031,low,False
+70,Blond,geraniol,GC-MS 校准化合物,-4.882728704344236,within_style_and_global,-9.014317395865607,-5.9498221454059275,low,False
+110,Blond,geraniol,GC-MS 校准化合物,-4.533132379645891,within_style_and_global,-8.239449465816962,-5.4326963291847745,low,False
+121,Blond,geraniol,GC-MS 校准化合物,-4.060980223551334,within_style_and_global,-7.192940855703056,-4.734284899054167,low,False
+248,Blond,geraniol,GC-MS 校准化合物,-5.036684488613889,within_style_and_global,-9.35555496459285,-6.177554833016729,low,False
+3,Blond,geraniol,GC-MS 校准化合物,-4.428291168191312,within_style_and_global,-8.007072616392989,-5.277614329699096,low,False
+206,Brown,geraniol,GC-MS 校准化合物,-4.364516253185088,within_style_and_global,-5.774540113599383,-5.183277940420733,low,False
+141,Low/No alcohol,geraniol,GC-MS 校准化合物,-4.640164517660112,within_style_and_global,-5.031231725335057,-5.591019165616931,low,False
+196,Strong ale,geraniol,GC-MS 校准化合物,-4.87942606879415,within_style_and_global,-10.218297586281707,-5.944936859194774,low,False
+45,Tripel,geraniol,GC-MS 校准化合物,-3.910310323802181,within_style_and_global,-6.766966527011547,-4.511412719391035,low,False
+234,Blond,beta.cyclohomocitral,GC-MS 相对丰度,4.769820487,within_style_and_global,-6.78080541572553,-5.775468764894544,low,False
+7,Saison,beta.cyclohomocitral,GC-MS 相对丰度,5.131539321,within_style_and_global,-5.574156261501976,-4.6820972155065235,low,False
+105,Strong ale,X2.undecanone,GC-MS 相对丰度,6.989762528,within_style_and_global,5.977069199371861,5.063232368424662,high,False
+158,Amber,eugenol,GC-MS 校准化合物,-0.3667132659954843,within_style_and_global,20.607663421807576,6.344879094805558,high,False
+32,Amber,eugenol,GC-MS 校准化合物,-0.505180983188529,within_style_and_global,19.415195386634828,5.98834224252281,high,False
+5,Blond,eugenol,GC-MS 校准化合物,-0.357050311524723,within_style_and_global,7.435531776728847,6.369759979972123,high,False
+149,Blond,eugenol,GC-MS 校准化合物,0.3792517489467097,within_style_and_global,9.618948003888102,8.265644625804734,high,False
+9,Hoppy,eugenol,GC-MS 校准化合物,-0.06698386078017,within_style_and_global,8.339582123216898,7.116644390271959,high,False
+67,Stout/Porter,eugenol,GC-MS 校准化合物,-0.5426352456862359,within_style_and_global,5.046112795014035,5.891902255454293,high,False
+34,Tripel,eugenol,GC-MS 校准化合物,-0.1284503517851313,within_style_and_global,15.750984171377057,6.958375952920443,high,False
+5,Blond,gamma.nonalactone,GC-MS 校准化合物,3.3423485258155012,within_style_and_global,15.863096266232512,12.12862538593589,high,False
+234,Blond,gamma.nonalactone,GC-MS 校准化合物,-2.4919983539102915,within_style_and_global,-8.380562191270927,-6.931310669544241,low,False
+101,Blond,gamma.nonalactone,GC-MS 校准化合物,-2.261315662666986,within_style_and_global,-7.421998620429,-6.177704921575735,low,False
+73,Blond,gamma.nonalactone,GC-MS 校准化合物,1.5276022916229175,within_style_and_global,8.322220004368337,6.200121665865744,high,False
+181,Christmas,gamma.nonalactone,GC-MS 校准化合物,3.860705406582981,within_style_and_global,7.8449052613336,13.822019557557487,high,False
+177,Fruitbeer,gamma.nonalactone,GC-MS 校准化合物,3.144089894827116,within_style_and_global,10.775359404686768,11.480944178941346,high,False
+9,Hoppy,gamma.nonalactone,GC-MS 校准化合物,3.3568628434174466,within_style_and_global,13.089027870309993,12.176041484273021,high,False
+67,Stout/Porter,gamma.nonalactone,GC-MS 校准化合物,3.35868808977107,within_style_and_global,19.53435095002228,12.182004290308166,high,False
+103,Stout/Porter,gamma.nonalactone,GC-MS 校准化合物,-3.6388787113833168,within_style_and_global,-18.178649027823127,-10.677996755810923,low,False
+34,Tripel,gamma.nonalactone,GC-MS 校准化合物,2.104786596788982,within_style_and_global,5.3114934822436,8.085696208394308,high,False
+157,Tripel,gamma.nonalactone,GC-MS 校准化合物,-3.332557320864469,within_style_and_global,-6.7753457060794045,-9.67729072374356,low,False
+5,Blond,X.E..beta.damascenone,GC-MS 校准化合物,1.2240347599400414,within_style_and_global,8.348599423746268,5.459718840048437,high,False
+234,Blond,X.E..beta.damascenone,GC-MS 校准化合物,-1.884641885083599,within_style_and_global,-9.668222122492285,-6.09680174424403,low,False
+101,Blond,X.E..beta.damascenone,GC-MS 校准化合物,-1.9463488577376131,within_style_and_global,-10.025854530560748,-6.326197715938943,low,False
+73,Blond,X.E..beta.damascenone,GC-MS 校准化合物,1.503876440670362,within_style_and_global,9.970465638422743,6.500031652537287,high,False
+181,Christmas,X.E..beta.damascenone,GC-MS 校准化合物,1.926187511090288,within_style_and_global,7.04830788594647,8.069975115809694,high,False
+177,Fruitbeer,X.E..beta.damascenone,GC-MS 校准化合物,2.055799744217019,within_style_and_global,8.619630605620452,8.551809224385432,high,False
+9,Hoppy,X.E..beta.damascenone,GC-MS 校准化合物,1.4741485519967372,within_style_and_global,8.400880829890967,6.3895180814541535,high,False
+67,Stout/Porter,X.E..beta.damascenone,GC-MS 校准化合物,1.6821513131950845,within_style_and_global,12.313440691642787,7.162769360330761,high,False
+103,Stout/Porter,X.E..beta.damascenone,GC-MS 校准化合物,-2.229765051078899,within_style_and_global,-12.954487093889867,-7.379798796486669,low,False
+157,Tripel,X.E..beta.damascenone,GC-MS 校准化合物,-2.1360972978094956,within_style_and_global,-6.843637287659747,-7.0315884670286,low,False
+32,Amber,E.caryophyllene,GC-MS 校准化合物,0.4093859873731135,within_style_and_global,5.2736751835561275,5.280891292637246,high,False
+5,Blond,E.caryophyllene,GC-MS 校准化合物,0.7612099049129182,within_style_and_global,11.81692774093247,5.8247663914225285,high,False
+181,Christmas,E.caryophyllene,GC-MS 校准化合物,0.6731729080295081,within_style_and_global,16.755103223710687,5.688672373961913,high,False
+9,Hoppy,E.caryophyllene,GC-MS 校准化合物,0.9928883944408158,within_style_and_global,12.671199697037862,6.1829119156367955,high,False
+67,Stout/Porter,E.caryophyllene,GC-MS 校准化合物,0.3055429415684839,within_style_and_global,12.257159860778875,5.120363130737146,high,False
+34,Tripel,E.caryophyllene,GC-MS 校准化合物,0.7266827708498882,within_style_and_global,7.5345842739292515,5.771391826723758,high,False
+158,Amber,alpha.humulene,GC-MS 校准化合物,0.7826336416005639,within_style_and_global,5.714765842693247,5.119648213428657,high,False
+32,Amber,alpha.humulene,GC-MS 校准化合物,0.5019411397841171,within_style_and_global,5.061876944450163,4.5889846060732,high,False
+177,Fruitbeer,alpha.humulene,GC-MS 校准化合物,0.7212041069244206,within_style_and_global,5.3491315242839255,5.003512519534252,high,False
+126,Amber,n.dodecanol,GC-MS 相对丰度,4.84150644,within_style_and_global,-7.393221887688583,-4.800207829883216,low,False
+207,Fruitbeer,n.dodecanol,GC-MS 相对丰度,7.496912635,within_style_and_global,4.650245663731951,5.110605165748359,high,False
+103,Stout/Porter,germacrene.D,GC-MS 相对丰度,2.383574526,within_style_and_global,-5.331252339563152,-4.533367080446133,low,False
+142,Wheat,germacrene.D,GC-MS 相对丰度,2.312623353,within_style_and_global,-5.762235990354752,-4.686448309320293,low,False
+158,Amber,Z.nerolidol,GC-MS 校准化合物,0.1664192264444654,within_style_and_global,4.882912613508025,4.564451763139552,high,False
+5,Blond,Z.nerolidol,GC-MS 校准化合物,0.3476004547886821,within_style_and_global,5.4601342216180155,4.945620865125796,high,False
+9,Hoppy,Z.nerolidol,GC-MS 校准化合物,0.438281004302872,within_style_and_global,5.217807489544727,5.136394622108364,high,False
+34,Tripel,Z.nerolidol,GC-MS 校准化合物,0.1722779684811826,within_style_and_global,8.235534731305087,4.576777385729227,high,False
+177,Fruitbeer,ethyl.pentanoate,文件8无校准标记,0.2250182154385332,within_style_and_global,62.64033153710778,5.364202248670793,high,False
+9,Hoppy,ethyl.pentanoate,文件8无校准标记,0.0363685983375822,within_style_and_global,10.55711481957592,4.814249918798326,high,False
+34,Tripel,ethyl.pentanoate,文件8无校准标记,0.1878855689275017,within_style_and_global,4.545057819982066,5.255952967400614,high,False

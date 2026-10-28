@@ -1,0 +1,27 @@
+source,sheet,rows,columns
+1.csv,-,250,234
+2.csv,-,231,232
+4.csv,-,250,53
+5.csv,-,50,51
+6.csv,-,44,51
+7.csv,-,250,189
+3.xlsx,beer_1,100,33
+3.xlsx,beer_2,100,33
+3.xlsx,beer_3,100,33
+3.xlsx,beer_4,100,33
+3.xlsx,beer_5,100,33
+3.xlsx,beer_6,100,33
+3.xlsx,beer_7,100,33
+3.xlsx,beer_8,100,33
+3.xlsx,beer_9,100,33
+3.xlsx,beer_10,100,33
+3.xlsx,beer_11,100,33
+3.xlsx,beer_12,100,33
+3.xlsx,summary,12,52
+8.xlsx,Sensory thresholds,261,11
+8.xlsx,Sensory names,101,8
+8.xlsx,GBM importance MDI,231,2
+8.xlsx,GBM SHAP Values,500,236
+8.xlsx,Calibrated chemical dataset,250,73
+8.xlsx,Beer Prices,250,11
+8.xlsx,Sheet2,0,0

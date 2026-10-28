@@ -1,0 +1,19 @@
+{
+  "status": "deferred_until_prediction_models_exist",
+  "fixed_primary_matrix": "chem_log10_matrix_v1.csv",
+  "left_censoring_scenarios": {
+    "half_min": "chem_log10_matrix_v1.csv",
+    "lod_sqrt2_proxy": "chem_log10_matrix_lod_sqrt2_proxy_v1.csv",
+    "qrilc": "chem_log10_matrix_qrilc_v1.csv"
+  },
+  "sample_review_files": [
+    "chem_outlier_distance_scores_v1.csv",
+    "chem_outlier_unified_flags_v1.csv",
+    "chem_outlier_detection_pattern_v1.csv"
+  ],
+  "planned_comparisons": [
+    "主模型在三种左删失方案下的性能和特征稳定性",
+    "全部样本与排除稀疏谱复核样本后的性能差异"
+  ],
+  "note": "敏感性分析不修改v1，只在模型结果存在后比较结论稳定性。"
+}

@@ -1,0 +1,5 @@
+key,label,column,name,threshold_mean,threshold_median,unit_in_file8,unit_convert_to_mgL,has_threshold,note,threshold_mg_per_L,log10_threshold
+dms,dms,DMS,Dimethyl sulfide,17.25,19.0,ug/L,0.001,True,主导缺陷风险；统一矩阵单位为 log10(mg/L)，阈值须由 µg/L 换算,0.01725,-1.763210900590707
+diacetyl,diacetyl,X2.3.butanedione,Diacetyl,0.29925,0.09,mg/L,1.0,True,文件1 存原始浓度；存在 gross outlier（最大 121.731 mg/L）需先处理,0.29925,-0.5239658409215517
+4vg,X4vg,X4VG,4-vinylguaiacol,0.206333,0.2,mg/L,1.0,True,统一矩阵单位 log10(mg/L),0.206333,-0.6854313073067055
+t2n,t2n,X.E..2.nonenal,E-2-nonenal,,,mg/L,1.0,False,文件8 无阈值：以「迁移后不恶化」的相对约束兜底，论文须声明该缺口,,

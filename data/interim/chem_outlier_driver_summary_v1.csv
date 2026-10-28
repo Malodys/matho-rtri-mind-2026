@@ -1,0 +1,9 @@
+﻿beer,style,evidence_families,top_5_drivers,top10_calibrated_n,top10_relative_n,top10_unflagged_unit_n,top10_imputed_n,top10_univariate_confirmed_n
+157,Tripel,4,n.decanol; X4.methyl.1.pentanol; n.dodecanol; X3.methylthio.propanol; n.nonanol,0,10,0,0,0
+234,Blond,4,beta.humulene; n.decanol; X4.methyl.1.pentanol; n.dodecanol; n.nonanol,1,9,0,0,0
+103,Stout/Porter,4,n.decanol; X4.methyl.1.pentanol; n.dodecanol; n.nonanol; x.methyl.1.octanol,0,10,0,0,0
+10,Low/No alcohol,4,X4VG; beta.cyclohomocitral; alpha.muurolol; tau.muurolol; X1.propanol,1,8,0,0,0
+101,Blond,3,beta.humulene; n.decanol; n.dodecanol; n.nonanol; X4VG,1,9,0,0,0
+223,Low/No alcohol,3,ethyl.phenylacetate; ethyl.hexadecanoate; ethanol..v.v.; tau.muurolol; X1.propanol,0,9,0,0,0
+150,Brett/cofermented,3,n.decanol; n.dodecanol; n.nonanol; X3.methylthio.propanol; x.methyl.1.octanol,0,10,0,0,0
+192,Brut,2,n.decanol; X4.methyl.1.pentanol; n.dodecanol; x.methyl.1.octanol; X3.methylthio.propanol,0,10,0,0,0
