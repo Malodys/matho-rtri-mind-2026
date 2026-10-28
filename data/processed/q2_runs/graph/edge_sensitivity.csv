@@ -1,0 +1,5 @@
+abs_rho_threshold,n_nodes,n_edges,n_connected_components,n_leiden_communities,n_communities_size_ge2,largest_community_size,top5_community_sizes,isolated_nodes,isolated_ratio,nodes_in_connected_components,modularity_Q,chemical_purity_weighted,mean_edge_abs_rho,edge_density
+0.5,231,645,52,59,11,33,"[33, 29, 23, 20, 20]",48,0.2078,183,0.6513,0.5628,0.6077,0.02428
+0.6,231,266,114,120,19,21,"[21, 17, 16, 15, 15]",101,0.4372,130,0.7455,0.6615,0.7016,0.01001
+0.7,231,109,169,171,21,11,"[11, 11, 10, 6, 4]",150,0.6494,81,0.7507,0.7778,0.7884,0.0041
+0.8,231,39,207,208,14,7,"[7, 4, 3, 3, 2]",194,0.8398,37,0.6824,0.8108,0.8619,0.00147

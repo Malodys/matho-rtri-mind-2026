@@ -1,0 +1,48 @@
+[1/7] 取数（data_contract）
+[2/7] 重跑七个模型族
+[fit] global_mean
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\global_mean
+[fit] ridge
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\ridge
+[fit] pls2
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\pls2
+[fit] multitask_elastic_net
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\multitask_elastic_net
+[fit] global_extra_trees
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\global_extra_trees
+[fit] grouped_extra_trees
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\grouped_extra_trees
+[fit] independent_gbr
+  → F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_runs\independent_gbr
+[3/7] 留出集汇总
+                model  Macro_RMSE  R2_median  Spearman_median  proxy_grade_MAE  proxy_exact_accuracy  proxy_quadratic_kappa  beats_global_mean
+      independent_gbr    0.487951   0.183348         0.381892         1.608533              0.206667               0.304761               True
+  grouped_extra_trees    0.488051   0.188322         0.416441         1.605600              0.204000               0.294087               True
+   global_extra_trees    0.489329   0.165217         0.411240         1.611467              0.205600               0.278741               True
+                 pls2    0.491485   0.176599         0.403258         1.606667              0.214133               0.345853               True
+multitask_elastic_net    0.492875   0.142195         0.414330         1.616533              0.195467               0.299617               True
+                ridge    0.497636   0.176617         0.366942         1.624533              0.202667               0.310545               True
+          global_mean    0.576241  -0.006620              NaN         1.879200              0.154667               0.000000              False
+[4/7] 配对 bootstrap（2000 次重采样）
+  最优模型：independent_gbr（Macro-RMSE 0.4880）
+[5/7] 250 样本 5 折 OOF 预测
+  OOF fold 1/5 完成
+  OOF fold 2/5 完成
+  OOF fold 3/5 完成
+  OOF fold 4/5 完成
+  OOF fold 5/5 完成
+[6/7] 绝对锚定（副轨）
+[7/7] 组装交付物
+
+== 最终模型对比 ==
+                model  Macro_RMSE  bootstrap_ci_lo  bootstrap_ci_hi  R2_median  Spearman_median  proxy_grade_MAE  proxy_exact_accuracy  proxy_quadratic_kappa  beats_global_mean
+      independent_gbr    0.487951         0.447312         0.519888   0.183348         0.381892         1.608533              0.206667               0.304761               True
+  grouped_extra_trees    0.488051         0.446736         0.519952   0.188322         0.416441         1.605600              0.204000               0.294087               True
+   global_extra_trees    0.489329         0.448765         0.519374   0.165217         0.411240         1.611467              0.205600               0.278741               True
+                 pls2    0.491485         0.455953         0.518304   0.176599         0.403258         1.606667              0.214133               0.345853               True
+multitask_elastic_net    0.492875         0.453694         0.521974   0.142195         0.414330         1.616533              0.195467               0.299617               True
+                ridge    0.497636         0.459867         0.526850   0.176617         0.366942         1.624533              0.202667               0.310545               True
+          global_mean    0.576241         0.530889         0.613126  -0.006620              NaN         1.879200              0.154667               0.000000              False
+
+绝对锚定覆盖：阈值锚定 11 维 ['bitternes', 'alcohol', 'dms', 'X4vg', 'diacetyl', 't2n', 'metallic', 'acidity', 'body', 'sweetness', 'co2']；相对兜底 0 维 []
+交付物：F:\cs\mothercup\matho-rtri-mind-2026\data\processed\q1_final\sensory_scores_0_6.csv  shape=(250, 153)

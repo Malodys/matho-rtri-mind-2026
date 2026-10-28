@@ -1,0 +1,29 @@
+[PASS] 验收1a 节点数=231 — n_nodes=231
+[PASS] 验收1b |rho|>=0.6 边数=266 — n_edges=266
+[PASS] 验收1c |rho|>=0.6 连通分量=114 — components=114
+[PASS] 验收1d 与 stack_smoke V8 记录一致 — smoke V8 记录存在且数值一致
+[PASS] 验收2a 维度数=50 — 50 个维度
+[PASS] 验收2b 每维 3 条 Top-3 — 150 行
+[PASS] 验收2c 无 NaN 标记 — NaN 计数=0
+[PASS] 验收2d 化合物均可映射回 1.csv 列 — 未映射 0 条
+[PASS] 验收2e 同一维度内化合物名唯一 — 无重复
+[PASS] 验收3a bootstrap 频率 ∈ [0,1] — min=0.005, max=1.0
+[PASS] 验收3b bootstrap_B=200 — bootstrap_B=200
+[PASS] 验收3c 频率最小非零步长=1/B=0.005 — step=0.004999999999999949, 1/B=0.005
+[PASS] 验收3d 频率全部有限
+[PASS] 验收3e Jaccard ∈ [0,1] 且有限 — min=0.0000, max=1.0000
+[PASS] 验收4a 至少 11 个维度有成立的化学合理性论证 — 强证据维度 14 个；强/中合计覆盖 23 个维度；等级分布 {'弱': 114, '中': 21, '强': 15}
+[PASS] 验收4b bitternes 维度含 bitterness — rank=1, ρ=0.6821667025713188
+[PASS] 验收4b alcohol 维度含 ethanol..v.v. — rank=1, ρ=0.8171474389230695
+[PASS] 验收4c 特征/标签重合化合物均加注提示 — 50 条加注（bitterness/X4VG/DMS/ethanol 等）
+[PASS] 附加A 阈值择优给出推荐档 — 默认档 |rho|>=0.6，连通性档 |rho|>=0.5
+[PASS] 附加B 四档敏感性表完整（边数/分量/社区/模块度/纯度） — 4 档
+[PASS] 附加C 跨阈值社区一致性（ARI）已计算 — 6 对
+[PASS] 附加D E1 覆盖 44 化合物 — {'n_compounds': 44, 'n_targets': 50}
+[PASS] 附加E E2 自算全量覆盖 227 化合物 — {'n_compounds': 227, 'n_targets': 50, 'n_finite': 11350}
+[PASS] 附加F E3 GBDT+SHAP 覆盖 227 — {'n_compounds': 227, 'n_targets': 50}
+[PASS] 附加G E4 MDI 先验覆盖 231 — {'n_compounds': 231}
+[PASS] 附加H 核心产出齐全 — 全部存在
+[PASS] 附加I 图已产出 — 6 张：['fig1_coexpression_network_by_origin.png', 'fig2_coexpression_network_by_community.png', 'fig3_community_composition_heatmap.png', 'fig4_top3_bootstrap_frequency.png', 'fig5_method_consistency_jaccard.png', 'fig6_threshold_selection.png']
+
+结论: 全部通过

@@ -1,0 +1,37 @@
+{
+  "connectivity_threshold": 0.5,
+  "connectivity_rule": "孤立节点占比最低者，用于描述共表达网络拓扑完整性",
+  "connectivity_detail": {
+    "n_edges": 645,
+    "isolated_ratio": 0.2078,
+    "modularity_Q": 0.6513,
+    "chemical_purity_weighted": 0.5628
+  },
+  "operating_default_threshold": 0.6,
+  "operating_default_rule": "孤立节点占比<=50% 且 非平凡社区数>=15，在可行档中取模块度 Q 最高者；全部社区×来源交叉表与化学合理性论证基于此档",
+  "operating_default_detail": {
+    "n_edges": 266,
+    "n_connected_components": 114,
+    "isolated_ratio": 0.4372,
+    "modularity_Q": 0.7455,
+    "chemical_purity_weighted": 0.6615,
+    "n_non_trivial_communities": 19
+  },
+  "recommended_threshold": 0.6,
+  "rule": "作业默认档 = 孤立占比<=50% 且非平凡社区>=15 中模块度最高者；连通性档 = 孤立占比最低者",
+  "max_isolated_ratio": 0.25,
+  "modularity_Q_at_recommended": 0.7455,
+  "isolated_ratio_at_recommended": 0.4372,
+  "n_edges_at_recommended": 266,
+  "n_connected_components_at_recommended": 114,
+  "mean_ari_with_neighbour_thresholds": 0.2148,
+  "all_thresholds_feasible": false,
+  "feasible_thresholds": [
+    0.5
+  ],
+  "ari_between_0p5_and_0p6": 0.4381,
+  "two_threshold_reporting": {
+    "0.6": "作业默认档：模块度 Q=0.7455、化学纯度 0.6615、非平凡社区 19 个，社区×来源交叉表与化学合理性论证均基于此档",
+    "0.5": "连通性档：孤立节点占比由 43.7% 降至 20.8%、边数 266→645，网络拓扑更完整；与 0.6 档社区划分 ARI=0.4381，主体一致，但模块度与化学纯度均低于 0.6 档"
+  }
+}

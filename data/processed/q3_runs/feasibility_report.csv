@@ -1,0 +1,127 @@
+﻿scope,metric,value,note
+transfer:pils_to_tripel,n_defect_items_checked,44.0,11 样本 × 4 项缺陷，逐样本核验
+transfer:pils_to_tripel,n_worsened_items,0.0,迁移后浓度 > 迁移前的项数，必须为 0
+transfer:pils_to_tripel,n_exceeds_threshold_after,0.0,迁移后超阈值项数，必须为 0
+transfer:pils_to_tripel,spearman_mean_abs_dev,0.02209,迁移前后 Spearman ρ 平均绝对偏差
+transfer:pils_to_tripel,spearman_max_abs_dev,0.63062,最大单对偏差
+transfer:pils_to_tripel,pearson_mean_abs_dev,0.171839,Pearson 口径参考
+generation:Tripel,n_generated,250.0,验收要求 ≥200
+generation:Tripel,ks_median,0.149429,原假设期望 KS≈0.1590
+generation:Tripel,ks_median_oracle_floor,0.043929,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Tripel,ks_median_vs_target_marginal,0.124842,生成样本 vs 其目标条件边际（自洽性）
+generation:Tripel,ks_median_excl_constrained,0.149,剔除 3 个受阈值约束的缺陷列
+generation:Tripel,coverage_within_style_range_mean,0.958095,"生成值落在真实风格 [min,max] 内的比例"
+generation:Tripel,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Tripel,n_threshold_violations_unconstrained,220.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Tripel,constraint_marginal_shift_median_dms,-0.489528,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Tripel,constraint_marginal_shift_median_diacetyl,-2.249967,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Tripel,constraint_marginal_shift_median_4vg,0.0,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Tripel,constraint_marginal_shift_median_t2n,-0.62967,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Tripel,corr_pearson_mean_abs_dev,0.218743,生成 vs 真实同风格样本相关矩阵偏差
+generation:Tripel,corr_pearson_mean_abs_dev_vs_global,0.086799,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Tripel,corr_pearson_mean_abs_dev_vs_copula_R,0.078598,生成 vs Copula 结构矩阵 R 的偏差
+generation:Kriek,n_generated,250.0,验收要求 ≥200
+generation:Kriek,ks_median,0.18,原假设期望 KS≈0.2573
+generation:Kriek,ks_median_oracle_floor,0.039,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Kriek,ks_median_vs_target_marginal,0.1,生成样本 vs 其目标条件边际（自洽性）
+generation:Kriek,ks_median_excl_constrained,0.18,剔除 3 个受阈值约束的缺陷列
+generation:Kriek,coverage_within_style_range_mean,0.86116,"生成值落在真实风格 [min,max] 内的比例"
+generation:Kriek,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Kriek,n_threshold_violations_unconstrained,202.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Kriek,constraint_marginal_shift_median_dms,-0.14498,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Kriek,constraint_marginal_shift_median_diacetyl,-0.452145,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Kriek,constraint_marginal_shift_median_4vg,0.0,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Kriek,constraint_marginal_shift_median_t2n,-0.423694,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Kriek,corr_pearson_mean_abs_dev,0.312108,生成 vs 真实同风格样本相关矩阵偏差
+generation:Kriek,corr_pearson_mean_abs_dev_vs_global,0.089191,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Kriek,corr_pearson_mean_abs_dev_vs_copula_R,0.079633,生成 vs Copula 结构矩阵 R 的偏差
+generation:Lambic,n_generated,250.0,验收要求 ≥200
+generation:Lambic,ks_median,0.18,原假设期望 KS≈0.2458
+generation:Lambic,ks_median_oracle_floor,0.039436,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Lambic,ks_median_vs_target_marginal,0.108381,生成样本 vs 其目标条件边际（自洽性）
+generation:Lambic,ks_median_excl_constrained,0.179636,剔除 3 个受阈值约束的缺陷列
+generation:Lambic,coverage_within_style_range_mean,0.870113,"生成值落在真实风格 [min,max] 内的比例"
+generation:Lambic,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Lambic,n_threshold_violations_unconstrained,212.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Lambic,constraint_marginal_shift_median_dms,-0.327253,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Lambic,constraint_marginal_shift_median_diacetyl,-0.572196,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Lambic,constraint_marginal_shift_median_4vg,0.0,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Lambic,constraint_marginal_shift_median_t2n,-0.521968,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Lambic,corr_pearson_mean_abs_dev,0.299578,生成 vs 真实同风格样本相关矩阵偏差
+generation:Lambic,corr_pearson_mean_abs_dev_vs_global,0.088082,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Lambic,corr_pearson_mean_abs_dev_vs_copula_R,0.076346,生成 vs Copula 结构矩阵 R 的偏差
+generation:Blond,n_generated,250.0,验收要求 ≥200
+generation:Blond,ks_median,0.152387,原假设期望 KS≈0.1519
+generation:Blond,ks_median_oracle_floor,0.044106,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Blond,ks_median_vs_target_marginal,0.137171,生成样本 vs 其目标条件边际（自洽性）
+generation:Blond,ks_median_excl_constrained,0.150581,剔除 3 个受阈值约束的缺陷列
+generation:Blond,coverage_within_style_range_mean,0.972797,"生成值落在真实风格 [min,max] 内的比例"
+generation:Blond,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Blond,n_threshold_violations_unconstrained,239.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Blond,constraint_marginal_shift_median_dms,-0.341821,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Blond,constraint_marginal_shift_median_diacetyl,-0.443138,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Blond,constraint_marginal_shift_median_4vg,-0.85002,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Blond,constraint_marginal_shift_median_t2n,-0.661684,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Blond,corr_pearson_mean_abs_dev,0.215365,生成 vs 真实同风格样本相关矩阵偏差
+generation:Blond,corr_pearson_mean_abs_dev_vs_global,0.089876,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Blond,corr_pearson_mean_abs_dev_vs_copula_R,0.078561,生成 vs Copula 结构矩阵 R 的偏差
+generation:Strong ale,n_generated,250.0,验收要求 ≥200
+generation:Strong ale,ks_median,0.144,原假设期望 KS≈0.1947
+generation:Strong ale,ks_median_oracle_floor,0.0422,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Strong ale,ks_median_vs_target_marginal,0.097429,生成样本 vs 其目标条件边际（自洽性）
+generation:Strong ale,ks_median_excl_constrained,0.143778,剔除 3 个受阈值约束的缺陷列
+generation:Strong ale,coverage_within_style_range_mean,0.933403,"生成值落在真实风格 [min,max] 内的比例"
+generation:Strong ale,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Strong ale,n_threshold_violations_unconstrained,210.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Strong ale,constraint_marginal_shift_median_dms,-0.214076,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Strong ale,constraint_marginal_shift_median_diacetyl,-0.55048,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Strong ale,constraint_marginal_shift_median_4vg,0.0,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Strong ale,constraint_marginal_shift_median_t2n,-0.388719,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Strong ale,corr_pearson_mean_abs_dev,0.224117,生成 vs 真实同风格样本相关矩阵偏差
+generation:Strong ale,corr_pearson_mean_abs_dev_vs_global,0.087818,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Strong ale,corr_pearson_mean_abs_dev_vs_copula_R,0.076165,生成 vs Copula 结构矩阵 R 的偏差
+generation:Hoppy,n_generated,250.0,验收要求 ≥200
+generation:Hoppy,ks_median,0.183059,原假设期望 KS≈0.2000
+generation:Hoppy,ks_median_oracle_floor,0.042653,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Hoppy,ks_median_vs_target_marginal,0.122519,生成样本 vs 其目标条件边际（自洽性）
+generation:Hoppy,ks_median_excl_constrained,0.182706,剔除 3 个受阈值约束的缺陷列
+generation:Hoppy,coverage_within_style_range_mean,0.915429,"生成值落在真实风格 [min,max] 内的比例"
+generation:Hoppy,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Hoppy,n_threshold_violations_unconstrained,235.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Hoppy,constraint_marginal_shift_median_dms,-0.398604,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Hoppy,constraint_marginal_shift_median_diacetyl,-0.658042,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Hoppy,constraint_marginal_shift_median_4vg,0.0,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Hoppy,constraint_marginal_shift_median_t2n,-0.615548,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Hoppy,corr_pearson_mean_abs_dev,0.244924,生成 vs 真实同风格样本相关矩阵偏差
+generation:Hoppy,corr_pearson_mean_abs_dev_vs_global,0.085892,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Hoppy,corr_pearson_mean_abs_dev_vs_copula_R,0.075968,生成 vs Copula 结构矩阵 R 的偏差
+generation:Dubbel,n_generated,250.0,验收要求 ≥200
+generation:Dubbel,ks_median,0.176,原假设期望 KS≈0.2573
+generation:Dubbel,ks_median_oracle_floor,0.0396,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Dubbel,ks_median_vs_target_marginal,0.11,生成样本 vs 其目标条件边际（自洽性）
+generation:Dubbel,ks_median_excl_constrained,0.176,剔除 3 个受阈值约束的缺陷列
+generation:Dubbel,coverage_within_style_range_mean,0.864208,"生成值落在真实风格 [min,max] 内的比例"
+generation:Dubbel,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Dubbel,n_threshold_violations_unconstrained,209.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Dubbel,constraint_marginal_shift_median_dms,-0.238954,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Dubbel,constraint_marginal_shift_median_diacetyl,-0.580946,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Dubbel,constraint_marginal_shift_median_4vg,0.0,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Dubbel,constraint_marginal_shift_median_t2n,-0.360255,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Dubbel,corr_pearson_mean_abs_dev,0.306272,生成 vs 真实同风格样本相关矩阵偏差
+generation:Dubbel,corr_pearson_mean_abs_dev_vs_global,0.085432,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Dubbel,corr_pearson_mean_abs_dev_vs_copula_R,0.073487,生成 vs Copula 结构矩阵 R 的偏差
+generation:Saison,n_generated,250.0,验收要求 ≥200
+generation:Saison,ks_median,0.212,原假设期望 KS≈0.2573
+generation:Saison,ks_median_oracle_floor,0.04,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
+generation:Saison,ks_median_vs_target_marginal,0.108,生成样本 vs 其目标条件边际（自洽性）
+generation:Saison,ks_median_excl_constrained,0.212,剔除 3 个受阈值约束的缺陷列
+generation:Saison,coverage_within_style_range_mean,0.850961,"生成值落在真实风格 [min,max] 内的比例"
+generation:Saison,n_threshold_violations,0.0,DMS/Diacetyl/4VG 合计，必须为 0
+generation:Saison,n_threshold_violations_unconstrained,221.0,无约束参照谱的同口径超标数（用于分离「约束压缩」与「生成器还原度」）
+generation:Saison,constraint_marginal_shift_median_dms,-0.302358,约束前后该风格 dms 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Saison,constraint_marginal_shift_median_diacetyl,-0.360832,约束前后该风格 diacetyl 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Saison,constraint_marginal_shift_median_4vg,-0.844943,约束前后该风格 4vg 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Saison,constraint_marginal_shift_median_t2n,-0.525968,约束前后该风格 t2n 列边际中位数之差（log10 mg/L；负=被压低）
+generation:Saison,corr_pearson_mean_abs_dev,0.318345,生成 vs 真实同风格样本相关矩阵偏差
+generation:Saison,corr_pearson_mean_abs_dev_vs_global,0.086735,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
+generation:Saison,corr_pearson_mean_abs_dev_vs_copula_R,0.076484,生成 vs Copula 结构矩阵 R 的偏差

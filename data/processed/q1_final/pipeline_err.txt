@@ -1,0 +1,706 @@
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:378: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  print("[7/7] 组装交付物", flush=True)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:375: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:376: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
+F:\cs\mothercup\matho-rtri-mind-2026\scripts\q1_pipeline.py:382: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  raw.index = raw.index.astype(int)
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?
+F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages\sklearn\ensemble\_gb.py:691: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)  # TODO: Is this still required?

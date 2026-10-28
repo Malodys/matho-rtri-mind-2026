@@ -1,0 +1,22 @@
+{
+  "seed": 42,
+  "n_per_style": 250,
+  "mode": "reject",
+  "marginal_mode": "cdf",
+  "lam_scale": 1.0,
+  "ridge": 0.001,
+  "styles": [
+    "Tripel",
+    "Kriek",
+    "Lambic",
+    "Blond",
+    "Strong ale",
+    "Hoppy",
+    "Dubbel",
+    "Saison"
+  ],
+  "copula_min_eigenvalue_raw": 0.00018237055635594325,
+  "copula_min_eigenvalue_clipped": 0.00018237055635594325,
+  "copula_n_eigen_clipped": 0,
+  "sensory_profile_status": "pending_q1"
+}

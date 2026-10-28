@@ -70,11 +70,17 @@ def _set_run_font(run, cjk: str, size_pt: float, bold: bool = False) -> None:
 def _para(container, text: str = "", size: float = 10.5, bold: bool = False,
           align=None, indent_chars: float = 0.0, space_after: float = 4.0,
           cjk: str = BODY_FONT):
-    """新增一个段落。indent_chars 以「字符」为单位，模拟中文论文的首行缩进。"""
+    """新增一个段落。indent_chars 以「字符」为单位，模拟中文论文的首行缩进。
+
+    文本中的 ``**...**`` 会被解析为加粗片段（Word 不支持 Markdown 标记，
+    若原样写入会在正文里显示星号）。
+    """
     p = container.add_paragraph()
-    if text:
-        run = p.add_run(text)
-        _set_run_font(run, cjk, size, bold)
+    for chunk, is_bold in _split_bold(text):
+        if not chunk:
+            continue
+        run = p.add_run(chunk)
+        _set_run_font(run, cjk, size, bold or is_bold)
     pf = p.paragraph_format
     pf.space_after = Pt(space_after)
     pf.line_spacing = 1.35
@@ -83,6 +89,18 @@ def _para(container, text: str = "", size: float = 10.5, bold: bool = False,
     if indent_chars:
         pf.first_line_indent = Pt(size * indent_chars)
     return p
+
+
+def _split_bold(text: str):
+    """把 ``**加粗**`` 标记拆成 [(片段, 是否加粗)] 序列；无标记时返回单段。"""
+    if "**" not in text:
+        return [(text, False)]
+    parts = text.split("**")
+    out = []
+    for i, part in enumerate(parts):
+        if part:
+            out.append((part, i % 2 == 1))
+    return out or [(text, False)]
 
 
 def _heading(container, text: str, level: int):
@@ -199,6 +217,8 @@ def load_results() -> dict:
     res["q3_gen"] = _maybe(q3 / "generation_summary.csv")
     res["q3_feas"] = _maybe(q3 / "feasibility_report.csv")
     res["q3_transfer"] = _maybe(q3 / "transfer_pils_to_tripel.csv")
+    res["q3_transfer_defects"] = _maybe(q3 / "transfer_pils_to_tripel_defects.csv")
+    res["q3_transfer_summary"] = _maybe(q3 / "transfer_pils_to_tripel_summary.csv")
     res["q3_meta"] = json.loads((q3 / "generation_run_meta.json").read_text(encoding="utf-8")) \
         if (q3 / "generation_run_meta.json").exists() else None
     res["q3_profiles"] = sorted(q3.glob("sensory_profile_*.csv")) if q3.exists() else []
@@ -386,10 +406,16 @@ def build_body(doc: Document, res: dict) -> Headings:
                "对每个维度取训练集的六等分位数作为切点，真实值与预测值用同一组切点离散化为 0–6 级，"
                "切点只由训练集学习以避免信息泄漏，并报告等级平均绝对误差、精确命中率、相邻一级命中率与"
                "二次加权 Kappa；**副轨为阈值锚定的绝对分**，对存在明确化学载体的维度（苦味—异构 α 酸、"
-               "酒精—乙醇、硫醚—DMS、4-乙烯基愈创木酚、糊精—双乙酰、trans-2-壬烯醛、金属感—铁、"
-               "酸感—乳酸、酒体—蛋白与热量、甜度—残糖、碳酸—二氧化碳），以「化合物低于感知阈值对应 0 分」"
-               "与「化合物达到训练集高分位对应 6 分」两点确定仿射映射，再把标准化标签反解为绝对分。"
-               "需要强调：副轨是**本文提出的、基于感官阈值的一阶近似**，不等价于实测的原始评分。", indent_chars=2)
+               "酒精—乙醇、硫醚—二甲基硫醚、4-乙烯基愈创木酚、糊精—双乙酰、trans-2-壬烯醛、金属感—铁、"
+               "酸感—乳酸、酒体—蛋白、甜度—残糖、碳酸—二氧化碳）尝试以「化合物低于感知阈值对应 0 分」"
+               "与「化合物达到训练集高分位对应 6 分」两点确定仿射映射，再把标准化标签反解为绝对分。", indent_chars=2)
+    _para(doc, "由于逐维度条件苛刻，副轨设置了明确的**有效性护栏**，五条须同时满足：载体在参考表中存在感知阈值；"
+               "载体与该感官维度的斯皮尔曼相关系数不低于 0.3 且为正；0 分锚点对应的训练集分位不高于 0.6；"
+               "两个锚点的标准分带宽不小于 0.5；映射后落在 0 至 6 区间内的比例不低于 0.3。"
+               "任一条不满足即判定该维度的绝对锚定不成立，其绝对分留空，仅提供相对分级，"
+               "并在参数表中逐条记录失效原因。需要强调：副轨是**本文提出的、基于感官阈值的一阶近似**，"
+               "不等价于实测的原始评分；护栏的存在本身也说明，在本数据集上化学信号与感官评分的联系"
+               "只在少数维度上足以支撑绝对标定。", indent_chars=2)
 
     H(2, "3.2 问题二：共表达图与四路证据融合")
     _para(doc, "问题二先由 2.csv 构建化合物共表达图，边的权重取斯皮尔曼相关系数的绝对值，"
@@ -462,11 +488,27 @@ def _build_results(doc: Document, res: dict) -> None:
                    "表中等级均落在 0 至 6 区间内且无缺失。", indent_chars=2)
     anchor = res.get("q1_anchor")
     if anchor is not None and not anchor.empty:
-        cov = [c for c in anchor.columns if "cover" in c.lower() or "ratio" in c.lower()]
-        _para(doc, f"阈值锚定覆盖 {len(anchor)} 个维度"
-                   + (f"，锚定后 0–6 区间覆盖比例中位数为 {fmt(anchor[cov[0]].median(), 3)}"
-                      if cov and anchor[cov[0]].dtype != object else "")
-                   + "。需要再次强调，该轨是本文提出的一阶近似而非实测原分。", indent_chars=2)
+        valid_dim, invalid_dim = [], []
+        if "valid" in anchor.columns:
+            flag = anchor["valid"].astype(str).str.lower().isin(["true", "1"])
+            valid_dim = anchor.loc[flag, "dimension"].tolist()
+            invalid_dim = anchor.loc[~flag, "dimension"].tolist()
+        else:
+            valid_dim = anchor["dimension"].tolist()
+        cov_col = next((c for c in anchor.columns if c.startswith("frac_within_0_6")), None)
+        cov_txt = ""
+        if cov_col and valid_dim:
+            vals = pd.to_numeric(anchor.loc[anchor["dimension"].isin(valid_dim), cov_col],
+                                 errors="coerce").dropna()
+            if len(vals):
+                cov_txt = f"，锚定后落在 0–6 区间内的比例中位数为 {fmt(vals.median(), 3)}"
+        _para(doc, f"阈值锚定共考察 {len(anchor)} 个具备明确化学载体的维度，经上述五条护栏后有 "
+                   f"{len(valid_dim)} 个维度成立（{'、'.join(valid_dim) if valid_dim else '无'}）"
+                   f"{cov_txt}；其余 {len(invalid_dim)} 个维度因载体无感知阈值、载体与感官维度相关性不足或方向相反、"
+                   "或锚点区间退化而判定不成立，其绝对分留空、仅提供相对分级，"
+                   "失效原因在参数表中逐条记录。这一结果本身说明：在本数据集上，"
+                   "化学信号与感官评分的联系只在少数维度上足以支撑绝对标定。"
+                   "需要再次强调，该轨是本文提出的一阶近似而非实测原分。", indent_chars=2)
     tabpfn = res.get("q1_tabpfn")
     if tabpfn is not None and not tabpfn.empty:
         _para(doc, "TabPFN 3.5 的五折集成已在本机 CPU 环境完成全量复现，结果表随支撑材料提供。", indent_chars=2)
@@ -493,14 +535,24 @@ def _build_results(doc: Document, res: dict) -> None:
             _table(doc, comp.head(12), "表 3 主要共表达社区的化学来源构成（社区 × 来源交叉表节选）")
     top3 = res.get("q2_top3")
     if top3 is not None and not top3.empty:
-        keep = [c for c in ["sensory_dimension", "rank", "compound", "abs_rho", "direction",
-                            "bootstrap_freq", "mean_cross_method_jaccard", "stability_class",
-                            "plausibility_note"] if c in top3.columns]
+        keep = [c for c in ["sensory_dimension", "rank_in_top3", "compound", "chemical_name",
+                            "direction", "e2_abs_rho", "e2_rank_in_227", "e1_rank_in_44",
+                            "e3_shap_mean_abs", "e4_mdi_percentile", "fused_score",
+                            "bootstrap_top3_freq", "jaccard_mean", "selection_status",
+                            "chem_plausible", "plausibility_note"] if c in top3.columns]
         view = top3[keep].copy()
         for c in keep:
             if c in view.columns and view[c].dtype != object:
                 view[c] = view[c].map(lambda x: fmt(x, 3))
         _table(doc, view, "表 4 各感官维度的 Top-3 关键化合物及其稳定性与合理性判定（节选）", max_rows=30)
+        n_robust = top3.loc[top3.get("selection_status", pd.Series(dtype=str)).astype(str)
+                            .str.contains("稳健"), "sensory_dimension"].nunique() \
+            if "selection_status" in top3.columns else 0
+        _para(doc, f"按「重采样入选频率不低于 0.6 且跨方法 Jaccard 不低于 0.3」的双重判据，"
+                   f"50 个感官维度中有 {n_robust} 个维度至少有一项关键化合物被判为稳健。"
+                   "需要指出，三路证据之间的一致性并不均衡：附件交叉相关与本文自算全量相关的一致性最高，"
+                   "而 SHAP 归因与二者的 Jaccard 明显偏低，说明特征重要性与线性秩相关的视角差异较大；"
+                   "本文因此把归因路与相关路并列呈现，而不宣称其中某一路线更接近真值。", indent_chars=2)
     else:
         _para(doc, "关键化合物表随支撑材料提供。", indent_chars=2)
 
@@ -509,7 +561,8 @@ def _build_results(doc: Document, res: dict) -> None:
     gen = res.get("q3_gen")
     if gen is not None and not gen.empty:
         cols = [c for c in ["style", "n_real", "n_generated", "lambda", "ks_median",
-                            "ks_median_excl_constrained", "coverage_style_range_median",
+                            "ks_median_excl_constrained", "ks_null_expected",
+                            "coverage_style_range_median",
                             "n_threshold_violations_total", "corr_spearman_mean_abs_dev"]
                 if c in gen.columns]
         view = gen[cols].copy()
@@ -519,35 +572,65 @@ def _build_results(doc: Document, res: dict) -> None:
         _table(doc, view, "表 5 各风格条件生成结果与可行性核验")
         if "n_threshold_violations_total" in gen.columns:
             tot = int(pd.to_numeric(gen["n_threshold_violations_total"], errors="coerce").fillna(0).sum())
+            ks_med = pd.to_numeric(gen.get("ks_median", pd.Series(dtype=float)), errors="coerce").median()
+            null_exp = pd.to_numeric(gen.get("ks_null_expected", pd.Series(dtype=float)),
+                                     errors="coerce").median()
+            cov_med = pd.to_numeric(gen.get("coverage_style_range_median", pd.Series(dtype=float)),
+                                    errors="coerce").median()
             _para(doc, f"全部风格生成样本中有阈值的缺陷化合物超阈值数量合计 {tot}，即缺陷约束被完全满足。"
-                       "边际分布的可行性以生成值与真实样本的柯尔莫哥洛夫—斯米尔诺夫距离度量，"
-                       "其量级与「同分布随机样本对随机样本」的期望值处于同一水平；"
-                       "生成值落在真实风格取值区间内的比例中位数在 0.8 量级。", indent_chars=2)
-    transfer = res.get("q3_transfer")
+                       "边际分布的可行性以生成值与真实样本的柯尔莫哥洛夫—斯米尔诺夫距离度量："
+                       f"其风格内中位数为 {fmt(ks_med, 4)}，与「同分布的两个随机样本之间」的期望值"
+                       f"（{fmt(null_exp, 4)}）处于同一水平；"
+                       f"生成值落在真实风格取值区间内的比例中位数为 {fmt(cov_med, 3)}。"
+                       "需要说明的是，缺陷约束的实现方式是拒绝重抽，当某风格的真实样本本身大量超过阈值时，"
+                       "该约束等价于把分布条件化到缺陷项的低尾，因此约束生成的缺陷列边际会系统性低于真实风格；"
+                       "本文同时给出不作约束的参照生成，二者分别代表「合规画像」与「风格代表性画像」。", indent_chars=2)
+    transfer = res.get("q3_transfer_defects")
+    tsum = res.get("q3_transfer_summary")
+    if tsum is not None and not tsum.empty:
+        row = tsum.iloc[0]
+        _para(doc, "跨风格迁移以 Pils/Lager 的真实样本为源、以 Tripel 的条件边际为目标，"
+                   "采用秩—分位映射保持原样本的相关结构，再施加与生成阶段相同的缺陷约束。"
+                   f"共核验 {int(row.get('n_defect_items_checked', 0))} 项缺陷样本—化合物组合，"
+                   f"其中迁移后出现恶化（浓度升高）的有 {int(row.get('n_worsened_items', 0))} 项，"
+                   f"迁移后仍超过阈值的有 {int(row.get('n_exceeds_threshold_after', 0))} 项；"
+                   f"相关结构保持度以迁移前后斯皮尔曼相关系数的平均绝对偏差衡量，为 "
+                   f"{fmt(row.get('spearman_mean_abs_dev'), 4)}（阈值 0.05），"
+                   f"单对化合物的最大偏差为 {fmt(row.get('spearman_max_abs_dev'), 4)}；"
+                   f"约束共触及 {int(row.get('n_columns_touched_by_constraint', 0))} 个化合物列，"
+                   "其中二甲基硫醚与双乙酰的改善最明显。", indent_chars=2)
     if transfer is not None and not transfer.empty:
-        tcols = [c for c in transfer.columns
-                 if any(k in c.lower() for k in ["defect", "worse", "before", "after", "improve"])
-                 or c.lower() in ("beer", "style")]
-        if tcols:
-            _table(doc, transfer[tcols].head(16), "表 6 跨风格迁移的缺陷化合物前后对照（节选）")
-        _para(doc, "跨风格迁移采用秩—分位映射保持原样本的相关结构，"
-                   "并施加与生成阶段相同的缺陷约束；迁移后各缺陷化合物浓度均不高于迁移前，"
-                   "相关结构保持度以迁移前后的斯皮尔曼相关系数平均绝对偏差衡量。", indent_chars=2)
+        tcols = [c for c in ["beer", "defect_key", "compound", "value_before_log10_mgL",
+                             "value_after_log10_mgL", "delta_after_minus_before",
+                             "worsened", "exceeds_threshold_after"] if c in transfer.columns]
+        _table(doc, transfer[tcols].head(16),
+               "表 6 跨风格迁移的缺陷化合物前后对照（44 项核验的前 16 行）")
 
-    # 图
-    for sub, names, cap in [
-        (PROCESSED / "q1_figures", ["model_comparison.png", "per_target_predictability.png"],
-         "图 1 问题一：模型对比与逐维可预测性"),
-        (PROCESSED / "q2_figures", ["coexpression_graph.png", "community_block_heatmap.png"],
-         "图 2 问题二：化合物共表达图与社区的化学块构成"),
-        (PROCESSED / "q3_figures", ["generation_marginals.png", "transfer_defects.png"],
-         "图 3 问题三：生成谱的边际分布与迁移前后缺陷对比"),
-    ]:
-        for n in names:
-            p = sub / n
-            if p.exists():
-                _figure(doc, p, f"{cap}（{n}）")
-                break
+    # 图（按出现顺序编号）
+    figure_specs = [
+        (PROCESSED / "q1_figures", "01_model_comparison_bootstrap_ci.png",
+         "图 1 问题一：各模型宏平均 RMSE 的自助重采样区间对比"),
+        (PROCESSED / "q1_figures", "02_dimension_predictability_facets.png",
+         "图 2 问题一：按感官族分面的逐维可预测性"),
+        (PROCESSED / "q1_figures", "03_two_track_grade_comparison.png",
+         "图 3 问题一：相对分级与阈值锚定绝对分的对照"),
+        (PROCESSED / "q2_figures", "fig1_coexpression_network_by_origin.png",
+         "图 4 问题二：按化学来源着色的化合物共表达图"),
+        (PROCESSED / "q2_figures", "fig3_community_composition_heatmap.png",
+         "图 5 问题二：共表达社区的化学块与来源构成"),
+        (PROCESSED / "q2_figures", "fig4_top3_bootstrap_frequency.png",
+         "图 6 问题二：各感官维度 Top-3 关键化合物的重采样入选频率"),
+        (PROCESSED / "q3_figures", "fig2_marginal_distributions.png",
+         "图 7 问题三：生成谱与真实样本的边际分布对比"),
+        (PROCESSED / "q3_figures", "fig5_defect_boxplots.png",
+         "图 8 问题三：迁移前后缺陷化合物浓度分布"),
+        (PROCESSED / "q3_figures", "fig4_transfer_radar.png",
+         "图 9 问题三：跨风格迁移前后的感官画像雷达对比"),
+    ]
+    for folder, name, caption in figure_specs:
+        p = folder / name
+        if p.exists():
+            _figure(doc, p, caption)
 
 
 def _build_conclusions(doc: Document, res: dict) -> None:
@@ -563,7 +646,9 @@ def _build_conclusions(doc: Document, res: dict) -> None:
                "但各头部模型的差异在自助重采样区间下不可区分，说明本任务的可解释信号本身有限；"
                "本文因此把结论落在「哪些感官维度可预测、哪些接近随机」这一更稳健的层面。"
                "在交付层面，本文给出 250 款啤酒 × 50 个维度的 0–6 分制分级评分表，"
-               "并同时提供相对分级与阈值锚定两套口径，后者作为本文提出的一阶近似供参照。", indent_chars=2)
+               "其中相对分级覆盖全部 50 个维度，阈值锚定的绝对分仅在通过有效性护栏的少数维度上给出，"
+               "其余维度明确留空——这一处理比强行给出全部维度的绝对分更为诚实，"
+               "也提示后续工作应优先补充原始品评分数而非扩大锚定范围。", indent_chars=2)
     _para(doc, "（3）问题二在默认阈值下的共表达图较为稀疏，孤立节点比例偏高，"
                "社区结构主要由化学来源相近的萜烯、酯类与硫化物群组构成，"
                "这为「共表达模块对应可追溯的化学来源」提供了直接支持；"
