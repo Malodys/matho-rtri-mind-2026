@@ -119,9 +119,34 @@ ABSOLUTE_ANCHOR_CARRIERS: Dict[str, List[str]] = {
 # --------------------------------------------------------------------------- 工具
 
 
+#: 希腊字母 → ASCII 音译表。8.xlsx 的 chemical_name 用 ASCII 拼写（如 "(E)-beta-ionone"），
+#: 而 2.csv / 6.csv 用希腊字母（"E-β-ionone"）。若直接把希腊字母当非字母数字剥掉，
+#: "E-α-ionone" 与 "E-β-ionone" 会塌缩成同一个键 "eionone"，造成静默错配。
+GREEK_ASCII = {
+    "α": "alpha", "β": "beta", "γ": "gamma", "δ": "delta", "ε": "epsilon",
+    "ζ": "zeta", "η": "eta", "θ": "theta", "ι": "iota", "κ": "kappa",
+    "λ": "lambda", "μ": "mu", "ν": "nu", "ξ": "xi", "ο": "omicron",
+    "π": "pi", "ρ": "rho", "σ": "sigma", "τ": "tau", "υ": "upsilon",
+    "φ": "phi", "χ": "chi", "ψ": "psi", "ω": "omega",
+}
+
+
 def _norm_name(value: object) -> str:
-    """把名称归一成仅含小写字母数字的键，用于跨表匹配。"""
-    return re.sub(r"[^a-z0-9]+", "", str(value).lower())
+    """把名称归一成仅含小写字母数字的键，用于跨表匹配。
+
+    先把希腊字母音译成 ASCII，再剥除非字母数字 —— 顺序不可颠倒，否则 α/β 会塌缩。
+    """
+    text = str(value).lower()
+    text = "".join(GREEK_ASCII.get(ch, ch) for ch in text)
+    return re.sub(r"[^a-z0-9]+", "", text)
+
+
+def _unique_index(pairs: Iterable[Tuple[str, str]]) -> Dict[str, str]:
+    """构建「归一化键 → 目标」映射，**丢弃歧义键**（同一键指向多个目标时静默错配风险太高）。"""
+    grouped: Dict[str, List[str]] = {}
+    for key, target in pairs:
+        grouped.setdefault(key, []).append(target)
+    return {k: v[0] for k, v in grouped.items() if len(set(v)) == 1}
 
 
 def sha256_of(path: Path) -> str:
@@ -236,19 +261,18 @@ def build_chemical_bridge(raw: RawBundle) -> pd.DataFrame:
     chem1 = [c for c in raw.chem.columns if c not in KEY_COLUMNS]
     thresholds = raw.thresholds
     by_chem_name = thresholds.set_index("chemical_name")
-    norm_to_col: Dict[str, str] = {}
-    for c in chem1:
-        norm_to_col.setdefault(_norm_name(c), c)
-    norm_to_field: Dict[str, str] = {}
-    norm_chem_name: Dict[str, str] = {}
-    for _, row in thresholds.iterrows():
-        fn = row.get("field_name_python")
-        if isinstance(fn, str):
-            norm_to_field.setdefault(_norm_name(fn), row.get("field_name_R"))
-        cn = row.get("chemical_name")
-        fr = row.get("field_name_R")
-        if isinstance(cn, str) and isinstance(fr, str):
-            norm_chem_name.setdefault(_norm_name(cn), fr)
+    norm_to_col = _unique_index((_norm_name(c), c) for c in chem1)
+    norm_to_field = _unique_index(
+        (_norm_name(row.get("field_name_python")), row.get("field_name_R"))
+        for _, row in thresholds.iterrows()
+        if isinstance(row.get("field_name_python"), str)
+    )
+    norm_chem_name = _unique_index(
+        (_norm_name(row.get("chemical_name")), row.get("field_name_R"))
+        for _, row in thresholds.iterrows()
+        if isinstance(row.get("chemical_name"), str)
+        and isinstance(row.get("field_name_R"), str)
+    )
 
     def resolve_chemical(name: str) -> Tuple[Optional[str], str]:
         """化学名 → 1.csv 列名。四级兜底，逐级放宽。"""

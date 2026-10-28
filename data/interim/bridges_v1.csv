@@ -71,7 +71,7 @@ chemical,2.csv,Isomaltol,isomaltol,thresholds.chemical_name
 chemical,2.csv,Methyl heptenone,X6.methyl.5.hepten.2.one,thresholds.chemical_name
 chemical,2.csv,2-pentyl furan,X2.pentyl.furan,thresholds.chemical_name
 chemical,2.csv,Ethyl 3-hexanoate,ethyl.hex..3E..enoate,thresholds.chemical_name
-chemical,2.csv,α-phellandrene,alpha.phellandrene,normalized_to_chemical_name
+chemical,2.csv,α-phellandrene,alpha.phellandrene,normalized_to_file1
 chemical,2.csv,Dehydroxy-cis-linalool oxide,dehydroxy.cis.linalool.oxide,thresholds.chemical_name
 chemical,2.csv,Hexyl acetate,hexyl.acetate,thresholds.chemical_name
 chemical,2.csv,Isopentyl butanoate,isopentyl.butanoate,thresholds.chemical_name
@@ -82,7 +82,7 @@ chemical,2.csv,Eucalyptol,eucalyptol,thresholds.chemical_name
 chemical,2.csv,Benzyl alcohol,benzyl.alcohol,thresholds.chemical_name
 chemical,2.csv,Ethyl 2-hexenoate,ethyl.hex..2E..enoate,thresholds.chemical_name
 chemical,2.csv,Phenylacetaldehyde,phenylacetaldehyde,thresholds.chemical_name
-chemical,2.csv,E-β-ocimene,X.E..beta.ocimene,normalized_to_chemical_name
+chemical,2.csv,E-β-ocimene,X.E..beta.ocimene,normalized_to_field_name_python
 chemical,2.csv,Prenyl isobutyrate,prenyl.isobutyrate,thresholds.chemical_name
 chemical,2.csv,Ethyl furoate,ethyl.furoate,thresholds.chemical_name
 chemical,2.csv,O-cresol,ortho.cresol,thresholds.chemical_name
@@ -101,14 +101,14 @@ chemical,2.csv,Heptyl acetate,heptyl.acetate,thresholds.chemical_name
 chemical,2.csv,4-methyl-1-pentanol,X4.methyl.1.pentanol,thresholds.chemical_name
 chemical,2.csv,Neo-allo-ocimene,neo.allo.ocimene,thresholds.chemical_name
 chemical,2.csv,X-methyl-1-octanol,x.methyl.1.octanol,thresholds.chemical_name
-chemical,2.csv,Trans-dihydro-β-terpineol,trans.dihydro.beta.terpineol,normalized_to_chemical_name
-chemical,2.csv,Cis-β-terpineol,cis.beta.terpineol,normalized_to_chemical_name
+chemical,2.csv,Trans-dihydro-β-terpineol,trans.dihydro.beta.terpineol,normalized_to_file1
+chemical,2.csv,Cis-β-terpineol,cis.beta.terpineol,normalized_to_file1
 chemical,2.csv,Y-methyl-1-octanol,y.methyl.1.octanol,thresholds.chemical_name
 chemical,2.csv,Camphor,camphor,thresholds.chemical_name
 chemical,2.csv,Isobutyl hexanoate,isobutyl.hexanoate,thresholds.chemical_name
 chemical,2.csv,Nerol oxide,nerol.oxide,thresholds.chemical_name
 chemical,2.csv,E-2-nonenal,X.E..2.nonenal,thresholds.chemical_name
-chemical,2.csv,Cis-dihydro-β-terpineol,cis.dihydro.beta.terpineol,normalized_to_chemical_name
+chemical,2.csv,Cis-dihydro-β-terpineol,cis.dihydro.beta.terpineol,normalized_to_file1
 chemical,2.csv,4-ethyl-phenol,X4.ethyl.phenol,thresholds.chemical_name
 chemical,2.csv,Isoborneol,isoborneol,thresholds.chemical_name
 chemical,2.csv,Ethyl benzoate,ethyl.benzoate,thresholds.chemical_name
@@ -127,13 +127,13 @@ chemical,2.csv,Cumin aldehyde,cumin.aldehyde,thresholds.chemical_name
 chemical,2.csv,Ethyl phenylacetate,ethyl.phenylacetate,thresholds.chemical_name
 chemical,2.csv,Isopentyl hexanoate,isopentyl.hexanoate,thresholds.chemical_name
 chemical,2.csv,Geraniol,geraniol,thresholds.chemical_name
-chemical,2.csv,β-cyclohomocitral,beta.cyclohomocitral,normalized_to_chemical_name
+chemical,2.csv,β-cyclohomocitral,beta.cyclohomocitral,normalized_to_file1
 chemical,2.csv,Cinnamaldehyde,E.cinnamaldehyde,thresholds.chemical_name
 chemical,2.csv,N-decanol,n.decanol,thresholds.chemical_name
 chemical,2.csv,Neryl formate,neryl.formate,thresholds.chemical_name
 chemical,2.csv,4-ethyl-guaiacol,X4.ethyl.guaiacol,thresholds.chemical_name
 chemical,2.csv,2-undecanone,X2.undecanone,thresholds.chemical_name
-chemical,2.csv,Trans-dihydro-α-terpinyl acetate,trans.dihydro.alpha.terpinyl.acetate,normalized_to_chemical_name
+chemical,2.csv,Trans-dihydro-α-terpinyl acetate,trans.dihydro.alpha.terpinyl.acetate,normalized_to_file1
 chemical,2.csv,Terpinen-4-ol acetate,terpinen.4.ol.acetate,thresholds.chemical_name
 chemical,2.csv,2-undecanol,X2.undecanol,thresholds.chemical_name
 chemical,2.csv,Terpiryl acetate,delta.terpinyl.acetate,thresholds.chemical_name
@@ -147,30 +147,30 @@ chemical,2.csv,Ethyl hydrocinnamate,ethyl.hydrocinnamate,thresholds.chemical_nam
 chemical,2.csv,Eugenol,eugenol,thresholds.chemical_name
 chemical,2.csv,Gamma-nonalactone,gamma.nonalactone,thresholds.chemical_name
 chemical,2.csv,Methyl para-anisate,methyl.para.anisate,thresholds.chemical_name
-chemical,2.csv,E-β-damascenone,X.E..beta.damascenone,normalized_to_chemical_name
+chemical,2.csv,E-β-damascenone,X.E..beta.damascenone,normalized_to_field_name_python
 chemical,2.csv,Ethyl 9-decenoate,ethyl..9..decenoate,thresholds.chemical_name
 chemical,2.csv,Vanillin,vanillin,thresholds.chemical_name
 chemical,2.csv,Geosmin,geosmin,thresholds.chemical_name
 chemical,2.csv,Dodecanal,dodecanal,thresholds.chemical_name
-chemical,2.csv,"4,8-α-epoxy-caryophyllane",X4.8.alpha.epoxy.caryophyllane,normalized_to_chemical_name
+chemical,2.csv,"4,8-α-epoxy-caryophyllane",X4.8.alpha.epoxy.caryophyllane,normalized_to_field_name_python
 chemical,2.csv,Caryophyllene,E.caryophyllene,thresholds.chemical_name
-chemical,2.csv,E-α-ionone,X.E..alpha.ionone,normalized_to_chemical_name
+chemical,2.csv,E-α-ionone,X.E..alpha.ionone,normalized_to_field_name_python
 chemical,2.csv,Perillyl acetate,perillyl.acetate,thresholds.chemical_name
-chemical,2.csv,β-humulene,beta.humulene,normalized_to_chemical_name
+chemical,2.csv,β-humulene,beta.humulene,normalized_to_file1
 chemical,2.csv,2-phenyl ethyl butyrate,X2.phenyl.ethyl.butyrate,thresholds.chemical_name
-chemical,2.csv,Z-β-farnesene,X.Z..beta.farnesene,normalized_to_chemical_name
+chemical,2.csv,Z-β-farnesene,X.Z..beta.farnesene,normalized_to_field_name_python
 chemical,2.csv,Pentyl octanoate,pentyl.octanoate,thresholds.chemical_name
-chemical,2.csv,E-β-farnesene,X.E..beta.farnesene,normalized_to_chemical_name
+chemical,2.csv,E-β-farnesene,X.E..beta.farnesene,normalized_to_field_name_python
 chemical,2.csv,2-methylbutyl octanoate,X2.methylbutyl.octanoate,thresholds.chemical_name
 chemical,2.csv,Alpha-humulene,alpha.humulene,thresholds.chemical_name
 chemical,2.csv,Neryl propanoate,neryl.propanoate,thresholds.chemical_name
 chemical,2.csv,9-epi-E-caryophyllene,X9.epi..E..caryophyllene,thresholds.chemical_name
 chemical,2.csv,Ethyl cinnamate,ethyl..E..cinnamate,thresholds.chemical_name
 chemical,2.csv,Linalool isovalerate,linalool.isovalerate,thresholds.chemical_name
-chemical,2.csv,α-terpinyl isobutanoate,alpha.terpinyl.isobutanoate,normalized_to_chemical_name
+chemical,2.csv,α-terpinyl isobutanoate,alpha.terpinyl.isobutanoate,normalized_to_file1
 chemical,2.csv,N-dodecanol,n.dodecanol,thresholds.chemical_name
 chemical,2.csv,Germacrene D,germacrene.D,thresholds.chemical_name
-chemical,2.csv,E-β-ionone,X.E..alpha.ionone,normalized_to_chemical_name
+chemical,2.csv,E-β-ionone,X.E..beta.ionone,normalized_to_field_name_python
 chemical,2.csv,Valencene,valencene,thresholds.chemical_name
 chemical,2.csv,Neryl isobutanoate,neryl.isobutanoate,thresholds.chemical_name
 chemical,2.csv,Methyl isoeugenol,E.methyl.isoeugenol,thresholds.chemical_name
@@ -179,7 +179,7 @@ chemical,2.csv,Butylated hydroxytoluene,butylated.hydroxytoluene,thresholds.chem
 chemical,2.csv,E-dihydro-apofarnesal,X.E..dihydro.apofarnesal,thresholds.chemical_name
 chemical,2.csv,Z-nerolidol,Z.nerolidol,thresholds.chemical_name
 chemical,2.csv,E-ortho-methoxy cinnamaldehyde,X.E..ortho.methoxy.cinnamaldehyde,thresholds.chemical_name
-chemical,2.csv,α-calacorene,alpha.calacorene,normalized_to_chemical_name
+chemical,2.csv,α-calacorene,alpha.calacorene,normalized_to_file1
 chemical,2.csv,E-nerolidol,E.nerolidol,thresholds.chemical_name
 chemical,2.csv,Tobacarol,dihydroisocaryophyllene.epoxide,thresholds.chemical_name
 chemical,2.csv,Caryophyllene alcohol,caryophyllene.alcohol,thresholds.chemical_name
@@ -192,11 +192,11 @@ chemical,2.csv,Epicubenol,X1.10.di.epi.cubenol,thresholds.chemical_name
 chemical,2.csv,Isopropyl laurate,isopropyl.laurate,thresholds.chemical_name
 chemical,2.csv,"Caryophylla-4,8-dien-5-ol",caryophylla.4.12..8.13..dien.5.alpha.ol,thresholds.chemical_name
 chemical,2.csv,Gamma-eudesmol,gamma.eudesmol,thresholds.chemical_name
-chemical,2.csv,α-muurolol,alpha.muurolol,normalized_to_chemical_name
+chemical,2.csv,α-muurolol,alpha.muurolol,normalized_to_file1
 chemical,2.csv,"1,2-dihydro-8-hydroxy-2E-linalool",X1.2.dihydro.8.hydroxy..2E..linalool,thresholds.chemical_name
 chemical,2.csv,Tau-cadinol,tau.cadinol,thresholds.chemical_name
 chemical,2.csv,Kongol,selin.11.en.4.alpha.ol,thresholds.chemical_name
-chemical,2.csv,α-eudesmol,alpha.eudesmol,normalized_to_chemical_name
+chemical,2.csv,α-eudesmol,alpha.eudesmol,normalized_to_file1
 chemical,2.csv,14-hydroxy-9-epi-(E)-caryophyllene,X14.hydroxy.9.epi..E..caryophyllene,thresholds.chemical_name
 chemical,2.csv,Tau-muurolol,tau.muurolol,thresholds.chemical_name
 chemical,2.csv,N-tetradecanol,n.tetradecanol,thresholds.chemical_name
@@ -205,7 +205,7 @@ chemical,2.csv,Cadalene,cadalene,thresholds.chemical_name
 chemical,2.csv,"2,3-dihydro-farnesol",X2.3.dihydro.farnesol,thresholds.chemical_name
 chemical,2.csv,"E,Z-farnesal",X2E.6Z.farnesal,thresholds.chemical_name
 chemical,2.csv,Caryophyllene acetate,caryophyllene.acetate,thresholds.chemical_name
-chemical,2.csv,14-hydroxy-α-humulene,X14.hydroxy.alpha.humulene,normalized_to_chemical_name
+chemical,2.csv,14-hydroxy-α-humulene,X14.hydroxy.alpha.humulene,normalized_to_field_name_python
 chemical,2.csv,"Z,E-farnesal",X2Z.6E.farnesal,thresholds.chemical_name
 chemical,2.csv,"Z,Z-farnesol",X2Z.6Z.farnesol,thresholds.chemical_name
 chemical,2.csv,"Z,E-farnesol",X2Z.6E.farnesol,thresholds.chemical_name
