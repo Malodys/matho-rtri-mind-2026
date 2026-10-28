@@ -45,6 +45,11 @@
 
 ## 外部模型权重（不入库，需单独获取）
 
+- 文档处理工具链依赖 **.NET SDK 9**。本机 SDK 装在用户级目录 `F:\cs\mothercup\.dotnet`（9.0.320，免提权），
+  机器级 `C:\Program Files\dotnet` 仅有 runtime 且在 PATH 中优先；已在
+  `E:\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1` 中把 SDK 目录置顶（**该文件必须保持纯 ASCII**，
+  否则 PowerShell 5.1 会按 GBK 解析 UTF-8 而报错）。若 `dotnet --version` 仍报 “No .NET SDKs were found”，直接用
+  `F:\cs\mothercup\.dotnet\dotnet.exe`。
 - `experiments/prediction-models` 分支的 `scripts/tabpfn_cv.py` **必须**显式传入 TabPFN 3.5 权重文件，缺文件直接 `FileNotFoundError`：
   `pretrained/Prior-Labstabpfn_3_5/tabpfn-v3.5-20260909.safetensors`（相对该分支的项目根）。
 - 该分支 `.gitignore` 含 `/pretrained/` 与 `*.safetensors`，**权重永不入库**，换机器需自行拉取：
