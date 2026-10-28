@@ -243,3 +243,12 @@ def describe_params() -> dict:
                            "mean_cross_method_jaccard_min": SELECT_JACCARD_MIN},
         "corr_type": "Spearman（2.csv / 5.csv / 6.csv 均为 Spearman，见 README 勘误说明）",
     }
+
+
+if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser(description="问题二共享配置：打印全部超参（JSON）")
+    ap.add_argument("--params", action="store_true", help="打印全部超参")
+    args = ap.parse_args()
+    sys.stdout.reconfigure(encoding="utf-8")
+    print(json.dumps(describe_params(), ensure_ascii=False, indent=2, default=str))

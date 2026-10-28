@@ -1,10 +1,4 @@
 ﻿scope,metric,value,note
-transfer:pils_to_tripel,n_defect_items_checked,44.0,11 样本 × 4 项缺陷，逐样本核验
-transfer:pils_to_tripel,n_worsened_items,0.0,迁移后浓度 > 迁移前的项数，必须为 0
-transfer:pils_to_tripel,n_exceeds_threshold_after,0.0,迁移后超阈值项数，必须为 0
-transfer:pils_to_tripel,spearman_mean_abs_dev,0.02209,迁移前后 Spearman ρ 平均绝对偏差
-transfer:pils_to_tripel,spearman_max_abs_dev,0.63062,最大单对偏差
-transfer:pils_to_tripel,pearson_mean_abs_dev,0.171839,Pearson 口径参考
 generation:Tripel,n_generated,250.0,验收要求 ≥200
 generation:Tripel,ks_median,0.149429,原假设期望 KS≈0.1590
 generation:Tripel,ks_median_oracle_floor,0.043929,完美复现风格经验边际时的 KS 中位数参考（自助重采样）
@@ -125,3 +119,9 @@ generation:Saison,constraint_marginal_shift_median_t2n,-0.525968,约束前后该
 generation:Saison,corr_pearson_mean_abs_dev,0.318345,生成 vs 真实同风格样本相关矩阵偏差
 generation:Saison,corr_pearson_mean_abs_dev_vs_global,0.086735,生成 vs 全局 250 行真实相关矩阵偏差（不受小样本噪声污染）
 generation:Saison,corr_pearson_mean_abs_dev_vs_copula_R,0.076484,生成 vs Copula 结构矩阵 R 的偏差
+transfer:pils_to_tripel,n_defect_items_checked,44.0,11 样本 × 4 项缺陷，逐样本核验
+transfer:pils_to_tripel,n_worsened_items,0.0,迁移后浓度 > 迁移前的项数，必须为 0
+transfer:pils_to_tripel,n_exceeds_threshold_after,0.0,迁移后超阈值项数，必须为 0
+transfer:pils_to_tripel,spearman_mean_abs_dev,0.02209,迁移前后 Spearman ρ 平均绝对偏差
+transfer:pils_to_tripel,spearman_max_abs_dev,0.63062,最大单对偏差
+transfer:pils_to_tripel,pearson_mean_abs_dev,0.171839,Pearson 口径参考

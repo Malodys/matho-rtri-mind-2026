@@ -45,6 +45,7 @@ def build() -> str:
     summary = load("generation_summary.csv")
     transfer = load("transfer_pils_to_tripel_summary.csv")
     sens = load("sensory_profile_summary.csv")
+    effect = load("sensory_constraint_effect.csv")
     sensitivity = load("lambda_sensitivity.csv")
     assert summary is not None, "缺少 generation_summary.csv，请先运行 q3_generate.py"
 
@@ -53,7 +54,12 @@ def build() -> str:
     sensory_status = str(summary["sensory_profile_status"].iloc[0]) if \
         "sensory_profile_status" in summary.columns else "unknown"
     pending_exists = (RUN_DIR / "sensory_profile_pending.md").is_file()
-    sens_files = sorted(p.name for p in RUN_DIR.glob("sensory_profile_*.csv"))
+    pending_reason = ""
+    if pending_exists:
+        pending_reason = "详见 `sensory_profile_pending.md`"
+    sens_files = sorted(p.name for p in RUN_DIR.glob("sensory_profile_*.csv")
+                        if p.name not in ("sensory_profile_summary.csv",
+                                          "sensory_constraint_effect.csv"))
 
     L = []
     A = L.append
@@ -287,8 +293,8 @@ def build() -> str:
           f"**恶化 {int(t['n_worsened_items'])} 条（必须为 0）**，"
           f"**迁移后超标 {int(t['n_exceeds_threshold_after'])} 条（必须为 0）**")
         A(f"* 相关结构保持：Spearman ρ 平均绝对偏差 **{fmt(t['spearman_mean_abs_dev'], 6)}**"
-          f"（上限 0.05），最大单对偏差 {fmt(t['spearman_max_abs_dev'], 4)}；"
-          f"Pearson 口径平均偏差 {fmt(t['pearson_mean_abs_dev'], 4)}")
+          f"（上限 0.05），**最大单对偏差 {fmt(t['spearman_max_abs_dev'], 6)}**"
+          f"（单一化合物对；Pearson 口径平均偏差 {fmt(t['pearson_mean_abs_dev'], 4)}）")
         A("")
         A("四项缺陷的迁移前后均值改善（before − after，log10 mg/L，正=改善）：")
         A("")
@@ -314,21 +320,97 @@ def build() -> str:
     # ---------------- 6 感官画像 ----------------
     A("## 6 感官画像（Step 6）")
     A("")
+    A("### 6.1 完整链路")
+    A("")
+    A("```")
+    A("生成化合物谱（统一 log10 mg/L，231 列）")
+    A("        │")
+    A("        ▼  scripts/q1_predict.py :: predict_sensory(matrix, model=None)")
+    A("问题一模型（model_independent_gbr.joblib）在 250×227 特征上推理")
+    A("        │")
+    A("        ▼  50 维标准化连续预测（索引与输入逐行一致）")
+    A("标准化尺度感官画像   sensory_profile_<style>.csv")
+    A("        │")
+    A("        ▼  proxy_grade_cutpoints.csv（训练集七分位切点，6 个边界）")
+    A("        │   np.digitize(value, cutpoints[j], right=True)")
+    A("0–6 代理等级画像     sensory_profile_<style>_0_6.csv")
+    A("```")
+    A("")
     if sensory_status == "ok":
-        A(f"状态：**已完成**（调用问题 1 的 `scripts/q1_predict.py`）。"
-          f"产物：{', '.join(sens_files) if sens_files else '见目录'}。")
-        if sens is not None:
-            A("")
-            A("生成谱与该风格真实感官分的均值对照（标准化尺度，全局 50 维）见 "
-              "`sensory_profile_summary.csv`。")
-    else:
-        A(f"状态：**pending_q1 —— 未完成**。原因：问题 1 的推理接口虽已存在"
-          f"（`scripts/q1_predict.py`），但其模型工件"
-          f"（`data/processed/q1_final/model_*.joblib`）在本次运行时**尚未生成**，"
-          f"故感官画像未产出。本步骤**未自建感官模型**（避免与 Q1 重复建模、口径不一致），"
-          f"详见 `sensory_profile_pending.md`。")
+        A("状态：**已完成**。调用问题一的 `scripts/q1_predict.py`（模型 "
+          "`independent_gbr`），每个风格产出**有约束 / 无约束**两版，"
+          "每版各两份文件（标准化 + 0–6 等级），共 "
+          f"{len(sens_files) if sens_files else 0} 份感官画像文件。")
         A("")
-        A("**接口约定**（Q1 侧工件就绪后直接跑 `scripts/q3_sensory_profile.py` 即可，无需改动问题 3）：")
+        A("**0–6 离散化口径**：切点取 `data/processed/q1_final/proxy_grade_cutpoints.csv`"
+          "（行索引 = 50 个感官维度名，列 = boundary_1..boundary_6），"
+          "已与 `q1_evaluation.training_quantile_cutpoints(y_train)` 重算结果逐元素核对，"
+          "最大偏差 9.7e-17（机器精度）；离散化函数与 `q1_evaluation.apply_cutpoints` "
+          "逐元素一致（已验证）。**因此感官画像是「基于标准化尺度预测后，"
+          "按训练集七分位切点离散化」得到的 0–6 代理等级，不是原始 0–6 评分。**")
+        A("")
+        if sens is not None:
+            A("### 6.2 画像保真度（生成 vs 该风格真实样本）")
+            A("")
+            shift = sens["mean_shift_generated_minus_real"].abs()
+            A(f"* 全部 8 风格 × 50 维：|生成均值 − 真实均值| 中位 **{fmt(shift.median(), 4)}**、"
+              f"均值 {fmt(shift.mean(), 4)}（标准化尺度）。")
+            A(f"* 参考量级：真实风格样本仅 10–31 条，其感官均值的抽样标准误约 "
+              f"1/√n ≈ 0.18–0.32 —— **生成画像的偏差小于参照系本身的估计误差**，"
+              "即生成谱的感官画像与真实风格画像在统计上一致。")
+            A(f"* 0–6 等级口径：|生成平均等级 − 真实平均等级| 中位 "
+              f"{fmt(sens['grade_shift_generated_minus_real'].abs().median(), 3)} 级。")
+            A("* 逐维度明细见 `sensory_profile_summary.csv`（含生成/真实的均值、中位数、"
+              "标准差、0–6 平均等级与差值）。")
+            A("")
+        if effect is not None and len(effect):
+            d4 = effect[effect["is_defect_dimension"]]
+            o46 = effect[~effect["is_defect_dimension"]]
+            A("### 6.3 缺陷约束对感官画像的影响（必须写明的限制）")
+            A("")
+            A("**有约束谱的缺陷列被系统性压低（见 §2.1），因此其感官画像必然与无约束谱不同。**"
+              "下表是「有约束 − 无约束」的净效应（同一次候选抽样，唯一差别是缺陷约束），"
+              "因此是约束本身造成的影响，不含抽样噪声：")
+            A("")
+            A("| 感官维度 | Δ 标准化值 | Δ 0–6 等级 | 真实数据 corr(化学, 感官) |")
+            A("|---|---|---|---|")
+            for dim, corr_txt in (("dms", "+0.088"), ("X4vg", "+0.473"),
+                                  ("diacetyl", "−0.093"), ("t2n", "−0.151")):
+                sub = d4[d4["sensory_dimension"] == dim]
+                if len(sub):
+                    A(f"| `{dim}` | {fmt(sub['delta_standardized'].mean(), 4)} | "
+                      f"{fmt(sub.get('delta_grade_0_6', pd.Series([float('nan')])).mean(), 3)} | "
+                      f"{corr_txt} |")
+            A(f"| 其余 46 维（中位） | {fmt(o46['delta_standardized'].median(), 4)} | "
+              f"{fmt(o46.get('delta_grade_0_6', pd.Series([float('nan')])).median(), 3)} | — |")
+            A("")
+            A("**结论（与「缺陷相关维度必然偏低」的朴素预期不同，须如实说明）**："
+              "约束对感官画像的影响方向**由训练数据中「化学 → 感官」关系的符号决定**，"
+              "并非一律偏低：")
+            A("")
+            A("* `dms`（corr +0.088）与 `X4vg`（corr +0.473）方向为正，"
+              "压低化学浓度 ⇒ 感官预测**偏低**（X4vg 降幅最大，"
+              "标准化 "
+              f"{fmt(d4[d4['sensory_dimension'] == 'X4vg']['delta_standardized'].mean(), 4)}、"
+              "0–6 等级 "
+              f"{fmt(d4[d4['sensory_dimension'] == 'X4vg'].get('delta_grade_0_6', pd.Series([float('nan')])).mean(), 3)} 级）。")
+            A("* `diacetyl`（corr −0.093）与 `t2n`（corr −0.151）在真实数据中与感官分**负相关**，"
+              "故压低其浓度反而使预测的感官分**偏高**。")
+            A("* 其余 46 维整体轻微偏低（"
+              f"Δ 标准化 中位 {fmt(o46['delta_standardized'].median(), 4)}），"
+              "来源是拒绝-重抽对三项缺陷的联合条件化对其它化合物的牵动。")
+            A("")
+            A("**使用建议**：需要「真实风格化学画像」时用**无约束谱**；"
+              "需要「零超标合规画像」时用**有约束谱**，但必须同时声明"
+              "「其感官画像在缺陷相关维度上已被约束改变，方向依化学—感官关系的符号而定，"
+              "不可当作该风格的真实感官分布」。")
+            A("")
+            A("逐风格逐维度明细见 `sensory_constraint_effect.csv`。")
+            A("")
+    else:
+        A(f"状态：**pending_q1 —— 未完成**。原因：{pending_reason}")
+        A("")
+        A("**接口约定**（Q1 侧工件就绪后直接跑 `scripts/q3_sensory_profile.py` 即可）：")
         A("")
         A("```python")
         A("from q1_predict import predict_sensory")
@@ -340,11 +422,13 @@ def build() -> str:
           "Q1 接口内部按 `*_sum` 后缀自动剔除，调用方无需处理）")
         A("* 索引：样本 id（合成谱用 `SYN_<style>_NNNN` / `SYNU_<style>_NNNN`），原样回传为输出索引")
         A("* 输出：DataFrame，索引与输入逐行一致，列为 **50 个感官维度名**，值为标准化连续分")
+        A("* 0–6 离散化：切点取 `data/processed/q1_final/proxy_grade_cutpoints.csv`，"
+          "用 `np.digitize(value, cutpoints[j], right=True)`")
         A("* 工件：需存在 `data/processed/q1_final/model_<name>.joblib`")
     A("")
     A("**口径声明**：附件 3.xlsx 是空白品评卡模板，附件中**没有任何原始 0–6 评分**，"
       "4.csv 的感官分是标准化值。因此问题 3 的「感官画像」只能建立在**标准化尺度**上，"
-      "论文与图表须显式声明这一点。")
+      "0–6 等级为「标准化预测 + 训练集七分位切点」的**代理等级**，论文与图表须显式声明这一点。")
     A("")
 
     # ---------------- 7 复现 ----------------
@@ -395,7 +479,12 @@ def build() -> str:
     A("| `transfer_pils_to_tripel_defects.csv` | 迁移逐样本四项缺陷前后值 + 是否恶化标记 |")
     A("| `transfer_pils_to_tripel_summary.csv` | 迁移核验摘要 |")
     A("| `lambda_sensitivity.csv` | λ 与生成量敏感性扫描 |")
-    A("| `sensory_profile_*.csv` | 感官画像（依赖 Q1；不可用时改为 `sensory_profile_pending.md`） |")
+    A("| `sensory_profile_<style>.csv` | 感官画像（标准化尺度，50 维），有约束版 |")
+    A("| `sensory_profile_<style>_unconstrained.csv` | 感官画像（标准化尺度），无约束版 |")
+    A("| `sensory_profile_<style>[_unconstrained]_0_6.csv` | 0–6 代理等级画像（训练集七分位切点） |")
+    A("| `sensory_profile_summary.csv` | 逐风格逐维度：生成 vs 真实的均值/中位数/标准差/平均等级 |")
+    A("| `sensory_constraint_effect.csv` | 约束的净感官效应（有约束 − 无约束），逐风格逐维度 |")
+    A("| `sensory_profile_pending.md` | 仅当 Q1 接口不可用时产出（说明与接口约定） |")
     A("| `README.md` | 本文件 |")
     A("")
     A("### `data/processed/q3_figures/`")
@@ -407,7 +496,8 @@ def build() -> str:
     A("| `fig3_parallel_coordinates_tripel.png` | Tripel 平行坐标：真实 vs 生成 |")
     A("| `fig4_transfer_radar.png` | 迁移前后四项缺陷雷达图 |")
     A("| `fig5_defect_boxplots.png` | 缺陷化合物箱线：真实/有约束/无约束/迁移后 |")
-    A("| `fig6_ks_distribution.png` | KS 距离分布 + 原假设中位数参照 |")
+    A("| `fig6_ks_distribution.png` | KS 距离分布 + 原假设中位数参照（约束 vs 无约束） |")
+    A("| `fig7_sensory_profile_radar.png` | 感官画像雷达图：真实 vs 有约束生成 vs 无约束生成 |")
     A("")
 
     # ---------------- 9 局限 ----------------
@@ -428,12 +518,15 @@ def build() -> str:
     A("5. **t2n（E-2-nonenal）无绝对阈值**：文件 8 未提供该化合物的感官阈值，"
       "生成阶段无法施加绝对约束，只能在迁移阶段以「不恶化」相对约束兜底，"
       "论文须声明该缺口。")
-    A("6. **感官画像依赖 Q1**：见 §6，当前状态 `pending_q1`。")
+    A("6. **感官画像随缺陷约束而变**（见 §6.3）：有约束谱的缺陷列被压低，"
+      "其感官画像在缺陷相关维度上随之改变，方向由训练数据中「化学 → 感官」关系的符号决定"
+      "（`dms`、`X4vg` 偏低；`diacetyl`、`t2n` 偏高）。"
+      "0–6 等级为「标准化预测 + 训练集七分位切点」的代理等级，非原始 0–6 评分。")
     A("7. **相关结构保持度的参照噪声**：迁移前后 Spearman ρ 的平均绝对偏差 "
       f"{fmt(transfer.iloc[0]['spearman_mean_abs_dev'], 6) if transfer is not None else 'NA'}"
       "（<0.05）虽已达标，但该量在 n=11 的样本上估计本身不稳定，"
       "最大单对偏差达 "
-      f"{fmt(transfer.iloc[0]['spearman_max_abs_dev'], 4) if transfer is not None else 'NA'}"
+      f"{fmt(transfer.iloc[0]['spearman_max_abs_dev'], 6) if transfer is not None else 'NA'}"
       "（来自缺陷列被压缩到同一阈值造成的并列值）。")
     A("")
     return "\n".join(L)

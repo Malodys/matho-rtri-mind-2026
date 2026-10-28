@@ -4,6 +4,7 @@
 """问题二：代表性维度的 Top-3 明细摘录。"""
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -14,8 +15,10 @@ import pandas as pd
 
 
 def main() -> int:
-    t = pd.read_csv(Path(__file__).resolve().parents[1]
-                    / "data" / "processed" / "q2_runs" / "top3_by_sensory.csv",
+    ap = argparse.ArgumentParser(description="问题二：代表性维度 Top-3 明细摘录（只读）")
+    ap.add_argument("--repo-root", default=str(Path(__file__).resolve().parents[1]))
+    args = ap.parse_args()
+    t = pd.read_csv(Path(args.repo_root) / "data" / "processed" / "q2_runs" / "top3_by_sensory.csv",
                     keep_default_na=False, encoding="utf-8")
     dims = ["bitternes", "alcohol", "A_hops_citrus", "X4vg", "dms",
             "A_malt_bread", "A_esters_isoaa", "stale_hops", "overall"]

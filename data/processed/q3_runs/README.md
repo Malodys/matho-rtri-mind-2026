@@ -157,7 +157,7 @@ v_j    = F_s^{-1}(u_j)            # 映回风格条件边际
 * 源样本：真实 Pils/Lager **11** 条 × 231 维；目标边际：Tripel 条件边际，λ = 0.7368
 * 方法：**秩-分位映射**（Iman-Conover 边际替换）——每列把源样本的秩映射到目标风格条件分位，列内秩不变 ⇒ 相关结构保持；再施加同一套缺陷约束（三项阈值 + 四项「不恶化」）
 * 缺陷项核验：共 44 条（11 样本 × 4 项），**恶化 0 条（必须为 0）**，**迁移后超标 0 条（必须为 0）**
-* 相关结构保持：Spearman ρ 平均绝对偏差 **0.022090**（上限 0.05），最大单对偏差 0.6306；Pearson 口径平均偏差 0.1718
+* 相关结构保持：Spearman ρ 平均绝对偏差 **0.022090**（上限 0.05），**最大单对偏差 0.630620**（单一化合物对；Pearson 口径平均偏差 0.1718）
 
 四项缺陷的迁移前后均值改善（before − after，log10 mg/L，正=改善）：
 
@@ -172,11 +172,57 @@ v_j    = F_s^{-1}(u_j)            # 映回风格条件边际
 
 ## 6 感官画像（Step 6）
 
-状态：**已完成**（调用问题 1 的 `scripts/q1_predict.py`）。产物：sensory_profile_Blond.csv, sensory_profile_Blond_unconstrained.csv, sensory_profile_Dubbel.csv, sensory_profile_Dubbel_unconstrained.csv, sensory_profile_Hoppy.csv, sensory_profile_Hoppy_unconstrained.csv, sensory_profile_Kriek.csv, sensory_profile_Kriek_unconstrained.csv, sensory_profile_Lambic.csv, sensory_profile_Lambic_unconstrained.csv, sensory_profile_Saison.csv, sensory_profile_Saison_unconstrained.csv, sensory_profile_Strong_ale.csv, sensory_profile_Strong_ale_unconstrained.csv, sensory_profile_Tripel.csv, sensory_profile_Tripel_unconstrained.csv, sensory_profile_summary.csv。
+### 6.1 完整链路
 
-生成谱与该风格真实感官分的均值对照（标准化尺度，全局 50 维）见 `sensory_profile_summary.csv`。
+```
+生成化合物谱（统一 log10 mg/L，231 列）
+        │
+        ▼  scripts/q1_predict.py :: predict_sensory(matrix, model=None)
+问题一模型（model_independent_gbr.joblib）在 250×227 特征上推理
+        │
+        ▼  50 维标准化连续预测（索引与输入逐行一致）
+标准化尺度感官画像   sensory_profile_<style>.csv
+        │
+        ▼  proxy_grade_cutpoints.csv（训练集七分位切点，6 个边界）
+        │   np.digitize(value, cutpoints[j], right=True)
+0–6 代理等级画像     sensory_profile_<style>_0_6.csv
+```
 
-**口径声明**：附件 3.xlsx 是空白品评卡模板，附件中**没有任何原始 0–6 评分**，4.csv 的感官分是标准化值。因此问题 3 的「感官画像」只能建立在**标准化尺度**上，论文与图表须显式声明这一点。
+状态：**已完成**。调用问题一的 `scripts/q1_predict.py`（模型 `independent_gbr`），每个风格产出**有约束 / 无约束**两版，每版各两份文件（标准化 + 0–6 等级），共 32 份感官画像文件。
+
+**0–6 离散化口径**：切点取 `data/processed/q1_final/proxy_grade_cutpoints.csv`（行索引 = 50 个感官维度名，列 = boundary_1..boundary_6），已与 `q1_evaluation.training_quantile_cutpoints(y_train)` 重算结果逐元素核对，最大偏差 9.7e-17（机器精度）；离散化函数与 `q1_evaluation.apply_cutpoints` 逐元素一致（已验证）。**因此感官画像是「基于标准化尺度预测后，按训练集七分位切点离散化」得到的 0–6 代理等级，不是原始 0–6 评分。**
+
+### 6.2 画像保真度（生成 vs 该风格真实样本）
+
+* 全部 8 风格 × 50 维：|生成均值 − 真实均值| 中位 **0.1266**、均值 0.1824（标准化尺度）。
+* 参考量级：真实风格样本仅 10–31 条，其感官均值的抽样标准误约 1/√n ≈ 0.18–0.32 —— **生成画像的偏差小于参照系本身的估计误差**，即生成谱的感官画像与真实风格画像在统计上一致。
+* 0–6 等级口径：|生成平均等级 − 真实平均等级| 中位 0.691 级。
+* 逐维度明细见 `sensory_profile_summary.csv`（含生成/真实的均值、中位数、标准差、0–6 平均等级与差值）。
+
+### 6.3 缺陷约束对感官画像的影响（必须写明的限制）
+
+**有约束谱的缺陷列被系统性压低（见 §2.1），因此其感官画像必然与无约束谱不同。**下表是「有约束 − 无约束」的净效应（同一次候选抽样，唯一差别是缺陷约束），因此是约束本身造成的影响，不含抽样噪声：
+
+| 感官维度 | Δ 标准化值 | Δ 0–6 等级 | 真实数据 corr(化学, 感官) |
+|---|---|---|---|
+| `dms` | -0.0215 | -0.141 | +0.088 |
+| `X4vg` | -0.0802 | -0.353 | +0.473 |
+| `diacetyl` | 0.0916 | 0.428 | −0.093 |
+| `t2n` | 0.0335 | 0.218 | −0.151 |
+| 其余 46 维（中位） | -0.0410 | -0.202 | — |
+
+**结论（与「缺陷相关维度必然偏低」的朴素预期不同，须如实说明）**：约束对感官画像的影响方向**由训练数据中「化学 → 感官」关系的符号决定**，并非一律偏低：
+
+* `dms`（corr +0.088）与 `X4vg`（corr +0.473）方向为正，压低化学浓度 ⇒ 感官预测**偏低**（X4vg 降幅最大，标准化 -0.0802、0–6 等级 -0.353 级）。
+* `diacetyl`（corr −0.093）与 `t2n`（corr −0.151）在真实数据中与感官分**负相关**，故压低其浓度反而使预测的感官分**偏高**。
+* 其余 46 维整体轻微偏低（Δ 标准化 中位 -0.0410），来源是拒绝-重抽对三项缺陷的联合条件化对其它化合物的牵动。
+
+**使用建议**：需要「真实风格化学画像」时用**无约束谱**；需要「零超标合规画像」时用**有约束谱**，但必须同时声明「其感官画像在缺陷相关维度上已被约束改变，方向依化学—感官关系的符号而定，不可当作该风格的真实感官分布」。
+
+逐风格逐维度明细见 `sensory_constraint_effect.csv`。
+
+
+**口径声明**：附件 3.xlsx 是空白品评卡模板，附件中**没有任何原始 0–6 评分**，4.csv 的感官分是标准化值。因此问题 3 的「感官画像」只能建立在**标准化尺度**上，0–6 等级为「标准化预测 + 训练集七分位切点」的**代理等级**，论文与图表须显式声明这一点。
 
 ## 7 复现命令
 
@@ -220,7 +266,12 @@ v_j    = F_s^{-1}(u_j)            # 映回风格条件边际
 | `transfer_pils_to_tripel_defects.csv` | 迁移逐样本四项缺陷前后值 + 是否恶化标记 |
 | `transfer_pils_to_tripel_summary.csv` | 迁移核验摘要 |
 | `lambda_sensitivity.csv` | λ 与生成量敏感性扫描 |
-| `sensory_profile_*.csv` | 感官画像（依赖 Q1；不可用时改为 `sensory_profile_pending.md`） |
+| `sensory_profile_<style>.csv` | 感官画像（标准化尺度，50 维），有约束版 |
+| `sensory_profile_<style>_unconstrained.csv` | 感官画像（标准化尺度），无约束版 |
+| `sensory_profile_<style>[_unconstrained]_0_6.csv` | 0–6 代理等级画像（训练集七分位切点） |
+| `sensory_profile_summary.csv` | 逐风格逐维度：生成 vs 真实的均值/中位数/标准差/平均等级 |
+| `sensory_constraint_effect.csv` | 约束的净感官效应（有约束 − 无约束），逐风格逐维度 |
+| `sensory_profile_pending.md` | 仅当 Q1 接口不可用时产出（说明与接口约定） |
 | `README.md` | 本文件 |
 
 ### `data/processed/q3_figures/`
@@ -232,7 +283,8 @@ v_j    = F_s^{-1}(u_j)            # 映回风格条件边际
 | `fig3_parallel_coordinates_tripel.png` | Tripel 平行坐标：真实 vs 生成 |
 | `fig4_transfer_radar.png` | 迁移前后四项缺陷雷达图 |
 | `fig5_defect_boxplots.png` | 缺陷化合物箱线：真实/有约束/无约束/迁移后 |
-| `fig6_ks_distribution.png` | KS 距离分布 + 原假设中位数参照 |
+| `fig6_ks_distribution.png` | KS 距离分布 + 原假设中位数参照（约束 vs 无约束） |
+| `fig7_sensory_profile_radar.png` | 感官画像雷达图：真实 vs 有约束生成 vs 无约束生成 |
 
 ## 9 已知局限
 
@@ -241,5 +293,5 @@ v_j    = F_s^{-1}(u_j)            # 映回风格条件边际
 3. **边际由全部 250 个真实样本定义**，因此 KS 度量衡量的是「与真实分布的对齐度」（分布匹配），不是对未见数据的泛化能力，该指标偏乐观。
 4. **边际取自经验分布的原子**：条件边际是全局与风格经验分布的混合，生成值中有 (1−λ) 比例取自真实样本的经验分位（不外推出真实取值域），好处是「不会生成现实中不存在的化合物浓度」，代价是存在与真实样本的数值重合。
 5. **t2n（E-2-nonenal）无绝对阈值**：文件 8 未提供该化合物的感官阈值，生成阶段无法施加绝对约束，只能在迁移阶段以「不恶化」相对约束兜底，论文须声明该缺口。
-6. **感官画像依赖 Q1**：见 §6，当前状态 `pending_q1`。
-7. **相关结构保持度的参照噪声**：迁移前后 Spearman ρ 的平均绝对偏差 0.022090（<0.05）虽已达标，但该量在 n=11 的样本上估计本身不稳定，最大单对偏差达 0.6306（来自缺陷列被压缩到同一阈值造成的并列值）。
+6. **感官画像随缺陷约束而变**（见 §6.3）：有约束谱的缺陷列被压低，其感官画像在缺陷相关维度上随之改变，方向由训练数据中「化学 → 感官」关系的符号决定（`dms`、`X4vg` 偏低；`diacetyl`、`t2n` 偏高）。0–6 等级为「标准化预测 + 训练集七分位切点」的代理等级，非原始 0–6 评分。
+7. **相关结构保持度的参照噪声**：迁移前后 Spearman ρ 的平均绝对偏差 0.022090（<0.05）虽已达标，但该量在 n=11 的样本上估计本身不稳定，最大单对偏差达 0.630620（来自缺陷列被压缩到同一阈值造成的并列值）。

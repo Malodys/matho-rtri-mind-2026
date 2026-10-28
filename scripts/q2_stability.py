@@ -416,6 +416,9 @@ def aggregate(root: Path, B: int, nchunks: int) -> dict:
         "graph": graph_summary["graph"],
         "edge_sensitivity": graph_summary["sensitivity"],
         "community_count": graph_summary["graph"]["n_leiden_communities"],
+        "threshold_recommendation": graph_summary.get("threshold_recommendation", {}),
+        "threshold_community_ari": graph_summary.get("threshold_community_ari", []),
+        "two_threshold_comparison": graph_summary.get("two_threshold_comparison", {}),
         "evidence_coverage": json.loads((ev / "evidence_coverage.json").read_text(encoding="utf-8")),
         "top3": {
             "n_dimensions": len(dims),

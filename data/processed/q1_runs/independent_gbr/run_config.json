@@ -1,0 +1,8 @@
+{
+  "outer_evaluation": "fixed 70/30 holdout (seed 0, style-stratified)",
+  "train_n": 175,
+  "test_n": 75,
+  "model": "independent_gbr",
+  "primary_metric": "Macro_RMSE",
+  "cutpoint_source": "train-only 6 septile quantiles (175 samples)"
+}

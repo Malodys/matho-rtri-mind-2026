@@ -1,0 +1,2 @@
+model,model__alpha,model__l1_ratio,inner_best_neg_MSE
+multitask_elastic_net,0.24816289228368238,0.95,-0.236781685196092

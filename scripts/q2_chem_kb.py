@@ -574,6 +574,13 @@ def verify_classification() -> str:
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
+    ap = argparse.ArgumentParser(description="问题二化学知识库：打印分类覆盖表供人工核对")
+    ap.add_argument("--dump-classes", action="store_true", help="打印显式覆盖表")
+    args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
-    print(verify_classification())
+    if args.dump_classes:
+        print(verify_classification())
+    else:
+        print(f"维度知识库条目：{len(DIM_KB)} 个；显式化合物覆盖：{len(CLASS_OVERRIDE)} 条")
+        print("用 --dump-classes 查看分类明细。")

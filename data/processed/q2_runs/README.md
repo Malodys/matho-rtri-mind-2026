@@ -238,7 +238,8 @@ B=8 时「频率 ≥ 0.6」等价于「至少 5/8」，统计强度不足，故�
 | `q2_stability.py` | Step 3：bootstrap、Jaccard、化学合理性论证、汇总 |
 | `q2_figures.py` | 出图（6 张） |
 | `q2_verify.py` | 验收自检（逐条核对题面验收标准） |
-| `q2_explore*.py`、`q2_report_peek.py` | 只读探查与摘录脚本（不产出交付物） |
+| `q2_probe.py` | 只读诊断探查（5 组核验点：结构 / SHAP 表 / 切分对齐 / 6.csv 一致性 / Leiden 参数） |
+| `q2_report_peek.py` | 只读摘录脚本（打印代表性维度的 Top-3 明细） |
 
 ### 数据（`data/processed/q2_runs/`）
 

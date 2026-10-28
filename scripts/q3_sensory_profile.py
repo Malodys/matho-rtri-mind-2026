@@ -270,6 +270,49 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         pd.DataFrame(profile_rows).to_csv(
             RUN_DIR / "sensory_profile_summary.csv", index=False, encoding="utf-8-sig")
         print(f"[落盘] {RUN_DIR/'sensory_profile_summary.csv'}")
+
+        # 约束的净感官效应：有约束 − 无约束（同一候选池，唯一差别是缺陷约束）
+        effect_rows = []
+        defect_dims = {"dms", "X4vg", "diacetyl", "t2n"}
+        for style in ok_styles:
+            p_c = RUN_DIR / f"sensory_profile_{slug(style)}.csv"
+            p_u = RUN_DIR / f"sensory_profile_{slug(style)}_unconstrained.csv"
+            if not p_u.is_file():
+                continue
+            c = pd.read_csv(p_c, encoding="utf-8-sig")
+            u = pd.read_csv(p_u, encoding="utf-8-sig")
+            dims = [d for d in c.columns if d not in ("beer", "tasting_category_fine",
+                                                      "variant")]
+            gc = gu = None
+            gc_path = RUN_DIR / f"sensory_profile_{slug(style)}_0_6.csv"
+            gu_path = RUN_DIR / f"sensory_profile_{slug(style)}_unconstrained_0_6.csv"
+            if cutpoints is not None and gc_path.is_file() and gu_path.is_file():
+                gc = pd.read_csv(gc_path, encoding="utf-8-sig")
+                gu = pd.read_csv(gu_path, encoding="utf-8-sig")
+            for d in dims:
+                row = {
+                    "style": style,
+                    "sensory_dimension": d,
+                    "is_defect_dimension": d in defect_dims,
+                    "constrained_mean_standardized": round(float(c[d].mean()), 6),
+                    "unconstrained_mean_standardized": round(float(u[d].mean()), 6),
+                    "delta_standardized": round(float(c[d].mean() - u[d].mean()), 6),
+                }
+                if gc is not None:
+                    row["constrained_mean_grade_0_6"] = round(float(gc[d].mean()), 4)
+                    row["unconstrained_mean_grade_0_6"] = round(float(gu[d].mean()), 4)
+                    row["delta_grade_0_6"] = round(float(gc[d].mean() - gu[d].mean()), 4)
+                effect_rows.append(row)
+        if effect_rows:
+            eff = pd.DataFrame(effect_rows)
+            eff.to_csv(RUN_DIR / "sensory_constraint_effect.csv", index=False,
+                       encoding="utf-8-sig")
+            d4 = eff[eff["is_defect_dimension"]]
+            o46 = eff[~eff["is_defect_dimension"]]
+            print(f"[落盘] {RUN_DIR/'sensory_constraint_effect.csv'}")
+            print(f"  约束净感官效应：缺陷 4 维 Δ标准化 中位="
+                  f"{d4['delta_standardized'].median():+.4f}、其余 46 维 中位="
+                  f"{o46['delta_standardized'].median():+.4f}")
     except Exception as exc:
         print(f"[提示] 感官画像汇总表生成失败（不影响主产物）：{exc!r}")
 

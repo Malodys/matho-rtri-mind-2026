@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -22,6 +23,9 @@ import q2_common as qc
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description="问题二验收自检：逐条核对题面验收标准")
+    ap.add_argument("--repo-root", default=str(qc.REPO_ROOT))
+    args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
     run = qc.RUN_DIR
     lines: list = []
@@ -52,7 +56,7 @@ def main() -> int:
     check("验收2b 每维 3 条 Top-3", len(top) == 150 and (top.groupby("sensory_dimension").size() == 3).all(),
           f"{len(top)} 行")
     check("验收2c 无 NaN 标记", not top.isna().any().any(), f"NaN 计数={int(top.isna().sum().sum())}")
-    data = qc.load_q2_data(qc.REPO_ROOT)
+    data = qc.load_q2_data(Path(args.repo_root))
     unmapped = top[~top["compound"].isin(list(data.X.columns))]
     check("验收2d 化合物均可映射回 1.csv 列", len(unmapped) == 0,
           f"未映射 {len(unmapped)} 条")

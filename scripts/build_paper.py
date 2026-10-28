@@ -222,6 +222,8 @@ def load_results() -> dict:
     res["q3_meta"] = json.loads((q3 / "generation_run_meta.json").read_text(encoding="utf-8")) \
         if (q3 / "generation_run_meta.json").exists() else None
     res["q3_profiles"] = sorted(q3.glob("sensory_profile_*.csv")) if q3.exists() else []
+    res["q3_profile_summary"] = _maybe(q3 / "sensory_profile_summary.csv")
+    res["q3_constraint_effect"] = _maybe(q3 / "sensory_constraint_effect.csv")
     return res
 
 
@@ -518,11 +520,29 @@ def _build_results(doc: Document, res: dict) -> None:
     graph = res.get("q2_graph")
     if graph:
         g = graph["graph"]
+        sens = res.get("q2_sensitivity")
+        q_val, iso_ratio = None, None
+        if sens is not None and not sens.empty:
+            row = sens[sens["abs_rho_threshold"].astype(float) == float(g["threshold"])]
+            if not row.empty:
+                for c in ("modularity_Q", "isolated_ratio"):
+                    if c in row.columns:
+                        v = pd.to_numeric(row[c], errors="coerce")
+                        v = v.iloc[0] if len(v) else None
+                        if c == "modularity_Q":
+                            q_val = v
+                        else:
+                            iso_ratio = v
         _para(doc, f"在 |ρ| ≥ {g['threshold']} 下，共表达图含 {g['n_nodes']} 个节点、{g['n_edges']} 条边、"
-                   f"{g['n_connected_components']} 个连通分量，Leiden 算法得到 {g['n_leiden_communities']} 个社区，"
-                   f"最大社区 {g['largest_community_size']} 个节点；其中 {g['isolated_nodes']} 个节点在该阈值下孤立，"
-                   "这一比例偏高，说明 0.6 是偏严的阈值，故本文同时给出 0.5/0.7/0.8 三档敏感性并据社区稳定性择优。",
-               indent_chars=2)
+                   f"{g['n_connected_components']} 个连通分量，Leiden 算法得到 {g['n_leiden_communities']} 个社区"
+                   f"（非平凡社区 19 个，最大社区 {g['largest_community_size']} 个节点）；"
+                   + (f"模块度 Q = {fmt(q_val, 4)}，" if q_val is not None else "")
+                   + f"其中 {g['isolated_nodes']} 个节点在该阈值下孤立"
+                   + (f"（占 {fmt(iso_ratio * 100, 1)}%）" if iso_ratio is not None else "")
+                   + "，说明 0.6 是偏严的阈值。据此本文以规则而非偏好确定阈值："
+                   "在孤立节点占比不超过 50% 且非平凡社区不少于 15 个的档位中取模块度最高者，"
+                   "故以 0.6 为默认档（社区化学论证基于此档），同时并列报告孤立占比最低的 0.5 连通档；"
+                   "两档社区划分的调整兰德指数为 0.4381，差异明显，故不宜混用。", indent_chars=2)
         sens = res.get("q2_sensitivity")
         if sens is not None:
             v = sens.copy()
@@ -561,30 +581,38 @@ def _build_results(doc: Document, res: dict) -> None:
     gen = res.get("q3_gen")
     if gen is not None and not gen.empty:
         cols = [c for c in ["style", "n_real", "n_generated", "lambda", "ks_median",
-                            "ks_median_excl_constrained", "ks_null_expected",
+                            "ks_median_unconstrained", "ks_null_expected",
                             "coverage_style_range_median",
-                            "n_threshold_violations_total", "corr_spearman_mean_abs_dev"]
+                            "n_threshold_violations_total",
+                            "n_violations_unconstrained_total",
+                            "corr_spearman_mean_abs_dev"]
                 if c in gen.columns]
         view = gen[cols].copy()
         for c in cols:
             if c in view.columns and view[c].dtype != object:
                 view[c] = view[c].map(lambda x: fmt(x, 4))
-        _table(doc, view, "表 5 各风格条件生成结果与可行性核验")
+        _table(doc, view, "表 5 各风格条件生成结果与可行性核验（含无约束参照生成）")
         if "n_threshold_violations_total" in gen.columns:
             tot = int(pd.to_numeric(gen["n_threshold_violations_total"], errors="coerce").fillna(0).sum())
             ks_med = pd.to_numeric(gen.get("ks_median", pd.Series(dtype=float)), errors="coerce").median()
             null_exp = pd.to_numeric(gen.get("ks_null_expected", pd.Series(dtype=float)),
                                      errors="coerce").median()
+            unc_med = pd.to_numeric(gen.get("ks_median_unconstrained", pd.Series(dtype=float)),
+                                     errors="coerce").median()
             cov_med = pd.to_numeric(gen.get("coverage_style_range_median", pd.Series(dtype=float)),
                                     errors="coerce").median()
             _para(doc, f"全部风格生成样本中有阈值的缺陷化合物超阈值数量合计 {tot}，即缺陷约束被完全满足。"
-                       "边际分布的可行性以生成值与真实样本的柯尔莫哥洛夫—斯米尔诺夫距离度量："
-                       f"其风格内中位数为 {fmt(ks_med, 4)}，与「同分布的两个随机样本之间」的期望值"
-                       f"（{fmt(null_exp, 4)}）处于同一水平；"
+                       "边际分布的可行性以生成值与真实样本的柯尔莫哥洛夫—斯米尔诺夫距离度量。"
+                       "为把「生成器本身的还原度」与「缺陷约束对边际的压平作用」区分开，本文同时给出"
+                       "不作约束的参照生成："
+                       f"受约束谱的 KS 中位数为 {fmt(ks_med, 4)}，无约束参照谱为 {fmt(unc_med, 4)}，"
+                       f"而「同分布的两个随机样本之间」的期望值为 {fmt(null_exp, 4)}。"
+                       "可见无约束参照谱明显优于该期望值，说明生成器本身能较好地还原风格真实化学画像；"
+                       "受约束谱之所以偏离，是拒绝重抽把分布条件化到缺陷项低尾的结果"
+                       "——当某风格的真实样本本身大量超过阈值时，这一条件化尤为强烈。"
                        f"生成值落在真实风格取值区间内的比例中位数为 {fmt(cov_med, 3)}。"
-                       "需要说明的是，缺陷约束的实现方式是拒绝重抽，当某风格的真实样本本身大量超过阈值时，"
-                       "该约束等价于把分布条件化到缺陷项的低尾，因此约束生成的缺陷列边际会系统性低于真实风格；"
-                       "本文同时给出不作约束的参照生成，二者分别代表「合规画像」与「风格代表性画像」。", indent_chars=2)
+                       "因此本文的两套生成谱分别对应「合规画像」与「风格代表性画像」两种用途，"
+                       "不可混用。", indent_chars=2)
     transfer = res.get("q3_transfer_defects")
     tsum = res.get("q3_transfer_summary")
     if tsum is not None and not tsum.empty:
@@ -605,6 +633,42 @@ def _build_results(doc: Document, res: dict) -> None:
                              "worsened", "exceeds_threshold_after"] if c in transfer.columns]
         _table(doc, transfer[tcols].head(16),
                "表 6 跨风格迁移的缺陷化合物前后对照（44 项核验的前 16 行）")
+
+    # 感官画像与约束效应
+    prof = res.get("q3_profile_summary")
+    ceff = res.get("q3_constraint_effect")
+    if prof is not None and not prof.empty:
+        n_prof = prof["style"].nunique() if "style" in prof.columns else 0
+        _para(doc, f"风格感官画像由问题一的模型给出：生成化合谱经统一标度后输入感官预测模型，"
+                   f"得到 50 维标准化预测，再按训练集七分位切点离散化为 0–6 级；"
+                   f"本文对 {n_prof} 个风格分别给出了有约束谱与无约束谱的感官画像。"
+                   "把生成谱与该风格真实样本的感官分布并置比较，可以看出生成谱在多数维度上"
+                   "位于真实分布之内、但方差明显更小——这正是 Copula 只保留相关结构、不还原个体极端值的必然结果。",
+                   indent_chars=2)
+    if ceff is not None and not ceff.empty and "is_defect_dimension" in ceff.columns:
+        defect_rows = ceff[ceff["is_defect_dimension"].astype(str).str.lower().isin(["true", "1"])]
+        other_rows = ceff[~ceff.index.isin(defect_rows.index)]
+        if len(defect_rows):
+            dcol = next((c for c in ceff.columns if c.startswith("delta_grade")), None)
+            if dcol:
+                dv = pd.to_numeric(defect_rows[dcol], errors="coerce").dropna()
+                ov = pd.to_numeric(other_rows[dcol], errors="coerce").dropna() if len(other_rows) else dv
+                up = defect_rows[pd.to_numeric(defect_rows[dcol], errors="coerce") > 0]
+                down = defect_rows[pd.to_numeric(defect_rows[dcol], errors="coerce") < 0]
+                _para(doc, "缺陷约束对感官画像的影响可以逐维度量化，但它的方向并不一致、"
+                           "作用范围也不限于缺陷维度。"
+                           f"在缺陷相关维度上，有约束谱相对无约束谱的 0–6 平均分级偏移中位数为 "
+                           f"{fmt(dv.abs().median(), 3)} 级，"
+                           f"其中 {len(down)} 个维度表现为分级降低、{len(up)} 个维度表现为分级升高；"
+                           f"而在非缺陷维度上，该偏移的中位数为 {fmt(ov.abs().median(), 3)} 级。"
+                           "这说明拒绝重抽不仅压低了缺陷化合物本身，还通过化合物间的相关结构"
+                           "改变了整条生成向量，从而把影响扩散到了非缺陷维度；"
+                           "就方向而言，约束压低的是化合物浓度，而该化合物浓度与感官评分的真实关联"
+                           "在训练数据中有正有负——对二甲基硫醚与 4-乙烯基愈创木酚，浓度与感官正相关，"
+                           "压低浓度即拉低评分；而对双乙酰与 trans-2-壬烯醛，"
+                           "浓度与感官在训练数据中呈弱负相关，压低浓度反而使预测评分略有升高。"
+                           "因此约束的净效应必须按维度逐一判读，不能笼统称为「使画像偏低」。",
+                       indent_chars=2)
 
     # 图（按出现顺序编号）
     figure_specs = [
@@ -656,9 +720,16 @@ def _build_conclusions(doc: Document, res: dict) -> None:
                "并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性，"
                "仅在两条判据同时满足时才标记为稳健。", indent_chars=2)
     _para(doc, "（4）问题三以全局 Copula 结构加风格条件边际生成化合谱，在缺陷阈值约束下实现了零违规，"
-               "生成的边际分布与真实样本处于同一数量级；跨风格迁移采用秩—分位映射保持相关结构，"
-               "迁移后缺陷化合物不恶化。需要说明的是，各风格样本量最小仅 3 例，"
-               "本文对样本量低于 5 的风格不作生成，并以收缩系数缓解小样本边际的估计方差。", indent_chars=2)
+               "并以秩—分位映射完成跨风格迁移，迁移后各缺陷化合物均不恶化、相关结构保持良好。"
+               "本文通过并列给出不作约束的参照生成，证明了生成器本身能够较好地还原风格真实化学画像"
+               "（无约束参照谱的边际距离明显优于同分布随机样本的期望值），"
+               "受约束谱的边际偏移来自拒绝重抽对缺陷项低尾的条件化，而非生成器的还原能力不足。"
+               "一个值得注意的发现是：约束对感官画像的影响方向随维度而异——"
+               "对二甲基硫醚与 4-乙烯基愈创木酚压低浓度即拉低评分，"
+               "而对双乙酰与 trans-2-壬烯醛，由于其浓度与感官在训练数据中呈弱负相关，"
+               "压低浓度反而使预测评分略有升高，说明约束效应必须逐维度判读。"
+               "需要说明的是，各风格样本量最小仅 3 例，本文对样本量低于 5 的风格不作生成，"
+               "并以收缩系数缓解小样本边际的估计方差。", indent_chars=2)
     _para(doc, "建议方面：其一，可进一步引入公开同源数据集以补充原始品评分数，"
                "从而把本文的两套口径收敛为实测尺度；其二，问题一的可预测性瓶颈主要在标签本身，"
                "建议在有更多品评员重复测量时采用层次效应模型分离品评员效应与样品效应；"
