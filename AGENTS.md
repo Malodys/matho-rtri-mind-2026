@@ -9,6 +9,15 @@
 - 装依赖：`uv pip sync requirements.lock.txt --extra-index-url https://download.pytorch.org/whl/cpu`（锁文件为权威版本源，勿直接 `pip install` 改动；`--extra-index-url` 不可省，否则 `torch==2.8.0+cpu` 解析不到）
 - 测试：`.\.venv\Scripts\python.exe -m pytest worktrees/prediction-models/tests -q`
 - 单个问题入口：`.\.venv\Scripts\python.exe scripts\<脚本名>.py`（脚本自带 `--help`）
+- 问题一 TabPFN 五折复现（并行版，口径与远端 `tabpfn_cv.py` 等价，约 25 分钟）：
+  ```powershell
+  .\ .venv\Scripts\python.exe scripts\reproduce_q1_tabpfn.py `
+    --worktree worktrees\prediction-models `
+    --model-path worktrees\pretrained\Prior-Labstabpfn_3_5\tabpfn-v3.5-20260909.safetensors `
+    --output-dir data\processed\q1_repro_tabpfn --workers 8 --threads 2
+  ```
+- 工具链自检：`.\.venv\Scripts\python.exe scripts\stack_smoke.py`（图论/归因/生成栈）、`scripts\acceptance_check.py`（V1–V15）
+- 论文 PDF 合规校验：`.\.venv\Scripts\python.exe scripts\check_paper_pdf.py <pdf> --docx <源docx>`
 - 锁定新版本：`uv pip freeze --python .venv\Scripts\python.exe > requirements.lock.txt`
 
 > 环境为 **CPU-only**：torch 2.8.0+cpu，TabPFN 走 CPU。本机 GTX 1650 仅 4GB 显存，多任务 TabPFN 易 OOM，故不装 CUDA 轮子。
