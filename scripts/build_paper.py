@@ -130,7 +130,7 @@ def _caption(container, text: str):
     return p
 
 
-def _figure(container, path: Path, caption: str, width_in: float = 5.6):
+def _figure(container, path: Path, caption: str, width_in: float = 5.0):
     """插入图片 + 题注；图缺失时写占位说明而不报错。"""
     if path.exists():
         p = container.add_paragraph()
@@ -143,8 +143,8 @@ def _figure(container, path: Path, caption: str, width_in: float = 5.6):
 
 
 def _table(container, df: pd.DataFrame, caption: str, widths: Optional[List[float]] = None,
-           max_rows: int = 40):
-    """插入三线表风格的表格。"""
+           max_rows: int = 40, max_cell_chars: int = 60, font_size: float = 8.5):
+    """插入表格；长单元格按 max_cell_chars 截断，避免窄列逐字符换行把版面撑爆。"""
     if df is None or df.empty:
         _para(container, f"[表缺失：{caption}]", size=9.0)
         return
@@ -154,19 +154,27 @@ def _table(container, df: pd.DataFrame, caption: str, widths: Optional[List[floa
     p.paragraph_format.space_before = Pt(4)
     table = container.add_table(rows=1, cols=len(df.columns))
     table.style = "Table Grid"
+    table.autofit = True
     for j, col in enumerate(df.columns):
         cell = table.rows[0].cells[j]
         cell.text = ""
         run = cell.paragraphs[0].add_run(str(col))
-        _set_run_font(run, HEAD_FONT, 8.5, bold=True)
+        _set_run_font(run, HEAD_FONT, font_size, bold=True)
         cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
     for _, r in df.iterrows():
         cells = table.add_row().cells
         for j, v in enumerate(r):
             cells[j].text = ""
-            txt = "" if pd.isna(v) else (f"{v:.4g}" if isinstance(v, float) else str(v))
+            if pd.isna(v):
+                txt = ""
+            elif isinstance(v, float):
+                txt = f"{v:.4g}"
+            else:
+                txt = str(v)
+            if len(txt) > max_cell_chars:
+                txt = txt[: max_cell_chars - 1] + "…"
             run = cells[j].paragraphs[0].add_run(txt)
-            _set_run_font(run, BODY_FONT, 8.5)
+            _set_run_font(run, BODY_FONT, font_size)
             cells[j].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
     if widths:
         for j, w in enumerate(widths):
@@ -244,32 +252,74 @@ def fmt(value, digits: int = 4) -> str:
 # --------------------------------------------------------------------------- 封面与目录
 
 
+def _find_para(doc: Document, text: str):
+    """按文本精确定位段落（模板占位段落会被改写，故不能依赖下标）。"""
+    for p in doc.paragraphs:
+        if p.text.strip() == text:
+            return p
+    return None
+
+
+def _clear_para(p) -> None:
+    """清空段落内容但保留段落本身（保留其样式与位置）。"""
+    for r in list(p.runs):
+        r._element.getparent().remove(r._element)
+
+
+def _para_index(doc: Document, para) -> int:
+    """在 doc.paragraphs 中定位段落下标（按底层 XML 元素比对，不能用 list.index）。"""
+    for i, p in enumerate(doc.paragraphs):
+        if p._p is para._p:
+            return i
+    raise ValueError("段落不在 doc.paragraphs 中")
+
+
 def build_cover(doc: Document, title: str, abstract: str, keywords: str,
                 team_no: str, track: str) -> None:
     """填充封面：题目 / 摘要 / 关键词 / 队伍编号 / 赛道。"""
-    paras = doc.paragraphs
-    paras[3].text = ""
-    run = paras[3].add_run(title)
-    _set_run_font(run, HEAD_FONT, 16.0, bold=True)
-    paras[3].alignment = WD_ALIGN_PARAGRAPH.CENTER
-    paras[3].paragraph_format.space_after = Pt(10)
+    p_title = _find_para(doc, "论文题目")
+    p_abs_hd = _find_para(doc, "摘  要") or _find_para(doc, "摘 要")
+    p_abs = None
+    if p_abs_hd is not None:
+        idx = _para_index(doc, p_abs_hd)
+        p_abs = doc.paragraphs[idx + 1]
+    p_kw = _find_para(doc, "关键词：")
 
-    paras[4].text = ""
-    run = paras[4].add_run("摘  要")
-    _set_run_font(run, HEAD_FONT, 13.0, bold=True)
-    paras[4].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # 模板在摘要与关键词之间留了 16 个空段落，会把关键词挤到第 2 页；
+    # 按官方规范「题目、摘要与关键词写在论文第一页上，第二页为目录页」，删掉多余的空段。
+    if p_abs is not None and p_kw is not None:
+        paras = doc.paragraphs
+        i0, i1 = _para_index(doc, p_abs), _para_index(doc, p_kw)
+        blanks = [p for p in paras[i0 + 1:i1] if not p.text.strip()]
+        for p in blanks[4:]:
+            p._element.getparent().remove(p._element)
 
-    paras[5].text = ""
-    run = paras[5].add_run(abstract)
-    _set_run_font(run, BODY_FONT, 10.5)
-    paras[5].alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    paras[5].paragraph_format.line_spacing = 1.4
-    paras[5].paragraph_format.first_line_indent = Pt(21)
+    if p_title is not None:
+        _clear_para(p_title)
+        run = p_title.add_run(title)
+        _set_run_font(run, HEAD_FONT, 16.0, bold=True)
+        p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_title.paragraph_format.space_after = Pt(10)
 
-    paras[22].text = ""
-    run = paras[22].add_run("关键词：" + keywords)
-    _set_run_font(run, BODY_FONT, 10.5, bold=True)
-    paras[22].paragraph_format.space_before = Pt(8)
+    if p_abs_hd is not None:
+        _clear_para(p_abs_hd)
+        run = p_abs_hd.add_run("摘  要")
+        _set_run_font(run, HEAD_FONT, 13.0, bold=True)
+        p_abs_hd.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    if p_abs is not None:
+        _clear_para(p_abs)
+        run = p_abs.add_run(abstract)
+        _set_run_font(run, BODY_FONT, 10.5)
+        p_abs.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        p_abs.paragraph_format.line_spacing = 1.35
+        p_abs.paragraph_format.first_line_indent = Pt(21)
+
+    if p_kw is not None:
+        _clear_para(p_kw)
+        run = p_kw.add_run("关键词：" + keywords)
+        _set_run_font(run, BODY_FONT, 10.5, bold=True)
+        p_kw.paragraph_format.space_before = Pt(8)
 
     if doc.tables:
         table = doc.tables[0]
@@ -283,16 +333,18 @@ def build_cover(doc: Document, title: str, abstract: str, keywords: str,
 
 def build_toc(doc: Document, headings: Headings, page_map: Optional[Dict[str, int]] = None) -> None:
     """重写目录页：逐条标题 + 制表位 + 页码（页码未知时先留空）。"""
-    paras = doc.paragraphs
-    toc_title = paras[23]
-    toc_title.text = ""
+    toc_title = _find_para(doc, "目录")
+    if toc_title is None:
+        toc_title = doc.add_paragraph()
+    _clear_para(toc_title)
     run = toc_title.add_run("目  录")
     _set_run_font(run, HEAD_FONT, 15.0, bold=True)
     toc_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    # 清除模板自带的示例目录行（24..29）
-    for p in paras[24:30]:
-        p._element.getparent().remove(p._element)
+    # 清除模板自带的示例目录行（以「键入章级」「键入章标题」开头的段落）
+    for p in list(doc.paragraphs):
+        if p.text.strip().startswith(("键入章级", "键入章标题")):
+            p._element.getparent().remove(p._element)
 
     anchor = toc_title
     for level, text in headings:
@@ -322,9 +374,13 @@ def build_body(doc: Document, res: dict) -> Headings:
         _heading(doc, text, level)
         heads.append((level, text))
 
-    # 清除模板正文占位（36 号及其后）
-    for p in list(doc.paragraphs)[36:]:
-        p._element.getparent().remove(p._element)
+    # 清除模板正文占位（以「（这里开始论文正文）」为界，其后全部删除）
+    marker = _find_para(doc, "（这里开始论文正文）")
+    if marker is not None:
+        paras = doc.paragraphs
+        i = _para_index(doc, marker)
+        for p in paras[i:]:
+            p._element.getparent().remove(p._element)
 
     # ---------------- 一、问题分析
     H(1, "一、问题分析")
@@ -513,7 +569,16 @@ def _build_results(doc: Document, res: dict) -> None:
                    "需要再次强调，该轨是本文提出的一阶近似而非实测原分。", indent_chars=2)
     tabpfn = res.get("q1_tabpfn")
     if tabpfn is not None and not tabpfn.empty:
-        _para(doc, "TabPFN 3.5 的五折集成已在本机 CPU 环境完成全量复现，结果表随支撑材料提供。", indent_chars=2)
+        idx = tabpfn.index.astype(str)
+        row = tabpfn[idx.str.contains("cv_mean", na=False)]
+        if not row.empty:
+            r = row.iloc[0]
+            _para(doc, "作为第三类归纳偏置的补充，本文在本机 CPU 环境完成了 TabPFN 3.5 的五折全量复现"
+                       f"（5 折 × 50 个目标共 250 个单元）。其五折平均决定系数为 {fmt(r.get('r2'), 4)}，"
+                       f"宏平均绝对误差 {fmt(r.get('mae'), 4)}、宏平均均方根误差 {fmt(r.get('rmse'), 4)}，"
+                       f"而同一协议下的训练折均值基线决定系数为 {fmt(r.get('baseline_r2'), 4)}，"
+                       "说明预训练先验模型在本任务上同样明显优于均值基线；"
+                       "其第一折的逐目标决定系数与远端归档结果逐位一致，佐证了复现的忠实性。", indent_chars=2)
 
     # ---- 4.2 问题二
     _heading(doc, "4.2 问题二：共表达图与关键化合物", 2)
@@ -545,26 +610,34 @@ def _build_results(doc: Document, res: dict) -> None:
                    "两档社区划分的调整兰德指数为 0.4381，差异明显，故不宜混用。", indent_chars=2)
         sens = res.get("q2_sensitivity")
         if sens is not None:
-            v = sens.copy()
-            for c in v.columns:
+            scol = [c for c in ["abs_rho_threshold", "n_edges", "n_connected_components",
+                                "n_leiden_communities", "largest_community_size",
+                                "isolated_nodes", "modularity_Q", "chemical_purity_mean",
+                                "edge_density"] if c in sens.columns]
+            v = sens[scol].copy()
+            for c in scol:
                 if v[c].dtype != object:
                     v[c] = v[c].map(lambda x: fmt(x, 3))
-            _table(doc, v, "表 2 共表达图的阈值敏感性（节点、边、连通分量与社区结构）")
+            _table(doc, v, "表 2 共表达图的阈值敏感性（模块度、化学纯度与连通性）",
+                   max_cell_chars=18, font_size=8.0)
         comp = res.get("q2_communities")
         if comp is not None and not comp.empty:
-            _table(doc, comp.head(12), "表 3 主要共表达社区的化学来源构成（社区 × 来源交叉表节选）")
+            ccols = [c for c in ["community", "n_nodes", "top_origin_paper", "top_origin_share",
+                                 "mean_degree", "n_defect_nodes"] if c in comp.columns]
+            _table(doc, comp[ccols].head(8),
+                   "表 3 主要共表达社区的化学来源构成（完整社区表见支撑材料）")
     top3 = res.get("q2_top3")
     if top3 is not None and not top3.empty:
-        keep = [c for c in ["sensory_dimension", "rank_in_top3", "compound", "chemical_name",
-                            "direction", "e2_abs_rho", "e2_rank_in_227", "e1_rank_in_44",
-                            "e3_shap_mean_abs", "e4_mdi_percentile", "fused_score",
+        keep = [c for c in ["sensory_dimension", "rank_in_top3", "compound", "direction",
+                            "e2_abs_rho", "e1_rank_in_44", "e3_shap_mean_abs",
                             "bootstrap_top3_freq", "jaccard_mean", "selection_status",
-                            "chem_plausible", "plausibility_note"] if c in top3.columns]
+                            "chem_plausible"] if c in top3.columns]
         view = top3[keep].copy()
         for c in keep:
             if c in view.columns and view[c].dtype != object:
                 view[c] = view[c].map(lambda x: fmt(x, 3))
-        _table(doc, view, "表 4 各感官维度的 Top-3 关键化合物及其稳定性与合理性判定（节选）", max_rows=30)
+        _table(doc, view, "表 4 各感官维度的 Top-3 关键化合物及其稳定性判定（前 15 行，完整表见支撑材料）",
+               max_rows=15, max_cell_chars=22, font_size=8.0)
         n_robust = top3.loc[top3.get("selection_status", pd.Series(dtype=str)).astype(str)
                             .str.contains("稳健"), "sensory_dimension"].nunique() \
             if "selection_status" in top3.columns else 0
@@ -775,8 +848,10 @@ def build_appendix(doc: Document) -> None:
         lines = [l.strip() for l in lock.read_text(encoding="utf-8").splitlines()
                  if l.strip() and not l.strip().startswith("#")]
         _para(doc, "本研究的全部计算在 Python 3.12.10 隔离虚拟环境中完成，依赖版本锁定如下（名称==版本）：",
-              size=9.5)
-        _para(doc, "；".join(lines), size=8.5, space_after=6)
+              size=9.0)
+        half = (len(lines) + 1) // 2
+        for a, b in zip(lines[:half], lines[half:] + [""] * half):
+            _para(doc, f"{a}    {b}".rstrip(), size=7.5, space_after=0)
     _para(doc, "操作系统为 Windows x64，CPU 逻辑核 16，内存 13.9 GB；"
                "深度学习框架使用 CPU 版本，不启用 GPU；预训练先验 TabPFN 3.5 的权重文件不随支撑材料分发，"
                "由公开模型仓库按文件名获取后置于指定目录。", size=9.5)
@@ -787,18 +862,32 @@ def build_appendix(doc: Document) -> None:
         "uv pip sync requirements.lock.txt --extra-index-url https://download.pytorch.org/whl/cpu",
         "python scripts/build_data_contract.py",
         "python scripts/audit_scale.py",
-        "python -m pytest tests -q",
-        "python scripts/q1_entry.py --models global_mean ridge pls2 multitask_elastic_net global_extra_trees grouped_extra_trees independent_gbr",
-        "python scripts/q1_tabpfn_cv.py --model-path worktrees/pretrained/Prior-Labstabpfn_3_5/tabpfn-v3.5-20260909.safetensors --output-dir data/processed/q1_repro_tabpfn --workers 3 --threads 2 --resume",
+        "python -m pytest tests tests_q1 worktrees/prediction-models/tests -q",
+        "python scripts/q1_pipeline.py",
+        "python scripts/q1_tabpfn_cv.py --worktree worktrees/prediction-models --model-path "
+        "worktrees/pretrained/Prior-Labstabpfn_3_5/tabpfn-v3.5-20260909.safetensors "
+        "--output-dir data/processed/q1_repro_tabpfn --workers 3 --threads 2 --resume",
         "python scripts/q1_absolute_anchor.py",
         "python scripts/q1_bootstrap.py",
+        "python scripts/q1_figures.py",
+        "python scripts/q1_leakage_check.py",
+        "python scripts/q1_predict.py --self-test",
         "python scripts/q2_graph.py",
         "python scripts/q2_evidence.py",
-        "python scripts/q2_stability.py",
+        "python scripts/q2_stability.py --chunk 0 --nchunks 4 --bootstrap-b 200",
+        "python scripts/q2_stability.py --aggregate --bootstrap-b 200",
+        "python scripts/q2_figures.py",
+        "python scripts/q2_verify.py",
         "python scripts/q3_generate.py",
         "python scripts/q3_transfer.py",
+        "python scripts/q3_sensory_profile.py",
+        "python scripts/q3_figures.py",
+        "python scripts/q3_report.py",
+        "python scripts/q3_verify.py",
         "python scripts/build_paper.py",
+        "python scripts/build_ai_usage_doc.py --output data/processed/compliance/AI工具使用详情说明.docx",
         "python scripts/check_paper_pdf.py data/processed/paper/paper.pdf --docx data/processed/paper/paper.docx",
+        "python scripts/acceptance_check.py",
     ]
     for c in commands:
         p = _para(doc, c, size=9.0, space_after=1)
@@ -809,24 +898,31 @@ def build_appendix(doc: Document) -> None:
     _heading(doc, "附录 C  源程序清单", 2)
     _para(doc, "支撑材料中的全部源程序按目录组织如下（均为本文作者编写或在本仓库内改写）：", size=9.5)
     groups = [
-        ("数据层与通用工具", ["scripts/data_contract.py", "scripts/build_data_contract.py",
-                              "scripts/audit_scale.py", "scripts/split_dataset.py",
-                              "scripts/build_label_dictionary.py"]),
-        ("问题一", ["scripts/q1_entry.py", "scripts/q1_models.py", "scripts/q1_evaluation.py",
-                    "scripts/q1_visualize.py", "scripts/q1_tabpfn_cv.py",
-                    "scripts/q1_absolute_anchor.py", "scripts/q1_bootstrap.py"]),
-        ("问题二", ["scripts/q2_common.py", "scripts/q2_graph.py", "scripts/q2_evidence.py",
-                    "scripts/q2_stability.py", "scripts/q2_chem_kb.py"]),
-        ("问题三", ["scripts/q3_common.py", "scripts/q3_copula.py", "scripts/q3_generate.py",
-                    "scripts/q3_transfer.py"]),
-        ("论文与合规", ["scripts/build_paper.py", "scripts/check_paper_pdf.py",
-                        "scripts/build_ai_usage_doc.py", "scripts/acceptance_check.py"]),
-        ("单元测试", ["tests/test_data_contract.py", "tests/test_scale_audit.py",
-                      "tests/test_corr_type.py"]),
+        ("数据层与通用工具", ["data_contract.py", "build_data_contract.py", "audit_scale.py",
+                              "split_dataset.py", "build_label_dictionary.py",
+                              "acceptance_check.py"]),
+        ("问题一", ["q1_entry.py", "q1_models.py", "q1_evaluation.py", "q1_visualize.py",
+                    "q1_pipeline.py", "q1_tabpfn_cv.py", "q1_absolute_anchor.py",
+                    "q1_bootstrap.py", "q1_figures.py", "q1_predict.py", "q1_leakage_check.py"]),
+        ("问题二", ["q2_common.py", "q2_graph.py", "q2_evidence.py", "q2_stability.py",
+                    "q2_chem_kb.py", "q2_figures.py", "q2_verify.py", "q2_probe.py",
+                    "q2_report_peek.py"]),
+        ("问题三", ["q3_copula.py", "q3_generate.py", "q3_transfer.py", "q3_sensory_profile.py",
+                    "q3_figures.py", "q3_report.py", "q3_verify.py", "q3_probe_env.py"]),
+        ("论文与合规", ["build_paper.py", "check_paper_pdf.py", "build_ai_usage_doc.py"]),
     ]
+    scripts_dir = ROOT / "scripts"
     for name, files in groups:
-        present = [f for f in files if (ROOT / f).exists()]
+        present = [f for f in files if (scripts_dir / f).exists()]
         _para(doc, f"{name}：" + "、".join(present), size=9.0, space_after=3)
+    for tdir in ("tests", "tests_q1"):
+        tpath = ROOT / tdir
+        if tpath.is_dir():
+            names = sorted(p.name for p in tpath.glob("*.py"))
+            if names:
+                _para(doc, f"单元测试（{tdir}/）：" + "、".join(names), size=9.0, space_after=3)
+    _para(doc, "远程管线 worktrees/prediction-models/scripts/ 下的划分脚本与调参脚本亦随支撑材料一并提供。",
+          size=9.0, space_after=3)
 
     _heading(doc, "附录 D  结果文件清单", 2)
     _para(doc, "主要结果文件按问题分目录存放于 data/processed/ 下，各目录均附 manifest 记录上游输入摘要、"
@@ -956,16 +1052,16 @@ def main() -> int:
     title = "基于化学指纹的啤酒风味建模：感官评分预测、化合物—风味关联解析与风格条件生成"
     abstract = (
         "本文针对商用啤酒风味代谢数据集完成三个问题的建模。首先以可复算的证据审计了附件的真实语义："
-        "逐列回归裁定 1.csv 为 log10 标度与原始浓度标度并存的混合标度（log10 列 37、原始浓度列 33），"
-        "以逐元素重算比对裁定 2.csv、5.csv、6.csv 三张相关矩阵均为斯皮尔曼相关系数"
-        "（最大绝对偏差为 0），并查明 3.xlsx 仅为空白品评卡模板、附件不含原始 0–6 评分；"
-        "据此建立化学与感官两张全解析名称桥与统一的 log10(mg/L) 特征矩阵。"
-        "问题一以 231 个化学量预测 50 个感官维度，七个模型族与 TabPFN 3.5 五折集成在按风格分层的留出集上"
+        "逐列回归裁定 1.csv 为 log10 标度与原始浓度标度并存的混合标度（log10 列 37、原始浓度列 33）；"
+        "以逐元素重算比对裁定 2.csv、5.csv、6.csv 三张相关矩阵均为斯皮尔曼相关系数（最大绝对偏差为 0）；"
+        "并查明 3.xlsx 仅为空白品评卡模板、附件不含原始 0–6 分数。据此建立两张全解析名称桥与统一的 "
+        "log10(mg/L) 特征矩阵，并以 20 项回归测试固化上述裁定。"
+        "问题一以 231 个化学量预测 50 个感官维度，七个模型族与 TabPFN 3.5 五折集成在分层留出集上"
         "取得相对全局均值基线约 15% 的宏平均 RMSE 改善，并交付 250 款啤酒 × 50 维的 0–6 分制分级评分表，"
         "同时给出相对七分位分级与基于感官阈值的绝对锚定两套口径。"
-        "问题二由 2.csv 构建 231 节点的化合物共表达图并做阈值敏感性分析，"
-        "以自算全量相关、SHAP 归因、附件交叉相关与外部先验四路证据融合给出各感官维度的 Top-3 关键化合物，"
-        "并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性、逐条论证化学合理性。"
+        "问题二构建 231 节点的化合物共表达图并做阈值敏感性分析，以自算全量相关、SHAP 归因、附件交叉相关"
+        "与外部先验四路证据融合给出各感官维度的 Top-3 关键化合物，并以重采样入选频率与跨方法 Jaccard "
+        "系数双重量化稳定性、逐条论证化学合理性。"
         "问题三以全局高斯 Copula 结构加风格条件边际生成化合谱，在缺陷阈值约束下实现零违规，"
         "并以秩—分位映射完成跨风格迁移且保证缺陷化合物不恶化。"
     )

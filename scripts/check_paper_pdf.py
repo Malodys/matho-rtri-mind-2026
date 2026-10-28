@@ -70,13 +70,13 @@ def check(path: Path, max_body_pages: int, docx_path: Path | None = None,
     #    附录页 = 正文中出现附录标题之后的页；其页数不计入正文限额。
     numbered = [i for i, bt in enumerate(bottom_text)
                 if PAGE_NUM_RE.search(bt)]
-    appendix_start = None
-    for i in numbered:
+    appendix_pos = None
+    for pos, i in enumerate(numbered):
         if appendix_marker and appendix_marker in pages_text[i]:
-            appendix_start = i
+            appendix_pos = pos
             break
     body_pages = len(numbered)
-    appendix_pages = (body_pages - appendix_start) if appendix_start is not None else 0
+    appendix_pages = (body_pages - appendix_pos) if appendix_pos is not None else 0
     body_only = body_pages - appendix_pages
     ok_pages = 1 <= body_only <= max_body_pages
     results.append({
