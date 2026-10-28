@@ -1,0 +1,14 @@
+fold_target_metrics: rows=250 folds=[np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)] targets=50
+完整 5x50=250 ? True
+NaN: 0
+
+cv_summary 行: ['fold_1', 'fold_2', 'fold_3', 'fold_4', 'fold_5', 'cv_mean', 'cv_std', 'pooled_oof']
+cv_mean r2 = 0.18651  参考 0.2055  差=0.01899
+pooled_oof r2 = 0.24553  参考(留出集) 0.2363  差=0.00923
+cv_mean mae = 0.33476  参考 0.3374
+cv_mean rmse = 0.45950  参考 0.4762
+
+oof rows=8750 (期望 5*175=875) cols=['beer', 'tasting_category_fine', 'fold', 'target', 'actual', 'prediction', 'baseline_prediction']
+每折样本数: {1: 1750, 2: 1750, 3: 1750, 4: 1750, 5: 1750}
+prediction 有限: True
+target_metrics rows=50 目标均值 r2=0.24553

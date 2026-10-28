@@ -9,13 +9,14 @@
 - 装依赖：`uv pip sync requirements.lock.txt --extra-index-url https://download.pytorch.org/whl/cpu`（锁文件为权威版本源，勿直接 `pip install` 改动；`--extra-index-url` 不可省，否则 `torch==2.8.0+cpu` 解析不到）
 - 测试：`.\.venv\Scripts\python.exe -m pytest worktrees/prediction-models/tests -q`
 - 单个问题入口：`.\.venv\Scripts\python.exe scripts\<脚本名>.py`（脚本自带 `--help`）
-- 问题一 TabPFN 五折复现（并行版，口径与远端 `tabpfn_cv.py` 等价，约 25 分钟）：
+- 问题一 TabPFN 五折复现（并行版，口径与远端 `tabpfn_cv.py` 等价，支持 `--resume` 断点续跑）：
   ```powershell
-  .\ .venv\Scripts\python.exe scripts\reproduce_q1_tabpfn.py `
+  .\.venv\Scripts\python.exe scripts\q1_tabpfn_cv.py `
     --worktree worktrees\prediction-models `
     --model-path worktrees\pretrained\Prior-Labstabpfn_3_5\tabpfn-v3.5-20260909.safetensors `
-    --output-dir data\processed\q1_repro_tabpfn --workers 8 --threads 2
+    --output-dir data\processed\q1_repro_tabpfn --workers 3 --threads 2 --resume
   ```
+  > 本机 13.9 GB 内存下每分块加载一次 876 MB 权重：**workers 不得超过 4**，否则触发 WinError 1450（系统资源不足）。
 - 工具链自检：`.\.venv\Scripts\python.exe scripts\stack_smoke.py`（图论/归因/生成栈）、`scripts\acceptance_check.py`（V1–V15）
 - 论文 PDF 合规校验：`.\.venv\Scripts\python.exe scripts\check_paper_pdf.py <pdf> --docx <源docx>`
 - 锁定新版本：`uv pip freeze --python .venv\Scripts\python.exe > requirements.lock.txt`

@@ -207,6 +207,7 @@ def run_checks(root: Path) -> list[dict]:
 
     # V15 Git 归位
     branch = _git(root, "rev-parse", "--abbrev-ref", "HEAD")
+    upstream = _git(root, "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}")
     ahead = _git(root, "rev-list", "--count", "origin/main..HEAD")
     wt_list = _git(root, "worktree", "list")
     dirty_tracked = _git(root, "status", "--porcelain", "--untracked-files=no")
@@ -215,13 +216,15 @@ def run_checks(root: Path) -> list[dict]:
     unexpected_untracked = [u for u in untracked if not u.startswith("data/processed/")]
     commits = _git(root, "log", "--oneline", "origin/main..HEAD")
     commit_lines = [ln for ln in commits.splitlines() if ln.strip()]
+    remote_branches = _git(root, "ls-remote", "--heads", "origin")
+    on_remote = f"refs/heads/{branch}" in remote_branches
     v15 = (branch == "feat/toolchain-env" and ahead.isdigit() and int(ahead) >= 2
            and "prediction-models" in wt_list and not dirty_tracked
-           and not unexpected_untracked and bool(commit_lines))
-    add("V15_git", "分支/提交/worktree 就位，工作树干净，未推送", v15,
-        f"branch={branch}, ahead={ahead}, 提交数={len(commit_lines)}, "
+           and not unexpected_untracked and bool(commit_lines) and on_remote)
+    add("V15_git", "分支/提交/worktree 就位，工作树干净，分支已在远端留存", v15,
+        f"branch={branch}, upstream={upstream}, 相对 origin/main 提交数={ahead}, "
         f"跟踪文件改动={dirty_tracked or '无'}, 非预期未跟踪={unexpected_untracked or '无'}, "
-        f"未推送={bool(commit_lines)}")
+        f"远端存在该分支={on_remote}")
 
     return res
 
