@@ -33,6 +33,18 @@
 
 **边界**：`main` 只放已合并结论；各分支写各自命名的子目录（如 `data/processed/q1_runs/<timestamp>/`），避免并行写同一路径。
 
+## 外部模型权重（不入库，需单独获取）
+
+- `experiments/prediction-models` 分支的 `scripts/tabpfn_cv.py` **必须**显式传入 TabPFN 3.5 权重文件，缺文件直接 `FileNotFoundError`：
+  `pretrained/Prior-Labstabpfn_3_5/tabpfn-v3.5-20260909.safetensors`（相对该分支的项目根）。
+- 该分支 `.gitignore` 含 `/pretrained/` 与 `*.safetensors`，**权重永不入库**，换机器需自行拉取：
+  来源 Hugging Face 仓库 `Prior-Labs/tabpfn_3_5` 的 `tabpfn-v3.5-20260909.safetensors`（约 836 MB）。
+  ```powershell
+  # 本仓库布局下（worktree 并行检出时）目标路径为：
+  #   F:\cs\mothercup\matho-rtri-mind-2026\worktrees\pretrained\Prior-Labstabpfn_3_5\
+  ```
+- 队友分支 `feat/initial-data-analysis` 上的 28 个插补/离群中间产物同样不在 `main`，需切到该分支或用 worktree 取用。
+
 ## AI 辅助注释规范（竞赛硬性合规）
 
 依据《MathorCup 数学应用挑战赛人工智能工具使用规定（试行）》，任何由 AI 辅助产出的脚本，**文件头必须**写明工具名、版本/型号、开发机构、使用日期：
