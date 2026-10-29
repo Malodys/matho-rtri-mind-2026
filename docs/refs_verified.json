@@ -614,6 +614,55 @@
       "supports_section": "附录 A 实际使用的软件与运行环境",
       "supports_claim": "本文数值计算所依赖的 NumPy 版本的正式出处，用于附录软件清单的可核实著录",
       "source_checked": "Crossref works API https://api.crossref.org/works/10.1038/s41586-020-2649-2"
+    },
+    {
+      "key": "tabdpt2025",
+      "citation_number": 36,
+      "type": "proceedings",
+      "authors": "Ma J, Thomas V, Hosseinzadeh R, et al.",
+      "title": "TabDPT: Scaling Tabular Foundation Models on Real Data",
+      "venue": "Advances in Neural Information Processing Systems 38",
+      "year": 2025,
+      "doi": "10.52202/085713-5748",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/fc0e3f908a2116ba529ad0a1530a3675-Abstract-Conference.html",
+      "accessed": "2026-10-29",
+      "verified": true,
+      "supports_section": "二、相关工作与文献综述 · 2.2 感官预测与可解释机器学习",
+      "supports_claim": "TabDPT 作为可选的表格基础模型对照方向；不作为本项目必须完成的主线算法",
+      "source_checked": "NeurIPS 2025 官方会议页面，DOI 10.52202/085713-5748"
+    },
+    {
+      "key": "copulacpts2024",
+      "citation_number": 37,
+      "type": "proceedings",
+      "authors": "Sun S, Yu R",
+      "title": "Copula Conformal prediction for multi-step time series prediction",
+      "venue": "International Conference on Learning Representations 2024",
+      "year": 2024,
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/8707924df5e207fa496f729f49069446-Abstract-Conference.html",
+      "accessed": "2026-10-29",
+      "verified": true,
+      "supports_section": "二、相关工作与文献综述 · 2.4 合成数据、Copula 与秩—分位映射",
+      "supports_claim": "CopulaCPTS 支撑联合预测区间与不确定性讨论；其时间序列保证不能直接改写为本项目静态数据保证",
+      "source_checked": "ICLR 2024 官方论文页"
+    },
+    {
+      "key": "beer_flavoromics2025",
+      "citation_number": 38,
+      "type": "journal",
+      "authors": "Chen Y, Huang H, Yin R, He X, Guo L, Song Y, Zhao D, Sun J, Li J, Huang M, Sun B",
+      "title": "Multi-Technique Flavoromics for Identifying Key Differential Volatile Compounds Underlying Sensory Profiles in Lager Beers",
+      "journal": "Foods",
+      "volume_issue": "14(19)",
+      "pages": "3428",
+      "year": 2025,
+      "doi": "10.3390/foods14193428",
+      "url": "https://www.mdpi.com/2304-8158/14/19/3428",
+      "accessed": "2026-10-29",
+      "verified": true,
+      "supports_section": "二、相关工作与文献综述 · 2.1 原始工作与数据来源",
+      "supports_claim": "多技术平台 flavoromics 结果用于讨论化合物合理性和实验验证边界，不与本项目化学矩阵直接合并训练",
+      "source_checked": "MDPI Foods 官方文章页，DOI 10.3390/foods14193428"
     }
   ]
 }

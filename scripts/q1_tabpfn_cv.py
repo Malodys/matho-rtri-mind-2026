@@ -145,6 +145,8 @@ def main() -> int:
     ap.add_argument("--limit-targets", type=int, default=0, help=">0 时只跑前 N 个目标（冒烟用）")
     ap.add_argument("--resume", action="store_true", help="跳过缓存中已完成的 (fold, target)")
     ap.add_argument("--refresh-final", action="store_true", help="强制重算汇总产物")
+    ap.add_argument("--protocol", choices=("legacy", "fair_main"), default="legacy",
+                    help="legacy=队友原始协议；fair_main=227 特征、固定 175/75 留出协议")
     args = ap.parse_args()
 
     worktree = (REPO_ROOT / args.worktree).resolve() if not Path(args.worktree).is_absolute() else Path(args.worktree)
@@ -156,12 +158,38 @@ def main() -> int:
     load_split, scores = _import_remote(worktree)
     from sklearn.model_selection import KFold
 
-    data_dir = worktree / args.data_dir
-    features, targets, metadata = load_split(data_dir)
+    if args.protocol == "legacy":
+        data_dir = worktree / args.data_dir
+        features, targets, metadata = load_split(data_dir)
+        protocol_label = "legacy teammate protocol: raw split features, KFold 5, seed 0"
+    else:
+        # Fair comparison uses exactly the same audited 227-feature matrix and
+        # fixed 175/75 style-stratified holdout as q1_pipeline.py.  It is a
+        # separate product because it is not comparable to the legacy KFold
+        # reproduction already stored in q1_repro_tabpfn.
+        from data_contract import load_modeling_matrix, load_split as load_main_split, load_styles, load_targets
+
+        features = load_modeling_matrix()
+        targets = load_targets().reindex(features.index)
+        styles = load_styles().reindex(features.index)
+        metadata = pd.DataFrame({
+            "beer": features.index,
+            "tasting_category_fine": styles.to_numpy(),
+        })
+        manifest = load_main_split()
+        train_ids = manifest.loc[manifest["split"].eq("train"), "beer"].to_numpy(dtype=int)
+        valid_ids = manifest.loc[manifest["split"].eq("test"), "beer"].to_numpy(dtype=int)
+        train_pos = features.index.get_indexer(train_ids)
+        valid_pos = features.index.get_indexer(valid_ids)
+        if (train_pos < 0).any() or (valid_pos < 0).any():
+            raise ValueError("固定主模型切分与统一矩阵的 beer 标识无法对齐")
+        splits = [(train_pos, valid_pos)]
+        protocol_label = "fair main protocol: audited 227 features, fixed 175/75 holdout, seed 0"
     if args.limit_targets:
         targets = targets.iloc[:, : args.limit_targets]
 
-    splits = list(KFold(n_splits=5, shuffle=True, random_state=args.seed).split(features))
+    if args.protocol == "legacy":
+        splits = list(KFold(n_splits=5, shuffle=True, random_state=args.seed).split(features))
 
     out = (REPO_ROOT / args.output_dir).resolve() if not Path(args.output_dir).is_absolute() else Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -203,7 +231,9 @@ def main() -> int:
                 cached[(fold, target)] = np.asarray(predicted, dtype=float)
     elapsed = time.perf_counter() - started
 
-    missing = [(f, t) for f in range(1, 6) for t in targets.columns if (f, t) not in cached]
+    n_folds = len(splits)
+    missing = [(f, t) for f in range(1, n_folds + 1)
+               for t in targets.columns if (f, t) not in cached]
     if missing:
         print(f"[FAIL] 仍有 {len(missing)} 个 (fold,target) 未完成，例：{missing[:3]}", file=sys.stderr)
         return 2
@@ -253,12 +283,16 @@ def main() -> int:
 
     pd.Series({
         "python": sys.version.split()[0], "device": args.device, "seed": args.seed,
-        "folds": 5, "n_estimators": args.n_estimators, "workers": args.workers,
+        "folds": n_folds, "n_estimators": args.n_estimators, "workers": args.workers,
         "threads_per_worker": args.threads, "samples": len(features),
         "features": features.shape[1], "targets": targets.shape[1],
         "elapsed_seconds": round(elapsed, 1),
         "model_path": str(model_path),
-        "protocol": "worktrees/prediction-models/scripts/tabpfn_cv.py (KFold 5, seed 0)",
+        "protocol": protocol_label,
+        "feature_policy": "audited unified 227 features" if args.protocol == "fair_main"
+                          else "raw teammate split features",
+        "split_policy": "fixed 175/75 style-stratified holdout" if args.protocol == "fair_main"
+                        else "KFold 5, shuffle=True, random_state=seed",
     }, name="value").rename_axis("setting").to_csv(out / "run.csv", encoding="utf-8-sig")
 
     buf = io.StringIO()

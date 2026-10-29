@@ -146,7 +146,11 @@
 | `bitternes` | 阈值锚定 | 0.799 | 0.440 | 0.840 | 0.795 |
 | `alcohol` | 阈值锚定 | 0.573 | 0.467 | 0.933 | 0.789 |
 | `co2` | 相对约束替代规则 | 1.155 | 0.240 | 0.693 | 0.489 |
-| **均值** | — | **1.155** | **0.240** | **0.693** | **0.489** |
+| **三维有效均值** | — | **0.842** | **0.382** | **0.822** | **0.691** |
+
+`model_summary.csv` 同时保存 `abs_threshold_*`（阈值锚定 2 维）、
+`abs_fallback_*`（相对约束替代 1 维）与 `abs_valid_*`（3 维有效均值）。
+兼容字段 `abs_*` 等于 `abs_valid_*`，不得用 fallback 子集代替三维汇总。
 
 ---
 
@@ -155,7 +159,7 @@
 | 文件 | 内容 |
 | --- | --- |
 | `sensory_scores_0_6.csv` | **正式成品**：250 行 × 153 列（3 键列 + 50 维 × `pred`/`grade`/`abs`） |
-| `model_summary.csv` | 7 个模型 × 连续指标 + 两轨分级指标 + bootstrap 区间 |
+| `model_summary.csv` | 7 个模型 × 连续指标 + 两轨分级指标 + bootstrap 区间；绝对轨按阈值、fallback、valid 三组汇总 |
 | `proxy_grade_cutpoints.csv` | 50 个维度的 6 个训练集分位切点（`boundary_1..6`） |
 | `absolute_anchor_params.csv` | 11 个候选维度的载体、阈值、log10 阈值、P95 锚点、a/b、ρ、覆盖率、`valid`、`invalid_reason` |
 | `absolute_grade_metrics_by_label.csv` | 通过护栏维度的副轨逐维指标 |
@@ -211,6 +215,10 @@ $env:JOBLIB_CPU_COUNT="8"
 # 5) TabPFN 3.5 五折复现（主控执行，含断点续跑）
 .\.venv\Scripts\python.exe scripts/q1_tabpfn_cv.py --workers 4 --threads 2 --resume `
     --output-dir data/processed/q1_repro_tabpfn
+
+# 5b) 公平协议对照（227 统一特征 + 固定 175/75 留出；需单独运行，结果不覆盖 5）
+.\.venv\Scripts\python.exe scripts/q1_tabpfn_cv.py --protocol fair_main --workers 4 --threads 2 --resume `
+    --output-dir data/processed/q1_fair_tabpfn
 ```
 
 ---

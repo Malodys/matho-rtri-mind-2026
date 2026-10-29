@@ -34,6 +34,12 @@
       "body",
       "sweetness"
     ],
+    "metric_summary": {
+      "abs_threshold_*": "threshold_anchored dimensions only",
+      "abs_fallback_*": "relative_fallback dimensions only",
+      "abs_valid_*": "all valid dimensions; official three-dimensional aggregate",
+      "abs_*": "backward-compatible alias of abs_valid_*"
+    },
     "validity_rules": {
       "rule1_threshold": "载体须有 8.xlsx 感知阈值；否则可用本文已声明的相对约束替代规则（训练集 P05→0 分、P95→6 分），其余规则须全部满足",
       "rule2_min_spearman": 0.3,

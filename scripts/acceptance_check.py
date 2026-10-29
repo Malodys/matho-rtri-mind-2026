@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # AI 辅助：MiniMax Code (MiniMax-M3.1-Flash), MiniMax, 2026-10-28
 # 人工核验点：验收项判定口径与《论文格式及提交规范》《AI 工具使用规定》逐条对应后写定。
-"""工具链交付验收：逐条核验 V1–V15，输出可复查的 PASS/FAIL 报告。
+"""工具链交付验收：逐条核验 V1–V17，输出可复查的 PASS/FAIL 报告。
 
 用法：
     python scripts/acceptance_check.py [--repo-root <仓库根>] [--json <报告路径>]
+        [--python <Python 解释器路径>]
 退出码：0 = 全部通过。
 """
 from __future__ import annotations
@@ -69,8 +70,21 @@ def _git_retry(root: Path, *args: str, attempts: int = 3, pause: float = 4.0) ->
     return last
 
 
-def _py(root: Path, code: str) -> tuple[int, str]:
-    py = root / ".venv" / "Scripts" / "python.exe"
+def _resolve_python(root: Path, python_path: str | Path | None) -> Path:
+    """Resolve the interpreter used by environment checks.
+
+    The default deliberately remains the repository .venv so a broken local
+    environment is visible.  CI/desktops with a managed runtime can pass
+    ``--python`` without changing the repository or hiding the diagnosis.
+    """
+    if python_path is None:
+        return root / ".venv" / "Scripts" / "python.exe"
+    candidate = Path(python_path)
+    return candidate if candidate.is_absolute() else (root / candidate).resolve()
+
+
+def _py(root: Path, code: str, python_path: Path) -> tuple[int, str]:
+    py = python_path
     try:
         out = subprocess.run([str(py), "-c", code], capture_output=True, text=True,
                              encoding="utf-8", errors="replace", timeout=300)
@@ -79,21 +93,54 @@ def _py(root: Path, code: str) -> tuple[int, str]:
         return 1, f"{exc.__class__.__name__}: {exc}"
 
 
-def run_checks(root: Path) -> list[dict]:
+def _remote_heads(root: Path, attempts: int = 3, pause: float = 4.0) -> tuple[str, str, str]:
+    """Return (status, heads, detail) for ``git ls-remote origin``.
+
+    ``reachable`` means the command completed successfully.  ``unreachable``
+    is reserved for transport/DNS/TLS/authentication failures.  Other git
+    errors are reported as ``error`` so a missing remote is not confused with
+    a branch that genuinely does not exist on a reachable remote.
+    """
+    import time
+
+    last_detail = ""
+    for attempt in range(attempts):
+        try:
+            out = subprocess.run(
+                ["git", "-C", str(root), "ls-remote", "--heads", "origin"],
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60,
+            )
+        except Exception as exc:
+            return "error", "", f"{exc.__class__.__name__}: {exc}"
+        if out.returncode == 0:
+            return "reachable", out.stdout.strip(), "ok"
+        last_detail = (out.stderr or out.stdout or "git ls-remote failed").strip()
+        if attempt < attempts - 1:
+            time.sleep(pause)
+
+    lowered = last_detail.lower()
+    network_markers = ("could not resolve", "connection", "timed out", "timeout",
+                       "network is unreachable", "tls", "ssl", "proxy", "unable to access")
+    status = "unreachable" if any(marker in lowered for marker in network_markers) else "error"
+    return status, "", last_detail
+
+
+def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
     res: list[dict] = []
+    py_exe = _resolve_python(root, python_path)
 
     def add(vid, desc, passed, detail):
         res.append({"id": vid, "desc": desc, "passed": bool(passed), "detail": str(detail)})
 
     # V1 venv 就位
-    py_exe = root / ".venv" / "Scripts" / "python.exe"
     v1 = py_exe.is_file()
-    v1_detail = "缺失"
+    v1_detail = f"解释器路径={py_exe}；" + ("路径不存在" if not v1 else "")
     if v1:
-        rc, out = _py(root, "import sys;print(sys.version.split()[0])")
+        rc, out = _py(root, "import sys;print(sys.version.split()[0])", py_exe)
         v1_detail = out.strip() or "无法执行"
         v1 = v1 and rc == 0 and v1_detail.startswith("3.12")
-    add("V1_venv", ".venv 存在且为 Python 3.12.x", v1, v1_detail)
+    add("V1_venv", "指定 Python 解释器存在且为 Python 3.12.x", v1,
+        f"python={py_exe}; {v1_detail}")
 
     # V2 全量导入
     code = ("import importlib,sys\n"
@@ -103,7 +150,7 @@ def run_checks(root: Path) -> list[dict]:
             "    try: importlib.import_module(m)\n"
             "    except Exception as e: bad.append(m+':'+type(e).__name__)\n"
             "print('BAD='+','.join(bad) if bad else 'BAD=')\n")
-    rc, out = _py(root, code)
+    rc, out = _py(root, code, py_exe)
     bad = out.strip().splitlines()[-1] if out.strip() else "no output"
     add("V2_imports", "全部目标包可导入", rc == 0 and "BAD=" in bad and bad.endswith("BAD="), bad)
 
@@ -114,7 +161,7 @@ def run_checks(root: Path) -> list[dict]:
         f"{lock.name} 存在={lock.is_file()}")
 
     # V4 torch 变体
-    rc, out = _py(root, "import torch;print(torch.__version__, torch.cuda.is_available())")
+    rc, out = _py(root, "import torch;print(torch.__version__, torch.cuda.is_available())", py_exe)
     v4 = rc == 0 and out.strip().endswith("False")
     add("V4_torch_cpu", "torch 为 CPU 轮子且 cuda 不可用", v4, out.strip())
 
@@ -310,27 +357,33 @@ def run_checks(root: Path) -> list[dict]:
     unexpected_untracked = [u for u in untracked if not u.startswith("data/processed/")]
     commits = _git(root, "log", "--oneline", "origin/main..HEAD")
     commit_lines = [ln for ln in commits.splitlines() if ln.strip()]
-    remote_branches = _git_retry(root, "ls-remote", "--heads", "origin")
+    remote_status, remote_branches, remote_detail = _remote_heads(root)
     on_remote = f"refs/heads/{branch}" in remote_branches
-    v15 = (branch == "feat/toolchain-env" and ahead.isdigit() and int(ahead) >= 2
+    remote_reason = ("branch_present" if on_remote else "branch_missing") \
+        if remote_status == "reachable" else remote_status
+    branch_allowed = branch == "feat/toolchain-env" or branch.startswith("release/toolchain-hardening-")
+    v15 = (branch_allowed and ahead.isdigit() and int(ahead) >= 2
            and "prediction-models" in wt_list and not dirty_tracked
            and not unexpected_untracked and bool(commit_lines) and on_remote)
     add("V15_git", "分支/提交/worktree 就位，工作树干净，分支已在远端留存", v15,
         f"branch={branch}, upstream={upstream}, 相对 origin/main 提交数={ahead}, "
         f"跟踪文件改动={dirty_tracked or '无'}, 非预期未跟踪={unexpected_untracked or '无'}, "
-        f"远端存在该分支={on_remote}")
+        f"远端状态={remote_reason}，远端存在该分支={on_remote}"
+        + (f"，详情={remote_detail}" if remote_status != "reachable" else ""))
 
     return res
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="工具链交付验收 V1–V15")
+    ap = argparse.ArgumentParser(description="工具链交付验收 V1–V17")
     ap.add_argument("--repo-root", default=str(Path(__file__).resolve().parent.parent))
     ap.add_argument("--json", dest="json_out", default=None)
+    ap.add_argument("--python", dest="python_path", default=None,
+                    help="环境验收使用的 Python 解释器；默认检查仓库 .venv/Scripts/python.exe")
     args = ap.parse_args()
     root = Path(args.repo_root)
 
-    results = run_checks(root)
+    results = run_checks(root, args.python_path)
     all_ok = all(r["passed"] for r in results)
 
     buf = io.StringIO()

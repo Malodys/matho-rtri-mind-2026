@@ -1,8 +1,8 @@
 {
   "pdf": "data/processed/paper/paper.pdf",
   "pages": 36,
-  "body_pages": 29,
-  "appendix_pages": 5,
+  "body_pages": 30,
+  "appendix_pages": 4,
   "footer_page_sequence": [
     1,
     2,
@@ -44,13 +44,13 @@
       "id": "page_count",
       "desc": "正文页数在 1..30 之间（正文上限 30 页，附录页数不限）",
       "passed": true,
-      "detail": "PDF 共 36 页；其中正文 29 页（附录 5 页，前置部分 2 页不计）"
+      "detail": "PDF 共 36 页；其中正文 30 页（附录 4 页，前置部分 2 页不计）"
     },
     {
       "id": "chinese_extractable",
       "desc": "中文可正常抽取，无替换符/缺字方块",
       "passed": true,
-      "detail": "中文字符占比 37.6%；异常字符 无"
+      "detail": "中文字符占比 37.1%；异常字符 无"
     },
     {
       "id": "footer_page_number",
@@ -71,5 +71,7 @@
       "detail": "命中 0 处"
     }
   ],
-  "all_passed": true
+  "all_passed": true,
+  "pdf_sha256": "c344896101c4bf73e38aa77d33be23acb0e19c61629a17a96e57a060f3d60695",
+  "generated_at_utc": "2026-10-29T15:10:04+00:00"
 }

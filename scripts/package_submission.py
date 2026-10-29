@@ -41,6 +41,7 @@ INCLUDE_DIRS = [
     "tests",
     "tests_q1",
     "docs",
+    "external",
     "worktrees/prediction-models/scripts",
     "data/interim",
     "data/splits",
@@ -148,7 +149,8 @@ def verify_paper() -> dict:
     report = PROCESSED / "paper" / "paper_check.json"
     r = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "check_paper_pdf.py"), str(PAPER_PDF),
-         "--docx", str(PAPER_DOCX), "--json", str(report)],
+         "--docx", str(PAPER_DOCX), "--json", str(report),
+         "--text", str(PROCESSED / "paper" / "paper_check.txt")],
         capture_output=True, text=True, encoding="utf-8", errors="replace")
     if r.returncode != 0:
         sys.stderr.write(r.stdout or "")
@@ -168,6 +170,8 @@ def main() -> int:
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     team = args.team_no.strip()
+    if not team or "X" in team.upper():
+        raise SystemExit("请先提供真实队号；禁止使用 MCB260XXXX 或含 X 的占位队号生成最终提交包。")
 
     if not args.skip_verify:
         report = verify_paper()

@@ -17,10 +17,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import io
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pdfplumber
@@ -50,6 +52,14 @@ def _rel_path(path: Path) -> str:
         return path.resolve().relative_to(ROOT).as_posix()
     except Exception:
         return path.name
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def collect(path: Path):
@@ -194,6 +204,7 @@ def main() -> int:
     ap.add_argument("--appendix-marker", default="附录",
                     help="附录标题标记；该标题之后的页数不计入正文限额")
     ap.add_argument("--json", dest="json_out", default=None, help="JSON 报告输出路径")
+    ap.add_argument("--text", dest="text_out", default=None, help="与 JSON 同批生成的人读版 TXT 报告")
     ap.add_argument("--quiet", action="store_true", help="仅输出结论")
     args = ap.parse_args()
 
@@ -205,7 +216,12 @@ def main() -> int:
     report = check(path, args.max_body_pages,
                    Path(args.docx) if args.docx else None,
                    appendix_marker=args.appendix_marker)
+    # JSON 与 TXT 必须来自同一份快照，便于发布验收确认页数、时间和文件内容一致。
+    report["pdf_sha256"] = _sha256(path)
+    report["generated_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     buf = io.StringIO()
+    buf.write(f"PDF SHA256: {report['pdf_sha256']}\n")
+    buf.write(f"生成时间(UTC): {report['generated_at_utc']}\n")
     buf.write(f"论文 PDF 合规校验报告\n")
     buf.write(f"文件: {report['pdf']}\n")
     buf.write(f"总页数: {report['pages']}（正文 {report['body_pages']} 页，"
@@ -219,6 +235,8 @@ def main() -> int:
     if args.json_out:
         Path(args.json_out).write_text(
             json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if args.text_out:
+        Path(args.text_out).write_text(text, encoding="utf-8")
     if args.quiet:
         print("ALL PASSED" if report["all_passed"] else "HAS FAILURES")
     else:

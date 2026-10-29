@@ -7,7 +7,7 @@
 - 全部网络核验均在 **2026-10-29** 完成；核验来源包括 Crossref works API、DataCite API、
   OpenAlex API、Europe PMC 全文 XML（PMC10966102）、Zenodo DataCite 记录，以及各出版方
   官方页面。
-- 文献总数 **35 条**（主锚点 1 条 + 方法学 13 条 + 领域综述 21 条），全部
+- 文献总数 **38 条**（主锚点 1 条 + 方法学与算法 16 条 + 领域综述 21 条），全部
   `verified: true`，即每条的 DOI/URL 均由上述来源回显确认。
 - 本文件与 `docs/refs_verified.json` 均不包含任何本地绝对路径。
 
@@ -246,7 +246,7 @@ complex beer flavor through machine learning"、13 位作者、CC BY 4.0、发�
 
 ---
 
-## 二、文献完整著录（共 35 条，按引用编号）
+## 二、文献完整著录（共 38 条，按引用编号）
 
 著录格式按赛题要求：期刊为「作者，论文名，杂志名，卷期号：起止页码，出版年」；网络资源为
 「作者，资源标题，网址，访问时间（年月日）」。
@@ -388,6 +388,20 @@ DOI: 10.1002/9780470385036.ch1c.
 **[35]** Harris C R, Millman K J, van der Walt S J, 等. Array programming with NumPy.
 Nature, 585(7825): 357-362, 2020. DOI: 10.1038/s41586-020-2649-2.
 
+**[36]** Ma J, Thomas V, Hosseinzadeh R, Labach A, Cresswell J C, Golestan K, Yu G, Caterini A L,
+Volkovs M. TabDPT: Scaling Tabular Foundation Models on Real Data. Advances in Neural
+Information Processing Systems 38, 2025. DOI: 10.52202/085713-5748.
+
+**[37]** Sun S, Yu R. Copula Conformal prediction for multi-step time series prediction.
+International Conference on Learning Representations 2024.
+https://proceedings.iclr.cc/paper_files/paper/2024/hash/8707924df5e207fa496f729f49069446-Abstract-Conference.html,
+访问时间（2026年10月29日）.
+
+**[38]** Chen Y, Huang H, Yin R, He X, Guo L, Song Y, Zhao D, Sun J, Li J, Huang M, Sun B.
+Multi-Technique Flavoromics for Identifying Key Differential Volatile Compounds Underlying
+Sensory Profiles in Lager Beers. Foods, 14(19): 3428, 2025.
+DOI: 10.3390/foods14193428.
+
 ---
 
 ## 三、可支撑论断对照表
@@ -477,6 +491,9 @@ Nature, 585(7825): 357-362, 2020. DOI: 10.1038/s41586-020-2649-2.
 | 33 | Lawless & Heymann 2010 | 二、2.5（补充）；三、3.4 | 方法学 |
 | 34 | Stone 等 2004 | 二、2.5（补充）；三、3.4 | 方法学 |
 | 35 | Harris 2020 | 附录 A | 方法学 |
+| 36 | Ma 等 2025（TabDPT） | 二、2.2 | 可选的表格基础模型对照 |
+| 37 | Sun & Yu 2024（CopulaCPTS） | 二、2.4；五、5.5 | 联合不确定性与预测区间讨论 |
+| 38 | Foods 2025 flavoromics | 二、2.1；五、5.3 | 化合物合理性与实验验证边界 |
 
 **编号一致性约定（请正文引用时遵守）：**
 
@@ -485,7 +502,7 @@ Nature, 585(7825): 357-362, 2020. DOI: 10.1038/s41586-020-2649-2.
    `{anchor}`、`{sklearn}`、`{shap}`、`{tabpfn}`、`{leiden}`、`{copula}`、`{rank}`、`{stevens}`、
    `{price}`、`{spearman}` 十个占位符。上表第 1–10 条即按此顺序布置，可保证占位符解析到
    语义正确、且互不串位的条目（例如「copula」只会命中 [6] 与 [12]、「price」只会命中 [9] 与 [13]）。
-3. 正文若需引用 [11]–[35]，请按本表顺序首次出现处依次引用，不得跳号或倒序。
+3. 正文若需引用 [11]–[38]，请按本表顺序首次出现处依次引用，不得跳号或倒序。
 4. 参考文献表由 `build_paper.py` 依据 `docs/refs_verified.json` 自动生成，
    编号即 `citation_number`，**不得**在论文中另行手工编号。
 
@@ -549,7 +566,7 @@ Nature, 585(7825): 357-362, 2020. DOI: 10.1038/s41586-020-2649-2.
 
 ### 5.3 本清单的核验边界
 
-13. 全部 35 条的 DOI/URL 均由 Crossref works API、DataCite API、OpenAlex API 或出版方官方
+13. 全部 38 条的 DOI/URL 均由 Crossref works API、DataCite API、OpenAlex API 或出版方官方
     页面回显确认，故一律置 `verified: true`；本清单**不含**仅凭书目记忆写入的条目。
 14. 出版方页面的题名/卷期/页码以回显值为准；同一文献在不同聚合源之间若存在拼写差异
     （如「Theßeling」的变音符号），以 Crossref 返回的作者串为准。

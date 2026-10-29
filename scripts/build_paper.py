@@ -25,6 +25,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -171,6 +172,12 @@ def _table(container, df: pd.DataFrame, caption: str, widths: Optional[List[floa
     table = container.add_table(rows=1, cols=len(df.columns))
     table.style = "Table Grid"
     table.autofit = True
+    # Mark the first row as a repeating header so a table split across pages
+    # never starts with unlabeled data rows (Word and LibreOffice honor w:tblHeader).
+    header_trpr = table.rows[0]._tr.get_or_add_trPr()
+    header_flag = OxmlElement("w:tblHeader")
+    header_flag.set(qn("w:val"), "true")
+    header_trpr.append(header_flag)
     for j, col in enumerate(df.columns):
         cell = table.rows[0].cells[j]
         cell.text = ""
@@ -683,12 +690,14 @@ REVIEW_THEMES: List[Tuple[str, str, str]] = [
      "原始研究以 250 款商用啤酒的化学测量与受训品评小组感官结果为核心数据，系统刻画了化学组成与感官属性"
      "之间的关系，并把可解释的机器学习用于风味预测与配方改进{anchor}；其数据公开方式（同时给出化合物矩阵、"
      "三张相关矩阵、品评卡、论坛描述符与阈值参考表）也决定了任何复用者都必须自行裁定这些附件的语义，"
-     "这正是本文第二章与第三章所做的工作。"),
+     "这正是本文第二章与第三章所做的工作。近期 flavoromics 研究也表明，多平台化学—感官证据可用于"
+     "筛查候选化合物，但跨平台结果不能未经校准地并入本项目训练集{flavoromics}。"),
     ("2.2 感官预测与可解释机器学习",
      "从化学成分到感官评分的映射本质上是一个高维小样本回归问题。通用机器学习工具（如 scikit-learn{sklearn}）"
      "提供了从线性模型到梯度提升与随机森林的统一实现；SHAP{shap} 提供了把模型输出分解到单个化合物的加性归因方法；"
      "预训练先验模型（TabPFN{tabpfn}）则为小样本表格回归提供了不同于手工特征工程的第三条路线"
      "（其原始版本面向表格分类任务，回归形态与本文用法见后续期刊版{tabpfn_reg}）。"
+     "TabDPT{tabdpt} 可作为后续的表格基础模型对照，但不作为本项目当前提交的必做主线。"
      "本文在问题一同时使用这三类归纳偏置，并在问题二把归因与秩相关并列作为证据，避免以单一视角替代真值。"),
     ("2.3 化合物关联分析与网络化方法",
      "把化合物之间的关系表述为图并做社区发现，是解释「哪些化合物总是同时出现」的自然做法；"
@@ -698,7 +707,8 @@ REVIEW_THEMES: List[Tuple[str, str, str]] = [
     ("2.4 合成数据、Copula 与秩—分位映射",
      "在多变量分布既要保留相关结构、又需在小样本下可控的场合，高斯 Copula 是一种低成本的分解方案{copula}；"
      "秩—分位映射则是相关结构与边际分布解耦的经典做法{rank}，可在保持秩相关不变的前提下把样本迁移到"
-     "另一组边际上。本文的问题三正是这一组合：Copula 负责跨化合物的相关结构，风格条件边际负责风格画像，"
+     "另一组边际上。联合预测区间与 Copula 依赖结构的研究（如 CopulaCPTS{copula_conformal}）可启发不确定性扩展，"
+     "但其时间序列保证不能直接改写为本项目静态数据保证。本文的问题三正是这一组合：Copula 负责跨化合物的相关结构，风格条件边际负责风格画像，"
      "秩—分位映射负责跨风格迁移，三者都不依赖大规模神经网络训练。"),
     ("2.5 定量描述感官分析与消费者接受度、价格",
      "定量描述感官分析（QDA）以强度量表代替类别标签，其量表构造的心理学基础见 Stevens 的量表理论{stevens}；"
@@ -723,12 +733,15 @@ def _build_related_work(doc: Document, H, refs: Optional[List[dict]]) -> None:
     # 故单独开一个槽位，避免用分类论文支撑回归结论。
     tabpfn_reg = _pick_entry(lookup, ["accurate predictions on small data",
                                       "tabular foundation model"])
+    tabdpt = _pick_entry(lookup, ["tabdpt", "scaling tabular foundation"])
     leiden = _pick_entry(lookup, ["leiden", "louvain", "community detection"])
     copula = _pick_entry(lookup, ["copula"])
     rank = _pick_entry(lookup, ["rank of a pair", "rank correlation", "quantile", "rank"])
     stevens = _pick_entry(lookup, ["stevens", "scales of measurement", "measurement theory"])
     price = _pick_entry(lookup, ["price and quality", "beer market", "willingness to pay", "price"])
     spearman = _pick_entry(lookup, ["spearman", "association between two things"])
+    flavoromics = _pick_entry(lookup, ["flavoromics", "differential volatile", "lager beers"])
+    copula_conformal = _pick_entry(lookup, ["copula conformal", "copulacpts"])
 
     resolved = {
         "anchor": _entry_citation(anchor),
@@ -736,11 +749,14 @@ def _build_related_work(doc: Document, H, refs: Optional[List[dict]]) -> None:
         "shap": _entry_citation(shap),
         "tabpfn": _entry_citation(tabpfn),
         "tabpfn_reg": _entry_citation(tabpfn_reg),
+        "tabdpt": _entry_citation(tabdpt),
         "leiden": _entry_citation(leiden),
         "copula": _entry_citation(copula),
         "rank": _entry_citation(rank),
         "stevens": _entry_citation(stevens),
         "price": _entry_citation(price),
+        "flavoromics": _entry_citation(flavoromics),
+        "copula_conformal": _entry_citation(copula_conformal),
     }
     for key, val in resolved.items():
         if not val:
@@ -894,7 +910,7 @@ def _build_models(doc: Document, H, res: dict) -> None:
     H(2, "4.1 问题一：多任务回归与双轨分级")
     _para(doc, "问题一以 1.csv 的化合物特征预测 50 个感官维度。特征取统一标度后的 227 个化学量，"
                "剔除 4 个公式未经验证的派生求和列；模型采用岭回归、偏最小二乘回归、多任务弹性网络、"
-               "全局与分组极端随机树、逐指标梯度提升回归共七个模型族，外加 TabPFN 3.5 的五折集成，"
+               "全局与分组极端随机树、逐指标梯度提升回归共七个主模型族；另保留 TabPFN 3.5 的队友协议五折复现，"
                "以覆盖线性低秩、强稀疏与树形非线性三类归纳偏置。主指标为宏平均均方根误差，"
                "并同时报告宏平均绝对误差、逐维决定系数中位数、斯皮尔曼相关系数中位数。", indent_chars=2)
     _para(doc, "由于附件未提供原始 0–6 分数，0–6 分制必须显式构造。本文采用双轨：**主轨为相对分级**，"
@@ -1024,12 +1040,13 @@ def _build_results(doc: Document, H, res: dict, consumer: dict, counters: Counte
         row = tabpfn[idx.str.contains("cv_mean", na=False)]
         if not row.empty:
             r = row.iloc[0]
-            _para(doc, "作为第三类归纳偏置的补充，本文在本机 CPU 环境完成了 TabPFN 3.5 的五折全量复现"
-                       f"（5 折 × 50 个目标共 250 个单元）。其五折平均决定系数为 {fmt(r.get('r2'), 4)}，"
+            _para(doc, "作为第三类归纳偏置的补充，本文在本机 CPU 环境完成了队友协议下 TabPFN 3.5 的五折全量复现"
+                       f"（5 折 × 50 个目标共 250 个单元；该复现使用原始 231 特征与 KFold，"
+                       f"不等同于主模型的 227 特征、固定 175/75 留出协议）。其五折平均决定系数为 {fmt(r.get('r2'), 4)}，"
                        f"宏平均绝对误差 {fmt(r.get('mae'), 4)}、宏平均均方根误差 {fmt(r.get('rmse'), 4)}，"
                        f"而同一协议下的训练折均值基线决定系数为 {fmt(r.get('baseline_r2'), 4)}，"
-                       "说明预训练先验模型在本任务上同样明显优于均值基线；"
-                       "其第一折的逐目标决定系数与远端归档结果逐位一致，佐证了复现的忠实性。", indent_chars=2)
+                       "这些数值仅用于验证队友产物的复现忠实性，不作为相对于主模型的直接优越性证据；"
+                       "其第一折的逐目标决定系数与远端归档结果逐位一致。", indent_chars=2)
     for folder, name, short, method in FIGURE_SPECS[:3]:
         _insert_figure(doc, counters, folder, name, short, method)
 
@@ -1600,7 +1617,7 @@ def _top3_joint_note(top3: pd.DataFrame, n_robust_dims: int) -> str:
         both = int((rob & chem).sum())
         note += (f"须并列说明的是，「稳健」与「化学合理性」是**两道独立判据**："
                  f"全表 {len(top3)} 行中仅 {int(chem.sum())} 行通过化学合理性检验，"
-                 f"被判为稳健关键因素的 {n_rob_rows} 行中只有 {both} 行同时通过，"
+                 f"被判为稳健关键因素的 {n_rob_rows} 行中只有 {both} 行同时通过（稳健且化学合理），"
                  f"其余 {n_rob_rows - both} 行虽在统计判据上稳健，但其化学来源归属或载体类别论证不成立，"
                  "本文在表中保留这些行以示区分，不把它们作为可采纳的造谱依据。")
         if "rank_in_top3" in top3.columns:
@@ -1677,7 +1694,8 @@ def _build_q3_results(doc: Document, res: dict, counters: Counters) -> None:
                                        errors="coerce").median()
             cov_med = pd.to_numeric(gen.get("coverage_style_range_median", pd.Series(dtype=float)),
                                     errors="coerce").median()
-            _para(doc, f"全部风格生成样本中有阈值的缺陷化合物超阈值数量合计 {tot}，即缺陷约束被完全满足。"
+            _para(doc, f"全部风格生成样本中有阈值的缺陷化合物超阈值数量合计 {tot}，即硬约束合规。"
+                       "该零违规结果不衡量无约束生成的真实性；受约束后的边际可能因拒绝重抽和单调压缩而发生分布压缩。"
                        f"生成覆盖附件中真实样本数不少于 {int(pd.to_numeric(gen.get('n_real', pd.Series(dtype=float)), errors='coerce').min()) if 'n_real' in gen.columns else 10} 款的 "
                        f"{len(gen)} 个风格（22 个细分风格中样本量更小的风格未纳入，"
                        "故本文的生成结论只对这 8 个风格成立）；"
@@ -1688,9 +1706,9 @@ def _build_q3_results(doc: Document, res: dict, counters: Counters) -> None:
                        f"其一是「同分布的两个随机样本之间」的期望值 {fmt(null_exp, 4)}，"
                        f"其二是「完美复现该风格经验边际」时的经验匹配地板 {fmt(floor_med, 4)}"
                        "（由真实样本自助重采样得到）。"
-                       "可见无约束参照谱明显优于同分布随机样本的期望值，说明生成器本身优于随机重抽；"
+                       "在当前参照下，无约束参照谱距离小于同分布随机重抽的期望距离；"
                        "但与经验匹配地板相比仍高出一个量级，说明**生成谱并未接近完美复现真实边际**——"
-                       "本文只主张其「不劣于随机重抽且结构性可用」，不主张精确还原。"
+                       "因此本文只主张其在当前参照下具有结构性可用性，不把该差异解释为生成真实性或因果证据。"
                        "受约束谱之所以偏离，是拒绝重抽把分布条件化到缺陷项低尾的结果"
                        "——当某风格的真实样本本身大量超过阈值时，这一条件化尤为强烈。"
                        f"生成值落在真实风格取值区间内的比例中位数为 {fmt(cov_med, 3)}。"
@@ -1821,15 +1839,15 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                "关键化合物的排序由自算全量相关与归因两路证据给出，"
                "并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性，"
                "仅在两条判据同时满足时才标记为稳健。", indent_chars=2)
-    _para(doc, "（4）问题三以全局 Copula 结构加风格条件边际生成化合谱，在缺陷阈值约束下实现了零违规，"
+    _para(doc, "（4）问题三以全局 Copula 结构加风格条件边际生成化合谱，在缺陷阈值约束下实现了零违规；"
+               "这里的零违规只表示硬约束合规，不等同于无约束生成真实性，且受约束后的边际会发生分布压缩。"
                "并以秩—分位映射完成跨风格迁移，迁移后各缺陷化合物均不恶化。"
                "相关结构的保持程度需并置两个数字看：迁移前后斯皮尔曼相关系数的**平均**绝对偏差很小，"
                "但**单对化合物**的最大偏差明显更大（见 5.5 节），"
                "即整体分布形态得以保持而个别化合物对仍会被重排，故本文只作「整体结构基本保持」的表述。"
-               "本文通过并列给出不作约束的参照生成，证明了生成器本身**优于同分布随机重抽**"
-               "（无约束参照谱的边际距离明显优于同分布随机样本的期望值），"
+               "本文通过并列给出不作约束的参照生成，发现其在当前参照下距离小于同分布随机重抽的期望距离，"
                "但与「完美复现风格经验边际」的经验匹配地板相比仍高出一个量级，"
-               "故本文只主张生成谱「不劣于随机重抽且结构性可用」，不主张精确还原真实边际；"
+               "故本文只主张其在当前参照下具有结构性可用性，不主张精确还原真实边际；"
                "受约束谱的边际偏移来自拒绝重抽对缺陷项低尾的条件化，而非生成器的还原能力不足。"
                "一个值得注意的发现是：约束对感官画像的影响方向随维度而异——"
                "对二甲基硫醚与 4-乙烯基愈创木酚压低浓度即拉低评分，"
@@ -2017,11 +2035,15 @@ def build_references(doc: Document, refs: Optional[List[dict]]) -> int:
         num = int(entry.get("citation_number", listed + 1))
         p = _para(doc, f"[{num}] {text}", size=9.5, space_after=2)
         p.paragraph_format.first_line_indent = Pt(0)
+        # Keep each short reference together so a page does not start with only
+        # a DOI continuation or an orphaned author/title fragment.
+        p.paragraph_format.keep_together = True
         listed += 1
     p = _para(doc, f"本论文使用的人工智能工具：[{listed + 1}] MiniMax Code，模型 MiniMax-M3.1-Flash，"
                    f"开发机构 MiniMax，使用日期 2026-10-29。（参考文献来源：{source}）",
               size=9.5, space_after=2)
     p.paragraph_format.first_line_indent = Pt(0)
+    p.paragraph_format.keep_together = True
     return listed
 
 
@@ -2157,8 +2179,7 @@ def build_appendix(doc: Document) -> None:
     _para(doc, "文献著录清单存放于 docs/refs_verified.json，论文的参考文献列表由该文件自动生成"
                "（按 citation_number 排序，期刊/图书/会议/网络资源四类分别按赛题格式著录），"
                "与人读版 docs/literature.md 一一对应；"
-               "本次构建使用的即为该自动路径，引用条目共 35 条。"
-               "若该文件缺失，构建脚本会退回到手写清单并在构建日志中打印告警。", size=9.0, space_after=2)
+               "本次构建使用的即为该自动路径，引用条目共 38 条。", size=9.0, space_after=2)
 
 
 # --------------------------------------------------------------------------- 转 PDF
@@ -2200,8 +2221,18 @@ def docx_to_pdf(docx: Path, pdf: Path) -> str:
     if not Path(soffice).exists():
         raise RuntimeError("未找到 Word COM 或 LibreOffice，无法转换 PDF")
     outdir = pdf.parent
-    subprocess.run([soffice, "--headless", "--convert-to", "pdf", "--outdir", str(outdir),
-                    str(docx)], check=True, capture_output=True, timeout=600)
+    # LibreOffice can crash on Windows when its default profile is locked or
+    # contains stale first-run state.  Use an isolated disposable profile so
+    # the paper build is deterministic and does not touch a user's profile.
+    profile_root = ROOT / "tmp"
+    profile_root.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="lo_profile_", dir=str(profile_root)) as profile:
+        profile_uri = Path(profile).resolve().as_uri()
+        subprocess.run([
+            soffice, "--headless", "--nologo", "--nodefault", "--nofirststartwizard",
+            f"-env:UserInstallation={profile_uri}", "--convert-to", "pdf",
+            "--outdir", str(outdir), str(docx),
+        ], check=True, capture_output=True, timeout=600)
     produced = outdir / (docx.stem + ".pdf")
     if produced != pdf and produced.exists():
         shutil.move(str(produced), str(pdf))
@@ -2383,12 +2414,13 @@ def main() -> int:
         "并查明 3.xlsx 仅为空白品评卡模板、附件不含原始 0–6 分数。据此建立两张全解析名称桥与统一的 "
         "log10(mg/L) 特征矩阵。"
         "问题一以 227 个化学特征（统一矩阵 231 列中剔除 4 个派生求和列）预测 50 个感官维度，"
-        "七个模型族与 TabPFN 3.5 五折集成在分层留出集上"
-        "取得相对全局均值基线约 15% 的宏平均 RMSE 改善，并交付 250 款啤酒 × 50 维的 0–6 分制分级评分表。"
+        "七个模型族在固定的 175/75 风格分层留出集上取得相对全局均值基线约 15% 的宏平均 RMSE 改善，"
+        "并另行保留原始 231 特征、KFold 协议下的 TabPFN 3.5 队友复现作为协议核对，不将其与主模型直接比较；"
+        "同时交付 250 款啤酒 × 50 维的 0–6 分制分级评分表。"
         "问题二构建 231 节点共表达图，以自算全量相关、SHAP 归因、附件交叉相关与外部先验四路证据给出各感官维度的 "
         "Top-3 关键化合物，并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性。"
-        "问题三以全局高斯 Copula 加风格条件边际生成化合谱，在缺陷阈值约束下实现零违规，"
-        "并以秩—分位映射完成跨风格迁移。"
+        "问题三以全局高斯 Copula 加风格条件边际生成化合谱，在硬约束合规层面实现零违规，"
+        "同时报告无约束真实性参照与受约束后的分布压缩，并以秩—分位映射完成跨风格迁移。"
         "本文进一步以 183 维消费者描述符与 189 款啤酒的零售价格作为外部验证，并重新检验缺陷化合物的剂量—响应关系；"
         "对原研究「提升消费者喜爱度」一环，因附件不含消费者评分标签，明确声明其在本附件条件下不可检验。"
     )
@@ -2418,7 +2450,8 @@ def main() -> int:
     # 五项合规校验
     check = ROOT / "scripts" / "check_paper_pdf.py"
     subprocess.run([sys.executable, str(check), str(pdf), "--docx", str(OUT_DIR / "paper.docx"),
-                    "--json", str(OUT_DIR / "paper_check.json")], check=False)
+                    "--json", str(OUT_DIR / "paper_check.json"),
+                    "--text", str(OUT_DIR / "paper_check.txt")], check=False)
     report = {}
     check_json = OUT_DIR / "paper_check.json"
     if check_json.exists():

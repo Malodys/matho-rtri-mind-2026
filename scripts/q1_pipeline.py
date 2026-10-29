@@ -221,7 +221,7 @@ def out_of_fold_predictions(name: str, templates: Dict[str, object], x: pd.DataF
             fitted_templates = {"grouped": {g: clone(e).fit(x_tr, y_tr[[m for m in groups[groups == g].index]])
                                             for g, e in templates["grouped"].items()}}
         else:
-            fitted_templates = {"independent": {t: clone(e).fit(x_tr, y_tr[[t]])
+            fitted_templates = {"independent": {t: clone(e).fit(x_tr, y_tr[t])
                                                 for t, e in templates["independent"].items()}}
         out[va] = predict_with_templates(fitted_templates, kind, x_va, labels, groups)
         print(f"  OOF fold {fold}/{n_splits} 完成", flush=True)
@@ -241,7 +241,7 @@ def fit_full_model(name: str, templates: Dict[str, object], x: pd.DataFrame, y: 
         ests = {g: clone(e).fit(x, y[[m for m in groups[groups == g].index]])
                 for g, e in templates["grouped"].items()}
         return {"kind": kind, "estimators": ests}
-    ests = {t: clone(e).fit(x, y[[t]]) for t, e in templates["independent"].items()}
+    ests = {t: clone(e).fit(x, y[t]) for t, e in templates["independent"].items()}
     return {"kind": kind, "estimators": ests}
 
 
@@ -315,13 +315,13 @@ def absolute_track_detail(params: pd.DataFrame, y_true: pd.DataFrame, pred_frame
 
 
 def absolute_track_metrics(params: pd.DataFrame, y_true: pd.DataFrame, pred_frame: pd.DataFrame,
-                           dims: List[str]) -> Dict[str, float]:
+                           dims: List[str], prefix: str = "abs") -> Dict[str, float]:
     """在给定维度上评估绝对轨（真值与预测各自过同一套锚定映射）。"""
     frame = absolute_track_detail(params, y_true, pred_frame, dims)
     if frame.empty:
         return {}
-    return {f"abs_{k}": float(frame[k].mean()) for k in ("MAE", "exact_accuracy",
-                                                        "within_one_accuracy", "QWK")}
+    return {f"{prefix}_{k}": float(frame[k].mean()) for k in ("MAE", "exact_accuracy",
+                                                               "within_one_accuracy", "QWK")}
 
 
 def main() -> int:
@@ -418,8 +418,17 @@ def main() -> int:
     holdout_table = holdout_table.loc[holdout_table["model"] == best_model]
     holdout_pred = holdout_table.pivot(index="beer", columns="label",
                                        values="predicted_continuous").loc[test_ids, labels]
-    abs_metrics = absolute_track_metrics(anchor_params, y_test, holdout_pred, thr_dims)
-    fb_metrics = absolute_track_metrics(anchor_params, y_test, holdout_pred, fb_dims)
+    # Keep the three absolute-track populations separate.  In particular, the
+    # fallback dimensions are a valid subset, not a replacement for the full
+    # valid track.  The old implementation merged two dictionaries with the
+    # same ``abs_*`` keys, so the fallback metrics silently overwrote the
+    # three-dimensional summary in model_summary.csv.
+    threshold_metrics = absolute_track_metrics(
+        anchor_params, y_test, holdout_pred, thr_dims, prefix="abs_threshold")
+    fallback_metrics = absolute_track_metrics(
+        anchor_params, y_test, holdout_pred, fb_dims, prefix="abs_fallback")
+    valid_metrics = absolute_track_metrics(
+        anchor_params, y_test, holdout_pred, valid_dims, prefix="abs_valid")
     abs_detail = absolute_track_detail(anchor_params, y_test, holdout_pred, thr_dims + fb_dims)
     abs_detail.to_csv(out_dir / "absolute_grade_metrics_by_label.csv", index=False)
 
@@ -429,19 +438,21 @@ def main() -> int:
     raw = load_raw().sensory.set_index("beer")
     raw.index = raw.index.astype(int)
     keys = raw.reindex(x.index)[["beer_id", "tasting_category_fine"]]
-    deliverable = pd.DataFrame(index=x.index)
-    deliverable.insert(0, "beer", x.index)
-    deliverable["beer_id"] = keys["beer_id"].to_numpy()
-    deliverable["tasting_category_fine"] = keys["tasting_category_fine"].to_numpy()
+    deliverable_data = {
+        "beer": x.index.to_numpy(),
+        "beer_id": keys["beer_id"].to_numpy(),
+        "tasting_category_fine": keys["tasting_category_fine"].to_numpy(),
+    }
     for dim in labels:
-        deliverable[f"{dim}_pred"] = oof_frame[dim].to_numpy()
-        deliverable[f"{dim}_grade"] = grade_frame[dim].to_numpy(dtype=int)
+        deliverable_data[f"{dim}_pred"] = oof_frame[dim].to_numpy()
+        deliverable_data[f"{dim}_grade"] = grade_frame[dim].to_numpy(dtype=int)
         if dim in valid_dims:
-            deliverable[f"{dim}_abs"] = abs_all[dim].to_numpy()
+            deliverable_data[f"{dim}_abs"] = abs_all[dim].to_numpy()
         else:
             # 锚定不合格或不具备化学载体：绝对轨不适用，<dim>_abs 留空（NaN）。
             # 该维度仅提供主轨的相对分级（<dim>_grade），适用性见 absolute_anchor_params.csv。
-            deliverable[f"{dim}_abs"] = np.nan
+            deliverable_data[f"{dim}_abs"] = np.nan
+    deliverable = pd.DataFrame(deliverable_data, index=x.index)
     deliverable = deliverable[["beer", "beer_id", "tasting_category_fine"] +
                                [f"{d}_{k}" for d in labels for k in ("pred", "grade", "abs")]]
     assert deliverable.shape == (250, 153), deliverable.shape
@@ -467,8 +478,12 @@ def main() -> int:
     model_summary["global_mean_Macro_RMSE"] = baseline
     model_summary["delta_vs_global_mean"] = model_summary["Macro_RMSE"] - baseline
     model_summary["beats_global_mean"] = model_summary["Macro_RMSE"] < baseline
-    for key, value in {**abs_metrics, **fb_metrics}.items():
+    for key, value in {**threshold_metrics, **fallback_metrics, **valid_metrics}.items():
         model_summary[key] = value
+    # Backward-compatible aliases: ``abs_*`` now explicitly means the
+    # three-dimensional valid absolute track, never the fallback subset.
+    for metric in ("MAE", "exact_accuracy", "within_one_accuracy", "QWK"):
+        model_summary[f"abs_{metric}"] = model_summary[f"abs_valid_{metric}"]
     model_summary["selected_as_final_model"] = model_summary["model"] == best_model
     model_summary["final_predictions_source"] = "5-fold OOF over all 250 samples (seed 0)"
     model_summary.to_csv(out_dir / "model_summary.csv", index=False)
@@ -509,6 +524,12 @@ def main() -> int:
             "threshold_anchored": thr_dims,
             "relative_fallback": fb_dims,
             "invalid_dimensions": invalid_dims,
+            "metric_summary": {
+                "abs_threshold_*": "threshold_anchored dimensions only",
+                "abs_fallback_*": "relative_fallback dimensions only",
+                "abs_valid_*": "all valid dimensions; official three-dimensional aggregate",
+                "abs_*": "backward-compatible alias of abs_valid_*",
+            },
             "validity_rules": {k: v for k, v in anchor_mod.VALIDITY_RULES.items()},
         },
         "deliverable_shape": list(deliverable.shape),
