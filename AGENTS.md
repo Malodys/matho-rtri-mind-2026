@@ -136,6 +136,30 @@
 - `tasting_category_fine` 为风格标签（22 类，Blond 31 / Tripel 28 最大，Faro 3 / Brut 4 最小）；
   问题三的 Copula 条件边际对 n<10 的风格需向全局边际收缩（λ = n/(n+10)）。
 
+## 数据出处与文献锚定（第二轮升级新增）
+
+- 附件 1–8 是 **Schreurs M, Piampongsant S, Roncoroni M, Cool L, Herrera-Malaver B, Vanderaa C, Theßeling FA, Kreft Ł, Botzki A, Malcorps P, Daenen L, Wenseleers T, Verstrepen KJ. Predicting and improving complex beer flavor through machine learning. Nature Communications, 2024, 15(1): 2368. DOI: 10.1038/s41467-024-46346-0**（CC BY 4.0）的公开数据与补充材料。
+- 映射关系：附件 1.csv ↔ Supplementary Data 1（化学实测）；2.csv ↔ Data 2（化合物间相关）；3.xlsx ↔ 该文 QDA 品评卡模板（**空白模板，无评分记录**）；4.csv ↔ Data 4（品评组评价，已标准化）；5.csv ↔ Data 5（感官描述符间相关）；6.csv ↔ 该文 Fig.1（**其题注明写 "Spearman rank correlations are shown"**，独立佐证我们「三张相关矩阵均为 Spearman」的裁定）；7.csv ↔ 由 RateBeer 181,025 条评论经词典映射出的消费者描述符特征；8.xlsx ↔ 该文补充参考表（阈值、名称桥、外部模型先验、价格与 ABV）。
+- **论文定位**：本项目是「基于该顶刊公开数据的独立复现与再分析」。不得声称复现其消费者喜爱度预测（附件未提供消费者评分标签），但必须显式声明三处勘误与两项再分析。
+- 文献著录以 `docs/refs_verified.json` 为准（≥14 条，每条含 DOI/URL 与访问日期）；`tests/test_literature.py` 与验收项 V16 守护其完整性。
+
+## 消费者层语义（第二轮升级新增）
+
+- `data/raw/7.csv`：250 行 × 189 列（3 键列 + **186 个 RateBeer 消费者描述符**，前缀 `aroma_`/`palate_`/`taste_` 各 62）。
+- **3 个 palate 列整列为空**（`palate_acetaldehyde` / `palate_acetate` / `palate_dentist`，各 250 NA）→ 有效维度 **183**。
+- **不存在「消费者喜爱度」轴**：186 维上 PCA 第一主成分仅解释 **10.4%**；组均值指数与品评组维度相关 |r| ≤ 0.25。**禁止**用组均值或 PC1 构造喜爱度目标。
+- 正确用法：**化学 → 183 维消费者描述符**模型与 **化学 → 50 维品评组感官**模型并列，做**交叉一致性**（≥10 组语义配对，比较 rho_truth 与 rho_pred），并声明两者共享描述词汇表带来的**循环性风险**。
+- `data/raw/8.xlsx / Beer Prices`：250 × 11（ABV + 7 个零售商价格列）。覆盖 ≥2 家零售商的 **189 款**可算几何均价；log(价格) 与 ABV 相关 **+0.266**，回归必须控制 ABV 与风格；单一零售源 → 结论强度降级。
+- 缺陷化合物剂量-响应：统一 log10(mg/L) 口径下分位统计；**双乙酰 → diacetyl（rho=−0.093）与 trans-2-壬烯醛 → t2n（rho=−0.151）呈反向**，DMS 近乎不相关（+0.088）；乙酸乙酯 → 酯类香气最高浓度四分位内 rho=+0.407。原文结论的「提升消费者喜爱度」一环在本附件下**不可检验**，须显式声明。
+
+## 图表风格契约（第二轮升级新增）
+
+- 全文图表风格**唯一来源**：`scripts/plot_style.py`（导出 `apply_style()` / `tidy()` / `simple_title()` / `save()` / `dim_cn()` / `class_cn()` 与配色、字号常量）。
+- 绘图脚本**禁止**自行设置 `plt.rcParams`、禁止自定义配色（由 `tests/test_plot_style.py` 守护）。
+- 每张图**同时输出 PNG(300dpi) 与 PDF(矢量)**，同名同目录；每个图目录附 `figures_manifest.json`（含图题与题注 caption）。
+- **图内标题 ≤12 字**；方法、单位、样本量、阈值一律移入论文题注，由 `scripts/build_paper.py` 统一编号（图 1…图 N、表 1…表 N）。
+- 图宽按 `FIG_WIDTH_IN = 5.0` 英寸反推 figsize，禁止超宽。
+
 ## PR & commit conventions
 
 - 从最新 `origin/main` 切 `feat/*` 分支，不直接推 `main`。

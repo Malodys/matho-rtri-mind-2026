@@ -188,6 +188,64 @@ def run_checks(root: Path) -> list[dict]:
                                        for r in rep.get("results", []))
     add("V13_ai_usage_doc", "《AI 工具使用详情说明》PDF 生成且校验通过", v13, v13_detail)
 
+    # V16 文献引用完整性（第二轮升级新增）
+    refs_json = root / "docs" / "refs_verified.json"
+    v16 = False
+    v16_detail = "缺少 docs/refs_verified.json"
+    if refs_json.is_file():
+        try:
+            data = json.loads(refs_json.read_text(encoding="utf-8"))
+            entries = data["refs"] if isinstance(data, dict) and "refs" in data else data
+            n = len(entries)
+            need = ["key", "citation_number", "type", "authors", "title", "year",
+                    "supports_section", "supports_claim", "verified"]
+            missing_fields = [e.get("key", "?") for e in entries
+                              if any(f not in e for f in need)]
+            numbers = sorted(int(e["citation_number"]) for e in entries)
+            sequential = numbers == list(range(1, n + 1))
+            anchor = next((e for e in entries if int(e["citation_number"]) == 1), {})
+            anchor_ok = (anchor.get("doi") == "10.1038/s41467-024-46346-0"
+                         and "Nature Communications" in str(anchor.get("journal", ""))
+                         and "Verstrepen" in str(anchor.get("authors", "")))
+            no_identifier = [e.get("key", "?") for e in entries
+                             if not (e.get("doi") or e.get("url"))]
+            v16 = (n >= 14 and not missing_fields and sequential and anchor_ok
+                   and not no_identifier)
+            v16_detail = (f"文献 {n} 条；字段缺失={missing_fields or '无'}；"
+                          f"编号连续={sequential}；主锚点[1]核对={anchor_ok}；"
+                          f"缺 DOI/URL={no_identifier or '无'}")
+        except Exception as exc:
+            v16_detail = f"读取失败 {exc}"
+    add("V16_literature", "参考文献著录完整（≥14 条、字段齐、编号连续、主锚点核对通过）",
+        v16, v16_detail)
+
+    # V17 图表风格一致性（第二轮升级新增）
+    style_mod = root / "scripts" / "plot_style.py"
+    fig_dirs = ["q1_figures", "q2_figures", "q3_figures"]
+    v17 = style_mod.is_file()
+    v17_detail = f"plot_style.py={style_mod.is_file()}"
+    if v17:
+        pairs_ok, missing_pairs, manifests = 0, [], []
+        for d in fig_dirs:
+            folder = root / "data" / "processed" / d
+            if not folder.is_dir():
+                missing_pairs.append(f"{d}(目录缺失)")
+                continue
+            pngs = sorted(folder.glob("*.png"))
+            if not pngs:
+                missing_pairs.append(f"{d}(无 PNG)")
+            for png in pngs:
+                if png.with_suffix(".pdf").exists():
+                    pairs_ok += 1
+                else:
+                    missing_pairs.append(png.with_suffix(".pdf").name)
+            if not (folder / "figures_manifest.json").exists():
+                manifests.append(d)
+        v17 = not missing_pairs and not manifests
+        v17_detail = (f"PNG/PDF 成对 {pairs_ok} 张；缺失={missing_pairs or '无'}；"
+                      f"缺 manifest 的目录={manifests or '无'}")
+    add("V17_figure_style", "图表风格统一（PNG/PDF 成对 + 题注 manifest 齐备）", v17, v17_detail)
+
     # V14 AGENTS.md
     agents = root / "AGENTS.md"
     v14 = False
