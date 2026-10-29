@@ -1,0 +1,151 @@
+label,rank,feature,published_graph_module,spearman_to_sensory,bootstrap_top3_frequency,bootstrap_sign_agreement,chemical_name,origin_paper,off_flavors,chemical_plausibility,chemical_rationale
+A_malt_all,1,acetaldehyde,5,0.3612112247321575,0.722,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_malt_all,2,methylpyrazine,0,0.3503410169797453,0.702,1.0,Methylpyrazine,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+A_malt_all,3,beta.phellandrene,4,-0.3228608072414078,0.34,1.0,Beta-phellandrene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_malt_grain,1,terpinen.4.ol,4,-0.2645389353295916,0.35,1.0,Terpinen-4-ol,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+A_malt_grain,2,octyl_acetate,0,0.1842852437518485,0.174,1.0,Octyl acetate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_malt_grain,3,propylene.glycol,15,-0.1317546711830047,0.108,1.0,Propylene glycol,Others,,plausible_proxy,文献来源分类为Others，可作风格或工艺关联标志物。
+A_malt_bread,1,terpinen.4.ol,4,-0.2502245016212908,0.212,1.0,Terpinen-4-ol,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+A_malt_bread,2,ethyl.tiglate,0,0.2383774956699428,0.312,1.0,Ethyl tiglate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_malt_bread,3,car.3.en.2.one,2,-0.2117385384900073,0.186,1.0,Car-3-en-2-one,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_malt_cara,1,acetaldehyde,5,0.3501571608077257,0.602,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_malt_cara,2,X2.acetylpyrrole,0,0.3079769266891769,0.302,1.0,2-acetylpyrrole,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+A_malt_cara,3,X2.methyl.benzofuran,4,-0.3007417545822711,0.336,1.0,2-methyl-benzofuran,Malt,,plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+A_malt_burn,1,isobutanol,5,0.2493026020911579,0.31,1.0,Isobutanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_malt_burn,2,y.methyl.1.octanol,1,0.2250181556628468,0.306,1.0,Y-methyl-1-octanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_malt_burn,3,methylpyrazine,0,0.1878312308857103,0.22,1.0,Methylpyrazine,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+A_hops_all,1,ethyl_octanoate,5,0.4637453760825003,0.732,1.0,Ethyl octanoate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_hops_all,2,linalool,4,0.4120716403239162,0.466,1.0,Linalool,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_all,3,humulene.epoxide.II,1,0.4046532634242674,0.296,1.0,Humulene epoxide II,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_citrus,1,citronellol,4,0.369736096478661,0.562,1.0,Citronellol,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_citrus,2,humulene.epoxide.II,1,0.3571617223721982,0.36,1.0,Humulene epoxide II,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_citrus,3,ortho.cresol,0,-0.2136043580192006,0.092,1.0,O-cresol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_hops_tropical,1,DMS,11,0.3141812345828988,0.592,1.0,Dimethyl sulfide,Malt,"cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+A_hops_tropical,2,X.E..beta.ocimene,4,0.2005663473319127,0.16,1.0,E-Î²-ocimene,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_tropical,3,citronellol,4,0.2551837383820515,0.194,1.0,Citronellol,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_noble,1,ethyl_octanoate,5,0.4818289933535468,0.704,1.0,Ethyl octanoate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_hops_noble,2,methyl.geranate,1,0.3569984811106874,0.236,1.0,Methyl geranate,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_hops_noble,3,X.E..2.nonenal,1,0.4086693393546819,0.36,1.0,E-2-nonenal,Others,,plausible_proxy,文献来源分类为Others，可作风格或工艺关联标志物。
+A_hops_woody,1,trans.dihydro.alpha.terpinyl.acetate,1,0.2791198867693684,0.132,1.0,Trans-dihydro-Î±-terpinyl acetate,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_hops_woody,2,X2Z.6Z.farnesol,50,0.2091656797004667,0.234,1.0,"Z,Z-farnesol",Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+A_hops_woody,3,ethyl_2.methyl_butyrate,0,0.2319938632979157,0.178,1.0,Ethyl 2-methylbutyrate,Others,,plausible_proxy,文献来源分类为Others，可作风格或工艺关联标志物。
+A_esters_all,1,n.hexanol,5,0.3568521231808532,0.588,1.0,N-hexanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_esters_all,2,acetaldehyde,5,0.3530295204723275,0.594,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_esters_all,3,eugenol,32,0.2261300820813131,0.204,1.0,Eugenol,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+A_esters_ethac,1,ethyl_acetate,5,0.3555045849564506,0.454,1.0,Ethyl acetate,Yeast,,pathway_consistent,酯类或相关发酵产物，与果香、花香或酯香表达一致。
+A_esters_ethac,2,X2.methyl.1.butanol,3,0.2709584117926777,0.158,1.0,2-methyl-1-butanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_esters_ethac,3,Z.Z.geranyl.linalool,1,0.2855753154537169,0.072,1.0,"Z,Z-geranyl linalool",Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_esters_isoaa,1,n.hexanol,5,0.3399301837491134,0.812,1.0,N-hexanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_esters_isoaa,2,tau.cadinol,44,-0.2092701311372128,0.448,1.0,Tau-cadinol,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_esters_isoaa,3,neryl.propanoate,1,-0.1627460945831522,0.116,1.0,Neryl propanoate,Hops,,pathway_consistent,酯类或相关发酵产物，与果香、花香或酯香表达一致。
+A_esters_flower,1,beta.phellandrene,4,0.195763601246932,0.28,1.0,Beta-phellandrene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_esters_flower,2,isobutyl_acetate,5,0.1917191684608023,0.198,1.0,Isobutyl acetate,Yeast,,pathway_consistent,酯类或相关发酵产物，与果香、花香或酯香表达一致。
+A_esters_flower,3,E.caryophyllene,37,0.1812958895542726,0.214,1.0,Caryophyllene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_esters_fruity,1,beta.phellandrene,4,0.2319431677141616,0.548,1.0,Beta-phellandrene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+A_esters_fruity,2,benzaldehyde,3,0.1832046939564325,0.238,1.0,Benzaldehyde,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+A_esters_fruity,3,caryophyllene.oxide,1,-0.1680629018927126,0.116,1.0,Caryophyllene oxide,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+F_malt_all,1,acetaldehyde,5,0.4712102803092672,0.956,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_all,2,methylpyrazine,0,0.320899800197673,0.564,1.0,Methylpyrazine,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+F_malt_all,3,X.E..beta.ionone,0,-0.2827818490978365,0.138,1.0,E-Î²-ionone,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+F_malt_grain,1,isoborneol,4,-0.2757863535326417,0.2,1.0,Isoborneol,Others,,plausible_proxy,文献来源分类为Others，可作风格或工艺关联标志物。
+F_malt_grain,2,propyl.acetate,3,0.1493069043558106,0.1,1.0,N-propyl acetate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_grain,3,acetaldehyde,5,0.1916037424478011,0.206,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_bread,1,acetaldehyde,5,0.3777257701291538,0.48,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_bread,2,X2.acetylpyrrole,0,0.2737320338780901,0.332,1.0,2-acetylpyrrole,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+F_malt_bread,3,terpinen.4.ol,4,-0.315758025288408,0.312,1.0,Terpinen-4-ol,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+F_malt_cara,1,acetaldehyde,5,0.432763162080566,0.952,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_cara,2,X2.acetylpyrrole,0,0.3003599367589505,0.512,1.0,2-acetylpyrrole,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+F_malt_cara,3,MeSH,7,0.2967488214285046,0.156,1.0,Methanethiol,Yeast,"putrefaction, drains, rotting vegetables, estery",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_burn,1,MeSH,7,0.4034753793060814,0.774,1.0,Methanethiol,Yeast,"putrefaction, drains, rotting vegetables, estery",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_malt_burn,2,methylpyrazine,0,0.2446357140272624,0.428,1.0,Methylpyrazine,Malt,,pathway_consistent,麦芽烘焙或美拉德反应相关产物，与麦芽类感官表达一致。
+F_malt_burn,3,acetaldehyde,5,0.3275323946756032,0.274,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_hops_all,1,ethyl_octanoate,5,0.5007669567130835,0.764,1.0,Ethyl octanoate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_hops_all,2,cis.dihydro.beta.terpineol,1,0.4497791372956319,0.358,1.0,Cis-dihydro-Î²-terpineol,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+F_hops_all,3,DMS,11,0.4177289560712469,0.262,1.0,Dimethyl sulfide,Malt,"cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+F_hops_citrus,1,humulene.epoxide.II,1,0.2849243473855617,0.174,1.0,Humulene epoxide II,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+F_hops_citrus,2,methylpyrazine,0,-0.2395121354867641,0.112,1.0,Methylpyrazine,Malt,,plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+F_hops_citrus,3,furfural,0,-0.2809269662661264,0.326,1.0,Furfural,Malt,,plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+F_hops_tropical,1,geraniol,4,0.2848252338769933,0.346,1.0,Geraniol,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+F_hops_tropical,2,DMS,11,0.2754041276206146,0.464,1.0,Dimethyl sulfide,Malt,"cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+F_hops_tropical,3,hexyl.acetate,22,0.280912095311276,0.404,1.0,Hexyl acetate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_hops_noble,1,ethyl_octanoate,5,0.505087513214967,0.918,1.0,Ethyl octanoate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_hops_noble,2,cis.dihydro.beta.terpineol,1,0.3673398682687598,0.294,1.0,Cis-dihydro-Î²-terpineol,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+F_hops_noble,3,isobutanol,5,0.3873209730086989,0.172,1.0,Isobutanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_hops_woody,1,ethyl.tetradecanoate,1,0.3460643750889652,0.256,1.0,Ethyl tetradecanoate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_hops_woody,2,X9.epi..E..caryophyllene,2,-0.2930722058243747,0.45,1.0,9-epi-E-caryophyllene,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+F_hops_woody,3,isobutanol,5,0.322457547432436,0.43,1.0,Isobutanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_all,1,acetaldehyde,5,0.4038719339509434,0.674,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_all,2,n.hexanol,5,0.37639497512317,0.59,1.0,N-hexanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_all,3,phenethyl_alcohol,13,0.2157519320309124,0.218,1.0,Phenethyl alcohol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_ethac,1,ethyl_acetate,5,0.5030965444139196,0.984,1.0,Ethyl acetate,Yeast,,pathway_consistent,酯类或相关发酵产物，与果香、花香或酯香表达一致。
+F_esters_ethac,2,E.nerolidol,2,0.3005548429085238,0.186,1.0,E-nerolidol,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+F_esters_ethac,3,isoamyl_alcohol,5,0.3964896671153013,0.344,1.0,Isoamyl alcohol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_isoaa,1,n.hexanol,5,0.3053935951028971,0.566,1.0,N-hexanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_isoaa,2,octyl_acetate,0,0.2034974546267652,0.3,1.0,Octyl acetate,Yeast,,pathway_consistent,酯类或相关发酵产物，与果香、花香或酯香表达一致。
+F_esters_isoaa,3,X13.epi.manool.oxide,9,-0.1630780051999966,0.144,1.0,13-epi manool oxide,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+F_esters_flower,1,beta.phellandrene,4,0.2336305359445711,0.44,1.0,Beta-phellandrene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+F_esters_flower,2,X.E..dihydro.apofarnesal,41,-0.175045308984751,0.24,1.0,E-dihydro-apofarnesal,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+F_esters_flower,3,isopentyl.butanoate,1,-0.2007137547602547,0.286,1.0,Isopentyl butanoate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_fruity,1,DES,7,-0.2915945449808184,0.718,1.0,Diethyl sulfide,Yeast,rotting vegetables,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+F_esters_fruity,2,beta.phellandrene,4,0.2280685435371236,0.53,1.0,Beta-phellandrene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+F_esters_fruity,3,octyl_acetate,0,0.1953172713339627,0.214,1.0,Octyl acetate,Yeast,,pathway_consistent,酯类或相关发酵产物，与果香、花香或酯香表达一致。
+acidity,1,prenyl.isobutyrate,0,0.4354906688288023,0.368,1.0,Prenyl isobutyrate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+acidity,2,n.hexanol,5,-0.3643426750457094,0.608,1.0,N-hexanol,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+acidity,3,X4.ethyl.phenol,0,0.4132241386578933,0.28,1.0,4-ethyl-phenol,Wild flora,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+bitternes,1,ethyl_octanoate,5,0.5926743859641473,0.872,1.0,Ethyl octanoate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+bitternes,2,humulene.epoxide.II,1,0.5030868421231114,0.536,1.0,Humulene epoxide II,Hops,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+bitternes,3,X.E..2.nonenal,1,0.5034249547448235,0.328,1.0,E-2-nonenal,Others,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+sweetness,1,ethyl_decanoate,5,-0.3911617061026,0.72,1.0,Ethyl decanoate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+sweetness,2,neryl.propanoate,1,-0.2999141163880782,0.264,1.0,Neryl propanoate,Hops,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+sweetness,3,octyl_acetate,0,0.3197323198552955,0.314,1.0,Octyl acetate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+X4vg,1,X4VG,14,0.472617529612283,0.938,1.0,4-vinylguaiacol,Yeast,,direct_marker,感官词与同名或直接对应化合物一致。
+X4vg,2,neryl.formate,0,-0.3832994986585639,0.416,1.0,Neryl formate,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+X4vg,3,X2Z.6E.farnesol,2,0.3185784368180602,0.284,1.0,"Z,E-farnesol",Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+diacetyl,1,eugenol,32,-0.3231876035649343,0.712,1.0,Eugenol,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+diacetyl,2,furfural,0,0.2504819804414384,0.264,1.0,Furfural,Malt,,plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+diacetyl,3,alpha.calacorene,1,-0.2747624899314109,0.202,1.0,Î±-calacorene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+dms,1,amyl.acetate,3,-0.2166791455173088,0.35,1.0,Amyl acetate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+dms,2,E.nerolidol,2,0.1943893062564403,0.206,1.0,E-nerolidol,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+dms,3,phenethyl_alcohol,13,-0.1728244444879422,0.186,1.0,Phenethyl alcohol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+metallic,1,ethyl_isovalerate,0,-0.2503577577242976,0.382,1.0,Ethyl 3-methylbutyrate,Others,,plausible_proxy,文献来源分类为Others，可作风格或工艺关联标志物。
+metallic,2,X6.methyl.5.hepten.2.one,20,-0.2372345949894655,0.328,1.0,Methyl heptenone,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+metallic,3,Z.Z.geranyl.linalool,1,0.2031414269014682,0.168,1.0,"Z,Z-geranyl linalool",Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+stale_hops,1,X2.undecanol,1,0.2996737628330854,0.476,1.0,2-undecanol,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+stale_hops,2,linalool.isovalerate,39,0.2256726272490744,0.284,1.0,Linalool isovalerate,Hops,,pathway_consistent,酒花萏烯或含氧萏类成分，与酒花类感官表达一致。
+stale_hops,3,gamma.eudesmol,3,0.2468621120876201,0.31,1.0,Gamma-eudesmol,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+t2n,1,beta.phellandrene,4,-0.2140081562157678,0.264,1.0,Beta-phellandrene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+t2n,2,vinyl.caprylate,29,0.1753236866521637,0.234,1.0,Vinyl caprylate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+t2n,3,phenethyl_alcohol,13,-0.1536208532078136,0.222,1.0,Phenethyl alcohol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+orange,1,camphor,4,0.367482728671709,0.77,1.0,Camphor,Spices,,plausible_proxy,文献来源分类为Spices，可作风格或工艺关联标志物。
+orange,2,acetaldehyde,5,-0.2465724722103617,0.334,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+orange,3,CS2,10,-0.1792647283454015,0.208,1.0,Carbon disulfide,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+coriander,1,X2.methyl.benzofuran,4,0.2380102978052263,0.142,1.0,2-methyl-benzofuran,Malt,,plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+coriander,2,cis.beta.terpineol,28,0.2123562501777485,0.28,1.0,Cis-Î²-terpineol,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+coriander,3,hexyl.acetate,22,0.2077940646780355,0.246,1.0,Hexyl acetate,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+clove,1,limonene,4,0.3423166863770366,0.874,1.0,Limonene,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+clove,2,furfural,0,0.1846653634699013,0.072,1.0,Furfural,Malt,,plausible_proxy,文献来源分类为Malt，可作风格或工艺关联标志物。
+clove,3,X3.methyl.2.butenal,3,0.2047567436530145,0.194,1.0,3-methyl-2-butenal,Internal standard solution,,plausible_proxy,文献来源分类为Internal standard solution，可作风格或工艺关联标志物。
+lactic,1,perillyl.acetate,0,0.4434179366350725,0.394,1.0,Perillyl acetate,Spices,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+lactic,2,caryophyllene.oxide,1,-0.3627834741739237,0.408,1.0,Caryophyllene oxide,Hops,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+lactic,3,isopentyl_acetate,5,-0.4098851280667399,0.572,1.0,Isoamyl acetate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+acetic,1,prenyl.isobutyrate,0,0.4055643299895067,0.422,1.0,Prenyl isobutyrate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+acetic,2,DES,7,-0.2791415907467736,0.386,1.0,Diethyl sulfide,Yeast,rotting vegetables,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+acetic,3,ethyl_isovalerate,0,0.3907163995997936,0.432,1.0,Ethyl 3-methylbutyrate,Others,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+barnyard,1,X2.undecanol,1,0.2847085057355201,0.38,1.0,2-undecanol,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+barnyard,2,n.hexanol,5,-0.2164228239660293,0.126,1.0,N-hexanol,Yeast,,plausible_proxy,文献来源分类为Yeast，可作风格或工艺关联标志物。
+barnyard,3,linalool.isovalerate,39,0.2353010709306847,0.282,1.0,Linalool isovalerate,Hops,,plausible_proxy,文献来源分类为Hops，可作风格或工艺关联标志物。
+alcohol,1,ethyl_octanoate,5,0.619370897611257,0.584,1.0,Ethyl octanoate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+alcohol,2,acetaldehyde,5,0.6033738415248976,0.684,1.0,Acetaldehyde,Yeast,"pungent, rotten-apples, green apple",process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+alcohol,3,ethyl.butyrate,5,0.5663159087178221,0.222,1.0,Ethyl butyrate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+aftertaste,1,ethyl_octanoate,5,0.5061785640433184,0.61,1.0,Ethyl octanoate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+aftertaste,2,ethyl_isovalerate,0,0.4392767208907906,0.814,1.0,Ethyl 3-methylbutyrate,Others,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+aftertaste,3,X.E..2.nonenal,1,0.4948075619302286,0.842,1.0,E-2-nonenal,Others,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+body,1,ethyl_hexanoate,5,0.5546743672775246,0.496,1.0,Ethyl hexanoate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+body,2,isobutanol,5,0.5303461352018118,0.658,1.0,Isobutanol,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+body,3,X3.methyl.2.hexanol,5,-0.54682642617644,0.64,1.0,3-methyl-2-hexanol,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+co2,1,ethyl_octanoate,5,0.5526871335738773,0.988,1.0,Ethyl octanoate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+co2,2,ethyl.butyrate,5,0.4054767787377383,0.334,1.0,Ethyl butyrate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+co2,3,X3.methyl.2.hexanol,5,-0.4215196440415155,0.282,1.0,3-methyl-2-hexanol,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+overall,1,ethyl_acetate,5,0.3249986079777278,0.59,1.0,Ethyl acetate,Yeast,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+overall,2,X2.3.dihydro.farnesol,2,0.2226296817618525,0.232,1.0,"2,3-dihydro-farnesol",Hops,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。
+overall,3,X.E..2.nonenal,1,0.2240857624456355,0.094,1.0,E-2-nonenal,Others,,process_proxy,可反映发酵、酒花投料或风格共变，但不是该感官维度的专一指标。

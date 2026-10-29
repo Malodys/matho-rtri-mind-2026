@@ -1,0 +1,40 @@
+{
+  "contract_version": "v1",
+  "join_key": "beer",
+  "row_count": 250,
+  "chemistry_matrix": {
+    "path": "data/interim/chem_log10_matrix_v1.csv"
+  },
+  "feature_registry": {
+    "path": "data/interim/chem_feature_sets_v1.csv"
+  },
+  "observation_status": {
+    "path": "data/interim/chem_observation_status_v1.csv"
+  },
+  "nondetect_mask": {
+    "path": "data/interim/chem_nondetect_mask_v1.csv"
+  },
+  "processing_rules": {
+    "path": "data/interim/data_processing_rules_v1.json"
+  },
+  "task": "Q1 prediction",
+  "feature_selector": {
+    "column": "q1_primary",
+    "value": true,
+    "expected_count": 227
+  },
+  "sum_sensitivity_selector": {
+    "column": "q1_sum_sensitivity",
+    "value": true,
+    "expected_count": 231
+  },
+  "targets": {
+    "path": "data/interim/sensory_targets_v1.csv"
+  },
+  "target_dictionary": {
+    "path": "data/interim/label_dictionary_v1.csv"
+  },
+  "styles": {
+    "path": "data/interim/beer_style_v1.csv"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "rows": 250,
+  "targets": 50,
+  "model": "eight_group_extra_trees",
+  "parameters_from": "q1_mainline_retrain_v1/grouped_model_best_params.csv",
+  "training": "all 250 beers",
+  "assessment": "do not use these fitted values for validation; use q1_mainline_retrain_v1/test_predictions.csv.gz",
+  "grades": "training-split empirical septiles; proxy scale, not recovered original 0-6 panel scores"
+}

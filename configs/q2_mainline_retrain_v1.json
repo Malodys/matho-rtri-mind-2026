@@ -1,0 +1,11 @@
+{
+  "feature_scope": "original211",
+  "correlation_source": "published",
+  "network_threshold": 0.5,
+  "bootstrap": 500,
+  "top_k": 3,
+  "redundancy_penalty": 0.35,
+  "comparison": "none",
+  "seed": 20261029,
+  "output": "reports/modeling/q2_mainline_retrain_v1"
+}

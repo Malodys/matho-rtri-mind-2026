@@ -43,7 +43,7 @@ def model_registry(inner):
                       ("model", MultiTaskElasticNet(max_iter=100000, tol=1e-4,
                                                      selection="random", random_state=20261026))]),
             {"model__l1_ratio": [0.05, 0.2, 0.5, 0.8, 0.95],
-             "model__alpha": np.logspace(-3, 0.5, 20)}, cv=inner,
+             "model__alpha": np.logspace(-2.5, 0.5, 16)}, cv=inner,
             scoring="neg_mean_squared_error", n_jobs=-1, refit=True),
         "pls2": GridSearchCV(
             Pipeline([("scale", StandardScaler()),

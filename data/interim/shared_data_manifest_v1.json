@@ -1,0 +1,45 @@
+{
+  "contract_version": "v1",
+  "produced_by": "src/build_data_contracts.py",
+  "upstream_notebooks": [
+    "notebooks/02_chem_process.ipynb",
+    "notebooks/03_label_prediction.ipynb"
+  ],
+  "canonical_artifacts": {
+    "chemistry_matrix": {
+      "path": "data/interim/chem_log10_matrix_v1.csv"
+    },
+    "feature_registry": {
+      "path": "data/interim/chem_feature_sets_v1.csv"
+    },
+    "observation_status": {
+      "path": "data/interim/chem_observation_status_v1.csv"
+    },
+    "chemical_dictionary": {
+      "path": "data/interim/chemical_dictionary.csv"
+    },
+    "sensory_targets": {
+      "path": "data/interim/sensory_targets_v1.csv"
+    },
+    "beer_styles": {
+      "path": "data/interim/beer_style_v1.csv"
+    },
+    "processing_rules": {
+      "path": "data/interim/data_processing_rules_v1.json"
+    }
+  },
+  "task_manifests": [
+    {
+      "path": "data/interim/q1_input_manifest_v1.json"
+    },
+    {
+      "path": "data/interim/q2_input_manifest_v1.json"
+    },
+    {
+      "path": "data/interim/q3_input_manifest_v1.json"
+    }
+  ],
+  "forbidden_legacy_entry_points": [
+    "data/interim/chem_log10_matrix.csv"
+  ]
+}

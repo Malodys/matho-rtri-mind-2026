@@ -1,0 +1,30 @@
+{
+  "train_n": 175,
+  "test_n": 75,
+  "features": 211,
+  "targets": [
+    "Tripel",
+    "Kriek",
+    "Lambic"
+  ],
+  "pool_size_per_target": 2000,
+  "selected_per_arm": 3,
+  "n_source_target_pairs": 211,
+  "n_compared_pairs": 176,
+  "n_insufficient_pairs": 35,
+  "sensory_heldout_mae": {
+    "ridge_mae": 0.38309337017146644,
+    "audit_extra_trees_mae": 0.36023378290132896
+  },
+  "mean_guided_audit_source_distance": 2.448955645866325,
+  "mean_control_audit_source_distance": 2.606718444704653,
+  "mean_target_only_audit_source_distance": 2.6073536688105388,
+  "guided_better_than_target_only_pairs": 146,
+  "selected_independent_style_check_rate": 0.6856060606060606,
+  "target_only_minus_guided_source_cluster_mean": 0.16805188566641652,
+  "target_only_minus_guided_source_cluster_bootstrap_ci95": [
+    0.1319310100775215,
+    0.20580344486838686
+  ],
+  "note": "Random forest target-style recognition is a candidate-selection gate. LDA is a separate model audit, not independent sensory or brewing validation. Evaluation is retrospective because earlier Q3 work inspected all 250 beers. E-2-nonenal uses a relative cap; stale_hops remains sensory-predicted."
+}

@@ -1,0 +1,2 @@
+model,Macro_RMSE,Macro_MAE,R2_mean,R2_median,Spearman_mean,Spearman_median,proxy_grade_MAE,proxy_exact_accuracy,proxy_within_one_accuracy,proxy_quadratic_kappa
+grouped_extra_trees,0.48807133266812214,0.34754423611511387,0.216872843137647,0.18849453726489385,0.42362228789009115,0.4150393342636204,1.608,0.20346666666666668,0.5333333333333333,0.29212885277751766

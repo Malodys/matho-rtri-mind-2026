@@ -1,0 +1,8 @@
+{
+  "n_sources": 11,
+  "strict_real_reference_feasible_sources": 0,
+  "threshold_real_reference_feasible_sources": 1,
+  "selected_predicted_stale_nonworsening": 10,
+  "mean_source_to_candidate_distance": 15.930517365129532,
+  "mean_reference_defect_edit_distance": 1.1167922090322617
+}

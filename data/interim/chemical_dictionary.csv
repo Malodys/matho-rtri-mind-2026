@@ -1,0 +1,232 @@
+column,field_name_R,chemical_name,origin_paper,unit,calibrated,aging,off_flavors,missing_n,unique_n
+acetaldehyde,acetaldehyde,Acetaldehyde,Yeast,mg/L,yes,increase,"pungent, rotten-apples, green apple",0,250
+CS2,CS2,Carbon disulfide,Yeast,ug/L,yes,,,0,42
+DES,DES,Diethyl sulfide,Yeast,ug/L,yes,,rotting vegetables,0,222
+DMS,DMS,Dimethyl sulfide,Malt,ug/L,yes,increase,"cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",0,250
+ethyl_2.methyl_butyrate,ethyl_2.methyl_butyrate,Ethyl 2-methylbutyrate,Others,mg/L,yes_gcms,increase,,0,163
+ethyl_acetate,ethyl_acetate,Ethyl acetate,Yeast,mg/L,yes,decrease,,0,250
+ethyl_decanoate,ethyl_decanoate,Ethyl decanoate,Yeast,mg/L,"yes_gcms, yes",decrease,,0,249
+ethyl_hexanoate,ethyl_hexanoate,Ethyl hexanoate,Yeast,mg/L,"yes_gcms,yes",decrease,,0,250
+ethyl_isovalerate,ethyl_isovalerate,Ethyl 3-methylbutyrate,Others,mg/L,"yes_gcms,yes",increase,,0,166
+ethyl_octanoate,ethyl_octanoate,Ethyl octanoate,Yeast,mg/L,"yes_gcms, yes",decrease,,0,249
+ethyl_propionate,ethyl_propionate,Ethyl propionate,Yeast,mg/L,"yes_gcms, yes",,,0,238
+H2S,H2S,Hydrogen sulfide,Yeast,ug/L,yes,,"sulfidic, rotten eggs",0,241
+isoamyl_alcohol,isoamyl_alcohol,Isoamyl alcohol,Yeast,mg/L,"yes_gcms,yes",,,0,249
+isobutanol,isobutanol,Isobutanol,Yeast,mg/L,"yes_gcms,yes",increase,,0,246
+isobutyl_acetate,isobutyl_acetate,Isobutyl acetate,Yeast,mg/L,"yes_gcms,yes",,,0,243
+isopentyl_acetate,isopentyl_acetate,Isoamyl acetate,Yeast,mg/L,"yes_gcms,yes",decrease,,0,250
+MeSH,MeSH,Methanethiol,Yeast,ug/L,yes,,"putrefaction, drains, rotting vegetables, estery",0,250
+octyl_acetate,octyl_acetate,Octyl acetate,Yeast,mg/L,"yes_gcms,yes",,,0,138
+phenethyl_acetate,phenethyl_acetate,Phenethyl acetate,Yeast,mg/L,"yes_gcms,yes",,,0,250
+phenethyl_alcohol,phenethyl_alcohol,Phenethyl alcohol,Yeast,mg/L,"yes_gcms, yes",,,0,250
+X4VG,X4VG,4-vinylguaiacol,Yeast,mg/L,yes_gcms,,,0,83
+SO2.mg.L.,SO2.mg.L.,Sulfur dioxide,Yeast,mg/L,yes,,Burnt matches,0,104
+acetic_acid.g.L.,acetic_acid.g.L.,Acetic acid,Wild flora,g/L,yes,,,0,107
+ammonia.mg.L.,ammonia.mg.L.,Ammonia,Malt,mg/L,yes,,,0,243
+color.EBC.,color.EBC.,Color,Malt,EBC,yes,,,0,219
+betaglucan.mg.L.,betaglucan.mg.L.,Betaglucan,Malt,mg/L,yes,,,0,194
+lactic_acid.mg.L.,lactic_acid.mg.L.,Lactic acid,Wild flora,mg/L,yes,,,0,202
+glycerol,glycerol,Glycerol,Yeast,g/L,yes,,,0,199
+iron,iron,Iron,Others,mg/L,yes,,,0,148
+pH,pH,pH,Others,pH,yes,,,0,106
+protein.g.L.,protein.g.L.,Protein,Others,g/L,yes,,,0,169
+bitterness,bitterness,Iso-alpha acids,Hops,IBU,yes,,,0,249
+GFS,GFS,Sugars,Malt,g/L,yes,,,0,148
+ethanol..v.v.,ethanol..v.v.,Ethanol,Yeast,v/v,yes,,,0,225
+CO2.PSI.,CO2.PSI.,Carbon dioxide,Others,PSI,yes,,,0,77
+unfermentables,unfermentables,Unfermentables,Malt,,yes,,,0,244
+kcalperc,kcalperc,Caloric value,Others,kcal%,yes,,,0,250
+X1.propanol,X1.propanol,1-propanol,Yeast,,,,,0,244
+X2.3.butanedione,X2.3.butanedione,Diacetyl,Yeast,mg/L,yes_gcms,increase,"butterscotch, popcorn, oily, milky",9,239
+X3.methylbutanal,X3.methylbutanal,3-methylbutanal,Malt,A.U.,,increase,,7,240
+propylene.glycol,propylene.glycol,Propylene glycol,Others,,,,,0,179
+propyl.acetate,propyl.acetate,N-propyl acetate,Yeast,,,,,0,235
+n.pentanol,n.pentanol,N-pentanol,Yeast,,,,,0,250
+X2.methyl.1.butanol,X2.methyl.1.butanol,2-methyl-1-butanol,Yeast,,,,,0,250
+isopentyl.formate,isopentyl.formate,Isopentyl formate,Yeast,,,,,0,250
+ethyl.isobutyrate,ethyl.isobutyrate,Ethyl isobutyrate,Yeast,mg/L,yes_gcms,,,1,243
+X3.methyl.2.butenal,X3.methyl.2.butenal,3-methyl-2-butenal,Internal standard solution,,,,,0,250
+X2.methyltetrahydrofuran.3.one,X2.methyltetrahydrofuran.3.one,2-methyltetrahydrofuran-3-one,Malt,mg/L,yes_gcms,,,0,250
+ethyl.butyrate,ethyl.butyrate,Ethyl butyrate,Yeast,mg/L,yes_gcms,,,0,248
+butyl.acetate,butyl.acetate,Butyl acetate,Yeast,,,,,0,233
+methylpyrazine,methylpyrazine,Methylpyrazine,Malt,mg/L,yes_gcms,,,12,235
+furfural,furfural,Furfural,Malt,mg/L,yes_gcms,increase,,1,247
+ethyl.lactate,ethyl.lactate,Ethyl lactate,Others,,,increase,,0,56
+X3Z.hexenol,X3Z.hexenol,Cis-3-hexenol,Hops,mg/L,yes_gcms,,,0,247
+n.hexanol,n.hexanol,N-hexanol,Yeast,mg/L,yes_gcms,,,0,247
+styrene,styrene,Styrene,Yeast,mg/L,yes_gcms,,,0,250
+X2.furanmethanol,X2.furanmethanol,Furfuryl alcohol,Others,,,increase,,0,248
+X3.methyl.2.hexanol,X3.methyl.2.hexanol,3-methyl-2-hexanol,Yeast,,,,,0,250
+X3.furanmethanol,X3.furanmethanol,3-furanmethanol,Malt,,,,,0,250
+X2.acetylfuran,X2.acetylfuran,2-acetylfuran,Malt,,,,,0,248
+X2.6.dimethyl.pyrazine,X2.6.dimethyl.pyrazine,"2,6-dimethylpyrazine",Malt,A.U.,,,,0,157
+amyl.acetate,amyl.acetate,Amyl acetate,Yeast,mg/L,yes_gcms,,,27,221
+ethyl.tiglate,ethyl.tiglate,Ethyl tiglate,Yeast,,,,,0,238
+benzaldehyde,benzaldehyde,Benzaldehyde,Yeast,mg/L,yes_gcms,increase,,0,246
+X5.methylfurfural,X5.methylfurfural,5-methylfurfural,Malt,mg/L,yes_gcms,,,0,247
+n.heptanol,n.heptanol,N-heptanol,Yeast,,,,,0,250
+X1.octen.3.ol,X1.octen.3.ol,1-octen-3-ol,Yeast,,,,,0,247
+X3.methylthio.propanol,X3.methylthio.propanol,Methionol,Others,,,increase,,0,225
+isomaltol,isomaltol,Isomaltol,Malt,,,,,0,222
+X6.methyl.5.hepten.2.one,X6.methyl.5.hepten.2.one,Methyl heptenone,Yeast,,,,,0,39
+X2.pentyl.furan,X2.pentyl.furan,2-pentyl furan,Malt,,,,,0,204
+ethyl.hex..3E..enoate,ethyl.hex..3E..enoate,Ethyl 3-hexanoate,Yeast,,,,,0,250
+alpha.phellandrene,alpha.phellandrene,Î±-phellandrene,Hops,A.U.,,,,0,113
+dehydroxy.cis.linalool.oxide,dehydroxy.cis.linalool.oxide,Dehydroxy-cis-linalool oxide,Hops,,,,,0,145
+hexyl.acetate,hexyl.acetate,Hexyl acetate,Yeast,mg/L,yes_gcms,,,0,248
+isopentyl.butanoate,isopentyl.butanoate,Isopentyl butanoate,Yeast,,,,,0,179
+X2.ethyl.1.hexanol,X2.ethyl.1.hexanol,2-ethyl-1-hexanol,Yeast,,,,,0,180
+beta.phellandrene,beta.phellandrene,Beta-phellandrene,Hops,,,,,0,143
+limonene,limonene,Limonene,Hops,,,,,0,39
+eucalyptol,eucalyptol,Eucalyptol,Hops,,,,,0,110
+benzyl.alcohol,benzyl.alcohol,Benzyl alcohol,Hops,mg/L,yes_gcms,,,0,245
+ethyl.hex..2E..enoate,ethyl.hex..2E..enoate,Ethyl 2-hexenoate,Yeast,,,,,0,194
+phenylacetaldehyde,phenylacetaldehyde,Phenylacetaldehyde,Others,mg/L,yes_gcms,increase,,1,247
+X.E..beta.ocimene,X.E..beta.ocimene,E-Î²-ocimene,Hops,mg/L,yes_gcms,,,0,247
+prenyl.isobutyrate,prenyl.isobutyrate,Prenyl isobutyrate,Yeast,,,,,0,248
+ethyl.furoate,ethyl.furoate,Ethyl furoate,Malt,,,,,0,199
+ortho.cresol,ortho.cresol,O-cresol,Yeast,,,,,0,249
+ethyl.5.methylhexanoate,ethyl.5.methylhexanoate,Ethyl 5-methylhexanoate,Yeast,,,,,0,249
+X2.acetylpyrrole,X2.acetylpyrrole,2-acetylpyrrole,Malt,A.U.,,,,0,248
+isoamyl.lactate,isoamyl.lactate,Isoamyl lactate,Wild flora,,,,,0,232
+n.octanol,n.octanol,N-octanol,Yeast,,,,,0,250
+cis.linalool.oxide,cis.linalool.oxide,Cis-linalool oxide,Hops,,,,,0,131
+meta.cymenene,meta.cymenene,Meta-cymenene,Hops,,,,,0,57
+terpinolene,terpinolene,Terpinolene,Spices,,,,,0,250
+linalool,linalool,Linalool,Hops,mg/L,yes_gcms,decrease,,0,245
+nonan.2.ol,nonan.2.ol,2-nonanol,Hops,,,,,0,250
+n.nonanal,n.nonanal,N-nonanal,Yeast,,,,,0,151
+X2.methyl.benzofuran,X2.methyl.benzofuran,2-methyl-benzofuran,Malt,,,,,0,226
+heptyl.acetate,heptyl.acetate,Heptyl acetate,Yeast,,,,,0,199
+X4.methyl.1.pentanol,X4.methyl.1.pentanol,4-methyl-1-pentanol,Yeast,,,,,0,247
+neo.allo.ocimene,neo.allo.ocimene,Neo-allo-ocimene,Hops,,,,,0,188
+x.methyl.1.octanol,x.methyl.1.octanol,X-methyl-1-octanol,Yeast,,,,,0,230
+trans.dihydro.beta.terpineol,trans.dihydro.beta.terpineol,Trans-dihydro-Î²-terpineol,Spices,,,,,0,167
+cis.beta.terpineol,cis.beta.terpineol,Cis-Î²-terpineol,Hops,,,,,0,91
+y.methyl.1.octanol,y.methyl.1.octanol,Y-methyl-1-octanol,Yeast,,,,,0,99
+camphor,camphor,Camphor,Spices,,,,,0,207
+isobutyl.hexanoate,isobutyl.hexanoate,Isobutyl hexanoate,Yeast,,,,,0,245
+nerol.oxide,nerol.oxide,Nerol oxide,Hops,,,,,0,240
+X.E..2.nonenal,X.E..2.nonenal,E-2-nonenal,Others,mg/L,yes_gcms,increase,,0,247
+cis.dihydro.beta.terpineol,cis.dihydro.beta.terpineol,Cis-dihydro-Î²-terpineol,Hops,,,,,0,48
+X4.ethyl.phenol,X4.ethyl.phenol,4-ethyl-phenol,Wild flora,A.U.,,,,0,241
+isoborneol,isoborneol,Isoborneol,Others,,,,,0,250
+ethyl.benzoate,ethyl.benzoate,Ethyl benzoate,Yeast,,,,,0,250
+n.nonanol,n.nonanol,N-nonanol,Yeast,,,,,0,244
+terpinen.4.ol,terpinen.4.ol,Terpinen-4-ol,Spices,,,,,0,247
+diethyl.succinate,diethyl.succinate,Diethyl succinate,Yeast,mg/L,yes_gcms,,,0,248
+vinyl.caprylate,vinyl.caprylate,Vinyl caprylate,Yeast,,,,,0,245
+X1.alpha.terpineol,X1.alpha.terpineol,Alpha-terpineol,Hops,mg/L,yes_gcms,,,0,249
+ethyl..E..linalool,ethyl..E..linalool,Ethyl linalool,Hops,,,,,0,250
+ethyl.nicotinate,ethyl.nicotinate,Ethyl nicotinate,Others,mg/L,yes_gcms,increase,,2,246
+citronellol,citronellol,Citronellol,Hops,mg/L,yes_gcms,,,0,249
+nerol,nerol,Nerol,Hops,,,,,0,245
+hydroxy.methyl.furfural,hydroxy.methyl.furfural,5-hydroxymethylfurfural,Malt,,,,,0,250
+E.ocimenone,E.ocimenone,Ocimenone,Hops,,,,,0,249
+cumin.aldehyde,cumin.aldehyde,Cumin aldehyde,Spices,,,,,0,246
+ethyl.phenylacetate,ethyl.phenylacetate,Ethyl phenylacetate,Yeast,,,,,0,250
+isopentyl.hexanoate,isopentyl.hexanoate,Isopentyl hexanoate,Yeast,,,,,0,220
+geraniol,geraniol,Geraniol,Hops,mg/L,yes_gcms,decrease,,0,243
+beta.cyclohomocitral,beta.cyclohomocitral,Î²-cyclohomocitral,Hops,,,,,0,246
+E.cinnamaldehyde,E.cinnamaldehyde,Cinnamaldehyde,Spices,,,,,0,206
+n.decanol,n.decanol,N-decanol,Yeast,,,,,0,245
+neryl.formate,neryl.formate,Neryl formate,Hops,,,,,0,202
+X4.ethyl.guaiacol,X4.ethyl.guaiacol,4-ethyl-guaiacol,Wild flora,A.U.,,,,0,248
+X2.undecanone,X2.undecanone,2-undecanone,Hops,A.U.,,,,0,191
+trans.dihydro.alpha.terpinyl.acetate,trans.dihydro.alpha.terpinyl.acetate,Trans-dihydro-Î±-terpinyl acetate,Hops,,,,,0,250
+terpinen.4.ol.acetate,terpinen.4.ol.acetate,Terpinen-4-ol acetate,Hops,,,,,0,226
+X2.undecanol,X2.undecanol,2-undecanol,Hops,,,,,0,230
+delta.terpinyl.acetate,delta.terpinyl.acetate,Terpiryl acetate,Hops,,,,,0,245
+X.E.E..2.4.decadienal,X.E.E..2.4.decadienal,"E,E-2,4-decadienal",Others,mg/L,yes_gcms,,,0,246
+methyl.geranate,methyl.geranate,Methyl geranate,Hops,,,,,0,242
+car.3.en.2.one,car.3.en.2.one,Car-3-en-2-one,Hops,,,,,0,242
+dimethoxy..E..citral,dimethoxy..E..citral,Dimethoxy-E-citral,Hops,,,,,0,186
+X2.butyloctanoate,X2.butyloctanoate,2-butyl octanoate,Yeast,,,,,0,216
+X4.methoxysalicylaldehyde,X4.methoxysalicylaldehyde,4-methoxysalicylaldehyde,Spices,,,,,0,240
+ethyl.hydrocinnamate,ethyl.hydrocinnamate,Ethyl hydrocinnamate,Spices,,,,,0,248
+eugenol,eugenol,Eugenol,Spices,mg/L,yes_gcms,,,0,250
+gamma.nonalactone,gamma.nonalactone,Gamma-nonalactone,Yeast,mg/L,yes_gcms,increase,,0,249
+methyl.para.anisate,methyl.para.anisate,Methyl para-anisate,Spices,,,,,0,229
+X.E..beta.damascenone,X.E..beta.damascenone,E-Î²-damascenone,Hops,mg/L,yes_gcms,increase,,0,249
+ethyl..9..decenoate,ethyl..9..decenoate,Ethyl 9-decenoate,Yeast,,,,,0,246
+vanillin,vanillin,Vanillin,Others,,,,,0,229
+geosmin,geosmin,Geosmin,Wild flora,,,,,0,114
+dodecanal,dodecanal,Dodecanal,Spices,,,,,0,234
+X4.8.alpha.epoxy.caryophyllane,X4.8.alpha.epoxy.caryophyllane,"4,8-Î±-epoxy-caryophyllane",Hops,,,,,0,183
+E.caryophyllene,E.caryophyllene,Caryophyllene,Hops,mg/L,yes_gcms,,,0,250
+X.E..alpha.ionone,X.E..alpha.ionone,E-Î±-ionone,Hops,,,,,0,245
+perillyl.acetate,perillyl.acetate,Perillyl acetate,Spices,,,,,0,250
+beta.humulene,beta.humulene,Î²-humulene,Hops,,,,,0,73
+X2.phenyl.ethyl.butyrate,X2.phenyl.ethyl.butyrate,2-phenyl ethyl butyrate,Yeast,,,,,0,244
+X.Z..beta.farnesene,X.Z..beta.farnesene,Z-Î²-farnesene,Hops,,,,,0,235
+pentyl.octanoate,pentyl.octanoate,Pentyl octanoate,Yeast,,,,,0,226
+X.E..beta.farnesene,X.E..beta.farnesene,E-Î²-farnesene,Hops,,,,,0,173
+X2.methylbutyl.octanoate,X2.methylbutyl.octanoate,2-methylbutyl octanoate,Yeast,,,,,0,237
+alpha.humulene,alpha.humulene,Alpha-humulene,Hops,mg/L,yes_gcms,,,0,250
+neryl.propanoate,neryl.propanoate,Neryl propanoate,Hops,,,,,0,245
+X9.epi..E..caryophyllene,X9.epi..E..caryophyllene,9-epi-E-caryophyllene,Hops,,,,,0,241
+ethyl..E..cinnamate,ethyl..E..cinnamate,Ethyl cinnamate,Others,,,,,0,245
+linalool.isovalerate,linalool.isovalerate,Linalool isovalerate,Hops,,,,,0,216
+alpha.terpinyl.isobutanoate,alpha.terpinyl.isobutanoate,Î±-terpinyl isobutanoate,Hops,,,,,0,243
+n.dodecanol,n.dodecanol,N-dodecanol,Yeast,,,,,0,244
+germacrene.D,germacrene.D,Germacrene D,Hops,,,,,0,231
+X.E..beta.ionone,X.E..beta.ionone,E-Î²-ionone,Hops,,,,,0,250
+valencene,valencene,Valencene,Spices,,,,,0,81
+neryl.isobutanoate,neryl.isobutanoate,Neryl isobutanoate,Hops,,,,,0,231
+E.methyl.isoeugenol,E.methyl.isoeugenol,Methyl isoeugenol,Spices,,,,,0,155
+X.Z..dihydro.apofarnesal,X.Z..dihydro.apofarnesal,Z-dihydro-apofarnesal,Hops,,,,,0,191
+butylated.hydroxytoluene,butylated.hydroxytoluene,Butylated hydroxytoluene,Others,,,,,0,160
+X.E..dihydro.apofarnesal,X.E..dihydro.apofarnesal,E-dihydro-apofarnesal,Hops,,,,,0,151
+Z.nerolidol,Z.nerolidol,Z-nerolidol,Hops,mg/L,yes_gcms,,,0,249
+X.E..ortho.methoxy.cinnamaldehyde,X.E..ortho.methoxy.cinnamaldehyde,E-ortho-methoxy cinnamaldehyde,Spices,,,,,0,182
+alpha.calacorene,alpha.calacorene,Î±-calacorene,Hops,,,,,0,249
+E.nerolidol,E.nerolidol,E-nerolidol,Hops,,,,,0,243
+dihydroisocaryophyllene.epoxide,dihydroisocaryophyllene.epoxide,Tobacarol,Hops,,,,,0,245
+caryophyllene.alcohol,caryophyllene.alcohol,Caryophyllene alcohol,Hops,,,,,0,247
+neryl.isovalerate,neryl.isovalerate,Neryl isovalerate,Hops,,,,,0,234
+spathulenol,spathulenol,Spathulenol,Spices,,,,,0,176
+caryophyllene.oxide,caryophyllene.oxide,Caryophyllene oxide,Hops,,,,,0,199
+humulene.epoxide.II,humulene.epoxide.II,Humulene epoxide II,Hops,,,,,0,233
+alloaromadendrene.epoxide,alloaromadendrene.epoxide,Allo-aromadendrene epoxide,Hops,,,,,0,233
+X1.10.di.epi.cubenol,X1.10.di.epi.cubenol,Epicubenol,Hops,,,,,0,240
+isopropyl.laurate,isopropyl.laurate,Isopropyl laurate,Yeast,,,,,0,249
+caryophylla.4.12..8.13..dien.5.alpha.ol,caryophylla.4.12..8.13..dien.5.alpha.ol,"Caryophylla-4,8-dien-5-ol",Hops,,,,,0,189
+gamma.eudesmol,gamma.eudesmol,Gamma-eudesmol,Spices,,,,,0,123
+alpha.muurolol,alpha.muurolol,Î±-muurolol,Hops,A.U.,,,,0,208
+X1.2.dihydro.8.hydroxy..2E..linalool,X1.2.dihydro.8.hydroxy..2E..linalool,"1,2-dihydro-8-hydroxy-2E-linalool",Hops,,,,,0,179
+tau.cadinol,tau.cadinol,Tau-cadinol,Hops,,,,,0,230
+selin.11.en.4.alpha.ol,selin.11.en.4.alpha.ol,Kongol,Hops,,,,,0,128
+alpha.eudesmol,alpha.eudesmol,Î±-eudesmol,Spices,,,,,0,165
+X14.hydroxy.9.epi..E..caryophyllene,X14.hydroxy.9.epi..E..caryophyllene,14-hydroxy-9-epi-(E)-caryophyllene,Hops,,,,,0,225
+tau.muurolol,tau.muurolol,Tau-muurolol,Hops,,,,,0,197
+n.tetradecanol,n.tetradecanol,N-tetradecanol,Yeast,,,,,0,214
+foeniculin,foeniculin,Eoeniculin,Spices,,,,,0,99
+cadalene,cadalene,Cadalene,Hops,,,,,0,245
+X2.3.dihydro.farnesol,X2.3.dihydro.farnesol,"2,3-dihydro-farnesol",Hops,,,,,0,238
+X2E.6Z.farnesal,X2E.6Z.farnesal,"E,Z-farnesal",Hops,,,,,0,170
+caryophyllene.acetate,caryophyllene.acetate,Caryophyllene acetate,Hops,,,,,0,141
+X14.hydroxy.alpha.humulene,X14.hydroxy.alpha.humulene,14-hydroxy-Î±-humulene,Hops,,,,,0,172
+X2Z.6E.farnesal,X2Z.6E.farnesal,"Z,E-farnesal",Hops,,,,,0,153
+X2Z.6Z.farnesol,X2Z.6Z.farnesol,"Z,Z-farnesol",Hops,,,,,0,163
+X2Z.6E.farnesol,X2Z.6E.farnesol,"Z,E-farnesol",Hops,,,,,0,215
+ambroxide,ambroxide,Ambroxide,Spices,,,,,0,235
+benzyl.benzoate,benzyl.benzoate,Benzyl benzoate,Others,,,,,0,237
+X2E.6E.methyl.farnesoate,X2E.6E.methyl.farnesoate,"2E,6E-methyl farnesoate",Hops,,,,,0,172
+ethyl.tetradecanoate,ethyl.tetradecanoate,Ethyl tetradecanoate,Yeast,,,,,0,236
+X2.ethylhexylsalicylate,X2.ethylhexylsalicylate,2-ethylhexyl acrylate,Others,,,,,0,172
+isopropyl.tetradecanoate,isopropyl.tetradecanoate,Isopropyl tetradecanoate,Yeast,,,,,0,225
+ethyl.pentadecanoate,ethyl.pentadecanoate,Ethyl pentadecanoate,Yeast,,,,,0,213
+methyl.hexadecanoate,methyl.hexadecanoate,Methyl hexadecanoate,Yeast,,,,,0,227
+Z.Z.geranyl.linalool,Z.Z.geranyl.linalool,"Z,Z-geranyl linalool",Hops,,,,,0,221
+ethyl.hexadecanoate,ethyl.hexadecanoate,Ethyl hexadecanoate,Yeast,,,,,0,197
+manool.oxide,manool.oxide,Manool oxide,Spices,,,,,0,245
+X13.epi.manool.oxide,X13.epi.manool.oxide,13-epi manool oxide,Spices,,,,,0,212
+isopropyl.hexadecanoate,isopropyl.hexadecanoate,Isopropyl hexadecanoate,Yeast,,,,,0,109
+manool,manool,Manool,Spices,,,,,0,240
+ethyl.octadecanoate,ethyl.octadecanoate,Ethyl octadecanoate,Yeast,,,,,0,229
+ethyl.pentanoate,ethyl.pentanoate,Ethyl pentanoate,Yeast,,,,,0,249
+X2.ethyl.3.methylpyrazine,X2.ethyl.3.methylpyrazine,2-ethyl-3-methylpyrazine,Malt,A.U.,,,,0,248
+esters_sum,esters_sum,Total ester compounds,,,,,,0,250
+aroma_hops_sum,aroma_hops_sum,Total hop aroma compounds,,,,,,13,237
+acids_sum,acids_sum,Total acids,,,,,,0,248
+sulfur_sum,sulfur_sum,Total sulfur compounds,,,,,,0,250

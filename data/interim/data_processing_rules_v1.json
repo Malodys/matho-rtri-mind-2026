@@ -1,0 +1,33 @@
+{
+  "version": "v1",
+  "frozen_primary_matrix": "data/interim/chem_log10_matrix_v1.csv",
+  "principles": [
+    "No blanket log transform; use each feature's registered scale_action.",
+    "Flag outliers without deleting samples or changing the frozen matrix.",
+    "Carry observation status; censored and model-imputed cells are not ordinary observations.",
+    "Fit data-dependent imputation, scaling, selection and dimension reduction inside training folds.",
+    "Manage the four derived sums separately until their formulas, scales and weights are verified."
+  ],
+  "feature_sets": {
+    "chemical": 211,
+    "physicochemical": 16,
+    "derived_sum": 4
+  },
+  "derived_sum_policy": {
+    "features": [
+      "esters_sum",
+      "aroma_hops_sum",
+      "acids_sum",
+      "sulfur_sum"
+    ],
+    "q2_primary": false,
+    "q3_direct_generation": false,
+    "recompute": "only after formulas, component scales and weights are verified",
+    "aroma_hops_sum": "NNLS fill preserves matrix completeness but does not verify its formula"
+  },
+  "status_codes": {
+    "0": "observed：正常观测值",
+    "1": "left_censored：低于检测限/共同底限，不是真缺失",
+    "2": "derived_imputed：派生变量原始缺失，经验证模型回填"
+  }
+}

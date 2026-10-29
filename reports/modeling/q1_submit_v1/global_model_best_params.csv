@@ -1,0 +1,5 @@
+model,model__alpha,inner_best_neg_MSE,model__l1_ratio,model__n_components,max_depth,max_features,min_samples_leaf
+ridge,366.5241237079626,-0.24382142180988658,,,,,
+multitask_elastic_net,0.31622776601683794,-0.23768979288275577,0.8,,,,
+pls2,,-0.2505272564620221,,10.0,,,
+global_extra_trees,,-0.24048136618546456,,,,0.6,3.0

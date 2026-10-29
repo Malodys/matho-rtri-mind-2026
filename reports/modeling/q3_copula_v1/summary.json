@@ -1,0 +1,12 @@
+{
+  "n_beers": 250,
+  "features": 211,
+  "styles_evaluated": [
+    "Tripel",
+    "Kriek",
+    "Lambic"
+  ],
+  "model": "pooled shrinkage Gaussian copula, style-shrunk detection probability and observed quantiles",
+  "sensory_cv_mae_mean": 0.3808172664498695,
+  "caution": "Generated status 1 is a censored/undetected state. Its numeric floor is a placeholder, not a chemical concentration."
+}

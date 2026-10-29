@@ -1,6 +1,3 @@
-'''
-增加感官标签分类
-'''
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,7 +7,7 @@ import pandas as pd
 
 def build_label_dictionary() -> Path:
     project = Path(__file__).resolve().parents[1]
-    raw = project / 'data' / 'raw'
+    raw = project / 'data/raw'
     output = project / 'data' / 'interim' / 'label_dictionary_v1.csv'
 
     labels_raw = pd.read_csv(raw / '4.csv', encoding='utf-8-sig')

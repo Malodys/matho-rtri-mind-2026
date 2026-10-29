@@ -1,0 +1,39 @@
+{
+  "contract_version": "v1",
+  "join_key": "beer",
+  "row_count": 250,
+  "chemistry_matrix": {
+    "path": "data/interim/chem_log10_matrix_v1.csv"
+  },
+  "feature_registry": {
+    "path": "data/interim/chem_feature_sets_v1.csv"
+  },
+  "observation_status": {
+    "path": "data/interim/chem_observation_status_v1.csv"
+  },
+  "nondetect_mask": {
+    "path": "data/interim/chem_nondetect_mask_v1.csv"
+  },
+  "processing_rules": {
+    "path": "data/interim/data_processing_rules_v1.json"
+  },
+  "task": "Q3 conditional generation and style transfer",
+  "generation_selector": {
+    "column": "q3_primary_generation",
+    "value": true,
+    "expected_count": 211
+  },
+  "optional_context_selector": {
+    "column": "q3_optional_context",
+    "value": true,
+    "expected_count": 16
+  },
+  "styles": {
+    "path": "data/interim/beer_style_v1.csv"
+  },
+  "chemical_metadata_and_thresholds": {
+    "path": "data/raw/8.xlsx"
+  },
+  "derived_sum_policy": "exclude from direct generation; recompute only after formula verification",
+  "sensory_integration": "use final Q1 predictor for sample-level profiles"
+}

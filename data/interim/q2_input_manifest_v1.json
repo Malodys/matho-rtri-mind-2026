@@ -1,0 +1,48 @@
+{
+  "contract_version": "v1",
+  "join_key": "beer",
+  "row_count": 250,
+  "chemistry_matrix": {
+    "path": "data/interim/chem_log10_matrix_v1.csv"
+  },
+  "feature_registry": {
+    "path": "data/interim/chem_feature_sets_v1.csv"
+  },
+  "observation_status": {
+    "path": "data/interim/chem_observation_status_v1.csv"
+  },
+  "nondetect_mask": {
+    "path": "data/interim/chem_nondetect_mask_v1.csv"
+  },
+  "processing_rules": {
+    "path": "data/interim/data_processing_rules_v1.json"
+  },
+  "task": "Q2 network and sensory Top-3",
+  "primary_network_selector": {
+    "column": "q2_primary_network",
+    "value": true,
+    "expected_count": 211
+  },
+  "top3_selector": {
+    "column": "q2_top3_candidate",
+    "value": true,
+    "expected_count": 211
+  },
+  "context_selector": {
+    "column": "q2_context_layer",
+    "value": true,
+    "expected_count": 20
+  },
+  "published_descriptive_correlation": {
+    "path": "data/raw/2.csv"
+  },
+  "bootstrap_source": "chemistry_matrix",
+  "targets": {
+    "path": "data/interim/sensory_targets_v1.csv"
+  },
+  "required_edge_audits": [
+    "shared censoring/detection pattern",
+    "bootstrap sign/selection stability",
+    "community stability"
+  ]
+}
