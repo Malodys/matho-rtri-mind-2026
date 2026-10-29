@@ -2232,27 +2232,43 @@ def _front_page_count(pdf_doc, pages_text: Optional[List[str]] = None) -> int:
 def locate_heading_pages(pdf: Path, headings: Headings, front_pages: Optional[int] = None) -> Dict[str, int]:
     """在 PDF 中定位每个标题所在页，返回「标题 → 正文页码」。
 
-    注意：必须跳过前置页（封面与目录页），否则会在目录页里先命中同名标题，
-    导致所有页码被误判为 1。
+    匹配规则（按可靠性从高到低）：
+    1. 页内存在**整行**等于标题文本 → 采用（真实标题行）；
+    2. 页内存在以标题文本**开头**的行 → 采用（标题后跟了标点或表格续行）；
+    3. 都没有 → 才退回子串匹配（并告警）。
+
+    注意：早先把整页文字去掉换行后再做子串匹配，会让「在正文别处被顺带提到」的标题
+    被误判到更早的页上（实测 3.2、4.1 两处目录页码因此错位）。故必须保留行边界。
     """
     import pdfplumber
 
-    pages_text = []
+    pages_lines: List[List[str]] = []
     with pdfplumber.open(str(pdf)) as pdf_doc:
         for page in pdf_doc.pages:
-            pages_text.append(re.sub(r"\s+", "", page.extract_text() or ""))
+            pages_lines.append([re.sub(r"\s+", "", ln)
+                                for ln in (page.extract_text() or "").split("\n")])
         if front_pages is None:
-            front_pages = _front_page_count(pdf_doc, pages_text)
+            front_pages = _front_page_count(pdf_doc, ["\n".join(p) for p in pages_lines])
     out: Dict[str, int] = {}
+    fuzzy = []
     for level, text in headings:
         key = re.sub(r"\s+", "", text)
-        for i in range(front_pages, len(pages_text)):
-            if key in pages_text[i]:
-                out[text] = max(1, i + 1 - front_pages)
+        found = None
+        for i in range(front_pages, len(pages_lines)):
+            if any(ln == key for ln in pages_lines[i]):
+                found = i
                 break
-    missing = [t for _, t in headings if t not in out]
-    if missing:
-        _warn(f"未在 PDF 中定位到 {len(missing)} 个标题：{'、'.join(missing[:5])}…")
+        if found is None:
+            for i in range(front_pages, len(pages_lines)):
+                if any(ln.startswith(key) for ln in pages_lines[i]):
+                    found = i
+                    break
+        if found is None:
+            fuzzy.append(text)
+            continue
+        out[text] = max(1, found + 1 - front_pages)
+    if fuzzy:
+        _warn(f"未能在 PDF 中按整行定位 {len(fuzzy)} 个标题（目录页码将留空）：{'、'.join(fuzzy[:5])}…")
     return out
 
 
