@@ -51,6 +51,24 @@ def _git(root: Path, *args: str) -> str:
         return ""
 
 
+def _git_retry(root: Path, *args: str, attempts: int = 3, pause: float = 4.0) -> str:
+    """带重试的 git 调用。
+
+    本机到 github.com 的链路是间歇性的：一次成功的 `git push` 之后，紧接着的
+    `git ls-remote` 仍可能因网络抖动失败。若验收脚本只调用一次，
+    会把「网络抖动」误报成「分支未推送到远端」。故对需要访问远端的命令重试若干次。
+    """
+    import time
+    last = ""
+    for i in range(attempts):
+        last = _git(root, *args)
+        if last:
+            return last
+        if i < attempts - 1:
+            time.sleep(pause)
+    return last
+
+
 def _py(root: Path, code: str) -> tuple[int, str]:
     py = root / ".venv" / "Scripts" / "python.exe"
     try:
@@ -292,7 +310,7 @@ def run_checks(root: Path) -> list[dict]:
     unexpected_untracked = [u for u in untracked if not u.startswith("data/processed/")]
     commits = _git(root, "log", "--oneline", "origin/main..HEAD")
     commit_lines = [ln for ln in commits.splitlines() if ln.strip()]
-    remote_branches = _git(root, "ls-remote", "--heads", "origin")
+    remote_branches = _git_retry(root, "ls-remote", "--heads", "origin")
     on_remote = f"refs/heads/{branch}" in remote_branches
     v15 = (branch == "feat/toolchain-env" and ahead.isdigit() and int(ahead) >= 2
            and "prediction-models" in wt_list and not dirty_tracked
