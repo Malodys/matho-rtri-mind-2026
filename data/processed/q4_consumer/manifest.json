@@ -1,0 +1,341 @@
+{
+  "script": "scripts/q4_consumer.py",
+  "seed": 0,
+  "inner_seed": 20261026,
+  "n_folds": 5,
+  "n_jobs": 2,
+  "elapsed_seconds": 172.8,
+  "generated_utc": "2026-10-29T06:44:08Z",
+  "python": "3.12.10",
+  "upstream_inputs": {
+    "data/raw/1.csv": {
+      "sha256": "419849227a02e0c792cd405e6865035b7f58af1a92efa362dbb68a7ca2882f69",
+      "bytes": 700705
+    },
+    "data/raw/4.csv": {
+      "sha256": "43a7b38682ed81ce64d97ebc1874c09dffac023ade4877f34e3c83ef7d42dc1c",
+      "bytes": 162887
+    },
+    "data/raw/7.csv": {
+      "sha256": "2083138df46640e20b46f7e76ec32cf9b380fd34e019269afd819edeb546ff5e",
+      "bytes": 588816
+    },
+    "data/raw/8.xlsx": {
+      "sha256": "f2316766792111d98281bd35c8403682be8c8069d166a7a7d5887ffbb227700a",
+      "bytes": 1740092
+    },
+    "data/interim/chem_log10_matrix_v1.csv": {
+      "sha256": "021a6aff37df93ac8ed3b63b0ed981c0ad64a1d98e3b3b1184942b19319c9972",
+      "bytes": 764100
+    },
+    "data/splits/seed_0/split_manifest.csv": {
+      "sha256": "6e4c2f3be6163fecde68db0409f1fd66b7888554cfa2f31d6a13d84747508cb5",
+      "bytes": 5661
+    },
+    "data/processed/q1_final/model_summary.csv": {
+      "sha256": "1fedf836117240cbf8d7de2e953b657c1e425be1ab8a8d7c3ebaf1016ed4b2ff",
+      "bytes": 3179
+    },
+    "data/processed/q1_runs/global_extra_trees/model_best_params.csv": {
+      "sha256": "8daa473a1f453d03a27021bf0500c293ad565344ccaf58353fe8f9703b64a916",
+      "bytes": 113
+    },
+    "data/processed/q1_runs/independent_gbr/model_best_params.csv": {
+      "sha256": "e5f09910f1a50c33fa73ffd819134eaa49b553852b4f1b90e216f901934e62a0",
+      "bytes": 2819
+    }
+  },
+  "parameters": {
+    "split": "data/splits/seed_0/split_manifest.csv (locked 175/75)",
+    "feature_caliber_primary": "227 columns (4 *_sum derived columns dropped)",
+    "feature_caliber_control": "231 columns (derived columns kept)",
+    "consumer_dimensions": 183,
+    "panel_dimensions": 50,
+    "models": [
+      "global_mean",
+      "ridge",
+      "pls2",
+      "global_extra_trees",
+      "independent_gbr"
+    ],
+    "oof_model_selected": "global_extra_trees",
+    "cross_pairs": [
+      "A_hops_citrus|aroma_citrus",
+      "A_hops_tropical|aroma_tropical",
+      "A_hops_woody|aroma_woody",
+      "A_esters_fruity|aroma_fruity",
+      "A_esters_ethac|aroma_acetate",
+      "A_esters_isoaa|aroma_banana",
+      "A_esters_flower|aroma_flower",
+      "A_esters_all|aroma_estery",
+      "A_malt_bread|aroma_bread",
+      "A_malt_cara|aroma_caramel",
+      "F_hops_citrus|taste_citrus",
+      "F_esters_fruity|taste_fruity",
+      "F_esters_ethac|taste_acetate",
+      "F_esters_all|taste_estery",
+      "bitternes|taste_bitter",
+      "acidity|taste_sour",
+      "sweetness|taste_sweet",
+      "alcohol|palate_alcohol",
+      "co2|palate_carbonation",
+      "body|palate_buttery",
+      "dms|taste_stale",
+      "stale_hops|aroma_stale",
+      "diacetyl|taste_diacetyl",
+      "X4vg|taste_smoky",
+      "t2n|taste_cardboard",
+      "metallic|taste_metallic",
+      "orange|aroma_orange",
+      "clove|taste_clove",
+      "coriander|aroma_coriander",
+      "lactic|taste_lactic",
+      "acetic|taste_acetic",
+      "barnyard|taste_barnyard",
+      "aftertaste|taste_aftertaste"
+    ],
+    "dose_pairs": [
+      "ethyl_acetate|A_esters_all",
+      "ethyl_acetate|F_esters_all",
+      "linalool|A_hops_citrus",
+      "DMS|dms",
+      "X2.3.butanedione|diacetyl",
+      "X.E..2.nonenal|t2n"
+    ],
+    "price_descriptors": [
+      "aroma_fruity",
+      "aroma_hoppy",
+      "aroma_citrus",
+      "taste_fruity",
+      "taste_sweet",
+      "taste_bitter",
+      "taste_stale",
+      "palate_carbonation"
+    ],
+    "price_min_retailers_main": 2,
+    "price_min_retailers_control": 1,
+    "style_fe_min_n": 5,
+    "benchmark_tolerance": 0.005,
+    "reused_q1_hyperparams": {
+      "global_extra_trees": {
+        "max_depth": null,
+        "max_features": 0.6,
+        "min_samples_leaf": 3,
+        "n_estimators": 300
+      },
+      "independent_gbr": {
+        "n_estimators": 100,
+        "learning_rate": 0.03,
+        "max_depth": 2,
+        "min_samples_leaf": 8,
+        "max_features": "sqrt",
+        "subsample": 0.8
+      }
+    }
+  },
+  "key_results": {
+    "consumer_model_summary": [
+      {
+        "model": "global_mean",
+        "n_targets": 183,
+        "Macro_RMSE": 0.8904217421787154,
+        "Macro_MAE": 0.5415805763317812,
+        "R2_median": -0.008711875611102204,
+        "Spearman_median": NaN
+      },
+      {
+        "model": "ridge",
+        "n_targets": 183,
+        "Macro_RMSE": 0.8171171678542046,
+        "Macro_MAE": 0.481092792064034,
+        "R2_median": 0.08556597388013937,
+        "Spearman_median": 0.3094966976432695
+      },
+      {
+        "model": "pls2",
+        "n_targets": 183,
+        "Macro_RMSE": 0.8244753729825446,
+        "Macro_MAE": 0.49530932944070055,
+        "R2_median": 0.07885175198378591,
+        "Spearman_median": 0.33995310520210864
+      },
+      {
+        "model": "global_extra_trees",
+        "n_targets": 183,
+        "Macro_RMSE": 0.7737099544255684,
+        "Macro_MAE": 0.43406738971716846,
+        "R2_median": 0.17421079604416279,
+        "Spearman_median": 0.38905014928252846
+      },
+      {
+        "model": "independent_gbr",
+        "n_targets": 183,
+        "Macro_RMSE": 0.8026621263442013,
+        "Macro_MAE": 0.4614232974280457,
+        "R2_median": 0.09527051096254252,
+        "Spearman_median": 0.312148785117879
+      }
+    ],
+    "price_specs_ge2": {
+      "ols": {
+        "n": 189,
+        "r2": 0.3402120329849946,
+        "adj_r2": 0.31088812333988314,
+        "terms": 9,
+        "robust": "classical",
+        "design": [
+          "aroma_fruity",
+          "aroma_hoppy",
+          "aroma_citrus",
+          "taste_fruity",
+          "taste_sweet",
+          "taste_bitter",
+          "taste_stale",
+          "palate_carbonation"
+        ]
+      },
+      "ols_with_abv": {
+        "n": 189,
+        "r2": 0.36642773308212384,
+        "adj_r2": 0.33457214424267756,
+        "terms": 10,
+        "robust": "classical",
+        "design": [
+          "aroma_fruity",
+          "aroma_hoppy",
+          "aroma_citrus",
+          "taste_fruity",
+          "taste_sweet",
+          "taste_bitter",
+          "taste_stale",
+          "palate_carbonation",
+          "ABV"
+        ]
+      },
+      "fixed_effects": {
+        "n": 189,
+        "r2": 0.47226010513944694,
+        "adj_r2": 0.38756110966800017,
+        "terms": 27,
+        "robust": "cluster-robust (by style)",
+        "design": [
+          "aroma_fruity",
+          "aroma_hoppy",
+          "aroma_citrus",
+          "taste_fruity",
+          "taste_sweet",
+          "taste_bitter",
+          "taste_stale",
+          "palate_carbonation",
+          "ABV",
+          "fe_Tripel",
+          "fe_Strong ale",
+          "fe_Other",
+          "fe_Brown",
+          "fe_Wheat",
+          "fe_Hoppy",
+          "fe_Lambic",
+          "fe_Amber",
+          "fe_Dubbel",
+          "fe_Kriek",
+          "fe_Pils/Lager",
+          "fe_Low/No alcohol",
+          "fe_Christmas",
+          "fe_West Flanders ale",
+          "fe_Fruitbeer",
+          "fe_Stout/Porter",
+          "fe_Flanders old brown"
+        ]
+      }
+    },
+    "price_specs_ge1": {
+      "ols": {
+        "n": 229,
+        "r2": 0.33146526700326484,
+        "adj_r2": 0.30715491307611087,
+        "terms": 9,
+        "robust": "classical",
+        "design": [
+          "aroma_fruity",
+          "aroma_hoppy",
+          "aroma_citrus",
+          "taste_fruity",
+          "taste_sweet",
+          "taste_bitter",
+          "taste_stale",
+          "palate_carbonation"
+        ]
+      },
+      "ols_with_abv": {
+        "n": 229,
+        "r2": 0.3398097407701779,
+        "adj_r2": 0.31267863422648656,
+        "terms": 10,
+        "robust": "classical",
+        "design": [
+          "aroma_fruity",
+          "aroma_hoppy",
+          "aroma_citrus",
+          "taste_fruity",
+          "taste_sweet",
+          "taste_bitter",
+          "taste_stale",
+          "palate_carbonation",
+          "ABV"
+        ]
+      },
+      "fixed_effects": {
+        "n": 229,
+        "r2": 0.46248810235821847,
+        "adj_r2": 0.38723643668836916,
+        "terms": 29,
+        "robust": "cluster-robust (by style)",
+        "design": [
+          "aroma_fruity",
+          "aroma_hoppy",
+          "aroma_citrus",
+          "taste_fruity",
+          "taste_sweet",
+          "taste_bitter",
+          "taste_stale",
+          "palate_carbonation",
+          "ABV",
+          "fe_Tripel",
+          "fe_Strong ale",
+          "fe_Hoppy",
+          "fe_Amber",
+          "fe_Brown",
+          "fe_Wheat",
+          "fe_Lambic",
+          "fe_Dubbel",
+          "fe_Stout/Porter",
+          "fe_Kriek",
+          "fe_Other",
+          "fe_Christmas",
+          "fe_Pils/Lager",
+          "fe_Low/No alcohol",
+          "fe_Fruitbeer",
+          "fe_West Flanders ale",
+          "fe_Saison",
+          "fe_Brett/cofermented",
+          "fe_Flanders old brown"
+        ]
+      }
+    },
+    "price_n_ge2": 189,
+    "price_n_ge1": 229,
+    "benchmark_pass": 6,
+    "benchmark_rows": 6
+  },
+  "figures": [
+    "data/processed/q4_figures/fig1_consumer_predictability.png",
+    "data/processed/q4_figures/fig1_consumer_predictability.pdf",
+    "data/processed/q4_figures/fig2_cross_consistency.png",
+    "data/processed/q4_figures/fig2_cross_consistency.pdf",
+    "data/processed/q4_figures/fig3_dose_response.png",
+    "data/processed/q4_figures/fig3_dose_response.pdf",
+    "data/processed/q4_figures/fig4_price_effects.png",
+    "data/processed/q4_figures/fig4_price_effects.pdf"
+  ],
+  "boundary_statement": "附件未提供消费者评分/喜爱度标签，本层不声称预测消费者喜爱度；价格来自单一零售源附件，仅 ≥2 家报价的 189 款进入主回归。"
+}

@@ -1,0 +1,50 @@
+{
+  "models": [
+    "independent_gbr",
+    "grouped_extra_trees",
+    "global_extra_trees",
+    "pls2",
+    "multitask_elastic_net",
+    "ridge",
+    "global_mean"
+  ],
+  "best_model": "independent_gbr",
+  "bootstrap_resamples": 2000,
+  "cutpoints_source": "train-only septiles (175 samples)",
+  "absolute_track": {
+    "valid_dimensions": [
+      "bitternes",
+      "alcohol",
+      "co2"
+    ],
+    "threshold_anchored": [
+      "bitternes",
+      "alcohol"
+    ],
+    "relative_fallback": [
+      "co2"
+    ],
+    "invalid_dimensions": [
+      "dms",
+      "X4vg",
+      "diacetyl",
+      "t2n",
+      "metallic",
+      "acidity",
+      "body",
+      "sweetness"
+    ],
+    "validity_rules": {
+      "rule1_threshold": "载体须有 8.xlsx 感知阈值；否则可用本文已声明的相对约束替代规则（训练集 P05→0 分、P95→6 分），其余规则须全部满足",
+      "rule2_min_spearman": 0.3,
+      "rule3_max_anchor0_fraction": 0.6,
+      "rule4_min_z_bandwidth": 0.5,
+      "rule5_min_within_fraction": 0.3
+    }
+  },
+  "deliverable_shape": [
+    250,
+    153
+  ],
+  "deliverable_abs_policy": "仅 valid=True 的维度给出 <dim>_abs；其余留空（NaN）"
+}

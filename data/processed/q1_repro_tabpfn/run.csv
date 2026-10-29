@@ -1,0 +1,14 @@
+﻿setting,value
+python,3.12.10
+device,cpu
+seed,0
+folds,5
+n_estimators,4
+workers,3
+threads_per_worker,2
+samples,175
+features,231
+targets,50
+elapsed_seconds,4056.2
+model_path,F:\cs\mothercup\matho-rtri-mind-2026\worktrees\pretrained\Prior-Labstabpfn_3_5\tabpfn-v3.5-20260909.safetensors
+protocol,"worktrees/prediction-models/scripts/tabpfn_cv.py (KFold 5, seed 0)"

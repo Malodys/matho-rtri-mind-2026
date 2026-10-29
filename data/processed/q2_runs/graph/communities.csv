@@ -1,0 +1,232 @@
+node,file1_column,chemical_name,origin_paper,block,unit,aging,off_flavors,is_defect,defect_key,defect_log10_threshold,has_threshold,degree,community
+Acetaldehyde,acetaldehyde,Acetaldehyde,Yeast,GC-FID/FPD 目标定量,mg/L,increase,"pungent, rotten-apples, green apple",False,,,False,2,0
+Carbon disulfide,CS2,Carbon disulfide,Yeast,GC-FID/FPD 目标定量,ug/L,,,False,,,False,0,1
+Diethyl sulfide,DES,Diethyl sulfide,Yeast,GC-FID/FPD 目标定量,ug/L,,rotting vegetables,False,,,False,0,2
+Dimethyl sulfide,DMS,Dimethyl sulfide,Malt,GC-FID/FPD 目标定量,ug/L,increase,"cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",True,dms,-1.763210900590707,True,1,3
+Ethyl 2-methylbutyrate,ethyl_2.methyl_butyrate,Ethyl 2-methylbutyrate,Others,GC-MS 校准化合物,mg/L,increase,,False,,,False,2,4
+Ethyl acetate,ethyl_acetate,Ethyl acetate,Yeast,GC-FID/FPD 目标定量,mg/L,decrease,,False,,,False,4,0
+Ethyl decanoate,ethyl_decanoate,Ethyl decanoate,Yeast,GC-MS 校准化合物,mg/L,decrease,,False,,,False,6,5
+Ethyl hexanoate,ethyl_hexanoate,Ethyl hexanoate,Yeast,GC-MS 校准化合物,mg/L,decrease,,False,,,False,6,0
+Ethyl 3-methylbutyrate,ethyl_isovalerate,Ethyl 3-methylbutyrate,Others,GC-MS 校准化合物,mg/L,increase,,False,,,False,1,4
+Ethyl octanoate,ethyl_octanoate,Ethyl octanoate,Yeast,GC-MS 校准化合物,mg/L,decrease,,False,,,False,3,0
+Ethyl propionate,ethyl_propionate,Ethyl propionate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,0,6
+Hydrogen sulfide,H2S,Hydrogen sulfide,Yeast,GC-FID/FPD 目标定量,ug/L,,"sulfidic, rotten eggs",False,,,False,1,3
+Isoamyl alcohol,isoamyl_alcohol,Isoamyl alcohol,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,5,0
+Isobutanol,isobutanol,Isobutanol,Yeast,GC-MS 校准化合物,mg/L,increase,,False,,,False,3,0
+Isobutyl acetate,isobutyl_acetate,Isobutyl acetate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,5,0
+Isoamyl acetate,isopentyl_acetate,Isoamyl acetate,Yeast,GC-MS 校准化合物,mg/L,decrease,,False,,,False,4,0
+Methanethiol,MeSH,Methanethiol,Yeast,GC-FID/FPD 目标定量,ug/L,,"putrefaction, drains, rotting vegetables, estery",False,,,False,0,7
+Octyl acetate,octyl_acetate,Octyl acetate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,0,8
+Phenethyl acetate,phenethyl_acetate,Phenethyl acetate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,2,0
+Phenethyl alcohol,phenethyl_alcohol,Phenethyl alcohol,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,0,9
+4-vinylguaiacol,X4VG,4-vinylguaiacol,Yeast,GC-MS 校准化合物,mg/L,,,True,4vg,-0.6854313073067055,True,0,10
+Sulfur dioxide,SO2.mg.L.,Sulfur dioxide,Yeast,标准理化指标,mg/L,,Burnt matches,False,,,False,0,11
+Acetic acid,acetic_acid.g.L.,Acetic acid,Wild flora,标准理化指标,g/L,,,False,,,False,1,12
+Ammonia,ammonia.mg.L.,Ammonia,Malt,标准理化指标,mg/L,,,False,,,False,0,13
+Color,color.EBC.,Color,Malt,标准理化指标,EBC,,,False,,,False,1,14
+Betaglucan,betaglucan.mg.L.,Betaglucan,Malt,标准理化指标,mg/L,,,False,,,False,0,15
+Lactic acid,lactic_acid.mg.L.,Lactic acid,Wild flora,标准理化指标,mg/L,,,False,,,False,0,16
+Glycerol,glycerol,Glycerol,Yeast,标准理化指标,g/L,,,False,,,False,5,0
+Iron,iron,Iron,Others,标准理化指标,mg/L,,,False,,,False,0,17
+pH,pH,pH,Others,标准理化指标,pH,,,False,,,False,0,18
+Protein,protein.g.L.,Protein,Others,标准理化指标,g/L,,,False,,,False,1,14
+Iso-alpha acids,bitterness,Iso-alpha acids,Hops,标准理化指标,IBU,,,False,,,False,0,19
+Sugars,GFS,Sugars,Malt,标准理化指标,g/L,,,False,,,False,0,20
+Ethanol,ethanol..v.v.,Ethanol,Yeast,标准理化指标,v/v,,,False,,,False,10,0
+Carbon dioxide,CO2.PSI.,Carbon dioxide,Others,标准理化指标,PSI,,,False,,,False,0,21
+Unfermentables,unfermentables,Unfermentables,Malt,标准理化指标,,,,False,,,False,0,22
+Caloric value,kcalperc,Caloric value,Others,标准理化指标,kcal%,,,False,,,False,6,0
+1-propanol,X1.propanol,1-propanol,Yeast,GC-MS 相对丰度,,,,False,,,False,2,23
+Diacetyl,X2.3.butanedione,Diacetyl,Yeast,GC-MS 校准化合物,mg/L,increase,"butterscotch, popcorn, oily, milky",True,diacetyl,-0.5239658409215517,True,1,24
+3-methylbutanal,X3.methylbutanal,3-methylbutanal,Malt,文件8无校准标记,A.U.,increase,,False,,,False,0,25
+Propylene glycol,propylene.glycol,Propylene glycol,Others,GC-MS 相对丰度,,,,False,,,False,0,26
+N-propyl acetate,propyl.acetate,N-propyl acetate,Yeast,GC-MS 相对丰度,,,,False,,,False,1,27
+N-pentanol,n.pentanol,N-pentanol,Yeast,GC-MS 相对丰度,,,,False,,,False,3,23
+2-methyl-1-butanol,X2.methyl.1.butanol,2-methyl-1-butanol,Yeast,GC-MS 相对丰度,,,,False,,,False,4,23
+Isopentyl formate,isopentyl.formate,Isopentyl formate,Yeast,GC-MS 相对丰度,,,,False,,,False,2,23
+Ethyl isobutyrate,ethyl.isobutyrate,Ethyl isobutyrate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,1,28
+3-methyl-2-butenal,X3.methyl.2.butenal,3-methyl-2-butenal,Internal standard solution,GC-MS 相对丰度,,,,False,,,False,1,27
+2-methyltetrahydrofuran-3-one,X2.methyltetrahydrofuran.3.one,2-methyltetrahydrofuran-3-one,Malt,GC-MS 校准化合物,mg/L,,,False,,,False,0,29
+Ethyl butyrate,ethyl.butyrate,Ethyl butyrate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,1,0
+Butyl acetate,butyl.acetate,Butyl acetate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,30
+Methylpyrazine,methylpyrazine,Methylpyrazine,Malt,GC-MS 校准化合物,mg/L,,,False,,,False,0,31
+Furfural,furfural,Furfural,Malt,GC-MS 校准化合物,mg/L,increase,,False,,,False,0,32
+Ethyl lactate,ethyl.lactate,Ethyl lactate,Others,GC-MS 相对丰度,,increase,,False,,,False,0,33
+Cis-3-hexenol,X3Z.hexenol,Cis-3-hexenol,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,0,34
+N-hexanol,n.hexanol,N-hexanol,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,3,0
+Styrene,styrene,Styrene,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,0,35
+Furfuryl alcohol,X2.furanmethanol,Furfuryl alcohol,Others,GC-MS 相对丰度,,increase,,False,,,False,1,28
+3-methyl-2-hexanol,X3.methyl.2.hexanol,3-methyl-2-hexanol,Yeast,GC-MS 相对丰度,,,,False,,,False,8,28
+3-furanmethanol,X3.furanmethanol,3-furanmethanol,Malt,GC-MS 相对丰度,,,,False,,,False,4,28
+2-acetylfuran,X2.acetylfuran,2-acetylfuran,Malt,GC-MS 相对丰度,,,,False,,,False,5,28
+"2,6-dimethylpyrazine",X2.6.dimethyl.pyrazine,"2,6-dimethylpyrazine",Malt,GC-MS 相对丰度,A.U.,,,False,,,False,1,28
+Amyl acetate,amyl.acetate,Amyl acetate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,0,36
+Ethyl tiglate,ethyl.tiglate,Ethyl tiglate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,37
+Benzaldehyde,benzaldehyde,Benzaldehyde,Yeast,GC-MS 校准化合物,mg/L,increase,,False,,,False,0,38
+5-methylfurfural,X5.methylfurfural,5-methylfurfural,Malt,GC-MS 校准化合物,mg/L,,,False,,,False,1,4
+N-heptanol,n.heptanol,N-heptanol,Yeast,GC-MS 相对丰度,,,,False,,,False,4,28
+1-octen-3-ol,X1.octen.3.ol,1-octen-3-ol,Yeast,GC-MS 相对丰度,,,,False,,,False,6,39
+Methionol,X3.methylthio.propanol,Methionol,Others,GC-MS 相对丰度,,increase,,False,,,False,0,40
+Isomaltol,isomaltol,Isomaltol,Malt,GC-MS 相对丰度,,,,False,,,False,1,28
+Methyl heptenone,X6.methyl.5.hepten.2.one,Methyl heptenone,Yeast,GC-MS 相对丰度,,,,False,,,False,0,41
+2-pentyl furan,X2.pentyl.furan,2-pentyl furan,Malt,GC-MS 相对丰度,,,,False,,,False,0,42
+Ethyl 3-hexanoate,ethyl.hex..3E..enoate,Ethyl 3-hexanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,1,4
+α-phellandrene,alpha.phellandrene,Î±-phellandrene,Hops,GC-MS 相对丰度,A.U.,,,False,,,False,0,43
+Dehydroxy-cis-linalool oxide,dehydroxy.cis.linalool.oxide,Dehydroxy-cis-linalool oxide,Hops,GC-MS 相对丰度,,,,False,,,False,0,44
+Hexyl acetate,hexyl.acetate,Hexyl acetate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,0,45
+Isopentyl butanoate,isopentyl.butanoate,Isopentyl butanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,46
+2-ethyl-1-hexanol,X2.ethyl.1.hexanol,2-ethyl-1-hexanol,Yeast,GC-MS 相对丰度,,,,False,,,False,1,28
+Beta-phellandrene,beta.phellandrene,Beta-phellandrene,Hops,GC-MS 相对丰度,,,,False,,,False,3,47
+Limonene,limonene,Limonene,Hops,GC-MS 相对丰度,,,,False,,,False,0,48
+Eucalyptol,eucalyptol,Eucalyptol,Hops,GC-MS 相对丰度,,,,False,,,False,0,49
+Benzyl alcohol,benzyl.alcohol,Benzyl alcohol,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,0,50
+Ethyl 2-hexenoate,ethyl.hex..2E..enoate,Ethyl 2-hexenoate,Yeast,GC-MS 相对丰度,,,,False,,,False,2,39
+Phenylacetaldehyde,phenylacetaldehyde,Phenylacetaldehyde,Others,GC-MS 校准化合物,mg/L,increase,,False,,,False,0,51
+E-β-ocimene,X.E..beta.ocimene,E-Î²-ocimene,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,1,47
+Prenyl isobutyrate,prenyl.isobutyrate,Prenyl isobutyrate,Yeast,GC-MS 相对丰度,,,,False,,,False,5,4
+Ethyl furoate,ethyl.furoate,Ethyl furoate,Malt,GC-MS 相对丰度,,,,False,,,False,3,4
+O-cresol,ortho.cresol,O-cresol,Yeast,GC-MS 相对丰度,,,,False,,,False,7,28
+Ethyl 5-methylhexanoate,ethyl.5.methylhexanoate,Ethyl 5-methylhexanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,2,4
+2-acetylpyrrole,X2.acetylpyrrole,2-acetylpyrrole,Malt,GC-MS 相对丰度,A.U.,,,False,,,False,2,28
+Isoamyl lactate,isoamyl.lactate,Isoamyl lactate,Wild flora,GC-MS 相对丰度,,,,False,,,False,2,4
+N-octanol,n.octanol,N-octanol,Yeast,GC-MS 相对丰度,,,,False,,,False,4,28
+Cis-linalool oxide,cis.linalool.oxide,Cis-linalool oxide,Hops,GC-MS 相对丰度,,,,False,,,False,0,52
+Meta-cymenene,meta.cymenene,Meta-cymenene,Hops,GC-MS 相对丰度,,,,False,,,False,0,53
+Terpinolene,terpinolene,Terpinolene,Spices,GC-MS 相对丰度,,,,False,,,False,2,47
+Linalool,linalool,Linalool,Hops,GC-MS 校准化合物,mg/L,decrease,,False,,,False,3,47
+2-nonanol,nonan.2.ol,2-nonanol,Hops,GC-MS 相对丰度,,,,False,,,False,0,54
+N-nonanal,n.nonanal,N-nonanal,Yeast,GC-MS 相对丰度,,,,False,,,False,0,55
+2-methyl-benzofuran,X2.methyl.benzofuran,2-methyl-benzofuran,Malt,GC-MS 相对丰度,,,,False,,,False,0,56
+Heptyl acetate,heptyl.acetate,Heptyl acetate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,57
+4-methyl-1-pentanol,X4.methyl.1.pentanol,4-methyl-1-pentanol,Yeast,GC-MS 相对丰度,,,,False,,,False,4,28
+Neo-allo-ocimene,neo.allo.ocimene,Neo-allo-ocimene,Hops,GC-MS 相对丰度,,,,False,,,False,0,58
+X-methyl-1-octanol,x.methyl.1.octanol,X-methyl-1-octanol,Yeast,GC-MS 相对丰度,,,,False,,,False,1,28
+Trans-dihydro-β-terpineol,trans.dihydro.beta.terpineol,Trans-dihydro-Î²-terpineol,Spices,GC-MS 相对丰度,,,,False,,,False,0,59
+Cis-β-terpineol,cis.beta.terpineol,Cis-Î²-terpineol,Hops,GC-MS 相对丰度,,,,False,,,False,0,60
+Y-methyl-1-octanol,y.methyl.1.octanol,Y-methyl-1-octanol,Yeast,GC-MS 相对丰度,,,,False,,,False,1,61
+Camphor,camphor,Camphor,Spices,GC-MS 相对丰度,,,,False,,,False,1,47
+Isobutyl hexanoate,isobutyl.hexanoate,Isobutyl hexanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,7,5
+Nerol oxide,nerol.oxide,Nerol oxide,Hops,GC-MS 相对丰度,,,,False,,,False,12,39
+E-2-nonenal,X.E..2.nonenal,E-2-nonenal,Others,GC-MS 校准化合物,mg/L,increase,,True,t2n,,False,2,61
+Cis-dihydro-β-terpineol,cis.dihydro.beta.terpineol,Cis-dihydro-Î²-terpineol,Hops,GC-MS 相对丰度,,,,False,,,False,2,61
+4-ethyl-phenol,X4.ethyl.phenol,4-ethyl-phenol,Wild flora,GC-MS 相对丰度,A.U.,,,False,,,False,2,4
+Isoborneol,isoborneol,Isoborneol,Others,GC-MS 相对丰度,,,,False,,,False,3,47
+Ethyl benzoate,ethyl.benzoate,Ethyl benzoate,Yeast,GC-MS 相对丰度,,,,False,,,False,2,4
+N-nonanol,n.nonanol,N-nonanol,Yeast,GC-MS 相对丰度,,,,False,,,False,2,28
+Terpinen-4-ol,terpinen.4.ol,Terpinen-4-ol,Spices,GC-MS 相对丰度,,,,False,,,False,5,47
+Diethyl succinate,diethyl.succinate,Diethyl succinate,Yeast,GC-MS 校准化合物,mg/L,,,False,,,False,1,62
+Vinyl caprylate,vinyl.caprylate,Vinyl caprylate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,63
+Alpha-terpineol,X1.alpha.terpineol,Alpha-terpineol,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,3,47
+Ethyl linalool,ethyl..E..linalool,Ethyl linalool,Hops,GC-MS 相对丰度,,,,False,,,False,4,47
+Ethyl nicotinate,ethyl.nicotinate,Ethyl nicotinate,Others,GC-MS 校准化合物,mg/L,increase,,False,,,False,1,62
+Citronellol,citronellol,Citronellol,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,2,47
+Nerol,nerol,Nerol,Hops,GC-MS 相对丰度,,,,False,,,False,0,64
+5-hydroxymethylfurfural,hydroxy.methyl.furfural,5-hydroxymethylfurfural,Malt,GC-MS 相对丰度,,,,False,,,False,0,65
+Ocimenone,E.ocimenone,Ocimenone,Hops,GC-MS 相对丰度,,,,False,,,False,1,47
+Cumin aldehyde,cumin.aldehyde,Cumin aldehyde,Spices,GC-MS 相对丰度,,,,False,,,False,1,28
+Ethyl phenylacetate,ethyl.phenylacetate,Ethyl phenylacetate,Yeast,GC-MS 相对丰度,,,,False,,,False,8,4
+Isopentyl hexanoate,isopentyl.hexanoate,Isopentyl hexanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,14,5
+Geraniol,geraniol,Geraniol,Hops,GC-MS 校准化合物,mg/L,decrease,,False,,,False,0,66
+β-cyclohomocitral,beta.cyclohomocitral,Î²-cyclohomocitral,Hops,GC-MS 相对丰度,,,,False,,,False,0,67
+Cinnamaldehyde,E.cinnamaldehyde,Cinnamaldehyde,Spices,GC-MS 相对丰度,,,,False,,,False,0,68
+N-decanol,n.decanol,N-decanol,Yeast,GC-MS 相对丰度,,,,False,,,False,0,69
+Neryl formate,neryl.formate,Neryl formate,Hops,GC-MS 相对丰度,,,,False,,,False,5,4
+4-ethyl-guaiacol,X4.ethyl.guaiacol,4-ethyl-guaiacol,Wild flora,GC-MS 相对丰度,A.U.,,,False,,,False,2,4
+2-undecanone,X2.undecanone,2-undecanone,Hops,GC-MS 相对丰度,A.U.,,,False,,,False,0,70
+Trans-dihydro-α-terpinyl acetate,trans.dihydro.alpha.terpinyl.acetate,Trans-dihydro-Î±-terpinyl acetate,Hops,GC-MS 相对丰度,,,,False,,,False,13,5
+Terpinen-4-ol acetate,terpinen.4.ol.acetate,Terpinen-4-ol acetate,Hops,GC-MS 相对丰度,,,,False,,,False,0,71
+2-undecanol,X2.undecanol,2-undecanol,Hops,GC-MS 相对丰度,,,,False,,,False,6,39
+Terpiryl acetate,delta.terpinyl.acetate,Terpiryl acetate,Hops,GC-MS 相对丰度,,,,False,,,False,0,72
+"E,E-2,4-decadienal",X.E.E..2.4.decadienal,"E,E-2,4-decadienal",Others,GC-MS 校准化合物,mg/L,,,False,,,False,0,73
+Methyl geranate,methyl.geranate,Methyl geranate,Hops,GC-MS 相对丰度,,,,False,,,False,7,39
+Car-3-en-2-one,car.3.en.2.one,Car-3-en-2-one,Hops,GC-MS 相对丰度,,,,False,,,False,1,74
+Dimethoxy-E-citral,dimethoxy..E..citral,Dimethoxy-E-citral,Hops,GC-MS 相对丰度,,,,False,,,False,1,74
+2-butyl octanoate,X2.butyloctanoate,2-butyl octanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,13,5
+4-methoxysalicylaldehyde,X4.methoxysalicylaldehyde,4-methoxysalicylaldehyde,Spices,GC-MS 相对丰度,,,,False,,,False,0,75
+Ethyl hydrocinnamate,ethyl.hydrocinnamate,Ethyl hydrocinnamate,Spices,GC-MS 相对丰度,,,,False,,,False,1,28
+Eugenol,eugenol,Eugenol,Spices,GC-MS 校准化合物,mg/L,,,False,,,False,0,76
+Gamma-nonalactone,gamma.nonalactone,Gamma-nonalactone,Yeast,GC-MS 校准化合物,mg/L,increase,,False,,,False,1,77
+Methyl para-anisate,methyl.para.anisate,Methyl para-anisate,Spices,GC-MS 相对丰度,,,,False,,,False,0,78
+E-β-damascenone,X.E..beta.damascenone,E-Î²-damascenone,Hops,GC-MS 校准化合物,mg/L,increase,,False,,,False,1,77
+Ethyl 9-decenoate,ethyl..9..decenoate,Ethyl 9-decenoate,Yeast,GC-MS 相对丰度,,,,False,,,False,7,5
+Vanillin,vanillin,Vanillin,Others,GC-MS 相对丰度,,,,False,,,False,0,79
+Geosmin,geosmin,Geosmin,Wild flora,GC-MS 相对丰度,,,,False,,,False,0,80
+Dodecanal,dodecanal,Dodecanal,Spices,GC-MS 相对丰度,,,,False,,,False,0,81
+"4,8-α-epoxy-caryophyllane",X4.8.alpha.epoxy.caryophyllane,"4,8-Î±-epoxy-caryophyllane",Hops,GC-MS 相对丰度,,,,False,,,False,0,82
+Caryophyllene,E.caryophyllene,Caryophyllene,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,0,83
+E-α-ionone,X.E..alpha.ionone,E-Î±-ionone,Hops,GC-MS 相对丰度,,,,False,,,False,0,84
+Perillyl acetate,perillyl.acetate,Perillyl acetate,Spices,GC-MS 相对丰度,,,,False,,,False,2,4
+β-humulene,beta.humulene,Î²-humulene,Hops,GC-MS 相对丰度,,,,False,,,False,0,85
+2-phenyl ethyl butyrate,X2.phenyl.ethyl.butyrate,2-phenyl ethyl butyrate,Yeast,GC-MS 相对丰度,,,,False,,,False,11,5
+Z-β-farnesene,X.Z..beta.farnesene,Z-Î²-farnesene,Hops,GC-MS 相对丰度,,,,False,,,False,12,5
+Pentyl octanoate,pentyl.octanoate,Pentyl octanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,14,5
+E-β-farnesene,X.E..beta.farnesene,E-Î²-farnesene,Hops,GC-MS 相对丰度,,,,False,,,False,0,86
+2-methylbutyl octanoate,X2.methylbutyl.octanoate,2-methylbutyl octanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,16,5
+Alpha-humulene,alpha.humulene,Alpha-humulene,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,0,87
+Neryl propanoate,neryl.propanoate,Neryl propanoate,Hops,GC-MS 相对丰度,,,,False,,,False,6,39
+9-epi-E-caryophyllene,X9.epi..E..caryophyllene,9-epi-E-caryophyllene,Hops,GC-MS 相对丰度,,,,False,,,False,0,88
+Ethyl cinnamate,ethyl..E..cinnamate,Ethyl cinnamate,Others,GC-MS 相对丰度,,,,False,,,False,0,89
+Linalool isovalerate,linalool.isovalerate,Linalool isovalerate,Hops,GC-MS 相对丰度,,,,False,,,False,0,90
+α-terpinyl isobutanoate,alpha.terpinyl.isobutanoate,Î±-terpinyl isobutanoate,Hops,GC-MS 相对丰度,,,,False,,,False,0,91
+N-dodecanol,n.dodecanol,N-dodecanol,Yeast,GC-MS 相对丰度,,,,False,,,False,3,28
+Germacrene D,germacrene.D,Germacrene D,Hops,GC-MS 相对丰度,,,,False,,,False,2,4
+E-β-ionone,X.E..beta.ionone,E-Î²-ionone,Hops,GC-MS 相对丰度,,,,False,,,False,3,39
+Valencene,valencene,Valencene,Spices,GC-MS 相对丰度,,,,False,,,False,0,92
+Neryl isobutanoate,neryl.isobutanoate,Neryl isobutanoate,Hops,GC-MS 相对丰度,,,,False,,,False,0,93
+Methyl isoeugenol,E.methyl.isoeugenol,Methyl isoeugenol,Spices,GC-MS 相对丰度,,,,False,,,False,1,94
+Z-dihydro-apofarnesal,X.Z..dihydro.apofarnesal,Z-dihydro-apofarnesal,Hops,GC-MS 相对丰度,,,,False,,,False,0,95
+Butylated hydroxytoluene,butylated.hydroxytoluene,Butylated hydroxytoluene,Others,GC-MS 相对丰度,,,,False,,,False,1,94
+E-dihydro-apofarnesal,X.E..dihydro.apofarnesal,E-dihydro-apofarnesal,Hops,GC-MS 相对丰度,,,,False,,,False,0,96
+Z-nerolidol,Z.nerolidol,Z-nerolidol,Hops,GC-MS 校准化合物,mg/L,,,False,,,False,0,97
+E-ortho-methoxy cinnamaldehyde,X.E..ortho.methoxy.cinnamaldehyde,E-ortho-methoxy cinnamaldehyde,Spices,GC-MS 相对丰度,,,,False,,,False,0,98
+α-calacorene,alpha.calacorene,Î±-calacorene,Hops,GC-MS 相对丰度,,,,False,,,False,8,39
+E-nerolidol,E.nerolidol,E-nerolidol,Hops,GC-MS 相对丰度,,,,False,,,False,3,99
+Tobacarol,dihydroisocaryophyllene.epoxide,Tobacarol,Hops,GC-MS 相对丰度,,,,False,,,False,3,99
+Caryophyllene alcohol,caryophyllene.alcohol,Caryophyllene alcohol,Hops,GC-MS 相对丰度,,,,False,,,False,2,39
+Neryl isovalerate,neryl.isovalerate,Neryl isovalerate,Hops,GC-MS 相对丰度,,,,False,,,False,0,100
+Spathulenol,spathulenol,Spathulenol,Spices,GC-MS 相对丰度,,,,False,,,False,0,101
+Caryophyllene oxide,caryophyllene.oxide,Caryophyllene oxide,Hops,GC-MS 相对丰度,,,,False,,,False,4,39
+Humulene epoxide II,humulene.epoxide.II,Humulene epoxide II,Hops,GC-MS 相对丰度,,,,False,,,False,8,39
+Allo-aromadendrene epoxide,alloaromadendrene.epoxide,Allo-aromadendrene epoxide,Hops,GC-MS 相对丰度,,,,False,,,False,9,39
+Epicubenol,X1.10.di.epi.cubenol,Epicubenol,Hops,GC-MS 相对丰度,,,,False,,,False,11,39
+Isopropyl laurate,isopropyl.laurate,Isopropyl laurate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,102
+"Caryophylla-4,8-dien-5-ol",caryophylla.4.12..8.13..dien.5.alpha.ol,"Caryophylla-4,8-dien-5-ol",Hops,GC-MS 相对丰度,,,,False,,,False,13,39
+Gamma-eudesmol,gamma.eudesmol,Gamma-eudesmol,Spices,GC-MS 相对丰度,,,,False,,,False,0,103
+α-muurolol,alpha.muurolol,Î±-muurolol,Hops,GC-MS 相对丰度,A.U.,,,False,,,False,8,39
+"1,2-dihydro-8-hydroxy-2E-linalool",X1.2.dihydro.8.hydroxy..2E..linalool,"1,2-dihydro-8-hydroxy-2E-linalool",Hops,GC-MS 相对丰度,,,,False,,,False,14,5
+Tau-cadinol,tau.cadinol,Tau-cadinol,Hops,GC-MS 相对丰度,,,,False,,,False,0,104
+Kongol,selin.11.en.4.alpha.ol,Kongol,Hops,GC-MS 相对丰度,,,,False,,,False,2,39
+α-eudesmol,alpha.eudesmol,Î±-eudesmol,Spices,GC-MS 相对丰度,,,,False,,,False,0,105
+14-hydroxy-9-epi-(E)-caryophyllene,X14.hydroxy.9.epi..E..caryophyllene,14-hydroxy-9-epi-(E)-caryophyllene,Hops,GC-MS 相对丰度,,,,False,,,False,1,23
+Tau-muurolol,tau.muurolol,Tau-muurolol,Hops,GC-MS 相对丰度,,,,False,,,False,7,39
+N-tetradecanol,n.tetradecanol,N-tetradecanol,Yeast,GC-MS 相对丰度,,,,False,,,False,2,28
+Eoeniculin,foeniculin,Eoeniculin,Spices,GC-MS 相对丰度,,,,False,,,False,0,106
+Cadalene,cadalene,Cadalene,Hops,GC-MS 相对丰度,,,,False,,,False,0,107
+"2,3-dihydro-farnesol",X2.3.dihydro.farnesol,"2,3-dihydro-farnesol",Hops,GC-MS 相对丰度,,,,False,,,False,4,99
+"E,Z-farnesal",X2E.6Z.farnesal,"E,Z-farnesal",Hops,GC-MS 相对丰度,,,,False,,,False,1,99
+Caryophyllene acetate,caryophyllene.acetate,Caryophyllene acetate,Hops,GC-MS 相对丰度,,,,False,,,False,0,108
+14-hydroxy-α-humulene,X14.hydroxy.alpha.humulene,14-hydroxy-Î±-humulene,Hops,GC-MS 相对丰度,,,,False,,,False,0,109
+"Z,E-farnesal",X2Z.6E.farnesal,"Z,E-farnesal",Hops,GC-MS 相对丰度,,,,False,,,False,0,110
+"Z,Z-farnesol",X2Z.6Z.farnesol,"Z,Z-farnesol",Hops,GC-MS 相对丰度,,,,False,,,False,0,111
+"Z,E-farnesol",X2Z.6E.farnesol,"Z,E-farnesol",Hops,GC-MS 相对丰度,,,,False,,,False,3,99
+Ambroxide,ambroxide,Ambroxide,Spices,GC-MS 相对丰度,,,,False,,,False,0,112
+Benzyl benzoate,benzyl.benzoate,Benzyl benzoate,Others,GC-MS 相对丰度,,,,False,,,False,0,113
+"2E,6E-methyl farnesoate",X2E.6E.methyl.farnesoate,"2E,6E-methyl farnesoate",Hops,GC-MS 相对丰度,,,,False,,,False,0,114
+Ethyl tetradecanoate,ethyl.tetradecanoate,Ethyl tetradecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,12,5
+2-ethylhexyl acrylate,X2.ethylhexylsalicylate,2-ethylhexyl acrylate,Others,GC-MS 相对丰度,,,,False,,,False,0,115
+Isopropyl tetradecanoate,isopropyl.tetradecanoate,Isopropyl tetradecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,1,28
+Ethyl pentadecanoate,ethyl.pentadecanoate,Ethyl pentadecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,12,5
+Methyl hexadecanoate,methyl.hexadecanoate,Methyl hexadecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,0,116
+"Z,Z-geranyl linalool",Z.Z.geranyl.linalool,"Z,Z-geranyl linalool",Hops,GC-MS 相对丰度,,,,False,,,False,4,5
+Ethyl hexadecanoate,ethyl.hexadecanoate,Ethyl hexadecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,12,5
+Manool oxide,manool.oxide,Manool oxide,Spices,GC-MS 相对丰度,,,,False,,,False,1,117
+13-epi manool oxide,X13.epi.manool.oxide,13-epi manool oxide,Spices,GC-MS 相对丰度,,,,False,,,False,0,118
+Isopropyl hexadecanoate,isopropyl.hexadecanoate,Isopropyl hexadecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,1,117
+Manool,manool,Manool,Spices,GC-MS 相对丰度,,,,False,,,False,1,28
+Ethyl octadecanoate,ethyl.octadecanoate,Ethyl octadecanoate,Yeast,GC-MS 相对丰度,,,,False,,,False,4,5
+Ethyl pentanoate,ethyl.pentanoate,Ethyl pentanoate,Yeast,文件8无校准标记,,,,False,,,False,1,24
+2-ethyl-3-methylpyrazine,X2.ethyl.3.methylpyrazine,2-ethyl-3-methylpyrazine,Malt,文件8无校准标记,A.U.,,,False,,,False,0,119
+Total ester compounds,esters_sum,Total ester compounds,Unknown,派生变量,,,,False,,,False,9,0
+Total hop aroma compounds,aroma_hops_sum,Total hop aroma compounds,Unknown,派生变量,,,,False,,,False,3,47
+Total acids,acids_sum,Total acids,Unknown,派生变量,,,,False,,,False,1,12
+Total sulfur compounds,sulfur_sum,Total sulfur compounds,Unknown,派生变量,,,,False,,,False,2,3

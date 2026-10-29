@@ -1,0 +1,24 @@
+能力栈冒烟自检报告
+[PASS] V8_graph_stack — 2.csv 相关矩阵 → 共表达图（|r|≥0.6）+ Leiden 社区发现
+       nodes: 231
+       edges: 266
+       connected_components: 114
+       top_degrees: [16, 14, 14, 14, 13]
+       top_community_sizes: [21, 17, 16, 15, 15]
+
+[PASS] V9_attribution_stack — GBDT 拟合 + shap 归因 + bootstrap Top-3 入选频率（目标：Aroma 首维度）
+       target: A_malt_all
+       n_features: 231
+       n_targets_available: 50
+       holdout_r2: 0.3991
+       shap_top3: ['color.EBC.', 'isoborneol', 'prenyl.isobutyrate']
+       bootstrap_top3_freq: {'color.EBC.': 1.0, 'isoborneol': 0.05, 'prenyl.isobutyrate': 0.1, 'cumin.aldehyde': 0.1, 'ethyl..E..linalool': 0.15, 'X.E..beta.ionone': 0.2, 'iron': 0.1, 'X4.methoxysalicylaldehyde': 0.05, 'X2.acetylpyrrole': 0.05, 'linalool': 0.05, 'n.dodecanol': 0.05, 'protein.g.L.': 0.1, 'ethyl.5.methylhexanoate': 0.05, 'kcalperc': 0.05, 'terpinen.4.ol': 0.05, 'X4.ethyl.guaiacol': 0.1, 'E.ocimenone': 0.05, 'diethyl.succinate': 0.05, 'X5.methylfurfural': 0.05, 'geosmin': 0.1, 'benzaldehyde': 0.05, 'linalool.isovalerate': 0.05, 'phenethyl_acetate': 0.05, 'manool': 0.05, 'X2E.6E.methyl.farnesoate': 0.05, 'X2.methyl.benzofuran': 0.05, 'phenethyl_alcohol': 0.05, 'sulfur_sum': 0.05, 'nerol.oxide': 0.05, 'CS2': 0.05}
+
+[PASS] V10_generation_stack — copulas 高斯 Copula 拟合/采样 + 缺陷化合物阈值约束检查
+       n_numeric_cols: 233
+       sampled_rows: 20
+       styles_seen: 22
+       defect_related_cols: ['DMS', 'X4VG']
+       defect_threshold_checkable: True
+
+结论: 全部通过

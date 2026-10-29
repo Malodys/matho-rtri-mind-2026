@@ -1,0 +1,20 @@
+﻿beer,style,column,block,value,reference,robust_z,global_robust_z,direction,imputed,overall_lower_percentile,overall_upper_tail
+157,Tripel,betaglucan.mg.L.,标准理化指标,0.096910013,within_style_and_global,-6.675241686873277,-5.5854089149353605,low,False,0.048,1.0
+157,Tripel,benzyl.alcohol,GC-MS 校准化合物,-6.540607512240769,within_style_and_global,-5.140165826860001,-4.697400878920426,low,False,0.02,0.984
+234,Blond,ortho.cresol,GC-MS 相对丰度,3.549931154,within_style_and_global,-4.898452023249599,-4.873808229972574,low,False,0.016,0.988
+157,Tripel,ethyl.5.methylhexanoate,GC-MS 相对丰度,3.814330155,within_style_and_global,-6.727866590947359,-4.814350277956949,low,False,0.012,0.992
+103,Stout/Porter,n.octanol,GC-MS 相对丰度,4.772159806,within_style_and_global,-5.092867052357666,-5.739918764291292,low,False,0.008,0.996
+157,Tripel,n.octanol,GC-MS 相对丰度,5.095238097,within_style_and_global,-5.632201224121753,-4.892068048006515,low,False,0.016,0.988
+103,Stout/Porter,ethyl.benzoate,GC-MS 相对丰度,3.925500673,within_style_and_global,-4.716056627322832,-4.922154177174093,low,False,0.012,0.992
+101,Blond,E.ocimenone,GC-MS 相对丰度,3.310340666,within_style_and_global,-6.253890864366404,-4.9332388465165256,low,False,0.02,0.984
+101,Blond,ethyl.phenylacetate,GC-MS 相对丰度,4.547853982,within_style_and_global,-6.002330348392285,-5.109806929094153,low,False,0.012,0.992
+234,Blond,beta.cyclohomocitral,GC-MS 相对丰度,4.769820487,within_style_and_global,-6.78080541572553,-5.775468764894544,low,False,0.036,0.968
+234,Blond,gamma.nonalactone,GC-MS 校准化合物,-2.4919983539102915,within_style_and_global,-8.380562191270927,-6.931310669544241,low,False,0.02,0.984
+101,Blond,gamma.nonalactone,GC-MS 校准化合物,-2.261315662666986,within_style_and_global,-7.421998620429,-6.177704921575735,low,False,0.024,0.98
+103,Stout/Porter,gamma.nonalactone,GC-MS 校准化合物,-3.6388787113833168,within_style_and_global,-18.178649027823127,-10.677996755810923,low,False,0.004,1.0
+157,Tripel,gamma.nonalactone,GC-MS 校准化合物,-3.332557320864469,within_style_and_global,-6.7753457060794045,-9.67729072374356,low,False,0.012,0.992
+234,Blond,X.E..beta.damascenone,GC-MS 校准化合物,-1.884641885083599,within_style_and_global,-9.668222122492285,-6.09680174424403,low,False,0.024,0.98
+101,Blond,X.E..beta.damascenone,GC-MS 校准化合物,-1.9463488577376131,within_style_and_global,-10.025854530560748,-6.326197715938943,low,False,0.02,0.984
+103,Stout/Porter,X.E..beta.damascenone,GC-MS 校准化合物,-2.229765051078899,within_style_and_global,-12.954487093889867,-7.379798796486669,low,False,0.008,0.996
+157,Tripel,X.E..beta.damascenone,GC-MS 校准化合物,-2.1360972978094956,within_style_and_global,-6.843637287659747,-7.0315884670286,low,False,0.012,0.992
+103,Stout/Porter,germacrene.D,GC-MS 相对丰度,2.383574526,within_style_and_global,-5.331252339563152,-4.533367080446133,low,False,0.088,0.916

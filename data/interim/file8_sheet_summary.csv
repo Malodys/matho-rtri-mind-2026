@@ -1,0 +1,8 @@
+sheet,role,rows,columns,missing_cells,duplicate_rows
+Sensory thresholds,化学字段、来源、单位、校准和感觉阈值元数据,261,11,1306,0
+Sensory names,Trained panel 与 Ratebeer 感官字段的命名/分类映射,101,8,69,0
+GBM importance MDI,231 个化学特征的 GBM mean decrease impurity 重要性,231,2,0,0
+GBM SHAP Values,每个 beer 两行：SHAP 贡献与 concentration/模型特征值,500,236,73,0
+Calibrated chemical dataset,250 个啤酒×70 个经校准/筛选的化学指标子集,250,73,69,0
+Beer Prices,250 个啤酒的 ABV 和多零售渠道价格，货币/容量/日期待确认,250,11,1005,0
+Sheet2,空工作表,0,0,0,0

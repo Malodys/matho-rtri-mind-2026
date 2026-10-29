@@ -1,0 +1,251 @@
+﻿beer,style,univariate_flag_count,pca_structure_flag,isolation_flag,evidence_families,distance_consensus_flag,top_5_drivers,pattern_interpretation,final_flag,suggested_action
+10,Low/No alcohol,0,True,False,4,True,X4VG; beta.cyclohomocitral; alpha.muurolol; tau.muurolol; X1.propanol,同风格中未检出峰偏多,最高级,人工复核优先；建模敏感性必做
+86,Low/No alcohol,0,False,False,0,False,,,不认为异常,保留
+2,Low/No alcohol,0,False,False,0,False,,,不认为异常,保留
+83,Low/No alcohol,0,False,False,0,False,,,不认为异常,保留
+40,Low/No alcohol,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+247,Fruitbeer,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+48,Dubbel,0,False,False,0,False,,,不认为异常,保留
+165,Fruitbeer,0,False,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+124,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+207,Fruitbeer,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+155,Low/No alcohol,0,False,False,0,False,,,不认为异常,保留
+141,Low/No alcohol,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+179,Flanders old brown,0,False,False,0,False,,,不认为异常,保留
+33,Fruitbeer,0,False,False,0,False,,,不认为异常,保留
+50,Fruitbeer,0,False,False,0,False,,,不认为异常,保留
+227,Fruitbeer,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+88,Kriek,0,False,False,0,False,,,不认为异常,保留
+77,Blond,0,False,False,0,False,,,不认为异常,保留
+22,Wheat,0,False,False,0,False,,,不认为异常,保留
+81,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+202,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+64,Blond,0,False,False,0,False,,,不认为异常,保留
+218,Pils/Lager,0,False,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+96,Pils/Lager,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+230,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+44,Wheat,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+161,Flanders old brown,0,False,False,0,False,,,不认为异常,保留
+195,Wheat,0,False,False,0,False,,,不认为异常,保留
+142,Wheat,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+137,Amber,0,False,False,0,False,,,不认为异常,保留
+236,Brett/cofermented,0,False,False,0,False,,,不认为异常,保留
+223,Low/No alcohol,0,True,False,3,True,ethyl.phenylacetate; ethyl.hexadecanoate; ethanol..v.v.; tau.muurolol; X1.propanol,未检出数量本身不极端,最高级,人工复核优先；建模敏感性必做
+211,Lambic,0,False,False,0,False,,,不认为异常,保留
+190,Flanders old brown,0,False,False,0,False,,,不认为异常,保留
+197,Wheat,0,False,False,0,False,,,不认为异常,保留
+228,Tripel,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+185,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+166,Saison,0,False,False,0,False,,,不认为异常,保留
+216,Scotch,0,False,False,0,False,,,不认为异常,保留
+200,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+116,Lambic,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+139,Pils/Lager,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+183,Saison,0,False,False,0,False,,,不认为异常,保留
+111,Dubbel,0,False,False,0,False,,,不认为异常,保留
+46,Blond,0,False,False,0,False,,,不认为异常,保留
+213,Hoppy,0,False,False,0,False,,,不认为异常,保留
+250,Faro,0,False,False,0,False,,,不认为异常,保留
+158,Amber,3,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+224,Wheat,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+54,Kriek,0,False,False,0,False,,,不认为异常,保留
+5,Blond,6,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+209,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+58,Saison,0,False,False,0,False,,,不认为异常,保留
+11,Amber,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+56,Saison,0,False,False,0,False,,,不认为异常,保留
+84,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+172,Wheat,0,False,False,0,False,,,不认为异常,保留
+74,Faro,0,False,False,0,False,,,不认为异常,保留
+188,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+20,Saison,0,False,False,0,False,,,不认为异常,保留
+122,Brett/cofermented,0,False,False,0,False,,,不认为异常,保留
+169,Hoppy,0,False,False,0,False,,,不认为异常,保留
+194,Dubbel,0,False,False,0,False,,,不认为异常,保留
+160,Wheat,0,False,False,0,False,,,不认为异常,保留
+43,Amber,0,False,False,0,False,,,不认为异常,保留
+100,Dubbel,0,False,False,0,False,,,不认为异常,保留
+7,Saison,4,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+62,Blond,0,False,False,0,False,,,不认为异常,保留
+55,Hoppy,0,False,False,0,False,,,不认为异常,保留
+26,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+232,Kriek,0,False,False,0,False,,,不认为异常,保留
+151,Faro,0,False,False,0,False,,,不认为异常,保留
+61,Stout/Porter,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+156,Kriek,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+138,Kriek,0,False,False,0,False,,,不认为异常,保留
+70,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+113,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+176,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+105,Strong ale,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+167,Flanders old brown,0,False,False,0,False,,,不认为异常,保留
+59,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+135,Tripel,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+82,Kriek,0,False,False,0,False,,,不认为异常,保留
+241,Kriek,0,False,False,0,False,,,不认为异常,保留
+128,Amber,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+244,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+178,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+110,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+231,Stout/Porter,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+112,Brown,0,False,False,0,False,,,不认为异常,保留
+219,Hoppy,0,False,False,0,False,,,不认为异常,保留
+129,Brown,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+42,Lambic,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+72,Hoppy,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+186,Strong ale,0,False,False,0,False,,,不认为异常,保留
+109,Brown,0,False,False,0,False,,,不认为异常,保留
+246,Blond,0,False,False,0,False,,,不认为异常,保留
+97,Hoppy,0,False,False,0,False,,,不认为异常,保留
+87,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+220,Kriek,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+201,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+14,Brett/cofermented,0,False,False,0,False,,,不认为异常,保留
+173,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+37,Strong ale,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+119,Pils/Lager,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+177,Fruitbeer,5,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+106,Christmas,0,False,False,0,False,,,不认为异常,保留
+159,Flanders old brown,0,False,False,0,False,,,不认为异常,保留
+90,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+92,Amber,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+93,Tripel,0,False,False,0,False,,,不认为异常,保留
+238,Blond,0,False,False,0,False,,,不认为异常,保留
+76,Blond,0,False,False,0,False,,,不认为异常,保留
+107,Dubbel,0,False,False,0,False,,,不认为异常,保留
+205,Brut,0,False,False,0,False,,,不认为异常,保留
+206,Brown,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+53,Brown,0,False,False,0,False,,,不认为异常,保留
+24,Kriek,0,False,False,0,False,,,不认为异常,保留
+136,Blond,0,False,False,0,False,,,不认为异常,保留
+69,Tripel,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+180,Christmas,0,False,False,0,False,,,不认为异常,保留
+49,Blond,0,False,False,0,False,,,不认为异常,保留
+243,Wheat,0,False,False,0,False,,,不认为异常,保留
+134,Strong ale,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+193,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+39,Hoppy,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+240,Tripel,0,False,False,0,False,,,不认为异常,保留
+12,Lambic,0,False,False,0,False,,,不认为异常,保留
+150,Brett/cofermented,0,False,False,3,True,n.decanol; n.dodecanol; n.nonanol; X3.methylthio.propanol; x.methyl.1.octanol,同风格中未检出峰偏多,最高级,人工复核优先；建模敏感性必做
+23,Tripel,0,False,False,0,False,,,不认为异常,保留
+226,Strong ale,0,False,False,0,False,,,不认为异常,保留
+29,Saison,0,False,False,0,False,,,不认为异常,保留
+132,Saison,0,False,False,0,False,,,不认为异常,保留
+16,Dubbel,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+47,Tripel,0,False,False,0,False,,,不认为异常,保留
+164,Blond,0,False,False,0,False,,,不认为异常,保留
+115,Lambic,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+149,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+80,Hoppy,0,False,False,0,False,,,不认为异常,保留
+120,Hoppy,0,False,False,0,False,,,不认为异常,保留
+222,Brett/cofermented,0,False,False,0,False,,,不认为异常,保留
+18,Lambic,0,False,False,0,False,,,不认为异常,保留
+98,Brown,0,False,False,0,False,,,不认为异常,保留
+221,Dubbel,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+32,Amber,3,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+27,Hoppy,0,False,False,0,False,,,不认为异常,保留
+13,Christmas,0,False,False,0,False,,,不认为异常,保留
+174,Dubbel,0,False,False,0,False,,,不认为异常,保留
+79,Hoppy,0,False,False,0,False,,,不认为异常,保留
+118,West Flanders ale,0,False,False,0,False,,,不认为异常,保留
+152,Wheat,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+184,Fruitbeer,0,False,False,0,False,,,不认为异常,保留
+19,Amber,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+145,Saison,0,False,False,0,False,,,不认为异常,保留
+125,Blond,0,False,False,0,False,,,不认为异常,保留
+6,Amber,0,False,False,0,False,,,不认为异常,保留
+212,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+78,Brown,0,False,False,0,False,,,不认为异常,保留
+234,Blond,4,True,False,4,True,beta.humulene; n.decanol; X4.methyl.1.pentanol; n.dodecanol; n.nonanol,同风格中未检出峰偏多,最高级,人工复核优先；建模敏感性必做
+147,Tripel,0,False,False,0,False,,,不认为异常,保留
+66,Tripel,0,False,False,0,False,,,不认为异常,保留
+249,Blond,0,False,False,0,False,,,不认为异常,保留
+104,Strong ale,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+101,Blond,4,False,False,3,True,beta.humulene; n.decanol; n.dodecanol; n.nonanol; X4VG,同风格中未检出峰偏多,最高级,人工复核优先；建模敏感性必做
+237,Brown,0,False,False,0,False,,,不认为异常,保留
+127,Blond,0,False,False,0,False,,,不认为异常,保留
+245,Tripel,0,False,False,0,False,,,不认为异常,保留
+191,Tripel,0,False,False,0,False,,,不认为异常,保留
+60,Christmas,0,False,False,0,False,,,不认为异常,保留
+51,Strong ale,0,False,False,0,False,,,不认为异常,保留
+144,Lambic,0,False,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+28,Pils/Lager,0,False,False,0,False,,,不认为异常,保留
+41,Lambic,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+153,Kriek,0,False,False,0,False,,,不认为异常,保留
+146,Scotch,0,False,False,0,False,,,不认为异常,保留
+168,Scotch,0,True,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+30,Blond,0,False,False,0,False,,,不认为异常,保留
+36,Brown,0,False,False,0,False,,,不认为异常,保留
+126,Amber,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+162,Lambic,1,False,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+123,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+130,Brut,0,False,False,0,False,,,不认为异常,保留
+8,Hoppy,0,False,False,0,False,,,不认为异常,保留
+31,Hoppy,0,False,False,0,False,,,不认为异常,保留
+52,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+9,Hoppy,9,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+204,Tripel,0,False,False,0,False,,,不认为异常,保留
+94,Blond,0,False,False,0,False,,,不认为异常,保留
+131,Scotch,0,False,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+75,Lambic,0,False,False,0,False,,,不认为异常,保留
+34,Tripel,8,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+108,Brown,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+187,Dubbel,0,False,False,0,False,,,不认为异常,保留
+45,Tripel,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+154,Tripel,0,False,False,0,False,,,不认为异常,保留
+121,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+242,Saison,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+208,Wheat,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+38,Christmas,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+170,Strong ale,0,False,False,0,False,,,不认为异常,保留
+214,Christmas,0,False,False,0,False,,,不认为异常,保留
+35,Blond,0,False,False,0,False,,,不认为异常,保留
+215,Blond,0,False,False,0,False,,,不认为异常,保留
+235,Strong ale,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+89,Brown,0,False,False,0,False,,,不认为异常,保留
+114,Hoppy,0,False,False,0,False,,,不认为异常,保留
+181,Christmas,4,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+225,Strong ale,0,False,False,0,False,,,不认为异常,保留
+57,Tripel,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+143,Hoppy,0,False,False,0,False,,,不认为异常,保留
+133,Strong ale,0,False,False,0,False,,,不认为异常,保留
+182,Stout/Porter,0,False,False,0,False,,,不认为异常,保留
+17,Tripel,0,False,False,0,False,,,不认为异常,保留
+229,Wheat,0,False,False,0,False,,,不认为异常,保留
+148,Strong ale,0,False,False,0,False,,,不认为异常,保留
+248,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+65,Hoppy,0,False,False,0,False,,,不认为异常,保留
+73,Blond,5,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+198,Dubbel,0,False,False,0,False,,,不认为异常,保留
+91,Strong ale,0,False,False,0,False,,,不认为异常,保留
+217,Tripel,0,False,False,0,False,,,不认为异常,保留
+163,Tripel,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+68,Tripel,0,False,False,0,False,,,不认为异常,保留
+15,Tripel,0,False,False,0,False,,,不认为异常,保留
+1,Brut,0,False,False,0,False,,,不认为异常,保留
+71,Blond,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+102,Christmas,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+140,Tripel,0,False,False,0,False,,,不认为异常,保留
+67,Stout/Porter,4,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+210,Amber,0,False,False,0,False,,,不认为异常,保留
+189,Tripel,0,False,False,0,False,,,不认为异常,保留
+233,Scotch,0,False,False,0,False,,,不认为异常,保留
+199,Tripel,0,False,False,0,False,,,不认为异常,保留
+63,Amber,0,False,False,0,False,,,不认为异常,保留
+95,Christmas,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+25,Brown,0,False,False,0,False,,,不认为异常,保留
+203,Brett/cofermented,0,False,False,0,False,,,不认为异常,保留
+85,Tripel,2,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+3,Blond,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+21,Lambic,1,False,False,1,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+192,Brut,0,False,True,2,True,n.decanol; X4.methyl.1.pentanol; n.dodecanol; x.methyl.1.octanol; X3.methylthio.propanol,同风格中未检出峰偏多,风格异常,谱型问题：敏感性对比或关注底限变量，不按浓度异常解读
+239,Tripel,0,False,False,0,False,,,不认为异常,保留
+117,Strong ale,0,False,False,0,False,,,不认为异常,保留
+171,Tripel,0,False,False,0,False,,,不认为异常,保留
+103,Stout/Porter,5,True,True,4,True,n.decanol; X4.methyl.1.pentanol; n.dodecanol; n.nonanol; x.methyl.1.octanol,同风格中未检出峰偏多,最高级,人工复核优先；建模敏感性必做
+175,Strong ale,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+196,Strong ale,1,False,False,0,False,,,一般异常,保留；单变量为主者按变量层伪影候选
+4,Strong ale,0,False,False,0,False,,,不认为异常,保留
+99,Strong ale,0,False,False,0,False,,,不认为异常,保留
+157,Tripel,6,True,True,4,True,n.decanol; X4.methyl.1.pentanol; n.dodecanol; X3.methylthio.propanol; n.nonanol,同风格中未检出峰偏多,最高级,人工复核优先；建模敏感性必做

@@ -1,0 +1,46 @@
+{
+  "style_contract": "plot_style_v1",
+  "numbering_note": "caption 中的「图 N」为目录内占位序号，最终图号由 scripts/build_paper.py 统一分配。",
+  "figures": [
+    {
+      "file": "fig1_consumer_predictability",
+      "title": "逐维可预测性对比",
+      "caption": "图 1  逐维可预测性对比。左侧为品评组 50 个感官维度的袋外决定系数分布（箱线图），右侧为消费者 183 个描述符的袋外决定系数分布（散点），两者均以同一化学特征矩阵与同一 5 折分层划分评估。消费者路径最优模型 global_extra_trees 的宏平均 RMSE 为 0.7737，优于全局均值基线 0.8904（改善 13.1%）；其逐维 R² 中位数 0.174、斯皮尔曼中位数 0.389。图中虚线为 R²=0 参考线。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q4_figures/fig1_consumer_predictability.png",
+        "data/processed/q4_figures/fig1_consumer_predictability.pdf"
+      ]
+    },
+    {
+      "file": "fig2_cross_consistency",
+      "title": "两条感知路径一致性",
+      "caption": "图 2  两条感知路径一致性。横轴为品评组路径与消费者路径在同一感官维度上的实测相关（ρ 真值），纵轴为化学模型预测的相关（ρ 预测），共 33 组配对；虚线为 ρ 预测 = ρ 真值的一致线。两组相关的绝对偏差中位数为 0.166，其中 54.5% 不超过 0.2。需注意品评组维度与消费者描述符来自不同词汇表，二者映射存在循环性风险，故本图只用于方向性对照，不作为因果证据。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q4_figures/fig2_cross_consistency.png",
+        "data/processed/q4_figures/fig2_cross_consistency.pdf"
+      ]
+    },
+    {
+      "file": "fig3_dose_response",
+      "title": "剂量-响应",
+      "caption": "图 3  剂量-响应。左面板为化合物浓度四分位内组内的斯皮尔曼相关 ρ，右面板为对应感官维度的中位强度，两者刻画「浓度升高—感知变化」的方向与幅度。共 6 组化合物—感官维度配对，每组按浓度四分位（Q1→Q4）统计；虚线为 ρ=0 参考线。橙红强调色配以不同点型/线型者为目标缺陷化合物配对。风格分层稳健性（n≥8 的风格内重算）显示部分配对在任一风格内都不成立，稳健比例中位数为 0.812，逐组结论见正文表。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q4_figures/fig3_dose_response.png",
+        "data/processed/q4_figures/fig3_dose_response.pdf"
+      ]
+    },
+    {
+      "file": "fig4_price_effects",
+      "title": "价格部分效应",
+      "caption": "图 4  价格部分效应。三个设定下 log 价格对各感官维度的偏回归系数及 95% 置信区间：ols（R²=0.340）、ols_with_abv（加入 ABV，R²=0.366）、fixed_effects（再加入风格固定效应、按风格聚类稳健标准误，R²=0.472），样本量 n=189（仅含 ≥2 家零售报价的啤酒）。价格来自单一零售源附件，此处仅作为外部价值信号，不作市场因果解释。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q4_figures/fig4_price_effects.png",
+        "data/processed/q4_figures/fig4_price_effects.pdf"
+      ]
+    }
+  ]
+}

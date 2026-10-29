@@ -1,0 +1,7 @@
+compound,sensory_dim,overall_rho_ref,overall_rho_got,max_abs_diff_rho,pass,sensory_median_q1_ref,sensory_median_q1_got,sensory_median_q4_ref,sensory_median_q4_got
+ethyl_acetate,A_esters_all,0.321,0.32128296452743244,0.0003765707234771234,True,-0.246,-0.246476874,0.262,0.261581752
+ethyl_acetate,F_esters_all,0.38,0.37981548504776075,0.0003812042003475055,True,,,,
+linalool,A_hops_citrus,0.327,0.32674255944666003,0.0002959087758342416,True,,,,
+DMS,dms,0.088,0.08786012853043478,0.0004411206722980954,True,,,,
+X2.3.butanedione,diacetyl,-0.093,-0.09294271458776841,0.0003799972009016703,True,-0.143,-0.142938597,-0.233,-0.232955362
+X.E..2.nonenal,t2n,-0.151,-0.15050117334882382,0.0004604270845276759,True,,,,

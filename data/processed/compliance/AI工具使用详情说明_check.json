@@ -1,0 +1,51 @@
+{
+  "pdf": "data/processed/compliance/AI工具使用详情说明.pdf",
+  "pages": 10,
+  "body_pages": 10,
+  "appendix_pages": 0,
+  "footer_page_sequence": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "results": [
+    {
+      "id": "page_count",
+      "desc": "正文页数在 1..99 之间（正文上限 30 页，附录页数不限）",
+      "passed": true,
+      "detail": "PDF 共 10 页；其中正文 10 页（附录 0 页，前置部分 0 页不计）"
+    },
+    {
+      "id": "chinese_extractable",
+      "desc": "中文可正常抽取，无替换符/缺字方块",
+      "passed": true,
+      "detail": "中文字符占比 62.1%；异常字符 无"
+    },
+    {
+      "id": "footer_page_number",
+      "desc": "页脚含页码且连续编号",
+      "passed": true,
+      "detail": "各页页脚识别页码序列=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]；首页是否从 1 起=True"
+    },
+    {
+      "id": "no_header",
+      "desc": "无页眉（页面顶部区域无跨页重复文字）",
+      "passed": true,
+      "detail": "顶部有文字的页=无；跨页重复的顶部文字=无；源 DOCX 页眉文字=空"
+    },
+    {
+      "id": "no_personal_info",
+      "desc": "不含姓名/学校/学号等个人身份信息（赛规要求匿名）",
+      "passed": true,
+      "detail": "命中 0 处"
+    }
+  ],
+  "all_passed": true
+}

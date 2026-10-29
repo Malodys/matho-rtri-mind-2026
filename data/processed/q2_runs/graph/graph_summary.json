@@ -1,0 +1,362 @@
+{
+  "graph": {
+    "n_nodes": 231,
+    "n_edges": 266,
+    "n_connected_components": 114,
+    "n_leiden_communities": 120,
+    "largest_community_size": 21,
+    "top5_community_sizes": [
+      21,
+      17,
+      16,
+      15,
+      15
+    ],
+    "threshold": 0.6,
+    "isolated_nodes": 101
+  },
+  "sensitivity": [
+    {
+      "abs_rho_threshold": 0.5,
+      "n_nodes": 231,
+      "n_edges": 645,
+      "n_connected_components": 52,
+      "n_leiden_communities": 59,
+      "n_communities_size_ge2": 11,
+      "largest_community_size": 33,
+      "top5_community_sizes": "[33, 29, 23, 20, 20]",
+      "isolated_nodes": 48,
+      "isolated_ratio": 0.2078,
+      "nodes_in_connected_components": 183,
+      "modularity_Q": 0.6513,
+      "chemical_purity_weighted": 0.5628,
+      "mean_edge_abs_rho": 0.6077,
+      "edge_density": 0.02428
+    },
+    {
+      "abs_rho_threshold": 0.6,
+      "n_nodes": 231,
+      "n_edges": 266,
+      "n_connected_components": 114,
+      "n_leiden_communities": 120,
+      "n_communities_size_ge2": 19,
+      "largest_community_size": 21,
+      "top5_community_sizes": "[21, 17, 16, 15, 15]",
+      "isolated_nodes": 101,
+      "isolated_ratio": 0.4372,
+      "nodes_in_connected_components": 130,
+      "modularity_Q": 0.7455,
+      "chemical_purity_weighted": 0.6615,
+      "mean_edge_abs_rho": 0.7016,
+      "edge_density": 0.01001
+    },
+    {
+      "abs_rho_threshold": 0.7,
+      "n_nodes": 231,
+      "n_edges": 109,
+      "n_connected_components": 169,
+      "n_leiden_communities": 171,
+      "n_communities_size_ge2": 21,
+      "largest_community_size": 11,
+      "top5_community_sizes": "[11, 11, 10, 6, 4]",
+      "isolated_nodes": 150,
+      "isolated_ratio": 0.6494,
+      "nodes_in_connected_components": 81,
+      "modularity_Q": 0.7507,
+      "chemical_purity_weighted": 0.7778,
+      "mean_edge_abs_rho": 0.7884,
+      "edge_density": 0.0041
+    },
+    {
+      "abs_rho_threshold": 0.8,
+      "n_nodes": 231,
+      "n_edges": 39,
+      "n_connected_components": 207,
+      "n_leiden_communities": 208,
+      "n_communities_size_ge2": 14,
+      "largest_community_size": 7,
+      "top5_community_sizes": "[7, 4, 3, 3, 2]",
+      "isolated_nodes": 194,
+      "isolated_ratio": 0.8398,
+      "nodes_in_connected_components": 37,
+      "modularity_Q": 0.6824,
+      "chemical_purity_weighted": 0.8108,
+      "mean_edge_abs_rho": 0.8619,
+      "edge_density": 0.00147
+    }
+  ],
+  "threshold_community_ari": [
+    {
+      "threshold_a": 0.5,
+      "threshold_b": 0.6,
+      "ARI": 0.4381
+    },
+    {
+      "threshold_a": 0.5,
+      "threshold_b": 0.7,
+      "ARI": 0.1677
+    },
+    {
+      "threshold_a": 0.5,
+      "threshold_b": 0.8,
+      "ARI": 0.0385
+    },
+    {
+      "threshold_a": 0.6,
+      "threshold_b": 0.7,
+      "ARI": 0.3909
+    },
+    {
+      "threshold_a": 0.6,
+      "threshold_b": 0.8,
+      "ARI": 0.0997
+    },
+    {
+      "threshold_a": 0.7,
+      "threshold_b": 0.8,
+      "ARI": 0.3262
+    }
+  ],
+  "threshold_recommendation": {
+    "connectivity_threshold": 0.5,
+    "connectivity_rule": "孤立节点占比最低者，用于描述共表达网络拓扑完整性",
+    "connectivity_detail": {
+      "n_edges": 645,
+      "isolated_ratio": 0.2078,
+      "modularity_Q": 0.6513,
+      "chemical_purity_weighted": 0.5628
+    },
+    "operating_default_threshold": 0.6,
+    "operating_default_rule": "孤立节点占比<=50% 且 非平凡社区数>=15，在可行档中取模块度 Q 最高者；全部社区×来源交叉表与化学合理性论证基于此档",
+    "operating_default_detail": {
+      "n_edges": 266,
+      "n_connected_components": 114,
+      "isolated_ratio": 0.4372,
+      "modularity_Q": 0.7455,
+      "chemical_purity_weighted": 0.6615,
+      "n_non_trivial_communities": 19
+    },
+    "recommended_threshold": 0.6,
+    "rule": "作业默认档 = 孤立占比<=50% 且非平凡社区>=15 中模块度最高者；连通性档 = 孤立占比最低者",
+    "max_isolated_ratio": 0.25,
+    "modularity_Q_at_recommended": 0.7455,
+    "isolated_ratio_at_recommended": 0.4372,
+    "n_edges_at_recommended": 266,
+    "n_connected_components_at_recommended": 114,
+    "mean_ari_with_neighbour_thresholds": 0.2148,
+    "all_thresholds_feasible": false,
+    "feasible_thresholds": [
+      0.5
+    ],
+    "ari_between_0p5_and_0p6": 0.4381,
+    "two_threshold_reporting": {
+      "0.6": "作业默认档：模块度 Q=0.7455、化学纯度 0.6615、非平凡社区 19 个，社区×来源交叉表与化学合理性论证均基于此档",
+      "0.5": "连通性档：孤立节点占比由 43.7% 降至 20.8%、边数 266→645，网络拓扑更完整；与 0.6 档社区划分 ARI=0.4381，主体一致，但模块度与化学纯度均低于 0.6 档"
+    }
+  },
+  "two_threshold_comparison": {
+    "0.6_default": {
+      "n_edges": 266,
+      "n_connected_components": 114,
+      "isolated_ratio": 0.4372,
+      "modularity_Q": 0.7455,
+      "chemical_purity_weighted": 0.6615,
+      "n_non_trivial_communities": 19,
+      "role": "作业默认档；社区×来源交叉表与化学合理性论证基于此档"
+    },
+    "0.5_connectivity": {
+      "n_edges": 645,
+      "n_connected_components": 52,
+      "isolated_ratio": 0.2078,
+      "modularity_Q": 0.6513,
+      "chemical_purity_weighted": 0.5628,
+      "n_non_trivial_communities": 11,
+      "role": "连通性档；网络拓扑更完整，与 0.6 档主体一致（ARI=0.4381）"
+    }
+  },
+  "top_communities": [
+    {
+      "community": 28,
+      "n_nodes": 21,
+      "top_origin_paper": "Yeast",
+      "top_origin_share": 0.5714,
+      "members": [
+        "X2.6.dimethyl.pyrazine",
+        "X2.acetylfuran",
+        "X2.acetylpyrrole",
+        "X2.ethyl.1.hexanol",
+        "X2.furanmethanol",
+        "X3.furanmethanol",
+        "X3.methyl.2.hexanol",
+        "X4.methyl.1.pentanol"
+      ]
+    },
+    {
+      "community": 39,
+      "n_nodes": 17,
+      "top_origin_paper": "Hops",
+      "top_origin_share": 0.8824,
+      "members": [
+        "X.E..beta.ionone",
+        "X1.10.di.epi.cubenol",
+        "X1.octen.3.ol",
+        "X2.undecanol",
+        "alloaromadendrene.epoxide",
+        "alpha.calacorene",
+        "alpha.muurolol",
+        "caryophylla.4.12..8.13..dien.5.alpha.ol"
+      ]
+    },
+    {
+      "community": 5,
+      "n_nodes": 16,
+      "top_origin_paper": "Yeast",
+      "top_origin_share": 0.75,
+      "members": [
+        "X.Z..beta.farnesene",
+        "X1.2.dihydro.8.hydroxy..2E..linalool",
+        "X2.butyloctanoate",
+        "X2.methylbutyl.octanoate",
+        "X2.phenyl.ethyl.butyrate",
+        "Z.Z.geranyl.linalool",
+        "ethyl..9..decenoate",
+        "ethyl.hexadecanoate"
+      ]
+    },
+    {
+      "community": 0,
+      "n_nodes": 15,
+      "top_origin_paper": "Yeast",
+      "top_origin_share": 0.8667,
+      "members": [
+        "acetaldehyde",
+        "esters_sum",
+        "ethanol..v.v.",
+        "ethyl.butyrate",
+        "ethyl_acetate",
+        "ethyl_hexanoate",
+        "ethyl_octanoate",
+        "glycerol"
+      ]
+    },
+    {
+      "community": 4,
+      "n_nodes": 15,
+      "top_origin_paper": "Yeast",
+      "top_origin_share": 0.3333,
+      "members": [
+        "X4.ethyl.guaiacol",
+        "X4.ethyl.phenol",
+        "X5.methylfurfural",
+        "ethyl.5.methylhexanoate",
+        "ethyl.benzoate",
+        "ethyl.furoate",
+        "ethyl.hex..3E..enoate",
+        "ethyl.phenylacetate"
+      ]
+    },
+    {
+      "community": 47,
+      "n_nodes": 12,
+      "top_origin_paper": "Hops",
+      "top_origin_share": 0.5833,
+      "members": [
+        "E.ocimenone",
+        "X.E..beta.ocimene",
+        "X1.alpha.terpineol",
+        "aroma_hops_sum",
+        "beta.phellandrene",
+        "camphor",
+        "citronellol",
+        "ethyl..E..linalool"
+      ]
+    },
+    {
+      "community": 23,
+      "n_nodes": 5,
+      "top_origin_paper": "Yeast",
+      "top_origin_share": 0.8,
+      "members": [
+        "X1.propanol",
+        "X14.hydroxy.9.epi..E..caryophyllene",
+        "X2.methyl.1.butanol",
+        "isopentyl.formate",
+        "n.pentanol"
+      ]
+    },
+    {
+      "community": 99,
+      "n_nodes": 5,
+      "top_origin_paper": "Hops",
+      "top_origin_share": 1.0,
+      "members": [
+        "E.nerolidol",
+        "X2.3.dihydro.farnesol",
+        "X2E.6Z.farnesal",
+        "X2Z.6E.farnesol",
+        "dihydroisocaryophyllene.epoxide"
+      ]
+    }
+  ],
+  "origin_paper_counts": {
+    "Yeast": 78,
+    "Hops": 77,
+    "Spices": 23,
+    "Malt": 21,
+    "Others": 21,
+    "Wild flora": 6,
+    "Unknown": 4,
+    "Internal standard solution": 1
+  },
+  "block_counts": {
+    "GC-MS 相对丰度": 157,
+    "GC-MS 校准化合物": 44,
+    "标准理化指标": 16,
+    "GC-FID/FPD 目标定量": 7,
+    "派生变量": 4,
+    "文件8无校准标记": 3
+  },
+  "params": {
+    "graph_threshold_abs_rho": 0.6,
+    "sensitivity_thresholds": [
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "leiden": {
+      "objective_function": "modularity",
+      "n_iterations": 5,
+      "seed": 20261028
+    },
+    "fusion_weights": {
+      "e2": 0.5,
+      "e3": 0.5
+    },
+    "lightgbm_params": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_child_samples": 20,
+      "subsample": 0.9,
+      "subsample_freq": 1,
+      "colsample_bytree": 0.8,
+      "reg_lambda": 1.0,
+      "random_state": 20261028,
+      "n_jobs": 1,
+      "verbose": -1
+    },
+    "bootstrap": {
+      "B": 200,
+      "seed": 20261028,
+      "n_jobs": 8,
+      "resample_unit": "训练样本(175 瓶)有放回重采样"
+    },
+    "top_k": 3,
+    "selection_rule": {
+      "bootstrap_freq_min": 0.6,
+      "mean_cross_method_jaccard_min": 0.3
+    },
+    "corr_type": "Spearman（2.csv / 5.csv / 6.csv 均为 Spearman，见 README 勘误说明）"
+  }
+}

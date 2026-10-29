@@ -1,0 +1,285 @@
+{
+  "graph": {
+    "n_nodes": 231,
+    "n_edges": 266,
+    "n_connected_components": 114,
+    "n_leiden_communities": 120,
+    "largest_community_size": 21,
+    "top5_community_sizes": [
+      21,
+      17,
+      16,
+      15,
+      15
+    ],
+    "threshold": 0.6,
+    "isolated_nodes": 101
+  },
+  "edge_sensitivity": [
+    {
+      "abs_rho_threshold": 0.5,
+      "n_nodes": 231,
+      "n_edges": 645,
+      "n_connected_components": 52,
+      "n_leiden_communities": 59,
+      "n_communities_size_ge2": 11,
+      "largest_community_size": 33,
+      "top5_community_sizes": "[33, 29, 23, 20, 20]",
+      "isolated_nodes": 48,
+      "isolated_ratio": 0.2078,
+      "nodes_in_connected_components": 183,
+      "modularity_Q": 0.6513,
+      "chemical_purity_weighted": 0.5628,
+      "mean_edge_abs_rho": 0.6077,
+      "edge_density": 0.02428
+    },
+    {
+      "abs_rho_threshold": 0.6,
+      "n_nodes": 231,
+      "n_edges": 266,
+      "n_connected_components": 114,
+      "n_leiden_communities": 120,
+      "n_communities_size_ge2": 19,
+      "largest_community_size": 21,
+      "top5_community_sizes": "[21, 17, 16, 15, 15]",
+      "isolated_nodes": 101,
+      "isolated_ratio": 0.4372,
+      "nodes_in_connected_components": 130,
+      "modularity_Q": 0.7455,
+      "chemical_purity_weighted": 0.6615,
+      "mean_edge_abs_rho": 0.7016,
+      "edge_density": 0.01001
+    },
+    {
+      "abs_rho_threshold": 0.7,
+      "n_nodes": 231,
+      "n_edges": 109,
+      "n_connected_components": 169,
+      "n_leiden_communities": 171,
+      "n_communities_size_ge2": 21,
+      "largest_community_size": 11,
+      "top5_community_sizes": "[11, 11, 10, 6, 4]",
+      "isolated_nodes": 150,
+      "isolated_ratio": 0.6494,
+      "nodes_in_connected_components": 81,
+      "modularity_Q": 0.7507,
+      "chemical_purity_weighted": 0.7778,
+      "mean_edge_abs_rho": 0.7884,
+      "edge_density": 0.0041
+    },
+    {
+      "abs_rho_threshold": 0.8,
+      "n_nodes": 231,
+      "n_edges": 39,
+      "n_connected_components": 207,
+      "n_leiden_communities": 208,
+      "n_communities_size_ge2": 14,
+      "largest_community_size": 7,
+      "top5_community_sizes": "[7, 4, 3, 3, 2]",
+      "isolated_nodes": 194,
+      "isolated_ratio": 0.8398,
+      "nodes_in_connected_components": 37,
+      "modularity_Q": 0.6824,
+      "chemical_purity_weighted": 0.8108,
+      "mean_edge_abs_rho": 0.8619,
+      "edge_density": 0.00147
+    }
+  ],
+  "community_count": 120,
+  "threshold_recommendation": {
+    "connectivity_threshold": 0.5,
+    "connectivity_rule": "孤立节点占比最低者，用于描述共表达网络拓扑完整性",
+    "connectivity_detail": {
+      "n_edges": 645,
+      "isolated_ratio": 0.2078,
+      "modularity_Q": 0.6513,
+      "chemical_purity_weighted": 0.5628
+    },
+    "operating_default_threshold": 0.6,
+    "operating_default_rule": "孤立节点占比<=50% 且 非平凡社区数>=15，在可行档中取模块度 Q 最高者；全部社区×来源交叉表与化学合理性论证基于此档",
+    "operating_default_detail": {
+      "n_edges": 266,
+      "n_connected_components": 114,
+      "isolated_ratio": 0.4372,
+      "modularity_Q": 0.7455,
+      "chemical_purity_weighted": 0.6615,
+      "n_non_trivial_communities": 19
+    },
+    "recommended_threshold": 0.6,
+    "rule": "作业默认档 = 孤立占比<=50% 且非平凡社区>=15 中模块度最高者；连通性档 = 孤立占比最低者",
+    "max_isolated_ratio": 0.25,
+    "modularity_Q_at_recommended": 0.7455,
+    "isolated_ratio_at_recommended": 0.4372,
+    "n_edges_at_recommended": 266,
+    "n_connected_components_at_recommended": 114,
+    "mean_ari_with_neighbour_thresholds": 0.2148,
+    "all_thresholds_feasible": false,
+    "feasible_thresholds": [
+      0.5
+    ],
+    "ari_between_0p5_and_0p6": 0.4381,
+    "two_threshold_reporting": {
+      "0.6": "作业默认档：模块度 Q=0.7455、化学纯度 0.6615、非平凡社区 19 个，社区×来源交叉表与化学合理性论证均基于此档",
+      "0.5": "连通性档：孤立节点占比由 43.7% 降至 20.8%、边数 266→645，网络拓扑更完整；与 0.6 档社区划分 ARI=0.4381，主体一致，但模块度与化学纯度均低于 0.6 档"
+    }
+  },
+  "threshold_community_ari": [
+    {
+      "threshold_a": 0.5,
+      "threshold_b": 0.6,
+      "ARI": 0.4381
+    },
+    {
+      "threshold_a": 0.5,
+      "threshold_b": 0.7,
+      "ARI": 0.1677
+    },
+    {
+      "threshold_a": 0.5,
+      "threshold_b": 0.8,
+      "ARI": 0.0385
+    },
+    {
+      "threshold_a": 0.6,
+      "threshold_b": 0.7,
+      "ARI": 0.3909
+    },
+    {
+      "threshold_a": 0.6,
+      "threshold_b": 0.8,
+      "ARI": 0.0997
+    },
+    {
+      "threshold_a": 0.7,
+      "threshold_b": 0.8,
+      "ARI": 0.3262
+    }
+  ],
+  "two_threshold_comparison": {
+    "0.6_default": {
+      "n_edges": 266,
+      "n_connected_components": 114,
+      "isolated_ratio": 0.4372,
+      "modularity_Q": 0.7455,
+      "chemical_purity_weighted": 0.6615,
+      "n_non_trivial_communities": 19,
+      "role": "作业默认档；社区×来源交叉表与化学合理性论证基于此档"
+    },
+    "0.5_connectivity": {
+      "n_edges": 645,
+      "n_connected_components": 52,
+      "isolated_ratio": 0.2078,
+      "modularity_Q": 0.6513,
+      "chemical_purity_weighted": 0.5628,
+      "n_non_trivial_communities": 11,
+      "role": "连通性档；网络拓扑更完整，与 0.6 档主体一致（ARI=0.4381）"
+    }
+  },
+  "evidence_coverage": {
+    "E1_6csv": {
+      "n_compounds": 44,
+      "n_targets": 50
+    },
+    "E2_spearman_full": {
+      "n_compounds": 227,
+      "n_targets": 50,
+      "n_finite": 11350
+    },
+    "E3_shap": {
+      "n_compounds": 227,
+      "n_targets": 50
+    },
+    "E4_mdi": {
+      "n_compounds": 231
+    }
+  },
+  "top3": {
+    "n_dimensions": 50,
+    "n_rows": 150,
+    "n_unique_compounds": 64,
+    "n_compounds_mapped_to_file1": 150,
+    "nan_count": 0
+  },
+  "stability": {
+    "bootstrap_B": 200,
+    "selection_rule": {
+      "bootstrap_freq_min": 0.6,
+      "jaccard_mean_min": 0.3
+    },
+    "n_robust_rows": 32,
+    "n_robust_dimensions": 22,
+    "n_robust_and_chem_plausible_rows": 9,
+    "n_chem_plausible_dimensions": 23,
+    "chem_plausibility_level_counts": {
+      "弱": 114,
+      "中": 21,
+      "强": 15
+    },
+    "chem_plausibility_level_dimension_counts": {
+      "强": 14,
+      "中": 14,
+      "弱": 48,
+      "无": 0
+    },
+    "mean_jaccard_E1_E2": 0.546,
+    "mean_jaccard_E1_E3": 0.198,
+    "mean_jaccard_E2_E3": 0.224,
+    "mean_jaccard_overall": 0.3227,
+    "min_bootstrap_freq": 0.0,
+    "max_bootstrap_freq": 1.0,
+    "all_finite": true
+  },
+  "e4_overlap": {
+    "mdi_global_top3": [
+      "ethyl_acetate",
+      "ethanol..v.v.",
+      "ethyl_octanoate"
+    ],
+    "mean_overlap_with_our_top3": 0.3,
+    "max_overlap": 2,
+    "dims_with_overlap_ge1": 12
+  },
+  "params": {
+    "graph_threshold_abs_rho": 0.6,
+    "sensitivity_thresholds": [
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "leiden": {
+      "objective_function": "modularity",
+      "n_iterations": 5,
+      "seed": 20261028
+    },
+    "fusion_weights": {
+      "e2": 0.5,
+      "e3": 0.5
+    },
+    "lightgbm_params": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_child_samples": 20,
+      "subsample": 0.9,
+      "subsample_freq": 1,
+      "colsample_bytree": 0.8,
+      "reg_lambda": 1.0,
+      "random_state": 20261028,
+      "n_jobs": 1,
+      "verbose": -1
+    },
+    "bootstrap": {
+      "B": 200,
+      "seed": 20261028,
+      "n_jobs": 8,
+      "resample_unit": "训练样本(175 瓶)有放回重采样"
+    },
+    "top_k": 3,
+    "selection_rule": {
+      "bootstrap_freq_min": 0.6,
+      "mean_cross_method_jaccard_min": 0.3
+    },
+    "corr_type": "Spearman（2.csv / 5.csv / 6.csv 均为 Spearman，见 README 勘误说明）"
+  }
+}

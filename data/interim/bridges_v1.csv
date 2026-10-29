@@ -1,0 +1,378 @@
+kind,matrix,name,target,method
+chemical,2.csv,Acetaldehyde,acetaldehyde,thresholds.chemical_name
+chemical,2.csv,Carbon disulfide,CS2,thresholds.chemical_name
+chemical,2.csv,Diethyl sulfide,DES,thresholds.chemical_name
+chemical,2.csv,Dimethyl sulfide,DMS,thresholds.chemical_name
+chemical,2.csv,Ethyl 2-methylbutyrate,ethyl_2.methyl_butyrate,thresholds.chemical_name
+chemical,2.csv,Ethyl acetate,ethyl_acetate,thresholds.chemical_name
+chemical,2.csv,Ethyl decanoate,ethyl_decanoate,thresholds.chemical_name
+chemical,2.csv,Ethyl hexanoate,ethyl_hexanoate,thresholds.chemical_name
+chemical,2.csv,Ethyl 3-methylbutyrate,ethyl_isovalerate,thresholds.chemical_name
+chemical,2.csv,Ethyl octanoate,ethyl_octanoate,thresholds.chemical_name
+chemical,2.csv,Ethyl propionate,ethyl_propionate,thresholds.chemical_name
+chemical,2.csv,Hydrogen sulfide,H2S,thresholds.chemical_name
+chemical,2.csv,Isoamyl alcohol,isoamyl_alcohol,thresholds.chemical_name
+chemical,2.csv,Isobutanol,isobutanol,thresholds.chemical_name
+chemical,2.csv,Isobutyl acetate,isobutyl_acetate,thresholds.chemical_name
+chemical,2.csv,Isoamyl acetate,isopentyl_acetate,thresholds.chemical_name
+chemical,2.csv,Methanethiol,MeSH,thresholds.chemical_name
+chemical,2.csv,Octyl acetate,octyl_acetate,thresholds.chemical_name
+chemical,2.csv,Phenethyl acetate,phenethyl_acetate,thresholds.chemical_name
+chemical,2.csv,Phenethyl alcohol,phenethyl_alcohol,thresholds.chemical_name
+chemical,2.csv,4-vinylguaiacol,X4VG,thresholds.chemical_name
+chemical,2.csv,Sulfur dioxide,SO2.mg.L.,thresholds.chemical_name
+chemical,2.csv,Acetic acid,acetic_acid.g.L.,thresholds.chemical_name
+chemical,2.csv,Ammonia,ammonia.mg.L.,thresholds.chemical_name
+chemical,2.csv,Color,color.EBC.,thresholds.chemical_name
+chemical,2.csv,Betaglucan,betaglucan.mg.L.,thresholds.chemical_name
+chemical,2.csv,Lactic acid,lactic_acid.mg.L.,thresholds.chemical_name
+chemical,2.csv,Glycerol,glycerol,thresholds.chemical_name
+chemical,2.csv,Iron,iron,thresholds.chemical_name
+chemical,2.csv,pH,pH,thresholds.chemical_name
+chemical,2.csv,Protein,protein.g.L.,thresholds.chemical_name
+chemical,2.csv,Iso-alpha acids,bitterness,thresholds.chemical_name
+chemical,2.csv,Sugars,GFS,thresholds.chemical_name
+chemical,2.csv,Ethanol,ethanol..v.v.,thresholds.chemical_name
+chemical,2.csv,Carbon dioxide,CO2.PSI.,thresholds.chemical_name
+chemical,2.csv,Unfermentables,unfermentables,thresholds.chemical_name
+chemical,2.csv,Caloric value,kcalperc,thresholds.chemical_name
+chemical,2.csv,1-propanol,X1.propanol,thresholds.chemical_name
+chemical,2.csv,Diacetyl,X2.3.butanedione,thresholds.chemical_name
+chemical,2.csv,3-methylbutanal,X3.methylbutanal,thresholds.chemical_name
+chemical,2.csv,Propylene glycol,propylene.glycol,thresholds.chemical_name
+chemical,2.csv,N-propyl acetate,propyl.acetate,thresholds.chemical_name
+chemical,2.csv,N-pentanol,n.pentanol,thresholds.chemical_name
+chemical,2.csv,2-methyl-1-butanol,X2.methyl.1.butanol,thresholds.chemical_name
+chemical,2.csv,Isopentyl formate,isopentyl.formate,thresholds.chemical_name
+chemical,2.csv,Ethyl isobutyrate,ethyl.isobutyrate,thresholds.chemical_name
+chemical,2.csv,3-methyl-2-butenal,X3.methyl.2.butenal,thresholds.chemical_name
+chemical,2.csv,2-methyltetrahydrofuran-3-one,X2.methyltetrahydrofuran.3.one,thresholds.chemical_name
+chemical,2.csv,Ethyl butyrate,ethyl.butyrate,thresholds.chemical_name
+chemical,2.csv,Butyl acetate,butyl.acetate,thresholds.chemical_name
+chemical,2.csv,Methylpyrazine,methylpyrazine,thresholds.chemical_name
+chemical,2.csv,Furfural,furfural,thresholds.chemical_name
+chemical,2.csv,Ethyl lactate,ethyl.lactate,thresholds.chemical_name
+chemical,2.csv,Cis-3-hexenol,X3Z.hexenol,thresholds.chemical_name
+chemical,2.csv,N-hexanol,n.hexanol,thresholds.chemical_name
+chemical,2.csv,Styrene,styrene,thresholds.chemical_name
+chemical,2.csv,Furfuryl alcohol,X2.furanmethanol,thresholds.chemical_name
+chemical,2.csv,3-methyl-2-hexanol,X3.methyl.2.hexanol,thresholds.chemical_name
+chemical,2.csv,3-furanmethanol,X3.furanmethanol,thresholds.chemical_name
+chemical,2.csv,2-acetylfuran,X2.acetylfuran,thresholds.chemical_name
+chemical,2.csv,"2,6-dimethylpyrazine",X2.6.dimethyl.pyrazine,thresholds.chemical_name
+chemical,2.csv,Amyl acetate,amyl.acetate,thresholds.chemical_name
+chemical,2.csv,Ethyl tiglate,ethyl.tiglate,thresholds.chemical_name
+chemical,2.csv,Benzaldehyde,benzaldehyde,thresholds.chemical_name
+chemical,2.csv,5-methylfurfural,X5.methylfurfural,thresholds.chemical_name
+chemical,2.csv,N-heptanol,n.heptanol,thresholds.chemical_name
+chemical,2.csv,1-octen-3-ol,X1.octen.3.ol,thresholds.chemical_name
+chemical,2.csv,Methionol,X3.methylthio.propanol,thresholds.chemical_name
+chemical,2.csv,Isomaltol,isomaltol,thresholds.chemical_name
+chemical,2.csv,Methyl heptenone,X6.methyl.5.hepten.2.one,thresholds.chemical_name
+chemical,2.csv,2-pentyl furan,X2.pentyl.furan,thresholds.chemical_name
+chemical,2.csv,Ethyl 3-hexanoate,ethyl.hex..3E..enoate,thresholds.chemical_name
+chemical,2.csv,α-phellandrene,alpha.phellandrene,normalized_to_file1
+chemical,2.csv,Dehydroxy-cis-linalool oxide,dehydroxy.cis.linalool.oxide,thresholds.chemical_name
+chemical,2.csv,Hexyl acetate,hexyl.acetate,thresholds.chemical_name
+chemical,2.csv,Isopentyl butanoate,isopentyl.butanoate,thresholds.chemical_name
+chemical,2.csv,2-ethyl-1-hexanol,X2.ethyl.1.hexanol,thresholds.chemical_name
+chemical,2.csv,Beta-phellandrene,beta.phellandrene,thresholds.chemical_name
+chemical,2.csv,Limonene,limonene,thresholds.chemical_name
+chemical,2.csv,Eucalyptol,eucalyptol,thresholds.chemical_name
+chemical,2.csv,Benzyl alcohol,benzyl.alcohol,thresholds.chemical_name
+chemical,2.csv,Ethyl 2-hexenoate,ethyl.hex..2E..enoate,thresholds.chemical_name
+chemical,2.csv,Phenylacetaldehyde,phenylacetaldehyde,thresholds.chemical_name
+chemical,2.csv,E-β-ocimene,X.E..beta.ocimene,normalized_to_field_name_python
+chemical,2.csv,Prenyl isobutyrate,prenyl.isobutyrate,thresholds.chemical_name
+chemical,2.csv,Ethyl furoate,ethyl.furoate,thresholds.chemical_name
+chemical,2.csv,O-cresol,ortho.cresol,thresholds.chemical_name
+chemical,2.csv,Ethyl 5-methylhexanoate,ethyl.5.methylhexanoate,thresholds.chemical_name
+chemical,2.csv,2-acetylpyrrole,X2.acetylpyrrole,thresholds.chemical_name
+chemical,2.csv,Isoamyl lactate,isoamyl.lactate,thresholds.chemical_name
+chemical,2.csv,N-octanol,n.octanol,thresholds.chemical_name
+chemical,2.csv,Cis-linalool oxide,cis.linalool.oxide,thresholds.chemical_name
+chemical,2.csv,Meta-cymenene,meta.cymenene,thresholds.chemical_name
+chemical,2.csv,Terpinolene,terpinolene,thresholds.chemical_name
+chemical,2.csv,Linalool,linalool,thresholds.chemical_name
+chemical,2.csv,2-nonanol,nonan.2.ol,thresholds.chemical_name
+chemical,2.csv,N-nonanal,n.nonanal,thresholds.chemical_name
+chemical,2.csv,2-methyl-benzofuran,X2.methyl.benzofuran,thresholds.chemical_name
+chemical,2.csv,Heptyl acetate,heptyl.acetate,thresholds.chemical_name
+chemical,2.csv,4-methyl-1-pentanol,X4.methyl.1.pentanol,thresholds.chemical_name
+chemical,2.csv,Neo-allo-ocimene,neo.allo.ocimene,thresholds.chemical_name
+chemical,2.csv,X-methyl-1-octanol,x.methyl.1.octanol,thresholds.chemical_name
+chemical,2.csv,Trans-dihydro-β-terpineol,trans.dihydro.beta.terpineol,normalized_to_file1
+chemical,2.csv,Cis-β-terpineol,cis.beta.terpineol,normalized_to_file1
+chemical,2.csv,Y-methyl-1-octanol,y.methyl.1.octanol,thresholds.chemical_name
+chemical,2.csv,Camphor,camphor,thresholds.chemical_name
+chemical,2.csv,Isobutyl hexanoate,isobutyl.hexanoate,thresholds.chemical_name
+chemical,2.csv,Nerol oxide,nerol.oxide,thresholds.chemical_name
+chemical,2.csv,E-2-nonenal,X.E..2.nonenal,thresholds.chemical_name
+chemical,2.csv,Cis-dihydro-β-terpineol,cis.dihydro.beta.terpineol,normalized_to_file1
+chemical,2.csv,4-ethyl-phenol,X4.ethyl.phenol,thresholds.chemical_name
+chemical,2.csv,Isoborneol,isoborneol,thresholds.chemical_name
+chemical,2.csv,Ethyl benzoate,ethyl.benzoate,thresholds.chemical_name
+chemical,2.csv,N-nonanol,n.nonanol,thresholds.chemical_name
+chemical,2.csv,Terpinen-4-ol,terpinen.4.ol,thresholds.chemical_name
+chemical,2.csv,Diethyl succinate,diethyl.succinate,thresholds.chemical_name
+chemical,2.csv,Vinyl caprylate,vinyl.caprylate,thresholds.chemical_name
+chemical,2.csv,Alpha-terpineol,X1.alpha.terpineol,thresholds.chemical_name
+chemical,2.csv,Ethyl linalool,ethyl..E..linalool,thresholds.chemical_name
+chemical,2.csv,Ethyl nicotinate,ethyl.nicotinate,thresholds.chemical_name
+chemical,2.csv,Citronellol,citronellol,thresholds.chemical_name
+chemical,2.csv,Nerol,nerol,thresholds.chemical_name
+chemical,2.csv,5-hydroxymethylfurfural,hydroxy.methyl.furfural,thresholds.chemical_name
+chemical,2.csv,Ocimenone,E.ocimenone,thresholds.chemical_name
+chemical,2.csv,Cumin aldehyde,cumin.aldehyde,thresholds.chemical_name
+chemical,2.csv,Ethyl phenylacetate,ethyl.phenylacetate,thresholds.chemical_name
+chemical,2.csv,Isopentyl hexanoate,isopentyl.hexanoate,thresholds.chemical_name
+chemical,2.csv,Geraniol,geraniol,thresholds.chemical_name
+chemical,2.csv,β-cyclohomocitral,beta.cyclohomocitral,normalized_to_file1
+chemical,2.csv,Cinnamaldehyde,E.cinnamaldehyde,thresholds.chemical_name
+chemical,2.csv,N-decanol,n.decanol,thresholds.chemical_name
+chemical,2.csv,Neryl formate,neryl.formate,thresholds.chemical_name
+chemical,2.csv,4-ethyl-guaiacol,X4.ethyl.guaiacol,thresholds.chemical_name
+chemical,2.csv,2-undecanone,X2.undecanone,thresholds.chemical_name
+chemical,2.csv,Trans-dihydro-α-terpinyl acetate,trans.dihydro.alpha.terpinyl.acetate,normalized_to_file1
+chemical,2.csv,Terpinen-4-ol acetate,terpinen.4.ol.acetate,thresholds.chemical_name
+chemical,2.csv,2-undecanol,X2.undecanol,thresholds.chemical_name
+chemical,2.csv,Terpiryl acetate,delta.terpinyl.acetate,thresholds.chemical_name
+chemical,2.csv,"E,E-2,4-decadienal",X.E.E..2.4.decadienal,thresholds.chemical_name
+chemical,2.csv,Methyl geranate,methyl.geranate,thresholds.chemical_name
+chemical,2.csv,Car-3-en-2-one,car.3.en.2.one,thresholds.chemical_name
+chemical,2.csv,Dimethoxy-E-citral,dimethoxy..E..citral,thresholds.chemical_name
+chemical,2.csv,2-butyl octanoate,X2.butyloctanoate,thresholds.chemical_name
+chemical,2.csv,4-methoxysalicylaldehyde,X4.methoxysalicylaldehyde,thresholds.chemical_name
+chemical,2.csv,Ethyl hydrocinnamate,ethyl.hydrocinnamate,thresholds.chemical_name
+chemical,2.csv,Eugenol,eugenol,thresholds.chemical_name
+chemical,2.csv,Gamma-nonalactone,gamma.nonalactone,thresholds.chemical_name
+chemical,2.csv,Methyl para-anisate,methyl.para.anisate,thresholds.chemical_name
+chemical,2.csv,E-β-damascenone,X.E..beta.damascenone,normalized_to_field_name_python
+chemical,2.csv,Ethyl 9-decenoate,ethyl..9..decenoate,thresholds.chemical_name
+chemical,2.csv,Vanillin,vanillin,thresholds.chemical_name
+chemical,2.csv,Geosmin,geosmin,thresholds.chemical_name
+chemical,2.csv,Dodecanal,dodecanal,thresholds.chemical_name
+chemical,2.csv,"4,8-α-epoxy-caryophyllane",X4.8.alpha.epoxy.caryophyllane,normalized_to_field_name_python
+chemical,2.csv,Caryophyllene,E.caryophyllene,thresholds.chemical_name
+chemical,2.csv,E-α-ionone,X.E..alpha.ionone,normalized_to_field_name_python
+chemical,2.csv,Perillyl acetate,perillyl.acetate,thresholds.chemical_name
+chemical,2.csv,β-humulene,beta.humulene,normalized_to_file1
+chemical,2.csv,2-phenyl ethyl butyrate,X2.phenyl.ethyl.butyrate,thresholds.chemical_name
+chemical,2.csv,Z-β-farnesene,X.Z..beta.farnesene,normalized_to_field_name_python
+chemical,2.csv,Pentyl octanoate,pentyl.octanoate,thresholds.chemical_name
+chemical,2.csv,E-β-farnesene,X.E..beta.farnesene,normalized_to_field_name_python
+chemical,2.csv,2-methylbutyl octanoate,X2.methylbutyl.octanoate,thresholds.chemical_name
+chemical,2.csv,Alpha-humulene,alpha.humulene,thresholds.chemical_name
+chemical,2.csv,Neryl propanoate,neryl.propanoate,thresholds.chemical_name
+chemical,2.csv,9-epi-E-caryophyllene,X9.epi..E..caryophyllene,thresholds.chemical_name
+chemical,2.csv,Ethyl cinnamate,ethyl..E..cinnamate,thresholds.chemical_name
+chemical,2.csv,Linalool isovalerate,linalool.isovalerate,thresholds.chemical_name
+chemical,2.csv,α-terpinyl isobutanoate,alpha.terpinyl.isobutanoate,normalized_to_file1
+chemical,2.csv,N-dodecanol,n.dodecanol,thresholds.chemical_name
+chemical,2.csv,Germacrene D,germacrene.D,thresholds.chemical_name
+chemical,2.csv,E-β-ionone,X.E..beta.ionone,normalized_to_field_name_python
+chemical,2.csv,Valencene,valencene,thresholds.chemical_name
+chemical,2.csv,Neryl isobutanoate,neryl.isobutanoate,thresholds.chemical_name
+chemical,2.csv,Methyl isoeugenol,E.methyl.isoeugenol,thresholds.chemical_name
+chemical,2.csv,Z-dihydro-apofarnesal,X.Z..dihydro.apofarnesal,thresholds.chemical_name
+chemical,2.csv,Butylated hydroxytoluene,butylated.hydroxytoluene,thresholds.chemical_name
+chemical,2.csv,E-dihydro-apofarnesal,X.E..dihydro.apofarnesal,thresholds.chemical_name
+chemical,2.csv,Z-nerolidol,Z.nerolidol,thresholds.chemical_name
+chemical,2.csv,E-ortho-methoxy cinnamaldehyde,X.E..ortho.methoxy.cinnamaldehyde,thresholds.chemical_name
+chemical,2.csv,α-calacorene,alpha.calacorene,normalized_to_file1
+chemical,2.csv,E-nerolidol,E.nerolidol,thresholds.chemical_name
+chemical,2.csv,Tobacarol,dihydroisocaryophyllene.epoxide,thresholds.chemical_name
+chemical,2.csv,Caryophyllene alcohol,caryophyllene.alcohol,thresholds.chemical_name
+chemical,2.csv,Neryl isovalerate,neryl.isovalerate,thresholds.chemical_name
+chemical,2.csv,Spathulenol,spathulenol,thresholds.chemical_name
+chemical,2.csv,Caryophyllene oxide,caryophyllene.oxide,thresholds.chemical_name
+chemical,2.csv,Humulene epoxide II,humulene.epoxide.II,thresholds.chemical_name
+chemical,2.csv,Allo-aromadendrene epoxide,alloaromadendrene.epoxide,thresholds.chemical_name
+chemical,2.csv,Epicubenol,X1.10.di.epi.cubenol,thresholds.chemical_name
+chemical,2.csv,Isopropyl laurate,isopropyl.laurate,thresholds.chemical_name
+chemical,2.csv,"Caryophylla-4,8-dien-5-ol",caryophylla.4.12..8.13..dien.5.alpha.ol,thresholds.chemical_name
+chemical,2.csv,Gamma-eudesmol,gamma.eudesmol,thresholds.chemical_name
+chemical,2.csv,α-muurolol,alpha.muurolol,normalized_to_file1
+chemical,2.csv,"1,2-dihydro-8-hydroxy-2E-linalool",X1.2.dihydro.8.hydroxy..2E..linalool,thresholds.chemical_name
+chemical,2.csv,Tau-cadinol,tau.cadinol,thresholds.chemical_name
+chemical,2.csv,Kongol,selin.11.en.4.alpha.ol,thresholds.chemical_name
+chemical,2.csv,α-eudesmol,alpha.eudesmol,normalized_to_file1
+chemical,2.csv,14-hydroxy-9-epi-(E)-caryophyllene,X14.hydroxy.9.epi..E..caryophyllene,thresholds.chemical_name
+chemical,2.csv,Tau-muurolol,tau.muurolol,thresholds.chemical_name
+chemical,2.csv,N-tetradecanol,n.tetradecanol,thresholds.chemical_name
+chemical,2.csv,Eoeniculin,foeniculin,thresholds.chemical_name
+chemical,2.csv,Cadalene,cadalene,thresholds.chemical_name
+chemical,2.csv,"2,3-dihydro-farnesol",X2.3.dihydro.farnesol,thresholds.chemical_name
+chemical,2.csv,"E,Z-farnesal",X2E.6Z.farnesal,thresholds.chemical_name
+chemical,2.csv,Caryophyllene acetate,caryophyllene.acetate,thresholds.chemical_name
+chemical,2.csv,14-hydroxy-α-humulene,X14.hydroxy.alpha.humulene,normalized_to_field_name_python
+chemical,2.csv,"Z,E-farnesal",X2Z.6E.farnesal,thresholds.chemical_name
+chemical,2.csv,"Z,Z-farnesol",X2Z.6Z.farnesol,thresholds.chemical_name
+chemical,2.csv,"Z,E-farnesol",X2Z.6E.farnesol,thresholds.chemical_name
+chemical,2.csv,Ambroxide,ambroxide,thresholds.chemical_name
+chemical,2.csv,Benzyl benzoate,benzyl.benzoate,thresholds.chemical_name
+chemical,2.csv,"2E,6E-methyl farnesoate",X2E.6E.methyl.farnesoate,thresholds.chemical_name
+chemical,2.csv,Ethyl tetradecanoate,ethyl.tetradecanoate,thresholds.chemical_name
+chemical,2.csv,2-ethylhexyl acrylate,X2.ethylhexylsalicylate,thresholds.chemical_name
+chemical,2.csv,Isopropyl tetradecanoate,isopropyl.tetradecanoate,thresholds.chemical_name
+chemical,2.csv,Ethyl pentadecanoate,ethyl.pentadecanoate,thresholds.chemical_name
+chemical,2.csv,Methyl hexadecanoate,methyl.hexadecanoate,thresholds.chemical_name
+chemical,2.csv,"Z,Z-geranyl linalool",Z.Z.geranyl.linalool,thresholds.chemical_name
+chemical,2.csv,Ethyl hexadecanoate,ethyl.hexadecanoate,thresholds.chemical_name
+chemical,2.csv,Manool oxide,manool.oxide,thresholds.chemical_name
+chemical,2.csv,13-epi manool oxide,X13.epi.manool.oxide,thresholds.chemical_name
+chemical,2.csv,Isopropyl hexadecanoate,isopropyl.hexadecanoate,thresholds.chemical_name
+chemical,2.csv,Manool,manool,thresholds.chemical_name
+chemical,2.csv,Ethyl octadecanoate,ethyl.octadecanoate,thresholds.chemical_name
+chemical,2.csv,Ethyl pentanoate,ethyl.pentanoate,thresholds.chemical_name
+chemical,2.csv,2-ethyl-3-methylpyrazine,X2.ethyl.3.methylpyrazine,thresholds.chemical_name
+chemical,2.csv,Total ester compounds,esters_sum,thresholds.chemical_name
+chemical,2.csv,Total hop aroma compounds,aroma_hops_sum,thresholds.chemical_name
+chemical,2.csv,Total acids,acids_sum,thresholds.chemical_name
+chemical,2.csv,Total sulfur compounds,sulfur_sum,thresholds.chemical_name
+chemical,6.csv,Ethyl acetate,ethyl_acetate,thresholds.chemical_name
+chemical,6.csv,Ethyl decanoate,ethyl_decanoate,thresholds.chemical_name
+chemical,6.csv,Ethyl hexanoate,ethyl_hexanoate,thresholds.chemical_name
+chemical,6.csv,Ethyl octanoate,ethyl_octanoate,thresholds.chemical_name
+chemical,6.csv,Ethyl propionate,ethyl_propionate,thresholds.chemical_name
+chemical,6.csv,Isobutyl acetate,isobutyl_acetate,thresholds.chemical_name
+chemical,6.csv,Isoamyl acetate,isopentyl_acetate,thresholds.chemical_name
+chemical,6.csv,Octyl acetate,octyl_acetate,thresholds.chemical_name
+chemical,6.csv,Phenethyl acetate,phenethyl_acetate,thresholds.chemical_name
+chemical,6.csv,Ethyl 2-methylbutyrate,ethyl_2.methyl_butyrate,thresholds.chemical_name
+chemical,6.csv,Ethyl 3-methylbutyrate,ethyl_isovalerate,thresholds.chemical_name
+chemical,6.csv,Ethanol,ethanol..v.v.,thresholds.chemical_name
+chemical,6.csv,Isoamyl alcohol,isoamyl_alcohol,thresholds.chemical_name
+chemical,6.csv,Isobutanol,isobutanol,thresholds.chemical_name
+chemical,6.csv,Phenethyl alcohol,phenethyl_alcohol,thresholds.chemical_name
+chemical,6.csv,Glycerol,glycerol,thresholds.chemical_name
+chemical,6.csv,Iso-alpha acids,bitterness,thresholds.chemical_name
+chemical,6.csv,Alpha-humulene,alpha.humulene,thresholds.chemical_name
+chemical,6.csv,Caryophyllene,E.caryophyllene,thresholds.chemical_name
+chemical,6.csv,Alpha-terpineol,X1.alpha.terpineol,thresholds.chemical_name
+chemical,6.csv,Citronellol,citronellol,thresholds.chemical_name
+chemical,6.csv,Geraniol,geraniol,thresholds.chemical_name
+chemical,6.csv,Linalool,linalool,thresholds.chemical_name
+chemical,6.csv,Z-nerolidol,Z.nerolidol,thresholds.chemical_name
+chemical,6.csv,Acetic acid,acetic_acid.g.L.,thresholds.chemical_name
+chemical,6.csv,Lactic acid,lactic_acid.mg.L.,thresholds.chemical_name
+chemical,6.csv,Diacetyl,X2.3.butanedione,thresholds.chemical_name
+chemical,6.csv,4-vinylguaiacol,X4VG,thresholds.chemical_name
+chemical,6.csv,Acetaldehyde,acetaldehyde,thresholds.chemical_name
+chemical,6.csv,Carbon disulfide,CS2,thresholds.chemical_name
+chemical,6.csv,Dimethyl sulfide,DMS,thresholds.chemical_name
+chemical,6.csv,Diethyl sulfide,DES,thresholds.chemical_name
+chemical,6.csv,Hydrogen sulfide,H2S,thresholds.chemical_name
+chemical,6.csv,Methanethiol,MeSH,thresholds.chemical_name
+chemical,6.csv,Sulfur dioxide,SO2.mg.L.,thresholds.chemical_name
+chemical,6.csv,Carbon dioxide,CO2.PSI.,thresholds.chemical_name
+chemical,6.csv,pH,pH,thresholds.chemical_name
+chemical,6.csv,Ammonia,ammonia.mg.L.,thresholds.chemical_name
+chemical,6.csv,Betaglucan,betaglucan.mg.L.,thresholds.chemical_name
+chemical,6.csv,Color,color.EBC.,thresholds.chemical_name
+chemical,6.csv,Iron,iron,thresholds.chemical_name
+chemical,6.csv,Protein,protein.g.L.,thresholds.chemical_name
+chemical,6.csv,Sugars,GFS,thresholds.chemical_name
+chemical,6.csv,Caloric value,kcalperc,thresholds.chemical_name
+sensory,5.csv,Malt aroma - overall,A_malt_all,CleanName_PanelFeedback
+sensory,5.csv,Malt aroma - grain,A_malt_grain,CleanName_PanelFeedback
+sensory,5.csv,Malt aroma - bread,A_malt_bread,CleanName_PanelFeedback
+sensory,5.csv,Malt aroma - caramel,A_malt_cara,CleanName_PanelFeedback
+sensory,5.csv,Malt aroma - smoked,A_malt_burn,CleanName_PanelFeedback
+sensory,5.csv,Hops aroma - overall,A_hops_all,CleanName_PanelFeedback
+sensory,5.csv,Hops aroma - citrus,A_hops_citrus,CleanName_PanelFeedback
+sensory,5.csv,Hops aroma - tropical fruit,A_hops_tropical,CleanName_PanelFeedback
+sensory,5.csv,Hops aroma - grassy,A_hops_noble,CleanName_PanelFeedback
+sensory,5.csv,Hops aroma - woody,A_hops_woody,CleanName_PanelFeedback
+sensory,5.csv,Esters aroma - overall,A_esters_all,CleanName_PanelFeedback
+sensory,5.csv,Esters aroma - nail polish,A_esters_ethac,CleanName_PanelFeedback
+sensory,5.csv,Esters aroma - banana,A_esters_isoaa,CleanName_PanelFeedback
+sensory,5.csv,Esters aroma - floral,A_esters_flower,CleanName_PanelFeedback
+sensory,5.csv,Esters aroma - fruity,A_esters_fruity,CleanName_PanelFeedback
+sensory,5.csv,Malt taste - overall,F_malt_all,CleanName_PanelFeedback
+sensory,5.csv,Malt taste - grain,F_malt_grain,CleanName_PanelFeedback
+sensory,5.csv,Malt taste - bread,F_malt_bread,CleanName_PanelFeedback
+sensory,5.csv,Malt taste - caramel,F_malt_cara,CleanName_PanelFeedback
+sensory,5.csv,Malt taste - smoked,F_malt_burn,CleanName_PanelFeedback
+sensory,5.csv,Hops taste - overall,F_hops_all,CleanName_PanelFeedback
+sensory,5.csv,Hops taste - citrus,F_hops_citrus,CleanName_PanelFeedback
+sensory,5.csv,Hops taste - tropical fruit,F_hops_tropical,CleanName_PanelFeedback
+sensory,5.csv,Hops taste - grassy,F_hops_noble,CleanName_PanelFeedback
+sensory,5.csv,Hops taste - woody,F_hops_woody,CleanName_PanelFeedback
+sensory,5.csv,Esters taste - overall,F_esters_all,CleanName_PanelFeedback
+sensory,5.csv,Esters taste - nail polish,F_esters_ethac,CleanName_PanelFeedback
+sensory,5.csv,Esters taste - banana,F_esters_isoaa,CleanName_PanelFeedback
+sensory,5.csv,Esters taste - floral,F_esters_flower,CleanName_PanelFeedback
+sensory,5.csv,Esters taste - fruity,F_esters_fruity,CleanName_PanelFeedback
+sensory,5.csv,Acidity,acidity,CleanName_PanelFeedback
+sensory,5.csv,Bitterness,bitternes,CleanName_PanelFeedback
+sensory,5.csv,Sweetness,sweetness,CleanName_PanelFeedback
+sensory,5.csv,4-vinyl guaiacol,X4vg,CleanName_PanelFeedback
+sensory,5.csv,Diacetyl,diacetyl,CleanName_PanelFeedback
+sensory,5.csv,Dimethyl sulfide,dms,CleanName_PanelFeedback
+sensory,5.csv,Metallic,metallic,CleanName_PanelFeedback
+sensory,5.csv,Stale hops,stale_hops,CleanName_PanelFeedback
+sensory,5.csv,Trans-2-nonenal,t2n,CleanName_PanelFeedback
+sensory,5.csv,Orange,orange,CleanName_PanelFeedback
+sensory,5.csv,Coriander,coriander,CleanName_PanelFeedback
+sensory,5.csv,Clove,clove,CleanName_PanelFeedback
+sensory,5.csv,Lactic acid,lactic,CleanName_PanelFeedback
+sensory,5.csv,Acetic acid,acetic,CleanName_PanelFeedback
+sensory,5.csv,Barnyard,barnyard,CleanName_PanelFeedback
+sensory,5.csv,Alcohol,alcohol,CleanName_PanelFeedback
+sensory,5.csv,Carbonation,co2,CleanName_PanelFeedback
+sensory,5.csv,Aftertaste,aftertaste,CleanName_PanelFeedback
+sensory,5.csv,Body,body,CleanName_PanelFeedback
+sensory,5.csv,"Overall appreciation
+(Trained panel)",overall,CleanName_PanelFeedback
+sensory,6.csv,Malt aroma - overall,A_malt_all,CleanName_PanelFeedback
+sensory,6.csv,Malt aroma - grain,A_malt_grain,CleanName_PanelFeedback
+sensory,6.csv,Malt aroma - bread,A_malt_bread,CleanName_PanelFeedback
+sensory,6.csv,Malt aroma - caramel,A_malt_cara,CleanName_PanelFeedback
+sensory,6.csv,Malt aroma - smoked,A_malt_burn,CleanName_PanelFeedback
+sensory,6.csv,Hops aroma - overall,A_hops_all,CleanName_PanelFeedback
+sensory,6.csv,Hops aroma - citrus,A_hops_citrus,CleanName_PanelFeedback
+sensory,6.csv,Hops aroma - tropical fruit,A_hops_tropical,CleanName_PanelFeedback
+sensory,6.csv,Hops aroma - grassy,A_hops_noble,CleanName_PanelFeedback
+sensory,6.csv,Hops aroma - woody,A_hops_woody,CleanName_PanelFeedback
+sensory,6.csv,Esters aroma - overall,A_esters_all,CleanName_PanelFeedback
+sensory,6.csv,Esters aroma - nail polish,A_esters_ethac,CleanName_PanelFeedback
+sensory,6.csv,Esters aroma - banana,A_esters_isoaa,CleanName_PanelFeedback
+sensory,6.csv,Esters aroma - floral,A_esters_flower,CleanName_PanelFeedback
+sensory,6.csv,Esters aroma - fruity,A_esters_fruity,CleanName_PanelFeedback
+sensory,6.csv,Malt taste - overall,F_malt_all,CleanName_PanelFeedback
+sensory,6.csv,Malt taste - grain,F_malt_grain,CleanName_PanelFeedback
+sensory,6.csv,Malt taste - bread,F_malt_bread,CleanName_PanelFeedback
+sensory,6.csv,Malt taste - caramel,F_malt_cara,CleanName_PanelFeedback
+sensory,6.csv,Malt taste - smoked,F_malt_burn,CleanName_PanelFeedback
+sensory,6.csv,Hops taste - overall,F_hops_all,CleanName_PanelFeedback
+sensory,6.csv,Hops taste - citrus,F_hops_citrus,CleanName_PanelFeedback
+sensory,6.csv,Hops taste - tropical fruit,F_hops_tropical,CleanName_PanelFeedback
+sensory,6.csv,Hops taste - grassy,F_hops_noble,CleanName_PanelFeedback
+sensory,6.csv,Hops taste - woody,F_hops_woody,CleanName_PanelFeedback
+sensory,6.csv,Esters taste - overall,F_esters_all,CleanName_PanelFeedback
+sensory,6.csv,Esters taste - nail polish,F_esters_ethac,CleanName_PanelFeedback
+sensory,6.csv,Esters taste - banana,F_esters_isoaa,CleanName_PanelFeedback
+sensory,6.csv,Esters taste - floral,F_esters_flower,CleanName_PanelFeedback
+sensory,6.csv,Esters taste - fruity,F_esters_fruity,CleanName_PanelFeedback
+sensory,6.csv,Acidity,acidity,CleanName_PanelFeedback
+sensory,6.csv,Bitterness,bitternes,CleanName_PanelFeedback
+sensory,6.csv,Sweetness,sweetness,CleanName_PanelFeedback
+sensory,6.csv,4-vinyl guaiacol,X4vg,CleanName_PanelFeedback
+sensory,6.csv,Diacetyl,diacetyl,CleanName_PanelFeedback
+sensory,6.csv,Dimethyl sulfide,dms,CleanName_PanelFeedback
+sensory,6.csv,Metallic,metallic,CleanName_PanelFeedback
+sensory,6.csv,Stale hops,stale_hops,CleanName_PanelFeedback
+sensory,6.csv,Trans-2-nonenal,t2n,CleanName_PanelFeedback
+sensory,6.csv,Orange,orange,CleanName_PanelFeedback
+sensory,6.csv,Coriander,coriander,CleanName_PanelFeedback
+sensory,6.csv,Clove,clove,CleanName_PanelFeedback
+sensory,6.csv,Lactic acid,lactic,CleanName_PanelFeedback
+sensory,6.csv,Acetic acid,acetic,CleanName_PanelFeedback
+sensory,6.csv,Barnyard,barnyard,CleanName_PanelFeedback
+sensory,6.csv,Alcohol,alcohol,CleanName_PanelFeedback
+sensory,6.csv,Carbonation,co2,CleanName_PanelFeedback
+sensory,6.csv,Aftertaste,aftertaste,CleanName_PanelFeedback
+sensory,6.csv,Body,body,CleanName_PanelFeedback
+sensory,6.csv,"Overall appreciation
+(Trained panel)",overall,CleanName_PanelFeedback

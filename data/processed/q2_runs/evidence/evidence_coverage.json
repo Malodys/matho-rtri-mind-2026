@@ -1,0 +1,18 @@
+{
+  "E1_6csv": {
+    "n_compounds": 44,
+    "n_targets": 50
+  },
+  "E2_spearman_full": {
+    "n_compounds": 227,
+    "n_targets": 50,
+    "n_finite": 11350
+  },
+  "E3_shap": {
+    "n_compounds": 227,
+    "n_targets": 50
+  },
+  "E4_mdi": {
+    "n_compounds": 231
+  }
+}
