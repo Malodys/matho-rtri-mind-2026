@@ -1,0 +1,97 @@
+compound,sensory_dim,style,n,rho,pattern
+ethyl_acetate,A_esters_all,Blond,31,0.20766129032258068,non_monotonic
+ethyl_acetate,A_esters_all,Tripel,28,0.43623426382047065,non_monotonic
+ethyl_acetate,A_esters_all,Strong ale,18,0.5789473684210527,non_monotonic
+ethyl_acetate,A_esters_all,Hoppy,17,0.06862745098039216,non_monotonic
+ethyl_acetate,A_esters_all,Stout/Porter,13,0.2692307692307692,monotonic_negative
+ethyl_acetate,A_esters_all,Brown,12,0.35664335664335667,non_monotonic
+ethyl_acetate,A_esters_all,Amber,12,0.5314685314685316,monotonic_positive
+ethyl_acetate,A_esters_all,Wheat,12,0.8181818181818183,non_monotonic
+ethyl_acetate,A_esters_all,Lambic,11,0.10909090909090911,insufficient_quarters
+ethyl_acetate,A_esters_all,Pils/Lager,11,-0.3545454545454546,insufficient_quarters
+ethyl_acetate,A_esters_all,Dubbel,10,0.33333333333333326,insufficient_quarters
+ethyl_acetate,A_esters_all,Saison,10,-0.29696969696969694,insufficient_quarters
+ethyl_acetate,A_esters_all,Kriek,10,-0.34545454545454546,insufficient_quarters
+ethyl_acetate,A_esters_all,Christmas,9,-0.03333333333333333,insufficient_quarters
+ethyl_acetate,A_esters_all,Low/No alcohol,8,-0.14285714285714288,insufficient_quarters
+ethyl_acetate,A_esters_all,Fruitbeer,8,-0.261904761904762,insufficient_quarters
+ethyl_acetate,F_esters_all,Blond,31,0.1629032258064516,non_monotonic
+ethyl_acetate,F_esters_all,Tripel,28,0.1565407772304324,non_monotonic
+ethyl_acetate,F_esters_all,Strong ale,18,0.281733746130031,non_monotonic
+ethyl_acetate,F_esters_all,Hoppy,17,0.3774509803921569,non_monotonic
+ethyl_acetate,F_esters_all,Stout/Porter,13,0.4505494505494505,non_monotonic
+ethyl_acetate,F_esters_all,Brown,12,0.2797202797202798,non_monotonic
+ethyl_acetate,F_esters_all,Amber,12,0.7622377622377624,monotonic_positive
+ethyl_acetate,F_esters_all,Wheat,12,0.44755244755244755,non_monotonic
+ethyl_acetate,F_esters_all,Lambic,11,-0.7090909090909092,insufficient_quarters
+ethyl_acetate,F_esters_all,Pils/Lager,11,0.09090909090909091,insufficient_quarters
+ethyl_acetate,F_esters_all,Dubbel,10,0.4666666666666666,insufficient_quarters
+ethyl_acetate,F_esters_all,Saison,10,-0.05454545454545454,insufficient_quarters
+ethyl_acetate,F_esters_all,Kriek,10,-0.06666666666666665,insufficient_quarters
+ethyl_acetate,F_esters_all,Christmas,9,-0.2333333333333333,insufficient_quarters
+ethyl_acetate,F_esters_all,Low/No alcohol,8,-0.4047619047619048,insufficient_quarters
+ethyl_acetate,F_esters_all,Fruitbeer,8,0.0,insufficient_quarters
+linalool,A_hops_citrus,Blond,31,0.29608715599801283,non_monotonic
+linalool,A_hops_citrus,Tripel,28,0.06902220900371976,monotonic_positive
+linalool,A_hops_citrus,Strong ale,18,0.034073313781819096,non_monotonic
+linalool,A_hops_citrus,Hoppy,17,0.18872549019607845,non_monotonic
+linalool,A_hops_citrus,Stout/Porter,13,0.035962132447272824,non_monotonic
+linalool,A_hops_citrus,Brown,12,0.3817869252443987,non_monotonic
+linalool,A_hops_citrus,Amber,12,0.4456140350877193,insufficient_quarters
+linalool,A_hops_citrus,Wheat,12,0.4056494170411816,insufficient_quarters
+linalool,A_hops_citrus,Lambic,11,0.28181818181818186,insufficient_quarters
+linalool,A_hops_citrus,Pils/Lager,11,0.43280294519929496,insufficient_quarters
+linalool,A_hops_citrus,Dubbel,10,-0.030677155956992445,insufficient_quarters
+linalool,A_hops_citrus,Saison,10,0.41337576970244394,insufficient_quarters
+linalool,A_hops_citrus,Kriek,10,-0.03763993960049205,insufficient_quarters
+linalool,A_hops_citrus,Christmas,9,0.025104822262671692,insufficient_quarters
+linalool,A_hops_citrus,Low/No alcohol,8,0.2454951265154914,insufficient_quarters
+linalool,A_hops_citrus,Fruitbeer,8,0.05073462894318411,insufficient_quarters
+DMS,dms,Blond,31,0.03669354838709678,non_monotonic
+DMS,dms,Tripel,28,0.13902572523262177,non_monotonic
+DMS,dms,Strong ale,18,0.42414860681114547,non_monotonic
+DMS,dms,Hoppy,17,-0.11302245417305493,non_monotonic
+DMS,dms,Stout/Porter,13,-0.06043956043956044,non_monotonic
+DMS,dms,Brown,12,0.2027972027972028,non_monotonic
+DMS,dms,Amber,12,-0.31468531468531474,non_monotonic
+DMS,dms,Wheat,12,0.024518426391842117,non_monotonic
+DMS,dms,Lambic,11,-0.5330309956665001,insufficient_quarters
+DMS,dms,Pils/Lager,11,0.09090909090909091,insufficient_quarters
+DMS,dms,Dubbel,10,0.5636363636363636,insufficient_quarters
+DMS,dms,Saison,10,0.2121212121212121,insufficient_quarters
+DMS,dms,Kriek,10,0.3619904402925108,insufficient_quarters
+DMS,dms,Christmas,9,-0.03333333333333333,insufficient_quarters
+DMS,dms,Low/No alcohol,8,-0.08383383833392813,insufficient_quarters
+DMS,dms,Fruitbeer,8,-0.08434347122457898,insufficient_quarters
+X2.3.butanedione,diacetyl,Blond,31,-0.14193548387096774,non_monotonic
+X2.3.butanedione,diacetyl,Tripel,28,-0.018612289759626813,non_monotonic
+X2.3.butanedione,diacetyl,Strong ale,18,-0.0010341283752230669,non_monotonic
+X2.3.butanedione,diacetyl,Hoppy,17,-0.32432530327920106,non_monotonic
+X2.3.butanedione,diacetyl,Stout/Porter,13,0.027472527472527472,non_monotonic
+X2.3.butanedione,diacetyl,Brown,12,-0.4755244755244756,non_monotonic
+X2.3.butanedione,diacetyl,Amber,12,0.521139683250959,non_monotonic
+X2.3.butanedione,diacetyl,Wheat,12,0.056042117467067706,non_monotonic
+X2.3.butanedione,diacetyl,Lambic,11,-0.45454545454545453,insufficient_quarters
+X2.3.butanedione,diacetyl,Pils/Lager,11,0.33257489473208984,insufficient_quarters
+X2.3.butanedione,diacetyl,Dubbel,10,0.4424242424242424,insufficient_quarters
+X2.3.butanedione,diacetyl,Saison,10,-0.4424242424242424,insufficient_quarters
+X2.3.butanedione,diacetyl,Kriek,10,-0.18237166310401937,insufficient_quarters
+X2.3.butanedione,diacetyl,Christmas,9,0.41666666666666663,insufficient_quarters
+X2.3.butanedione,diacetyl,Low/No alcohol,8,-0.8742671711966791,insufficient_quarters
+X2.3.butanedione,diacetyl,Fruitbeer,8,-0.6137857701752955,insufficient_quarters
+X.E..2.nonenal,t2n,Blond,31,-0.1342741935483871,non_monotonic
+X.E..2.nonenal,t2n,Tripel,28,-0.014506637606767958,non_monotonic
+X.E..2.nonenal,t2n,Strong ale,18,0.17656171686942626,monotonic_positive
+X.E..2.nonenal,t2n,Hoppy,17,-0.04920082697444974,non_monotonic
+X.E..2.nonenal,t2n,Stout/Porter,13,0.38239375927710695,monotonic_positive
+X.E..2.nonenal,t2n,Brown,12,-0.6293706293706295,non_monotonic
+X.E..2.nonenal,t2n,Amber,12,0.28070175438596495,insufficient_quarters
+X.E..2.nonenal,t2n,Wheat,12,-0.21716320518488735,non_monotonic
+X.E..2.nonenal,t2n,Lambic,11,-0.14545454545454548,insufficient_quarters
+X.E..2.nonenal,t2n,Pils/Lager,11,-0.4000000000000001,insufficient_quarters
+X.E..2.nonenal,t2n,Dubbel,10,0.006060606060606061,insufficient_quarters
+X.E..2.nonenal,t2n,Saison,10,0.39394240167285516,insufficient_quarters
+X.E..2.nonenal,t2n,Kriek,10,0.4012176588288426,insufficient_quarters
+X.E..2.nonenal,t2n,Christmas,9,0.06694619270045785,insufficient_quarters
+X.E..2.nonenal,t2n,Low/No alcohol,8,-0.3903600291794133,insufficient_quarters
+X.E..2.nonenal,t2n,Fruitbeer,8,-0.1867469879518072,insufficient_quarters

@@ -1,0 +1,76 @@
+{
+  "style_contract": "plot_style_v1",
+  "numbering_note": "caption 中的「图 N」为目录内占位序号，最终图号由 scripts/build_paper.py 统一分配。",
+  "figures": [
+    {
+      "file": "fig1_style_heatmaps",
+      "title": "风格化学画像",
+      "caption": "图 1  风格化学画像。真实样本 / 无约束生成 / 有约束生成 的逐化合物中位 log10(mg/L) 对照（每个风格一行，三列依次为三种来源，色标为中位浓度强度）；完整逐化合物数值见支撑材料表。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig1_style_heatmaps.png",
+        "data/processed/q3_figures/fig1_style_heatmaps.pdf"
+      ]
+    },
+    {
+      "file": "fig2_marginal_distributions",
+      "title": "边际分布对比",
+      "caption": "图 2  边际分布对比。三种风格（Tripel / Kriek / Lambic）× 三种来源（真实样本 / 无约束生成 / 有约束生成）的逐化合物 log10(mg/L) 分布箱线图；红色虚线为感官阈值（仅缺陷化合物有阈值，t2n 无阈值）。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig2_marginal_distributions.png",
+        "data/processed/q3_figures/fig2_marginal_distributions.pdf"
+      ]
+    },
+    {
+      "file": "fig3_parallel_coordinates_tripel",
+      "title": "平行坐标",
+      "caption": "图 3  平行坐标。三倍酒 Tripel 风格的逐化合物 log10(mg/L) 平行坐标，真实样本 / 无约束生成 / 有约束生成 各取前 60 条样本。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig3_parallel_coordinates_tripel.png",
+        "data/processed/q3_figures/fig3_parallel_coordinates_tripel.pdf"
+      ]
+    },
+    {
+      "file": "fig4_transfer_radar",
+      "title": "迁移前后对比",
+      "caption": "图 4  迁移前后对比。Pils/Lager → Tripel 迁移前后四项缺陷化合物的均值 log10(mg/L) 雷达图（半径为 log10 值，越靠内越低），各轴标签给出「迁移前 → 迁移后」的具体数值。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig4_transfer_radar.png",
+        "data/processed/q3_figures/fig4_transfer_radar.pdf"
+      ]
+    },
+    {
+      "file": "fig5_defect_boxplots",
+      "title": "缺陷化合物分布",
+      "caption": "图 5  缺陷化合物分布。DMS、Diacetyl、4-VG、trans-2-nonenal 在真实全体、三种风格的有约束/无约束生成以及迁移后（Pils→Tripel）的 log10(mg/L) 分布；红色虚线为感官阈值（t2n 无阈值）。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig5_defect_boxplots.png",
+        "data/processed/q3_figures/fig5_defect_boxplots.pdf"
+      ]
+    },
+    {
+      "file": "fig6_ks_distribution",
+      "title": "KS 距离分布",
+      "caption": "图 6  KS 距离分布。三种风格下逐化合物 KS 距离直方图（参照系为该风格真实样本，已剔除 3 个受约束列）；深灰实线为有约束生成的 KS 中位数，红色虚线为两样本 KS 原假设中位数。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig6_ks_distribution.png",
+        "data/processed/q3_figures/fig6_ks_distribution.pdf"
+      ]
+    },
+    {
+      "file": "fig7_sensory_profile_radar",
+      "title": "感官画像",
+      "caption": "图 7  感官画像。三种风格下真实样本与有约束/无约束生成的 50 维标准化感官画像雷达图，每图取该风格判别性最强的 10 个维度（A_ 前缀=香气维度，F_ 前缀=味道维度）。",
+      "width_in": 5.0,
+      "outputs": [
+        "data/processed/q3_figures/fig7_sensory_profile_radar.png",
+        "data/processed/q3_figures/fig7_sensory_profile_radar.pdf"
+      ]
+    }
+  ]
+}

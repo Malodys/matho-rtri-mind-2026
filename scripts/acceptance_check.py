@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import os
 import re
 import subprocess
 import sys
@@ -157,12 +158,29 @@ def run_checks(root: Path) -> list[dict]:
     else:
         add("V8_V9_V10_stack", "能力栈冒烟报告存在", False, "stack_smoke.json 缺失")
 
-    # V11 docx 技能
-    cli = Path(r"C:\Users\10857\.minimax\.builtin-skills\docx\scripts\dotnet\MiniMaxAIDocx.Cli")
+    # V11 docx 技能：CLI 路径按环境变量/用户目录动态定位，不在源码里写死本机绝对路径
+    # （本文件会随支撑材料打包，写死路径等于泄漏构建机目录结构）。
+    cli = None
+    for cand_env in ("MINIMAXAIDOCX_CLI",):
+        v = os.environ.get(cand_env)
+        if v and Path(v).is_dir():
+            cli = Path(v)
+            break
+    if cli is None:
+        home = Path.home()
+        for base in [home / ".minimax" / ".builtin-skills" / "docx" / "scripts" / "dotnet",
+                     home / ".claude" / "skills" / "docx" / "scripts" / "dotnet"]:
+            if base.is_dir():
+                cli = base
+                break
+    # 实际 CLI 是一个名为 MiniMaxAIDocx.Cli 的目录；若只找到上层 dotnet 目录则向下找
+    if cli is not None and cli.name != "MiniMaxAIDocx.Cli":
+        nested = cli / "MiniMaxAIDocx.Cli"
+        cli = nested if nested.is_dir() else cli
     smoke_docx = root / "data" / "processed" / "paper_smoke" / "paper_smoke.docx"
-    v11 = cli.is_dir() and smoke_docx.is_file()
+    v11 = cli is not None and cli.is_dir() and smoke_docx.is_file()
     add("V11_docx_skill", "docx 技能后端可用且模板冒烟产物存在", v11,
-        f"CLI 存在={cli.is_dir()}；冒烟 docx={smoke_docx.is_file()}")
+        f"CLI 存在={bool(cli and cli.is_dir())}；冒烟 docx={smoke_docx.is_file()}")
 
     # V12 论文 PDF 五项校验
     chk = root / "data" / "processed" / "paper_smoke" / "paper_smoke_check.json"

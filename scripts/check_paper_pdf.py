@@ -40,6 +40,17 @@ PAGE_NUM_RE = re.compile(r"第\s*(\d+)\s*页")
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 BAD_CHARS = ("\ufffd", "□", "�")
 
+#: 仓库根（用于把报告里的路径转成仓库相对路径）
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _rel_path(path: Path) -> str:
+    """返回仓库相对路径（POSIX 风格），避免报告里留下构建机的绝对路径。"""
+    try:
+        return path.resolve().relative_to(ROOT).as_posix()
+    except Exception:
+        return path.name
+
 
 def collect(path: Path):
     """返回 (页数, 每页文本, 每页顶部文本, 每页底部文本)。"""
@@ -72,7 +83,10 @@ def check(path: Path, max_body_pages: int, docx_path: Path | None = None,
                 if PAGE_NUM_RE.search(bt)]
     appendix_pos = None
     for pos, i in enumerate(numbered):
-        if appendix_marker and appendix_marker in pages_text[i]:
+        # 只认「行首即附录标题」的页作为附录起点：正文里若随口提到「附录」二字，
+        # 不应被误判为附录分界（否则正文页数会被严重低估）。
+        if appendix_marker and any(
+                ln.lstrip().startswith(appendix_marker) for ln in pages_text[i].split("\n")):
             appendix_pos = pos
             break
     body_pages = len(numbered)
@@ -160,7 +174,8 @@ def check(path: Path, max_body_pages: int, docx_path: Path | None = None,
     })
 
     return {
-        "pdf": str(path),
+        # 存仓库相对路径，避免产物里留下构建机的绝对路径
+        "pdf": _rel_path(path),
         "pages": n_pages,
         "body_pages": body_only,
         "appendix_pages": appendix_pages,

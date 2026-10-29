@@ -51,7 +51,7 @@ def test_consumer_descriptors_have_183_valid_dimensions():
     for col in EMPTY_PALATE_COLUMNS:
         assert col in desc, f"预期存在整列为空的描述符 {col}"
         assert forum[col].isna().all(), f"{col} 并非整列为空"
-    valid = [c for c in desc if not forum[col].isna().all()]
+    valid = [c for c in desc if not forum[c].isna().all()]
     assert len(desc) == 186, f"描述符总数应为 186，实得 {len(desc)}"
     assert len(valid) == 183, f"有效描述符应为 183，实得 {len(valid)}"
 

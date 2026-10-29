@@ -159,6 +159,15 @@
 - 每张图**同时输出 PNG(300dpi) 与 PDF(矢量)**，同名同目录；每个图目录附 `figures_manifest.json`（含图题与题注 caption）。
 - **图内标题 ≤12 字**；方法、单位、样本量、阈值一律移入论文题注，由 `scripts/build_paper.py` 统一编号（图 1…图 N、表 1…表 N）。
 - 图宽按 `FIG_WIDTH_IN = 5.0` 英寸反推 figsize，禁止超宽。
+- **manifest 的 `caption` 自带「图 N  标题。」前缀**，而论文图号由 `scripts/build_paper.py` 统一分配；`build_paper.py` 会剥掉该前缀（`_strip_caption_prefix`）后再拼装。manifest 的 `file` 字段可省略扩展名，`_load_figure_manifest` 同时登记原名 / stem / `stem.png` 三个键——**修改 manifest 时勿改这两处约定**，否则题注会静默退化为兜底文案。
+- 消费者层图目录为 `data/processed/q4_figures/`，其 manifest 由 `scripts/q4_figure_manifest.py` 生成（题注数值现场从 `q4_consumer/*.csv` 读取，不硬编码）。`build_paper.py` 按 `CONSUMER_FIGURE_SPECS` 把图分配到 5.2（可预测性 / 交叉一致性 / 价格）与 5.4（剂量-响应），**每张图只应出现一次**。
+
+## DOCX → PDF 转换（提交版质量）
+
+- 转换后端优先级：**Word COM**（`scripts/docx_to_pdf_word.ps1`，走 PowerShell 自带 COM interop）→ LibreOffice。
+- Python 环境**无 pywin32 且不允许安装**，故不依赖 `win32com`；`build_paper.py` 先尝试 `win32com`，失败即调 PowerShell 脚本。
+- **必须用 Word 而非 LibreOffice**：LibreOffice 在中文换行处会吞掉行尾标点（实测 471 个「，」丢 4 个、121 个「；」丢 2 个），使提交版 PDF 的文本层与 DOCX 不一致；Word 渲染零损失、页数一致。
+- PowerShell 侧注意：`ExportAsFixedFormat(path, 17)` 可用，`SaveAs2(path, 17)` 在本机会抛 COMException；输出路径**必须是绝对路径**，否则报「目录名无效」。
 
 ## PR & commit conventions
 
@@ -174,6 +183,18 @@
 - 软件清单：由 `requirements.lock.txt` 汇总（名称 + 版本），逐条对应论文附录的软件列表。
 - 命令清单：取本文件 "Setup commands" 与各脚本 `--help` 的实际调用。
 - 源程序清单：`scripts/` 与 `tests/` 全部文件，随支撑材料 `#*******附件.zip` 一并打包。
+
+## 提交打包
+
+- 用 `python scripts/package_submission.py --team-no <队伍编号>` 一次性产出提交件：
+  - `data/processed/submission/#<队号>.pdf` —— 论文 PDF，按赛题要求以队伍编号命名；
+  - `data/processed/submission/#<队号>附件.zip` —— 支撑材料；
+  - `data/processed/submission/#<队号>附件清单.json` —— 支撑材料逐文件 sha256 清单。
+- 打包前脚本会**重跑论文合规校验**，正文 >30 页或五项校验不过时**拒绝打包**。
+- ZIP 内排除 `worktrees/`、`smoke/`、`__pycache__` 与探测脚本；`data/raw/` 默认**不打入**
+  （原始附件由赛方提供，且本文件 Security 一节规定其不外传），需要时显式加 `--include-raw`。
+- 队伍编号当前仍是占位 `MCB260XXXX`，**须以赛题系统内登记的编号为准**后才可打包。
+- 参赛承诺书需另行签署并扫描上传，脚本不代劳。
 
 ## Security
 
