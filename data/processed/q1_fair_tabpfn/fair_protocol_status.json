@@ -1,0 +1,23 @@
+{
+  "status": "completed",
+  "protocol": "fair_main",
+  "features": 227,
+  "train": 175,
+  "holdout": 75,
+  "seed": 0,
+  "target_count": 50,
+  "n_estimators": 4,
+  "device": "cpu",
+  "elapsed_seconds": 2366.5,
+  "output_dir": "data/processed/q1_fair_tabpfn_full",
+  "summary_csv": "data/processed/q1_fair_tabpfn_full/cv_summary.csv",
+  "results": {
+    "macro_mae": 0.33869213267713827,
+    "macro_rmse": 0.4748492210289571,
+    "mean_r2": 0.23862139968768886,
+    "baseline_macro_mae": 0.42049787048732185,
+    "baseline_macro_rmse": 0.5762411578605328,
+    "baseline_mean_r2": -0.013088943949031573
+  },
+  "conclusion": "公平协议使用227个统一尺度特征、固定175/75风格分层留出和50个目标，结果作为辅助对照记录；独立GBR仍为正式主模型，论文不据此宣称TabPFN优于主模型。"
+}

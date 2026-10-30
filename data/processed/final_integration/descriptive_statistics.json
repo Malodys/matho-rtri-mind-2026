@@ -1,0 +1,36 @@
+{
+  "generated_at_utc": "2026-10-30T11:26:18.609044+00:00",
+  "samples": 250,
+  "raw_numeric_features": 231,
+  "modeling_features": 227,
+  "sensory_targets": 50,
+  "target_categories": {
+    "Aroma": 15,
+    "Flavour": 15,
+    "通用": 20
+  },
+  "fine_styles": 22,
+  "style_count_min": 3,
+  "style_count_max": 31,
+  "style_count_median": 10.0,
+  "raw_missing_cells": 73,
+  "raw_numeric_cells": 57750,
+  "raw_missing_rate": 0.0012640692640692641,
+  "unified_missing_cells": 0,
+  "dropped_unverified_sum_columns": 4,
+  "scale_audit_counts": {
+    "LOG10": 37,
+    "RAW": 19,
+    "RAW_APPROX": 10,
+    "AMBIG": 4
+  },
+  "split": {
+    "train": 175,
+    "holdout": 75,
+    "seed": 0,
+    "stratification": "tasting_category_fine"
+  },
+  "target_statistics_file": "target_descriptive_statistics.csv",
+  "style_counts_file": "style_counts.csv",
+  "scale_audit_file": "scale_audit_full.csv"
+}

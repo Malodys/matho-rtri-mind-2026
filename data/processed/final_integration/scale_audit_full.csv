@@ -1,0 +1,71 @@
+﻿file1_column,n_obs,verdict,slope_log10,r_log10,slope_raw,r_raw,slope_ln,r_ln,provenance_block,provenance_transform,provenance_scale_action,matches_provenance,has_provenance_claim,verification_strength
+acetaldehyde,249,LOG10,1.0,1.0,7.917882,0.846122,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+CS2,41,LOG10,1.0,1.0,0.593182,0.8439,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+DES,221,LOG10,1.0,1.0,1.88329,0.854314,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+DMS,249,LOG10,1.0,1.0,92.06793,0.749369,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_2.methyl_butyrate,165,LOG10,1.0,1.0,0.044466,0.683527,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_acetate,250,LOG10,1.0,1.0,36.861208,0.801738,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_decanoate,249,LOG10,1.0,1.0,0.241539,0.859009,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_hexanoate,249,LOG10,1.0,1.0,0.409837,0.860276,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_isovalerate,167,LOG10,1.0,1.0,0.039282,0.78666,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_octanoate,250,LOG10,1.0,1.0,0.744243,0.858949,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+ethyl_propionate,240,LOG10,1.0,1.0,0.219984,0.824375,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+H2S,240,LOG10,1.0,1.0,16.054277,0.826723,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+isoamyl_alcohol,248,LOG10,1.0,1.0,52.404726,0.825692,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+isobutanol,245,LOG10,1.0,1.0,14.393318,0.814131,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+isobutyl_acetate,242,LOG10,1.0,1.0,0.121872,0.815245,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+isopentyl_acetate,249,LOG10,1.0,1.0,4.171283,0.851113,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+MeSH,250,LOG10,1.0,1.0,1.723048,0.874912,2.302585,1.0,GC-FID/FPD 目标定量,log10,逆变换→统一mg/L→log10,True,True,exact
+octyl_acetate,140,LOG10,1.0,1.0,0.017618,0.887494,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+phenethyl_acetate,249,LOG10,1.0,1.0,0.444661,0.872053,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+phenethyl_alcohol,250,LOG10,1.0,1.0,20.50589,0.816143,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+X4VG,82,LOG10,1.0,1.0,0.290476,0.86603,2.302585,1.0,GC-MS 校准化合物,log10,逆变换→统一mg/L→log10,True,True,exact
+SO2.mg.L.,249,LOG10,1.0,1.0,5.755618,0.901369,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+acetic_acid.g.L.,248,LOG10,1.0,1.0,0.774682,0.826377,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+ammonia.mg.L.,244,LOG10,1.0,1.0,34.701379,0.763045,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+color.EBC.,250,LOG10,1.0,1.0,75.743409,0.875708,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+betaglucan.mg.L.,238,LOG10,1.0,1.0,182.036525,0.868037,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+lactic_acid.mg.L.,250,LOG10,1.0,1.0,1693.523682,0.857656,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+glycerol,250,LOG10,1.0,1.0,4.435622,0.914688,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+iron,247,LOG10,1.0,1.0,0.550489,0.657633,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+pH,250,LOG10,1.0,1.0,9.433629,0.99944,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+protein.g.L.,250,LOG10,1.0,1.0,18.899911,0.88645,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+bitterness,248,LOG10,1.0,1.0,26.528511,0.852373,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+GFS,244,LOG10,1.0,1.0,9.164103,0.669175,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+ethanol..v.v.,249,LOG10,1.0,1.0,6.947522,0.824558,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+CO2.PSI.,211,LOG10,1.0,1.0,5.885707,0.987684,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+unfermentables,249,LOG10,1.0,1.0,47.026825,0.908968,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+kcalperc,250,LOG10,1.0,1.0,112.046652,0.965654,2.302585,1.0,标准理化指标,log10,保留文件1的log10(原单位),True,True,exact
+X2.3.butanedione,241,RAW,0.034762,0.335655,1.000008,0.999998,0.080043,0.335655,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+X3.methylbutanal,242,RAW,0.034034,0.260929,0.999988,0.999998,0.078366,0.260929,文件8无校准标记,original,log10(A.U.原值),True,True,exact
+ethyl.isobutyrate,246,RAW_APPROX,4.179783,0.596464,0.980012,0.869523,9.624306,0.596464,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+ethyl.butyrate,249,RAW_APPROX,1.489781,0.629792,0.997744,0.99555,3.430348,0.629792,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+X2.methyltetrahydrofuran.3.one,250,RAW,0.000426,0.442963,1.0,1.0,0.000981,0.442963,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+methylpyrazine,238,RAW,5.89648,0.334517,0.999754,0.999506,13.577147,0.334517,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+furfural,248,RAW,2.682592,0.417589,0.999994,0.999994,6.176895,0.417589,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+X3Z.hexenol,250,RAW_APPROX,0.827901,0.619155,0.998099,0.931019,1.906314,0.619155,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+n.hexanol,250,AMBIG,0.368813,0.655342,0.98533,0.818656,0.849223,0.655342,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,unverified
+styrene,250,RAW,1.327828,0.505972,1.000062,0.999983,3.057437,0.505972,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+ethyl.pentanoate,250,RAW,1.412532,0.629806,0.999612,0.999755,3.252475,0.629806,文件8无校准标记,original,log10(A.U.原值),True,True,exact
+amyl.acetate,223,RAW,82.678729,0.637409,1.000101,0.999998,190.374808,0.637409,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+benzaldehyde,247,RAW_APPROX,6.632703,0.651931,0.999739,0.944562,15.272363,0.651931,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+X5.methylfurfural,249,RAW,91.934002,0.616542,0.999643,0.999767,211.685863,0.616542,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+X2.ethyl.3.methylpyrazine,249,RAW_APPROX,2.82009,0.621314,1.001462,0.940627,6.493496,0.621314,文件8无校准标记,original,log10(A.U.原值),True,True,approximate
+hexyl.acetate,250,RAW_APPROX,0.353936,0.475083,0.998478,0.995446,0.814968,0.475083,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+benzyl.alcohol,246,AMBIG,14.309892,0.437173,1.170557,0.918492,32.949744,0.437173,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,unverified
+phenylacetaldehyde,248,RAW_APPROX,10.193795,0.509684,0.998243,0.998657,23.472081,0.509684,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+X.E..beta.ocimene,249,RAW,2.675201,0.559671,1.000091,0.999936,6.159877,0.559671,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+linalool,247,RAW_APPROX,0.120886,0.730393,1.023443,0.873654,0.27835,0.730393,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+X.E..2.nonenal,249,RAW,0.29825,0.487258,0.999999,1.0,0.686746,0.487258,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+diethyl.succinate,247,RAW,1.846302,0.808549,1.0,1.0,4.251268,0.808549,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+X1.alpha.terpineol,250,RAW,0.338639,0.743293,1.000067,0.999998,0.779745,0.743293,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+ethyl.nicotinate,248,RAW_APPROX,14.539769,0.595684,1.004478,0.98325,33.479055,0.595684,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+citronellol,250,RAW_APPROX,0.354206,0.664964,0.998127,0.99553,0.815589,0.664964,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,approximate
+geraniol,246,AMBIG,1.834448,0.585669,1.06067,0.919547,4.223973,0.585669,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,unverified
+X.E.E..2.4.decadienal,249,RAW,24.113228,0.476243,0.999898,0.999976,55.522758,0.476243,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+eugenol,250,RAW,1.728887,0.640518,1.000002,1.0,3.98091,0.640518,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+gamma.nonalactone,250,RAW,0.00092,0.608539,0.999999,1.0,0.002119,0.608539,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+X.E..beta.damascenone,250,RAW,0.000691,0.419044,1.0,1.0,0.001592,0.419044,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+E.caryophyllene,250,RAW,0.172469,0.46775,1.0,1.0,0.397123,0.46775,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+alpha.humulene,250,RAW,0.594161,0.551616,1.000018,0.999997,1.368107,0.551616,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,exact
+Z.nerolidol,250,AMBIG,1.230066,0.615297,0.975683,0.437252,2.832331,0.615297,GC-MS 校准化合物,original,逆变换→统一mg/L→log10,True,True,unverified

@@ -1,0 +1,140 @@
+{
+  "generated_at_utc": "2026-10-30T11:26:21.576915+00:00",
+  "final_branch_base": {
+    "ref": "origin/release/toolchain-hardening-20261029",
+    "commit": "b88ff8fea4fda0d5b81695d11257201dfc109823"
+  },
+  "sources": [
+    {
+      "ref": "origin/feat/initial-data-analysis",
+      "commit": "1f9a549d21b88b46fcf775f5b52740b76822b7f9",
+      "merge_base_with_final": "10cfca621b9c92f28fc80d49ab15730101130a5c",
+      "final_ahead_of_ref": 5,
+      "ref_ahead_of_final": 29,
+      "role": "数据处理、缺失机制和描述性统计候选来源",
+      "selected": true
+    },
+    {
+      "ref": "origin/experiments/prediction-models",
+      "commit": "15d0c991ddccab012defcaf6ea31cea74ebb7aa0",
+      "merge_base_with_final": "10cfca621b9c92f28fc80d49ab15730101130a5c",
+      "final_ahead_of_ref": 1,
+      "ref_ahead_of_final": 29,
+      "role": "Q1模型与TabPFN原始协议来源",
+      "selected": true
+    },
+    {
+      "ref": "origin/feat/paper-q1-tabpfn",
+      "commit": "994f4cd1aa9d049f169c687bbe70b2f6b9d58cf9",
+      "merge_base_with_final": "994f4cd1aa9d049f169c687bbe70b2f6b9d58cf9",
+      "final_ahead_of_ref": 0,
+      "ref_ahead_of_final": 2,
+      "role": "Q1论文修订和TabPFN协议记录",
+      "selected": true
+    },
+    {
+      "path": "code.zip",
+      "sha256": "b9423d6a9e38fc341fb92b88c9ed05b1e6d54a7526528ab1c30f7d9144d45891",
+      "bytes": 441647,
+      "source_commit": "a3c3aa20227803e44a9ef0ca77cf4f1d78384524",
+      "selected": true,
+      "use": "源程序和复现材料来源包"
+    },
+    {
+      "path": "data/processed/paper-q1-revised/paper.docx",
+      "sha256": "23fb7a059ace3fcf8098de4d78c03a4d69ef924d451f5fa997c0a866a7bbac1d",
+      "bytes": 1863784,
+      "source_commit": "a3c3aa20227803e44a9ef0ca77cf4f1d78384524",
+      "selected": true,
+      "use": "最终论文版式和正文基础"
+    },
+    {
+      "path": "F:\\cs\\mothercup\\matho-rtri-mind-2026\\docs\\A2600116承诺书.pdf",
+      "sha256": "17eda0fcd0adfa3c7a89ebebe03e8fb2780918eea5939593db7a2260ed794150",
+      "bytes": 226720,
+      "selected": false,
+      "use": "只复制到本地提交目录，不进入GitHub"
+    }
+  ],
+  "selected_results": {
+    "data_contract": "formal release validated contract",
+    "q1": "independent_gbr, 227 unified features, fixed style-stratified 175/75",
+    "q2": "nightly validated stability, holdout FDR and chemical plausibility",
+    "q3": "nightly validated holdout, constraint acceptance and distribution checks",
+    "q4": "validated consumer descriptor and direction-only price analyses"
+  },
+  "fair_tabpfn": {
+    "status": "completed",
+    "protocol": "fair_main",
+    "features": 227,
+    "train": 175,
+    "holdout": 75,
+    "seed": 0,
+    "target_count": 50,
+    "n_estimators": 4,
+    "device": "cpu",
+    "elapsed_seconds": 2366.5,
+    "output_dir": "data/processed/q1_fair_tabpfn_full",
+    "summary_csv": "data/processed/q1_fair_tabpfn_full/cv_summary.csv",
+    "results": {
+      "macro_mae": 0.33869213267713827,
+      "macro_rmse": 0.4748492210289571,
+      "mean_r2": 0.23862139968768886,
+      "baseline_macro_mae": 0.42049787048732185,
+      "baseline_macro_rmse": 0.5762411578605328,
+      "baseline_mean_r2": -0.013088943949031573
+    },
+    "conclusion": "公平协议使用227个统一尺度特征、固定175/75风格分层留出和50个目标，结果作为辅助对照记录；独立GBR仍为正式主模型，论文不据此宣称TabPFN优于主模型。"
+  },
+  "descriptive_statistics": {
+    "generated_at_utc": "2026-10-30T11:26:18.609044+00:00",
+    "samples": 250,
+    "raw_numeric_features": 231,
+    "modeling_features": 227,
+    "sensory_targets": 50,
+    "target_categories": {
+      "Aroma": 15,
+      "Flavour": 15,
+      "通用": 20
+    },
+    "fine_styles": 22,
+    "style_count_min": 3,
+    "style_count_max": 31,
+    "style_count_median": 10.0,
+    "raw_missing_cells": 73,
+    "raw_numeric_cells": 57750,
+    "raw_missing_rate": 0.0012640692640692641,
+    "unified_missing_cells": 0,
+    "dropped_unverified_sum_columns": 4,
+    "scale_audit_counts": {
+      "LOG10": 37,
+      "RAW": 19,
+      "RAW_APPROX": 10,
+      "AMBIG": 4
+    },
+    "split": {
+      "train": 175,
+      "holdout": 75,
+      "seed": 0,
+      "stratification": "tasting_category_fine"
+    },
+    "target_statistics_file": "target_descriptive_statistics.csv",
+    "style_counts_file": "style_counts.csv",
+    "scale_audit_file": "scale_audit_full.csv"
+  },
+  "discarded_or_secondary": [
+    {
+      "item": "legacy TabPFN 231-feature KFold result",
+      "reason": "feature and split protocol differ from main model; retained only as protocol reproduction"
+    },
+    {
+      "item": "interim artifacts duplicated by feat/initial-data-analysis",
+      "reason": "not copied over validated release outputs"
+    },
+    {
+      "item": "pretrained weights and data/raw",
+      "reason": "not committed or packaged; license/size and competition boundary"
+    }
+  ],
+  "external_data_policy": "validation_and_metadata_only; no external rows in main training matrix"
+}

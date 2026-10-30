@@ -1,0 +1,7 @@
+                mae     rmse       r2  baseline_mae  baseline_rmse  baseline_r2
+evaluation                                                                     
+fold_1      0.33869  0.47485  0.23862        0.4205        0.57624     -0.01309
+cv_mean     0.33869  0.47485  0.23862        0.4205        0.57624     -0.01309
+cv_std          NaN      NaN      NaN           NaN            NaN          NaN
+pooled_oof  0.33869  0.47485  0.23862        0.4205        0.57624     -0.01309
+Elapsed: 2366.5s

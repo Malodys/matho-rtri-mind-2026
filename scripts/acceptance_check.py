@@ -378,6 +378,7 @@ def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
     remote_reason = _classify_remote_branch(remote_status, remote_branches, branch)
     branch_allowed = (branch == "feat/toolchain-env"
                       or branch.startswith("release/toolchain-hardening-")
+                      or branch.startswith("release/final-submission-")
                       or branch.startswith("night/"))
     wt_list_normalized = wt_list.replace("\\", "/").lower()
     wt_in_list = (wt is not None

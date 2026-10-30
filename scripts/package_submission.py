@@ -53,6 +53,7 @@ INCLUDE_FILES = [
     "AGENTS.md",
     "README.md",
     "requirements.lock.txt",
+    "code.zip",
 ]
 
 #: 排除的目录名（任意层级）；worktrees 单独处理，见 _skip_path。
@@ -81,6 +82,8 @@ def _skip_path(rel: Path) -> bool:
             pass
         else:
             return True
+    if "q1_fair_tabpfn_full" in parts and "cache" in parts:
+        return True
     for part in parts:
         if part in EXCLUDE_DIR_NAMES:
             return True
@@ -166,10 +169,20 @@ def main() -> int:
     ap.add_argument("--include-raw", action="store_true",
                     help="把 data/raw 也打进支撑材料（默认不打）")
     ap.add_argument("--skip-verify", action="store_true", help="跳过论文合规校验（不推荐）")
+    ap.add_argument("--output-dir", type=Path, default=None,
+                    help="output directory; may be outside the repository")
+    ap.add_argument("--file-prefix", default=None,
+                    help="output filename prefix, for example A2600116")
+    ap.add_argument("--commitment-source", type=Path, default=None,
+                    help="signed commitment PDF to copy to the output directory")
     args = ap.parse_args()
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir = args.output_dir.resolve() if args.output_dir else OUT_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
     team = args.team_no.strip()
+    file_prefix = (args.file_prefix or f"#{team}").strip()
+    if not file_prefix or "/" in file_prefix or "\\" in file_prefix:
+        raise SystemExit("--file-prefix must be a single filename prefix")
     if not team or "X" in team.upper():
         raise SystemExit("请先提供真实队号；禁止使用 MCB260XXXX 或含 X 的占位队号生成最终提交包。")
 
@@ -181,12 +194,20 @@ def main() -> int:
             raise SystemExit("正文页数超过 30 页上限，拒绝打包。")
 
     # ---- 论文 PDF：按队号命名 --------------------------------------------
-    paper_out = OUT_DIR / f"#{team}.pdf"
+    paper_out = out_dir / f"{file_prefix}.pdf"
     paper_out.write_bytes(PAPER_PDF.read_bytes())
-    print(f"[ok] 论文 PDF -> {paper_out.relative_to(ROOT)}")
+    print(f"[ok] paper PDF -> {paper_out}")
+
+    if args.commitment_source:
+        commitment_source = args.commitment_source.resolve()
+        if not commitment_source.is_file():
+            raise SystemExit(f"commitment PDF does not exist: {commitment_source}")
+        commitment_out = out_dir / f"{file_prefix}承诺书.pdf"
+        commitment_out.write_bytes(commitment_source.read_bytes())
+        print(f"[ok] commitment PDF -> {commitment_out}")
 
     # ---- 支撑材料 ZIP ----------------------------------------------------
-    zip_out = OUT_DIR / f"#{team}附件.zip"
+    zip_out = out_dir / f"{file_prefix}附件.zip"
     manifest = []
     with zipfile.ZipFile(zip_out, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
         for rel, p in _iter_files(args.include_raw):
@@ -203,7 +224,7 @@ def main() -> int:
                                  "sha256": _sha256(AI_DOC)})
 
     # 支撑材料清单
-    manifest_path = OUT_DIR / f"#{team}附件清单.json"
+    manifest_path = out_dir / f"{file_prefix}附件清单.json"
     manifest_path.write_text(json.dumps(
         {"team_no": team, "track": args.track,
          "paper_pdf": paper_out.name,
@@ -212,9 +233,9 @@ def main() -> int:
          "include_raw": bool(args.include_raw),
          "files": manifest}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    print(f"[ok] 支撑材料 -> {zip_out.relative_to(ROOT)}（{len(manifest)} 个文件，"
+    print(f"[ok] support archive -> {zip_out} ({len(manifest)} files,"
           f"{zip_out.stat().st_size / 1024 / 1024:.1f} MB）")
-    print(f"[ok] 清单     -> {manifest_path.relative_to(ROOT)}")
+    print(f"[ok] manifest -> {manifest_path}")
     if AI_DOC.exists():
         print(f"[ok] AI 说明  -> data/processed/compliance/{AI_DOC.name}")
     print("\n提交前请自行确认：")

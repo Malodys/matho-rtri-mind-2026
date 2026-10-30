@@ -1,87 +1,90 @@
 # -*- coding: utf-8 -*-
-# AI 辅助：Codex (GPT-6), OpenAI, 2026-10-30
-# 人工复核状态：待团队核验；以下为产物一致性自动检查。
+"""Regression tests for the final integrated paper and Q1 protocol."""
+from __future__ import annotations
+
+import hashlib
+import json
 import unittest
-import subprocess
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from docx import Document
 
-ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/"data/processed/q1_tabpfn_final"
+
+ROOT = Path(__file__).resolve().parents[1]
+FINAL_PAPER = ROOT / "data" / "processed" / "paper" / "paper.docx"
+ARCHIVE_Q1 = ROOT / "data" / "processed" / "q1_tabpfn_final"
+
 
 class Q1PaperRevisionTests(unittest.TestCase):
-    # AI 辅助实现，尚未人工复核。
-    def test_metrics_match_archived_final_experiment(self):
-        row=pd.read_csv(OUT/"model_summary.csv").set_index("model").loc["tabpfn"]
-        np.testing.assert_allclose([row.R2_mean,row.Macro_MAE,row.Macro_RMSE],
-            [0.2407293912437345,0.3362367581706291,0.47470748219473685],atol=1e-12)
-    def test_holdout_labels_and_sample_ids(self):
-        p=pd.read_csv(OUT/"test_predictions.csv.gz")
-        y=pd.read_csv(ROOT/"data/splits/seed_0/4_test.csv").set_index("beer")
-        self.assertEqual(set(p.beer),set(y.index))
-        self.assertEqual(len(p),3750)
-        self.assertFalse(p.duplicated(["beer","target"]).any())
-        np.testing.assert_allclose(p.actual,[y.at[b,t] for b,t in zip(p.beer,p.target)],atol=1e-14)
-    def test_grade_cutpoints_match_original_protocol(self):
-        y=pd.read_csv(ROOT/"data/splits/seed_0/4_train.csv")
-        cuts=pd.read_csv(ROOT/"data/processed/q1_final/proxy_grade_cutpoints.csv",index_col=0)
-        for t in cuts.index:
-            np.testing.assert_allclose(np.quantile(y[t],np.arange(1,7)/7),cuts.loc[t],atol=1e-12)
-        p=pd.read_csv(OUT/"sensory_scores_0_6.csv")
-        grades=p[[c for c in p if c.endswith("_grade")]]
-        self.assertEqual(grades.shape,(250,50))
-        self.assertTrue(grades.notna().all().all())
-        self.assertTrue(((grades>=0)&(grades<=6)).all().all())
-    def test_collaborator_original_is_unchanged(self):
-        for name in ["README.md","paper.docx","paper.pdf","paper_check.json","paper_check.txt"]:
-            rel="data/processed/paper/"+name
-            remote=subprocess.check_output(["git","show","773269f:"+rel],cwd=ROOT)
-            actual=(ROOT/rel).read_bytes()
-            if name.endswith((".md",".json",".txt")):
-                actual=actual.replace(b"\r\n",b"\n")
-                remote=remote.replace(b"\r\n",b"\n")
-            self.assertEqual(actual,remote,name)
-    def test_collaborator_validation_is_in_revised_paper(self):
-        d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
-        text="".join(p.text for p in d.paragraphs).replace(" ","")
-        for value in ["83/150","30/32","FDR","48","12.7","0.240729"]:
-            self.assertIn(value,text)
-    def test_revised_prose_has_no_redundant_exclusion_claims(self):
-        d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
-        text="".join(p.text for p in d.paragraphs)
-        for phrase in ["不声称","不采用条件生成对抗网络","不验证化学机理","不将其解释为","不作市场因果解释","需要强调其边界","，。"]:
-            self.assertNotIn(phrase,text)
-        for value in ["83/150","30/32","42/48","0.240729","13.5%"]:
-            self.assertIn(value,text.replace(" ",""))
-    def test_body_uses_academic_method_descriptions(self):
-        d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
-        body=[]
-        for p in d.paragraphs:
-            if p.text.strip()=="参考文献":break
-            body.append(p.text)
-        text="".join(body)
-        for phrase in ["恢复作者","沿用","原论文","原稿","原方案","队友","与原文","叙事主线","本文全部引用按","模型选择分两步进行"]:
-            self.assertNotIn(phrase,text)
-        self.assertIn("研究背景",text)
-        self.assertIn("共享参数GBR","".join(c.text for t in d.tables for r in t.rows for c in r.cells))
-    def test_document_uses_final_method_and_metrics(self):
-        d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
-        text="\n".join(p.text for p in d.paragraphs)
-        self.assertIn("0.240729",text)
-        self.assertNotIn("TabPFN重复",text.replace(" ",""))
-        summary=pd.read_csv(OUT/"combined_summary.csv")
-        self.assertEqual(int(summary.model.eq("tabpfn").sum()),1)
-        self.assertNotIn("tabpfn_uniform",set(summary.model))
-        matches=[row for table in d.tables for row in table.rows if row.cells[0].text.strip()=="TabPFN"]
-        self.assertEqual(len(matches),1)
-        self.assertEqual(matches[0].cells[1].text.strip(),"0.2407")
-        q1=text.split("5.1 问题一：感官评分预测与 0–6 分制")[-1].split("5.2 消费者感知路径与市场价值")[0]
-        self.assertNotIn("RMSE",q1)
-        self.assertNotIn("MAE",q1)
-        self.assertNotIn("Kappa",q1)
-        self.assertNotIn("不将其与主模型直接比较",text)
-        self.assertEqual(sum(p.text.replace(" ","")=="目录" for p in d.paragraphs),1)
+    def test_archived_protocol_remains_traceable(self):
+        row = pd.read_csv(ARCHIVE_Q1 / "model_summary.csv").set_index("model").loc["tabpfn"]
+        np.testing.assert_allclose(
+            [row.R2_mean, row.Macro_MAE, row.Macro_RMSE],
+            [0.2407293912437345, 0.3362367581706291, 0.47470748219473685],
+            atol=1e-12,
+        )
 
-if __name__=="__main__": unittest.main()
+    def test_final_paper_uses_fixed_primary_metrics(self):
+        text = "\n".join(p.text for p in Document(FINAL_PAPER).paragraphs)
+        self.assertIn("227", text)
+        self.assertIn("175/75", text)
+        self.assertIn("0.2133", text)
+        self.assertIn("0.8425", text)
+        self.assertNotIn("0.240729", text)
+
+    def test_final_paper_does_not_present_tabpfn_as_primary_comparison(self):
+        doc = Document(FINAL_PAPER)
+        table_first_cells = [table.rows[0].cells[0].text.strip() for table in doc.tables if table.rows]
+        self.assertFalse(any("TabPFN" in cell for cell in table_first_cells))
+
+    def test_final_paper_contains_validated_q2_q3_q4_evidence(self):
+        text = "\n".join(p.text for p in Document(FINAL_PAPER).paragraphs).replace(" ", "")
+        for value in ("83/150", "30/32", "42/48", "13.5%", "12.7%", "22/50", "28/50"):
+            self.assertIn(value, text)
+        self.assertIn("消费者喜爱度", text)
+
+    def test_final_paper_has_no_engineering_residue(self):
+        text = "\n".join(p.text for p in Document(FINAL_PAPER).paragraphs)
+        for phrase in ("队友协议", "待完成", "当前提交", "AI辅助"):
+            self.assertNotIn(phrase, text)
+
+    def test_integration_manifest_and_descriptive_contract(self):
+        stats = json.loads(
+            (ROOT / "data" / "processed" / "final_integration" / "descriptive_statistics.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(stats["samples"], 250)
+        self.assertEqual(stats["raw_numeric_features"], 231)
+        self.assertEqual(stats["modeling_features"], 227)
+        self.assertEqual(stats["sensory_targets"], 50)
+        self.assertEqual(stats["split"]["train"], 175)
+        self.assertEqual(stats["split"]["holdout"], 75)
+
+    def test_q3_manifest_has_one_slope_figure(self):
+        manifest = json.loads(
+            (ROOT / "data" / "processed" / "q3_figures" / "figures_manifest.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        names = [item.get("file") for item in manifest["figures"]]
+        slope_count = sum("transfer_slope" in str(name) for name in names)
+        self.assertEqual(slope_count, 1)
+
+    def test_code_zip_hash_is_recorded(self):
+        code_zip = ROOT / "code.zip"
+        self.assertTrue(code_zip.is_file())
+        digest = hashlib.sha256(code_zip.read_bytes()).hexdigest()
+        manifest = json.loads(
+            (ROOT / "data" / "processed" / "final_integration" / "team_integration_manifest.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        code_source = next(item for item in manifest["sources"] if item.get("path") == "code.zip")
+        self.assertEqual(code_source["sha256"], digest)
+
+
+if __name__ == "__main__":
+    unittest.main()

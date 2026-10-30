@@ -1,0 +1,24 @@
+﻿metric,value,unit,source
+samples,250,samples,data_contract
+raw_chemical_numeric_features,231,columns,data/raw/1.csv
+modeling_features,227,columns,data/interim/chem_log10_matrix_v1.csv
+sensory_targets,50,dimensions,data/raw/4.csv
+fine_styles,22,styles,data/raw/4.csv
+raw_missing_cells,73,cells,data/raw/1.csv
+raw_missing_rate,0.0012640692640692641,fraction,data/raw/1.csv
+unified_missing_cells,0,cells,modeling_matrix
+dropped_unverified_sum_columns,4,columns,data_contract.DERIVED_SUFFIX
+style_min_n,3,samples,style_counts
+style_max_n,31,samples,style_counts
+style_median_n,10.0,samples,style_counts
+train_n,175,samples,split_manifest
+holdout_n,75,samples,split_manifest
+Aroma_n,15,dimensions,target_descriptive_statistics
+Aroma_mean_range,-0.0300–0.0469,standardized score,target_descriptive_statistics
+Aroma_std_range,0.3697–0.7169,standardized score,target_descriptive_statistics
+Flavour_n,15,dimensions,target_descriptive_statistics
+Flavour_mean_range,-0.0187–0.0628,standardized score,target_descriptive_statistics
+Flavour_std_range,0.4155–0.6941,standardized score,target_descriptive_statistics
+通用_n,20,dimensions,target_descriptive_statistics
+通用_mean_range,-0.0493–0.0258,standardized score,target_descriptive_statistics
+通用_std_range,0.4004–0.8585,standardized score,target_descriptive_statistics

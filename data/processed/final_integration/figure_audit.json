@@ -1,0 +1,33 @@
+{
+  "generated_at_utc": "2026-10-30T11:26:21.571814+00:00",
+  "scope": "final_paper_and_support_figures",
+  "rendering": {
+    "png_dpi": 300,
+    "pdf": "vector",
+    "font_contract": "plot_style_v1"
+  },
+  "content_checks": {
+    "q1_main_model_is_independent_gbr": true,
+    "q2_network_counts_match": {
+      "nodes": 231,
+      "edges": 266,
+      "threshold": 0.6,
+      "isolated_nodes": 101
+    },
+    "q2_top6_labels_complete": true,
+    "q3_slope_plot_uses_log10_mg_per_l": true,
+    "q4_price_legend_is_human_readable": true
+  },
+  "layout_checks": {
+    "png_pdf_pairs": true,
+    "titles_short": true,
+    "captions_state_units_denominators": true,
+    "figure_caption_keep_with_image": true,
+    "visual_review_required": true
+  },
+  "new_figures": [
+    "data/processed/final_integration/data_structure.png",
+    "data/processed/final_integration/fig4_transfer_slope.png"
+  ],
+  "manual_review_note": "Final DOCX and PDF are rendered page by page after this build; the report records the renderer and selected page checks."
+}

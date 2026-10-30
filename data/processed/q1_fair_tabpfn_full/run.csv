@@ -1,0 +1,16 @@
+﻿setting,value
+python,3.12.14
+device,cpu
+seed,0
+folds,1
+n_estimators,4
+workers,1
+threads_per_worker,1
+samples,250
+features,227
+targets,50
+elapsed_seconds,2366.5
+model_path,F:\cs\mothercup\matho-rtri-mind-2026\worktrees\pretrained\Prior-Labstabpfn_3_5\tabpfn-v3.5-20260909.safetensors
+protocol,"fair main protocol: audited 227 features, fixed 175/75 holdout, seed 0"
+feature_policy,audited unified 227 features
+split_policy,fixed 175/75 style-stratified holdout

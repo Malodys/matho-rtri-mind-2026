@@ -38,7 +38,7 @@ PII_PATTERNS = [
     r"学号", r"班级", r"同学", r"姓名", r"参赛队员?[:：]",
 ]
 
-PAGE_NUM_RE = re.compile(r"第\s*(\d+)\s*页")
+PAGE_NUM_RE = re.compile(r"(?:^|\n)\s*(?:第\s*)?(\d{1,3})(?:\s*页)?\s*$", re.MULTILINE)
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 BAD_CHARS = ("\ufffd", "□", "�")
 
