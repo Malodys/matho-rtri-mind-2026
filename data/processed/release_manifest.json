@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-10-30T11:35:52.730495+00:00",
+  "generated_at_utc": "2026-10-30T11:41:51.816763+00:00",
   "git": {
-    "head": "7267777627c7c0c83f2e9f68602677e0834a9f0c",
+    "head": "428c286e2b110caf8abc9e80c61ae558f27af3b2",
     "branch": "release/final-submission-a2600116-20261030",
     "status_clean": true,
     "status_short": ""
@@ -27,7 +27,7 @@
   },
   "tests": {
     "status": "passed",
-    "summary": "pytest -q: 69 passed; paper_check: 5/5 passed; fair_main: 50 targets, R2 0.2386, Macro-RMSE 0.4748; submission package: 443 files, no raw/cache/signature",
+    "summary": "pytest -q: 69 passed; paper_check: 5/5 passed; fair_main: 50 targets, R2 0.2386, Macro-RMSE 0.4748; submission package: 441 files, no raw/cache/signature",
     "command": "python -m pytest -q"
   },
   "git_diff_check": {
