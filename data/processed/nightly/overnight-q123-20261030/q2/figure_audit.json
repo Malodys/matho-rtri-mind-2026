@@ -1,0 +1,61 @@
+{
+  "scope": "data/processed/q2_figures",
+  "automated_checks": {
+    "manifest_entries": 6,
+    "png_count": 6,
+    "pdf_count": 6,
+    "all_stems_paired": true,
+    "all_pdf_headers_valid": true,
+    "all_manifest_outputs_exist": true,
+    "main_numeric_source": "data/processed/q2_runs",
+    "main_graph_values_match": {
+      "abs_rho_threshold": 0.6,
+      "nodes": 231,
+      "edges": 266,
+      "connected_components": 114,
+      "isolated_nodes": 101
+    }
+  },
+  "manual_visual_review": [
+    {
+      "figures": [
+        "fig1_coexpression_network_by_origin",
+        "fig2_coexpression_network_by_community"
+      ],
+      "severity": "P1",
+      "finding": "Top-6 node labels overlap nodes and one another near the graph center; several labels are truncated to visually ambiguous prefixes.",
+      "disposition": "report_only_no_main_overwrite"
+    },
+    {
+      "figures": [
+        "fig1_coexpression_network_by_origin",
+        "fig2_coexpression_network_by_community",
+        "fig3_community_composition_heatmap"
+      ],
+      "severity": "P1",
+      "finding": "The network captions say the 101 omitted isolated nodes' source composition is shown in the community-composition figure, but fig3 filters to non-trivial communities (n>=2), so it does not show singleton/isolated-node composition.",
+      "disposition": "report_only_no_main_overwrite"
+    },
+    {
+      "figures": [
+        "fig6_threshold_selection"
+      ],
+      "severity": "P1",
+      "finding": "The caption says the diverging ARI scale has 0 as white, while the rendered scale maps 0 to blue and approximately 0.5 to white.",
+      "disposition": "report_only_no_main_overwrite"
+    },
+    {
+      "figures": [
+        "fig5_method_consistency_jaccard"
+      ],
+      "severity": "P2",
+      "finding": "The caption does not remind readers that E1 ranks only 44 compounds while E2/E3 rank 227; the displayed Jaccard values are therefore coverage-asymmetric.",
+      "disposition": "report_only_no_main_overwrite"
+    }
+  ],
+  "accepted_visuals": [
+    "fig3_community_composition_heatmap",
+    "fig4_top3_bootstrap_frequency"
+  ],
+  "overall": "PNG/PDF packaging is complete, but three material label/caption issues require revision before publication."
+}

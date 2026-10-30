@@ -45,6 +45,7 @@ TEMPLATE = ROOT.parent / "2026年MathorCup数学应用挑战赛—大数据竞�
 #: 第二轮升级新增：文献著录清单（由 B1 产出）与消费者层产物目录（B2 产出）。
 REFS_JSON = ROOT / "docs" / "refs_verified.json"
 CONSUMER_DIR = PROCESSED / "q4_consumer"
+NIGHTLY_DIR = PROCESSED / "nightly" / "overnight-q123-20261030"
 
 BODY_FONT = "宋体"
 HEAD_FONT = "黑体"
@@ -259,6 +260,9 @@ def load_results() -> dict:
     res["q2_sensitivity"] = _maybe(q2 / "graph" / "edge_sensitivity.csv")
     res["q2_summary"] = json.loads((q2 / "summary.json").read_text(encoding="utf-8")) \
         if (q2 / "summary.json").exists() else None
+    q2_nightly = NIGHTLY_DIR / "q2" / "robustness_summary.json"
+    res["q2_nightly"] = json.loads(q2_nightly.read_text(encoding="utf-8")) \
+        if q2_nightly.exists() else None
 
     # ---- 问题三
     q3 = PROCESSED / "q3_runs"
@@ -272,6 +276,9 @@ def load_results() -> dict:
     res["q3_profiles"] = sorted(q3.glob("sensory_profile_*.csv")) if q3.exists() else []
     res["q3_profile_summary"] = _maybe(q3 / "sensory_profile_summary.csv")
     res["q3_constraint_effect"] = _maybe(q3 / "sensory_constraint_effect.csv")
+    q3_nightly = ROOT / "state" / "03_q3.json"
+    res["q3_nightly"] = json.loads(q3_nightly.read_text(encoding="utf-8")) \
+        if q3_nightly.exists() else None
     return res
 
 
@@ -911,7 +918,9 @@ def _build_models(doc: Document, H, res: dict) -> None:
     _para(doc, "问题一以 1.csv 的化合物特征预测 50 个感官维度。特征取统一标度后的 227 个化学量，"
                "剔除 4 个公式未经验证的派生求和列；模型采用岭回归、偏最小二乘回归、多任务弹性网络、"
                "全局与分组极端随机树、逐指标梯度提升回归共七个主模型族；另保留 TabPFN 3.5 的队友协议五折复现，"
-               "以覆盖线性低秩、强稀疏与树形非线性三类归纳偏置。主指标为宏平均均方根误差，"
+               "以覆盖线性低秩、强稀疏与树形非线性三类归纳偏置。该复现使用 231 个原始特征和 KFold，"
+               "与主模型的 227 特征、固定 175/75 留出协议不同，只作协议核对，不参与主模型优劣排序。"
+               "主指标为宏平均均方根误差，"
                "并同时报告宏平均绝对误差、逐维决定系数中位数、斯皮尔曼相关系数中位数。", indent_chars=2)
     _para(doc, "由于附件未提供原始 0–6 分数，0–6 分制必须显式构造。本文采用双轨：**主轨为相对分级**，"
                "对每个维度取训练集的六等分位数作为切点，真实值与预测值用同一组切点离散化为 0–6 级，"
@@ -969,7 +978,8 @@ def _build_models(doc: Document, H, res: dict) -> None:
                "远不足以支撑把多维感知压成一维喜爱度，因此本文不做降维造标签，只把多维描述符整体作为目标。", indent_chars=2)
     _para(doc, "第三，外部价值信号：8.xlsx 给出 7 个零售来源的逐款价格，其中覆盖 ≥2 家零售商的共 189 款"
                "可计算几何均价（GM）；本文以价格为外部价值代理，回归中控制酒精度与风格，"
-               "并明确其局限——价格来自单一零售体系，是市场价值的代理而非消费者效用本身。"
+               "并明确其局限——价格来自同一附件内 7 家零售商的跨币种报价，未做汇率换算，"
+               "是市场价值的代理而非消费者效用本身。"
                "**另需披露一项附件层面的限制**：这 7 个来源分别位于美国、英国、比利时与面向全球的网店，"
                "标价币种涵盖美元、英镑与欧元，而附件未提供汇率列，本文因此**未做任何币种换算**；"
                "这使得 log 价格同时包含「真实品质溢价」与「币种/卖方价格水平差异」两部分，"
@@ -1218,7 +1228,8 @@ def _build_consumer_results(doc: Document, consumer: dict, counters: Counters) -
         _para(doc, f"价格回归以可算几何均价的 {fmt(nmax, 0)} 款样品为样本，并列给出 {len(models)} 组模型："
                    + "；".join(models) + f"（依次为不控变量、控制酒精度、控制酒精度并加入风格固定效应）。"
                    + (r2_txt + "，" if r2_txt else "") + sign_txt
-                   + "需要强调其边界：价格来自单一零售体系，是市场价值的代理，"
+                   + "需要强调其边界：价格来自同一附件内 7 家零售商的跨币种报价，且未做汇率换算，"
+                   "是市场价值的代理，"
                    "**不是消费者效用的直接测量**，因此本文不据此推断任何「提升消费者喜爱度」的因果结论。"
                    + _price_predictor_note(price, common),
                    indent_chars=2)
@@ -1596,6 +1607,20 @@ def _build_q2_results(doc: Document, res: dict, counters: Counters) -> None:
                    "本文因此把归因路与相关路并列呈现，而不宣称其中某一路线更接近真值。"
                    + _top3_joint_note(top3, n_robust),
                    indent_chars=2)
+        nightly = res.get("q2_nightly") or {}
+        holdout = nightly.get("train_selection_holdout_permutation", {})
+        review = nightly.get("published_main_robust_holdout_review", {})
+        if holdout and review:
+            _para(doc,
+                  f"为检验上述候选项能否在独立样本中复现，本文仅在 175 个训练样本上重选 150 个 Top-3 候选，"
+                  f"再在固定的 75 个留出样本上进行 {int(holdout.get('permutations', 0))} 次双侧置换检验，"
+                  f"并对全部 {int(holdout.get('family_size', 0))} 项统一执行 Benjamini–Hochberg 校正。"
+                  f"其中 {int(holdout.get('fdr_0p05_rows', 0))} 项通过 q≤0.05；主结果中判为稳健的 "
+                  f"{int(review.get('published_robust_rows', 0))} 项全部被训练集重选保留且方向一致，"
+                  f"其中 {int(review.get('holdout_fdr_0p05_rows', 0))} 项通过留出集 FDR，"
+                  f"同时满足稳健与化学合理性的 {int(review.get('robust_and_chem_plausible_holdout_fdr_0p05_rows', 0))} 项全部通过。"
+                  "这只是关联的独立样本复现，不验证化学机理，也不构成因果证据。",
+                  indent_chars=2)
     else:
         _para(doc, "关键化合物表随支撑材料提供。", indent_chars=2)
 
@@ -1694,26 +1719,35 @@ def _build_q3_results(doc: Document, res: dict, counters: Counters) -> None:
                                        errors="coerce").median()
             cov_med = pd.to_numeric(gen.get("coverage_style_range_median", pd.Series(dtype=float)),
                                     errors="coerce").median()
-            _para(doc, f"全部风格生成样本中有阈值的缺陷化合物超阈值数量合计 {tot}，即硬约束合规。"
-                       "该零违规结果不衡量无约束生成的真实性；受约束后的边际可能因拒绝重抽和单调压缩而发生分布压缩。"
-                       f"生成覆盖附件中真实样本数不少于 {int(pd.to_numeric(gen.get('n_real', pd.Series(dtype=float)), errors='coerce').min()) if 'n_real' in gen.columns else 10} 款的 "
-                       f"{len(gen)} 个风格（22 个细分风格中样本量更小的风格未纳入，"
-                       "故本文的生成结论只对这 8 个风格成立）；"
-                       "边际分布的可行性以生成值与真实样本的柯尔莫哥洛夫—斯米尔诺夫距离度量。"
-                       "为把「生成器本身的还原度」与「缺陷约束对边际的压平作用」区分开，本文同时给出"
-                       "不作约束的参照生成，并同时给出**两个**参照量："
-                       f"受约束谱的 KS 中位数为 {fmt(ks_med, 4)}，无约束参照谱为 {fmt(unc_med, 4)}；"
-                       f"其一是「同分布的两个随机样本之间」的期望值 {fmt(null_exp, 4)}，"
-                       f"其二是「完美复现该风格经验边际」时的经验匹配地板 {fmt(floor_med, 4)}"
-                       "（由真实样本自助重采样得到）。"
-                       "在当前参照下，无约束参照谱距离小于同分布随机重抽的期望距离；"
-                       "但与经验匹配地板相比仍高出一个量级，说明**生成谱并未接近完美复现真实边际**——"
-                       "因此本文只主张其在当前参照下具有结构性可用性，不把该差异解释为生成真实性或因果证据。"
-                       "受约束谱之所以偏离，是拒绝重抽把分布条件化到缺陷项低尾的结果"
-                       "——当某风格的真实样本本身大量超过阈值时，这一条件化尤为强烈。"
-                       f"生成值落在真实风格取值区间内的比例中位数为 {fmt(cov_med, 3)}。"
-                       "因此本文的两套生成谱分别对应「合规画像」与「风格代表性画像」两种用途，"
-                       "不可混用。", indent_chars=2)
+            _para(doc, f"8 个纳入风格的受约束生成谱中，缺陷化合物超阈值数量合计 {tot}，"
+                       "表示硬约束合规，不表示生成真实性。"
+                       f"受约束谱与无约束谱的全量拟合 KS 中位数分别为 {fmt(ks_med, 4)} 和 {fmt(unc_med, 4)}，"
+                       f"经验匹配地板为 {fmt(floor_med, 4)}；生成值落在真实风格区间内的比例中位数为 {fmt(cov_med, 3)}。"
+                       "这些指标在用于定义经验边际的同一批样本上计算，只作拟合诊断。"
+                       "受约束谱用于合规画像，无约束谱用于风格代表性参照，两者不可混用。", indent_chars=2)
+            nightly = res.get("q3_nightly") or {}
+            agg = nightly.get("aggregate_results", {})
+            protocol = nightly.get("protocol", {})
+            if agg and protocol:
+                _para(doc,
+                      f"进一步的固定留出检验覆盖 {int(protocol.get('styles', 0))} 个风格、"
+                      f"{len(protocol.get('seeds', []))} 个划分种子和 {len(protocol.get('models', []))} 种 Copula 估计，"
+                      f"共 {int(protocol.get('holdout_rows', 0))} 个评估单元；每个风格的真实留出样本仅 "
+                      f"{protocol.get('real_holdout_per_style', '3–9')} 款。真实样本参照、无约束生成与受约束生成的"
+                      f"能量距离分别为 {fmt(agg.get('energy_real_reference'), 4)}、"
+                      f"{fmt(agg.get('energy_unconstrained'), 4)} 和 {fmt(agg.get('energy_constrained'), 4)}，"
+                      f"MMD² 分别为 {fmt(agg.get('mmd2_real_reference'), 4)}、"
+                      f"{fmt(agg.get('mmd2_unconstrained'), 4)} 和 {fmt(agg.get('mmd2_constrained'), 4)}。"
+                      f"受约束生成在 {int(agg.get('energy_constrained_worse_than_unconstrained_units', 0))}/"
+                      f"{int(protocol.get('holdout_rows', 0))} 个单元上的能量距离更差，MMD² 亦为 "
+                      f"{int(agg.get('mmd_constrained_worse_than_unconstrained_units', 0))}/"
+                      f"{int(protocol.get('holdout_rows', 0))}；与此同时，约束合规率从无约束的 "
+                      f"{fmt(agg.get('constraint_compliance_unconstrained', 0) * 100, 1)}% 提升到 "
+                      f"{fmt(agg.get('constraint_compliance_constrained', 0) * 100, 1)}%，候选接受率均值仅为 "
+                      f"{fmt(agg.get('candidate_acceptance_rate_mean', 0) * 100, 1)}%。"
+                      "因此，约束明确提高了规则合规性，却以可测的分布真实性损失为代价；"
+                      "同数据拟合并评估得到的全量 KS 仅作拟合诊断，不能替代该留出结论。",
+                      indent_chars=2)
     transfer = res.get("q3_transfer_defects")
     tsum = res.get("q3_transfer_summary")
     if tsum is not None and not tsum.empty:
@@ -1789,17 +1823,18 @@ def _build_discussion(doc: Document, H, res: dict, consumer: dict) -> None:
                "任何跨列的绝对量级比较（均值、方差、未经统一化的线性系数）只在「已统一到 log10(mg/L)」"
                "这一口径下才有意义；本文以逐列裁定与回归保护把风险限制在特征侧，"
                "但下游若引用原始量纲，仍须回到审计表逐列核对。", indent_chars=2)
-    _para(doc, "（3）**消费者层缺少评分标签，价格来自单一零售源且未做币种换算。** 本文无法构造也无法检验「消费者喜爱度」，"
+    _para(doc, "（3）**消费者层缺少评分标签，价格为同一附件中的跨零售商报价且未做币种换算。** 本文无法构造也无法检验「消费者喜爱度」，"
                "只能以 183 维论坛派生描述符作为感知代理；价格虽覆盖 7 个零售来源中 ≥2 家的 189 款，"
-               "但仍属单一零售体系，是市场价值的代理而非消费者效用的直接测量；"
+               "但 7 家零售商并非统一定价体系，价格只能作为市场价值代理而非消费者效用的直接测量；"
                "且 7 个来源分别以美元、英镑与欧元标价，附件不含汇率列，本文未做币种换算，"
                "log 价格中混有币种与卖方价格水平差异，故价格回归的解释力只能视为上界而非精确估计。", indent_chars=2)
     _para(doc, "（4）**缺陷化合物的剂量—响应可能受风格构成混杂。** 同一种化合物在不同风格中的基线水平差异很大，"
                "混合回归得到的整体斜率可能主要由风格权重而非浓度驱动；本文以风格分层稳健性检验暴露这一点，"
                "但在多数风格样本量不足 8 时，分层估计本身不稳定，结论只能作为方向性证据。", indent_chars=2)
-    _para(doc, "（5）**Copula 只保留相关结构、不还原个体极端值。** 全局高斯 Copula 以单一高斯相关矩阵刻画"
-               "全部依赖结构，无法表达非高斯尾部依赖，因此生成谱的边际分布可以还原、个体极端组合不可还原，"
-               "这也是问题三中生成谱方差系统性小于真实分布的直接原因。", indent_chars=2)
+    _para(doc, "（5）**Copula 的边际拟合不等于留出真实性。** 全局高斯 Copula 以单一高斯相关矩阵刻画"
+               "全部依赖结构，无法表达非高斯尾部依赖；经验边际可在拟合样本上被重放，但不能据此推断对新样本的还原度。"
+               "留出检验中每个风格仅有 3–9 款真实啤酒，且受约束生成在 42/48 个评估单元上的能量距离和 MMD² 均劣于无约束生成，"
+               "所以本文只主张其具有结构性与约束可用性，不主张个体极端组合或完整真实分布已被还原。", indent_chars=2)
 
     H(2, "6.2 改进方向")
     _para(doc, "其一，**补充原始品评分与重复测量**：若能取得受训品评小组的原始 0–6 打分及其重复测量，"
@@ -1841,6 +1876,8 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                "仅在两条判据同时满足时才标记为稳健。", indent_chars=2)
     _para(doc, "（4）问题三以全局 Copula 结构加风格条件边际生成化合谱，在缺陷阈值约束下实现了零违规；"
                "这里的零违规只表示硬约束合规，不等同于无约束生成真实性，且受约束后的边际会发生分布压缩。"
+               "在 48 个留出评估单元中，受约束生成的能量距离和 MMD² 均有 42 个劣于无约束生成，"
+               "而约束合规率由 13.5% 提升至 100%，表明合规提升与真实性损失必须同时报告。"
                "并以秩—分位映射完成跨风格迁移，迁移后各缺陷化合物均不恶化。"
                "相关结构的保持程度需并置两个数字看：迁移前后斯皮尔曼相关系数的**平均**绝对偏差很小，"
                "但**单对化合物**的最大偏差明显更大（见 5.5 节），"
@@ -2033,7 +2070,7 @@ def build_references(doc: Document, refs: Optional[List[dict]]) -> int:
             _warn(f"文献 {entry.get('key', entry.get('citation_number', '?'))} 字段不足，已跳过。")
             continue
         num = int(entry.get("citation_number", listed + 1))
-        p = _para(doc, f"[{num}] {text}", size=9.5, space_after=2)
+        p = _para(doc, f"[{num}] {text}", size=9.0, space_after=0)
         p.paragraph_format.first_line_indent = Pt(0)
         # Keep each short reference together so a page does not start with only
         # a DOI continuation or an orphaned author/title fragment.
@@ -2041,7 +2078,7 @@ def build_references(doc: Document, refs: Optional[List[dict]]) -> int:
         listed += 1
     p = _para(doc, f"本论文使用的人工智能工具：[{listed + 1}] MiniMax Code，模型 MiniMax-M3.1-Flash，"
                    f"开发机构 MiniMax，使用日期 2026-10-29。（参考文献来源：{source}）",
-              size=9.5, space_after=2)
+              size=9.0, space_after=0)
     p.paragraph_format.first_line_indent = Pt(0)
     p.paragraph_format.keep_together = True
     return listed

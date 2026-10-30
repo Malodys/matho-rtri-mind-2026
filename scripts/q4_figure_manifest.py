@@ -139,7 +139,8 @@ def build_figures() -> list[dict]:
                 f"fixed_effects（再加入风格固定效应、按风格聚类稳健标准误，"
                 f"R²={_f(r2.get('fixed_effects', float('nan')), 3)}），"
                 f"样本量 n={n}（仅含 ≥2 家零售报价的啤酒）。"
-                f"价格来自单一零售源附件，此处仅作为外部价值信号，不作市场因果解释。"
+                f"价格来自同一附件内 7 家零售商的跨币种报价，未做汇率换算；"
+                f"此处仅作为外部价值信号，不作市场因果解释。"
             ),
             "width_in": 5.0,
             "outputs": _outputs("fig4_price_effects"),

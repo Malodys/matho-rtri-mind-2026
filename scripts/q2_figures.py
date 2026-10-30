@@ -4,8 +4,8 @@
 #   1) 中文字体统一经 scripts/plot_style.py 的 apply_style() 写入（Microsoft YaHei，
 #      axes.unicode_minus=False），出图后逐张打开检查无「豆腐块」与负号乱码；
 #   2) 图中所有数值直接读自 data/processed/q2_runs 下的产物，不做二次加工；
-#   3) 网络图只标注度数最高的 Top-6 节点，其余靠图例与社区配色表达；
-#      标签位置用贪心避让算法逐一检查过，无重叠；
+#   3) 网络图不在密集主连通分量内叠加节点文字；度数最高的 Top-6 名称按序列于图外，
+#      避免标签遮挡节点与边；
 #   4) 已逐张开图核对风格一致性：6 张图在 plot_style 统一风格下重出并逐一目检
 #      （中文字形、负号、图内标题 ≤12 字、无 suptitle、PNG/PDF 成对落盘）。
 """问题二出图：共表达图（来源/社区着色）、社区成分热图、bootstrap 频率图、
@@ -38,7 +38,6 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
-from matplotlib import patheffects as pe  # noqa: E402
 from matplotlib.patches import Patch  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -117,44 +116,11 @@ def _write_manifest(out_dir: Path, records: list) -> None:
     print(f"[q2_figures] → {path.name}")
 
 
-def _place_labels(ax, items, fontsize: float = 5.0, max_chars: int = 13) -> None:
-    """只标注 Top-N 节点，并用贪心避让保证标签之间不重叠。
-
-    items: [(文本, (x, y)), ...]
-    避让在「显示坐标（像素）」里做：先按字符数估算标签外接框，再逐个上移直到不打架。
-    """
-    fig = ax.figure
-    fig.canvas.draw()
-    px_per_pt = fig.dpi / 72.0
-    trans = ax.transData
-    placed = []
-    for text, (x, y) in items:
-        label = _short(str(text), max_chars)
-        nx, ny = trans.transform((x, y))
-        w = len(label) * fontsize * 0.52 * px_per_pt
-        h = fontsize * 1.35 * px_per_pt
-        dx = 3.0
-        dy = 3.0
-        for _ in range(14):
-            x0 = nx + dx * px_per_pt
-            y0 = ny + dy * px_per_pt
-            box = (x0, y0, x0 + w, y0 + h)
-            clash = any(box[0] < b[2] and box[2] > b[0] and box[1] < b[3] and box[3] > b[1]
-                        for b in placed)
-            if not clash:
-                break
-            dy += (h / px_per_pt) + 1.5
-        placed.append(box)
-        ann = ax.annotate(label, (x, y), fontsize=fontsize, color=ps.INK, zorder=5,
-                          xytext=(dx, dy), textcoords="offset points",
-                          path_effects=[pe.withStroke(linewidth=1.8, foreground="white")])
-
-
 # --------------------------------------------------------------------------- 图 1/2
 
 
 def _draw_network(ax, nodes: pd.DataFrame, edges: list, pos: dict, color_key: str,
-                  color_map: dict, label_top: int = 6) -> None:
+                  color_map: dict, label_top: int = 6) -> list[str]:
     """画共表达网络（边按 |rho| 定粗细，节点大小=度数，缺陷节点用强调色描边）。"""
     deg = dict(zip(nodes["node"], nodes["degree"]))
     max_deg = max(max(deg.values()), 1)
@@ -177,9 +143,9 @@ def _draw_network(ax, nodes: pd.DataFrame, edges: list, pos: dict, color_key: st
                    s=[sizes[list(nodes["node"]).index(n)] for n in defect_nodes],
                    facecolors="none", edgecolors=ps.DEFECT, linewidths=0.9, zorder=3)
 
-    top_nodes = nodes.nlargest(label_top, "degree")["node"].tolist()
-    _place_labels(ax, [(n, pos[n]) for n in top_nodes])
+    top_nodes = nodes.sort_values(["degree", "node"], ascending=[False, True]).head(label_top)["node"].tolist()
     ax.set_axis_off()
+    return top_nodes
 
 
 def fig_network(run: Path, out: Path, mode: str, records: list) -> None:
@@ -243,7 +209,7 @@ def fig_network(run: Path, out: Path, mode: str, records: list) -> None:
         key = "origin_paper"
         vals = sorted(nodes[key].unique())
         cmap = {v: ps.OKABE_ITO[i % len(ps.OKABE_ITO)] for i, v in enumerate(vals)}
-        _draw_network(ax, nodes, edges, pos, key, cmap)
+        top_nodes = _draw_network(ax, nodes, edges, pos, key, cmap)
         handles = [Patch(facecolor=cmap[v], label=f"{v}（{int((nodes[key] == v).sum())}）")
                    for v in vals]
         title = "共表达网络（按来源）"
@@ -258,7 +224,7 @@ def fig_network(run: Path, out: Path, mode: str, records: list) -> None:
             cmap[c] = SEQ_CMAP(0.90 - 0.15 * i)
         for c in nodes["community"].unique():
             cmap.setdefault(c, ps.BASELINE)
-        _draw_network(ax, nodes, edges, pos, key, cmap)
+        top_nodes = _draw_network(ax, nodes, edges, pos, key, cmap)
         handles = [Patch(facecolor=cmap[c], label=f"社区 {c}（{int(sizes[c])}）")
                    for c in big[:12]]
         n_rest = int(nodes["node"].size - sum(int(sizes[c]) for c in big[:12]))
@@ -271,6 +237,12 @@ def fig_network(run: Path, out: Path, mode: str, records: list) -> None:
     ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.01),
               fontsize=5.2, frameon=False, ncol=4, handlelength=1.1,
               labelspacing=0.25, borderpad=0.1, columnspacing=0.9)
+    key_text = "度数最高节点\n" + "\n".join(
+        f"{i}  {_short(node, 24)}" for i, node in enumerate(top_nodes, start=1)
+    )
+    fig.subplots_adjust(left=0.04, right=0.70, top=0.91, bottom=0.18)
+    fig.text(0.72, 0.86, key_text, ha="left", va="top", fontsize=5.0,
+             color=ps.INK, linespacing=1.35)
     ax.set_xlim(-radius * 1.12, radius * 1.12)
     ax.set_ylim(-radius * 1.12, radius * 1.12)
     ps.simple_title(ax, title, size=9.5)
@@ -281,10 +253,10 @@ def fig_network(run: Path, out: Path, mode: str, records: list) -> None:
         f"全图 {payload['meta']['n_nodes']} 节点 / {payload['meta']['n_edges']} 边、"
         f"{payload['meta']['n_connected_components']} 个连通分量，"
         f"其中 {len(iso_nodes)} 个节点在该阈值下不含任何关联边（孤立节点）而未绘出，"
-        f"其来源构成见后文的「社区化学成分」图；本图绘出 {len(nodes)} 个有边节点。"
+        f"其来源构成见支撑材料社区成员表；本图绘出 {len(nodes)} 个有边节点。"
         "节点大小 = 度数，边粗细 = |ρ|，橙红描边为缺陷化合物；"
         + ("节点按化学来源着色；" if mode == "origin" else "节点按所属社区着色；")
-        + "仅标注度数最高的 6 个节点，完整节点清单见支撑材料表。")
+        + "右侧按度数由高到低列出 6 个节点；完整节点清单见支撑材料表。")
     _emit(fig, out.parent, out.stem, title, caption, ps.FIG_WIDTH_IN, records)
 
 
@@ -423,7 +395,9 @@ def fig_consistency(run: Path, out: Path, records: list) -> None:
 
     _emit(fig, out.parent, out.stem, "方法一致性",
           "图 5  方法一致性。上为 E1/E2/E3 三路 Top-3 的平均两两 Jaccard 矩阵，"
-          "下为 50 个感官维度的逐维度平均两两 Jaccard（红色虚线为入选阈值 0.30）。",
+          "下为 50 个感官维度的逐维度平均两两 Jaccard（红色虚线为入选阈值 0.30）。"
+          "E1 仅覆盖附件 6 可映射的 44 个化合物，E2/E3 覆盖统一矩阵的 227 个建模特征，"
+          "因此跨方法 Jaccard 同时受候选空间差异影响。",
           ps.FIG_WIDTH_IN, records)
 
 
@@ -465,9 +439,9 @@ def fig_threshold(run: Path, out: Path, records: list) -> None:
     for _, r in ari.iterrows():
         i, j = ths.index(r["threshold_a"]), ths.index(r["threshold_b"])
         amat[i, j] = amat[j, i] = float(r["ARI"])
-    vmin = float(min(0.0, amat.min()))
-    vmax = float(max(amat.max(), 0.0))
-    im = ax.imshow(amat, cmap=DIV_CMAP, vmin=vmin, vmax=vmax, aspect="auto")
+    vmin = 0.0
+    vmax = 1.0
+    im = ax.imshow(amat, cmap=SEQ_CMAP, vmin=vmin, vmax=vmax, aspect="auto")
     ax.set_xticks(range(len(ths)), [str(t) for t in ths], fontsize=6.5)
     ax.set_yticks(range(len(ths)), [str(t) for t in ths], fontsize=6.5)
     for i in range(len(ths)):
@@ -484,7 +458,7 @@ def fig_threshold(run: Path, out: Path, records: list) -> None:
     _emit(fig, out.parent, out.stem, "阈值择优",
           "图 6  阈值择优。左为边阈值 |ρ| ∈ {0.5, 0.6, 0.7, 0.8} 扫描下的模块度 Q、"
           "化学纯度（来源众数占比）、孤立节点占比与归一化边数，右为各阈值两两组合所得社区的 "
-          "ARI 矩阵（发散色标，0 为白色）。",
+          "ARI 矩阵（非负顺序色标，0 为浅色、1 为深色）。",
           ps.FIG_WIDTH_IN, records)
 
 

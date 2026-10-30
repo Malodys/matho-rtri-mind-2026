@@ -1,0 +1,79 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "stage": "05_final_acceptance",
+  "status": "completed_with_known_failures",
+  "generated_at": "2026-10-30T09:11:17+08:00",
+  "branch": "night/overnight-q123-20261030",
+  "head_before_commit": "f49581ff563f626abc10eb1727e0b5c07ead9d2d",
+  "commit_message": "nightly(q123): review and harden overnight outputs 20261030",
+  "final_commit_sha_recording": "automation memory and final task response after commit",
+  "environment": {
+    "python": "C:\\Users\\10857\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "python_version": "3.12.14",
+    "project_site_packages": "F:\\cs\\mothercup\\matho-rtri-mind-2026\\.venv\\Lib\\site-packages"
+  },
+  "checks": {
+    "full_pytest": {
+      "passed": false,
+      "passed_count": 57,
+      "failed_count": 1,
+      "failure": "tests_q1/test_q1_deliverables.py::test_predict_interface_contract: missing data/processed/q1_final/model_independent_gbr.joblib"
+    },
+    "q1_absolute_regression": {"passed": true, "passed_count": 1},
+    "q2_verify": {"passed": true},
+    "q3_verify": {"passed": true, "passed_count": 7},
+    "plot_style": {"passed": true, "passed_count": 10},
+    "paper_pdf": {"passed": true, "passed_count": 5},
+    "acceptance_check": {
+      "passed": false,
+      "passed_ids": ["V1_venv", "V2_imports", "V3_lock", "V4_torch_cpu", "V5_cjk_plot", "V7_tabpfn_repro", "V8_graph_stack", "V9_attribution_stack", "V10_generation_stack", "V13_ai_usage_doc", "V16_literature", "V17_figure_style", "V14_agents_md"],
+      "failed_ids": ["V6_remote_tests", "V11_docx_skill", "V12_paper_pdf", "V15_git"]
+    },
+    "git_diff_check": {"passed": true},
+    "raw_data_unchanged": true,
+    "submission_package_absent": true,
+    "external_data_policy_preserved": true,
+    "pdf_visual_pages_reviewed": 36
+  },
+  "paper_artifacts": [
+    {
+      "path": "data/processed/paper/paper.pdf",
+      "bytes": 2128684,
+      "pages": 36,
+      "body_pages": 30,
+      "appendix_pages": 4,
+      "generated_at": "2026-10-30T07:53:31+08:00",
+      "sha256": "540153755F7C8B8765C258FD1C0EF9F96A26001D3D28FA3B8DE5AB8EFCD8670A"
+    },
+    {
+      "path": "data/processed/paper/paper.docx",
+      "bytes": 1864433,
+      "authoritative_render_pages": 36,
+      "stale_ooxml_pages": 3,
+      "filesystem_modified_at": "2026-10-30T07:52:45+08:00",
+      "sha256": "1BE0448DE772637DD66B2D865980CFFF89963A8071D13E24FBA9D7E9EE11DD9F"
+    },
+    {
+      "path": "data/processed/paper/paper_check.json",
+      "bytes": 1850,
+      "recorded_pages": 36,
+      "generated_at": "2026-10-30T01:03:50Z",
+      "sha256": "E61AD4978EC9D2768643A0461D2B6366AB6FE1DB6FA6D8CF0D0B2C02940EB5E6"
+    },
+    {
+      "path": "data/processed/paper/paper_check.txt",
+      "bytes": 1145,
+      "recorded_pages": 36,
+      "generated_at": "2026-10-30T01:03:50Z",
+      "sha256": "B48795802A3DCE63A8B476EBFB433B005B5A40F03FB1342A4A8A6C63AF15A1D5"
+    }
+  ],
+  "guardrails": {
+    "scientific_claims_upgraded_after_failure": false,
+    "data_raw_added": false,
+    "teammate_worktree_added": false,
+    "submission_package_added": false,
+    "secrets_added": false,
+    "push_merge_rebase_or_hard_reset_run": false
+  }
+}

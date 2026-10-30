@@ -1,0 +1,33 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "protocol": "3 repeated stratified-style holdouts plus one leave-one-style-out diagnostic",
+  "seeds": [
+    7,
+    42,
+    20261030
+  ],
+  "styles": [
+    "Tripel",
+    "Kriek",
+    "Lambic",
+    "Blond",
+    "Strong ale",
+    "Hoppy",
+    "Dubbel",
+    "Saison"
+  ],
+  "n_synthetic_per_state": 128,
+  "real_rows_total": 250,
+  "features": 231,
+  "holdout_rows": 48,
+  "loso_rows": 16,
+  "failure_sample_rows": 144,
+  "fallback_compress_count": 0,
+  "synthetic_evidence_policy": "Repeated synthetic draws estimate Monte Carlo stability only; the evidence count remains the held-out real beers.",
+  "outputs": [
+    "holdout_seed_metrics.csv",
+    "loso_metrics.csv",
+    "model_comparison.csv",
+    "constraint_failure_samples.csv"
+  ]
+}

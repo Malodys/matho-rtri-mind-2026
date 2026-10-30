@@ -1,0 +1,6 @@
+{
+  "gaussian_copula": "existing q3_copula.py eigen/ridge implementation reused unchanged",
+  "shrinkage_comparator": "scikit-learn LedoitWolf covariance shrinkage on normal scores; this is a covariance-shrinkage Gaussian Copula comparator",
+  "latent_factor_copula": "not implemented: no reliable project implementation or validated factor-count selection protocol exists; creating one overnight would be unvalidated",
+  "leave_one_style_out": "without any target-style observations the current conditional marginal is not identifiable; the diagnostic therefore uses an explicitly labelled global fallback with lambda=0, not a claimed target-style generator"
+}
