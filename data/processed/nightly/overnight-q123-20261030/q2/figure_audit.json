@@ -14,7 +14,10 @@
       "edges": 266,
       "connected_components": 114,
       "isolated_nodes": 101
-    }
+    },
+    "network_top6_names_complete": true,
+    "caption_manifest_consistent": true,
+    "ari_scale_consistent": true
   },
   "manual_visual_review": [
     {
@@ -22,9 +25,9 @@
         "fig1_coexpression_network_by_origin",
         "fig2_coexpression_network_by_community"
       ],
-      "severity": "P1",
-      "finding": "Top-6 node labels overlap nodes and one another near the graph center; several labels are truncated to visually ambiguous prefixes.",
-      "disposition": "report_only_no_main_overwrite"
+      "severity": "PASS",
+      "finding": "Top-6 names are complete and wrapped in the right-side key; no truncation or key-label collision was observed. The dense central network remains intentionally unlabelled, while node size and color encode the declared graph attributes.",
+      "disposition": "accepted_after_regeneration"
     },
     {
       "figures": [
@@ -32,30 +35,34 @@
         "fig2_coexpression_network_by_community",
         "fig3_community_composition_heatmap"
       ],
-      "severity": "P1",
-      "finding": "The network captions say the 101 omitted isolated nodes' source composition is shown in the community-composition figure, but fig3 filters to non-trivial communities (n>=2), so it does not show singleton/isolated-node composition.",
-      "disposition": "report_only_no_main_overwrite"
+      "severity": "PASS",
+      "finding": "The network captions now direct the reader to the supporting community-member table for the 101 omitted isolated nodes; fig3 is explicitly limited to non-trivial communities and no longer claims to display singleton composition.",
+      "disposition": "accepted_after_caption_audit"
     },
     {
       "figures": [
         "fig6_threshold_selection"
       ],
-      "severity": "P1",
-      "finding": "The caption says the diverging ARI scale has 0 as white, while the rendered scale maps 0 to blue and approximately 0.5 to white.",
-      "disposition": "report_only_no_main_overwrite"
+      "severity": "PASS",
+      "finding": "The ARI caption and rendered sequential color scale agree: 0 is light and 1 is dark.",
+      "disposition": "accepted_after_regeneration"
     },
     {
       "figures": [
         "fig5_method_consistency_jaccard"
       ],
-      "severity": "P2",
-      "finding": "The caption does not remind readers that E1 ranks only 44 compounds while E2/E3 rank 227; the displayed Jaccard values are therefore coverage-asymmetric.",
-      "disposition": "report_only_no_main_overwrite"
+      "severity": "PASS",
+      "finding": "The caption states that E1 covers 44 mapped compounds whereas E2 and E3 cover 227 modeling features, so the coverage asymmetry is visible at the point of interpretation.",
+      "disposition": "accepted_after_caption_audit"
     }
   ],
   "accepted_visuals": [
+    "fig1_coexpression_network_by_origin",
+    "fig2_coexpression_network_by_community",
     "fig3_community_composition_heatmap",
-    "fig4_top3_bootstrap_frequency"
+    "fig4_top3_bootstrap_frequency",
+    "fig5_method_consistency_jaccard",
+    "fig6_threshold_selection"
   ],
-  "overall": "PNG/PDF packaging is complete, but three material label/caption issues require revision before publication."
+  "overall": "All Q2 figures have been regenerated as paired PNG/PDF outputs. Content, units, legends, captions, color scales, clipping and visible label collisions passed the review within the static-figure scope."
 }

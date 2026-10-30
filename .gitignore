@@ -54,6 +54,7 @@ temp/
 *.pkl
 *.pickle
 *.joblib
+!data/processed/q1_final/model_independent_gbr.joblib
 *.onnx
 *.pt
 *.pth

@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -35,6 +36,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Inches, Pt
+
+from data_contract import DERIVED_COLUMNS, load_modeling_matrix, load_targets
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
@@ -294,18 +297,16 @@ CONSUMER_FILES = [
 
 
 def load_consumer() -> dict:
-    """读取消费者层产物；缺失时优雅降级（返回空 dict 并打印告警）。"""
+    """读取消费者层产物；缺失文件只影响对应章节。"""
     out: dict = {}
     if not CONSUMER_DIR.exists():
-        _warn(f"未找到 {CONSUMER_DIR}，5.2「消费者感知路径与市场价值」与 5.4「剂量再检验」"
-              f"将降级为占位说明。")
+        _warn(f"未找到 {CONSUMER_DIR}，5.2 与 5.4 将不读取消费者层数据。")
         return out
     for name in CONSUMER_FILES:
         out[name] = _maybe(CONSUMER_DIR / name)
     found = [k for k, v in out.items() if v is not None]
     if not found:
-        _warn(f"{CONSUMER_DIR} 下尚无消费者层产物（{'、'.join(CONSUMER_FILES)}），"
-              f"5.2 与 5.4 的消费者/剂量部分将降级跳过。")
+        _warn(f"{CONSUMER_DIR} 下尚无消费者层产物（{'、'.join(CONSUMER_FILES)}）。")
     else:
         _info(f"消费者层产物就绪：{'、'.join(found)}")
     return out
@@ -638,40 +639,37 @@ def _build_problem_analysis(doc: Document, H, res: dict) -> None:
     H(1, "一、问题分析")
 
     H(2, "1.1 与原文的关系及本文贡献")
-    _para(doc, "赛题附件是 Schreurs M、Verstrepen P J 等人发表在 Nature Communications 的原始研究的"
-               "公开数据与补充材料 [1]：其正文以 250 款商用啤酒的化学测量与受训品评小组的感官结果"
-               "为核心数据，并公开了化合物—化合物、感官—感官与化合物—感官三张相关矩阵、感官品评卡、"
-               "论坛评述派生描述符以及阈值与名称参考表。本文**不是对该研究的重复报道**，而是对其公开数据的"
-               "一次**独立复现与再分析**：所有量纲裁定、相关类型裁定、名称桥、建模与评估均由本文重新实现与复算，"
-               "附件中未被明示的语义一律以可复算的证据裁定，而不是沿用原文结论。", indent_chars=2)
-    _para(doc, "据此，本文相对原文的增量贡献有三点。其一，识别并给出三处与官方赛题文本表述不一致的数据语义问题"
-               "——三张相关矩阵的相关系数类型、品评卡模板的实际内容、1.csv 的标度结构——并逐条附上复算证据；"
-               "其二，在原研究面向消费者偏好、而附件并未提供任何消费者评分标签的前提下，本文以 183 维论坛派生"
-               "消费者描述符与 189 款啤酒的零售价格为外部代理，构造「化学→消费者感知」与「化学→市场价值」两条"
-               "验证路径；其三，在原始剂量—响应证据不可得的条件下，重新检验缺陷化合物的剂量—响应关系。"
-               "必须明确声明的是：**附件未提供任何消费者评分或喜爱度标签，因此本文不声称复现原研究对消费者"
-               "喜爱度的预测**，只在可观测的描述符与价格代理上做验证，并把「喜爱度是否可提升」明确标注为"
-               "在本附件条件下不可检验的一环。", indent_chars=2)
+    _para(doc, "赛题附件来自 Schreurs M、Verstrepen P J 等人在 Nature Communications 发表的研究 [1]，"
+               "包含 250 款商用啤酒的化学测量、受训品评小组的感官数据，以及化合物—化合物、感官—感官和"
+               "化合物—感官三张相关矩阵。附件还提供了品评卡模板、论坛评论派生描述符、化学阈值和名称参考表。"
+               "本文以这些公开材料为基础，重新完成数据语义审计、特征构造、模型训练和独立评估。对于附件没有直接说明的"
+               "量纲、相关类型和字段对应关系，本文均通过逐列回归、逐元素重算和跨文件名称核对给出可复算的判断。"
+               "因此，本文的研究定位是同源数据的独立复现与再分析，重点在于检验数据口径能否支撑题目要求的三项推断。",
+               indent_chars=2)
+    _para(doc, "本文的增量工作集中在三个方面。第一，本文识别出三处会改变建模结论的数据语义差异：相关矩阵实际采用"
+               "斯皮尔曼系数，品评卡只是空白模板，1.csv 同时包含 log10 标度和原始浓度标度。第二，附件没有消费者评分或"
+               "喜爱度标签，本文遂采用 183 维论坛描述符和 189 款啤酒的零售价格构造两条外部验证路径，分别考察化学谱对"
+               "消费者感知和市场价值代理的解释能力。第三，本文重新检验缺陷化合物的剂量—响应关系，并把全体样本相关、"
+               "风格分层结果和不确定性放在同一评价框架中。消费者喜爱度本身没有可观测标签，因而不属于本文的预测目标；"
+               "相关结果仅用于说明现有附件能够验证什么，以及仍缺少哪些证据。", indent_chars=2)
 
     H(2, "1.2 任务分解与叙事主线")
-    _para(doc, "赛题要回答的其实是一个连续的问题：**什么样的啤酒好喝、为什么好喝、以及如何据此设计出新的化合物谱**。"
-               "对应到三问：第一问用化学指纹预测感官评分，回答「什么样的啤酒好喝」；第二问把感官维度拆解到"
-               "具体化合物，回答「为什么好喝」；第三问以风格为条件反向设计化合物谱，回答「如何据此设计」。"
-               "三问共享同一份化学特征矩阵与同一套数据语义裁定，因此本文把它们组织成一条主线而不是三个孤立任务："
-               "问题一给出「化学→感官」的映射，问题二在同一矩阵上给出「感官→化合物」的可解释分解，"
-               "问题三再把这条映射反过来用于设计。", indent_chars=2)
-    _para(doc, "本题以 250 款商用啤酒的化学测量数据、感官品评数据与多张相关矩阵为输入，要求完成三件"
-               "本质上互不相同的任务：三其一是在感官标签仅以标准化形式给出的条件下，还原并给出可解释的"
-               "0–6 分制分级评分；其二是构建化合物共表达图并给出每个感官维度的关键化合物及其稳定性；"
-               "其三是以风格为条件生成化学谱并做跨风格迁移。三者的共同难点在于：附件并未提供可直接使用的"
-               "标签与量纲，任何未经核实就建模的做法都会在量纲与口径两个层面同时失效。", indent_chars=2)
+    _para(doc, "三项任务可以沿着一条由解释到设计的路径组织起来。问题一从化学指纹预测感官维度，回答哪些感官属性"
+               "能够由化学测量解释；问题二把这种映射拆解到具体化合物，考察化合物之间的共表达结构以及候选关键因素的"
+               "稳定性；问题三以风格为条件生成化学谱，将前两问得到的结构用于反向设计。三问共用同一套名称桥、统一标度"
+               "和风格分层原则，因而可以在同一证据链上比较预测、关联与生成三个环节的可靠程度。", indent_chars=2)
+    _para(doc, "具体而言，第一问需要在感官标签只有标准化形式、没有原始 0–6 分数的条件下构造可解释的分级结果；"
+               "第二问需要在 231 个化合物节点上建立共表达图，并为每个感官维度给出带有稳定性和化学合理性说明的候选化合物；"
+               "第三问则需要在样本量很小的细分风格条件下生成化学谱，并检验约束合规、分布相似性和跨风格迁移效果。"
+               "三项任务的共同前提是先确认标签、量纲和相关系数的真实含义。若这一步被忽略，后续的模型指标和化学解释都可能失去可比性。",
+               indent_chars=2)
 
     H(2, "1.3 总体应对")
-    _para(doc, "本文的总体应对是：先用一套可复算的证据把数据的真实语义钉死，再让三个问题共享同一份"
-               "经过审计的特征矩阵。具体而言，(1) 逐列裁定 1.csv 的变换标度；(2) 以「重算相关矩阵并与"
-               "给定矩阵逐元素比对」的方式裁定三张相关矩阵的相关系数类型；(3) 建立跨附件的名称桥，"
-               "使相关矩阵、阈值表与特征矩阵可以对齐；(4) 区分左删失（未检出）与真缺失；"
-               "(5) 固定按风格分层的训练/留出划分，所有调参只在训练集内部完成。", indent_chars=2)
+    _para(doc, "研究流程首先完成三项基础工作：逐列裁定 1.csv 的标度，重算相关矩阵并与附件逐元素比对，"
+               "再通过跨文件名称桥把化学量、感官维度、阈值和外部先验对齐。随后，本文区分检出限造成的地板值与真正缺失，"
+               "将所有化学量统一到 log10(mg/L) 口径，并固定按细分风格分层的 175/75 训练—留出划分。模型选择和参数调整"
+               "只使用训练样本，留出样本仅用于最终评价。这样的顺序把数据审计、预测、关联和生成连接起来，也使每一步的证据来源能够回溯。",
+               indent_chars=2)
 
 
 # ----------------------------------------------------------------- 二、相关工作与综述
@@ -698,13 +696,14 @@ REVIEW_THEMES: List[Tuple[str, str, str]] = [
      "之间的关系，并把可解释的机器学习用于风味预测与配方改进{anchor}；其数据公开方式（同时给出化合物矩阵、"
      "三张相关矩阵、品评卡、论坛描述符与阈值参考表）也决定了任何复用者都必须自行裁定这些附件的语义，"
      "这正是本文第二章与第三章所做的工作。近期 flavoromics 研究也表明，多平台化学—感官证据可用于"
-     "筛查候选化合物，但跨平台结果不能未经校准地并入本项目训练集{flavoromics}。"),
+     "筛查候选化合物，但不同实验平台的结果仍需校准后才能用于同一分析{flavoromics}。"),
     ("2.2 感官预测与可解释机器学习",
      "从化学成分到感官评分的映射本质上是一个高维小样本回归问题。通用机器学习工具（如 scikit-learn{sklearn}）"
      "提供了从线性模型到梯度提升与随机森林的统一实现；SHAP{shap} 提供了把模型输出分解到单个化合物的加性归因方法；"
      "预训练先验模型（TabPFN{tabpfn}）则为小样本表格回归提供了不同于手工特征工程的第三条路线"
      "（其原始版本面向表格分类任务，回归形态与本文用法见后续期刊版{tabpfn_reg}）。"
-     "TabDPT{tabdpt} 可作为后续的表格基础模型对照，但不作为本项目当前提交的必做主线。"
+     "TabDPT{tabdpt} 可作为后续的表格基础模型对照；本文暂不把它纳入主比较，"
+     "以便先完成统一特征、固定切分和可复核指标下的基线评估。"
      "本文在问题一同时使用这三类归纳偏置，并在问题二把归因与秩相关并列作为证据，避免以单一视角替代真值。"),
     ("2.3 化合物关联分析与网络化方法",
      "把化合物之间的关系表述为图并做社区发现，是解释「哪些化合物总是同时出现」的自然做法；"
@@ -856,6 +855,36 @@ def _build_data_processing(doc: Document, H, res: dict, counters: Counters) -> N
                "同时保留参考表给出的离群标记，用于剔除 Diacetyl、trans-2-nonenal 等列上的极端异常值，"
                "避免其污染问题三的边际分布估计。", indent_chars=2)
 
+    H(3, "3.3.1 样本概况与描述性统计")
+    chem = load_modeling_matrix()
+    targets = load_targets()
+    raw_chem = pd.read_csv(RAW / "1.csv", encoding="utf-8-sig")
+    styles = pd.read_csv(ROOT / "data" / "splits" / "seed_0" / "style_counts.csv",
+                         encoding="utf-8-sig")
+    target_means = targets.mean(numeric_only=True)
+    target_stds = targets.std(numeric_only=True)
+    n_raw_missing = int(raw_chem.isna().sum().sum())
+    raw_chem_cells = int(raw_chem.shape[0] * (raw_chem.shape[1] - 1))
+    profile = pd.DataFrame([
+        ["化学测量", "250 × 231；保留 227 个建模特征",
+         f"原始缺失 {n_raw_missing} 格（{100 * n_raw_missing / raw_chem_cells:.2f}%）；统一矩阵缺失 {int(chem.isna().sum().sum())} 格",
+         "逐列裁定标度；剔除 {0} 个未经验证的派生求和列".format(len(DERIVED_COLUMNS))],
+        ["感官目标", "250 × 50；Aroma 15、Flavour 15、通用维度 20",
+         f"缺失 {int(targets.isna().sum().sum())} 格；维度均值范围 {target_means.min():.3f}–{target_means.max():.3f}，标准差范围 {target_stds.min():.3f}–{target_stds.max():.3f}",
+         "作为连续回归目标；不把标准化值解释为原始 0–6 评分"],
+        ["风格分层", f"22 个细分风格；每个风格样本数 {int(styles['total'].min())}–{int(styles['total'].max())}，中位数 {styles['total'].median():.0f}",
+         "最小风格仅 3 款；训练/留出合计 175/75",
+         "固定风格分层切分；小样本风格仅作条件生成的谨慎参照"],
+    ], columns=["数据对象", "规模", "分布与缺失概况", "处理与解释"])
+    _para(doc, "完成语义裁定后，先对样本规模、缺失结构和目标分布做描述性检查，再进入模型比较。"
+               "这一步的作用不是增加一个未经预注册的筛选标准，而是判断后续指标的适用范围：化学特征的原始缺失很少，"
+               "但风格分层高度不均衡；感官目标均值接近零、维度间离散程度不同，说明宏平均指标需要与逐维结果并读。", indent_chars=2)
+    _table(doc, profile, counters.next_table("建模样本与目标的描述性统计"), max_cell_chars=68, font_size=8.0)
+    _para(doc, "由此，本文把 175/75 切分视为固定的评价协议，而不是把样本较少的风格重新合并；"
+               "所有缺失处理、尺度转换和特征删减均发生在统一矩阵形成阶段，并通过后续回归测试锁定。"
+               "描述性统计也解释了为什么问题三报告每个风格的真实留出样本量、问题一报告逐维指标，"
+               "而不只给出一个看似精确的总体分数。", indent_chars=2)
+
     H(2, "3.4 感官维度与数据划分")
     _para(doc, "3.xlsx 提供的感官品评卡定义了 Aroma 与 Flavour 两套属性及其 0–6 分制的语义锚点"
                "（0 分为「不存在」，6 分为「主导/强烈」），但经逐格核查，其 12 张评分卡内并无任何品评员打分的"
@@ -916,12 +945,11 @@ def _build_models(doc: Document, H, res: dict) -> None:
 
     H(2, "4.1 问题一：多任务回归与双轨分级")
     _para(doc, "问题一以 1.csv 的化合物特征预测 50 个感官维度。特征取统一标度后的 227 个化学量，"
-               "剔除 4 个公式未经验证的派生求和列；模型采用岭回归、偏最小二乘回归、多任务弹性网络、"
-               "全局与分组极端随机树、逐指标梯度提升回归共七个主模型族；另保留 TabPFN 3.5 的队友协议五折复现，"
-               "以覆盖线性低秩、强稀疏与树形非线性三类归纳偏置。该复现使用 231 个原始特征和 KFold，"
-               "与主模型的 227 特征、固定 175/75 留出协议不同，只作协议核对，不参与主模型优劣排序。"
-               "主指标为宏平均均方根误差，"
-               "并同时报告宏平均绝对误差、逐维决定系数中位数、斯皮尔曼相关系数中位数。", indent_chars=2)
+               "剔除 4 个公式未经验证的派生求和列；主比较覆盖岭回归、偏最小二乘回归、多任务弹性网络、"
+               "全局与分组极端随机树以及逐指标梯度提升回归七个模型族，分别对应线性低秩、稀疏线性和树形非线性归纳偏置。"
+               "主模型使用固定的 175/75 风格分层留出协议，宏平均 RMSE 作为主要指标，同时报告宏平均 MAE、逐维 R² 中位数"
+               "和斯皮尔曼相关系数中位数。另行保留 TabPFN 3.5 的既有复现协议，用于核对该协议下的复现结果是否可复算。"
+               "该协议使用 231 个原始特征和 KFold，评估口径与主模型不同，因此不参与模型优劣排序。", indent_chars=2)
     _para(doc, "由于附件未提供原始 0–6 分数，0–6 分制必须显式构造。本文采用双轨：**主轨为相对分级**，"
                "对每个维度取训练集的六等分位数作为切点，真实值与预测值用同一组切点离散化为 0–6 级，"
                "切点只由训练集学习以避免信息泄漏，并报告等级平均绝对误差、精确命中率、相邻一级命中率与"
@@ -933,7 +961,7 @@ def _build_models(doc: Document, H, res: dict) -> None:
                "载体与该感官维度的斯皮尔曼相关系数不低于 0.3 且为正；0 分锚点对应的训练集分位不高于 0.6；"
                "两个锚点的标准分带宽不小于 0.5；映射后落在 0 至 6 区间内的比例不低于 0.3。"
                "任一条不满足即判定该维度的绝对锚定不成立，其绝对分留空，仅提供相对分级，"
-               "并在参数表中逐条记录失效原因。需要强调：副轨是**本文提出的、基于感官阈值的一阶近似**，"
+               "并在参数表中逐条记录失效原因。副轨是**本文提出的、基于感官阈值的一阶近似**，"
                "不等价于实测的原始评分；护栏的存在本身也说明，在本数据集上化学信号与感官评分的联系"
                "只在少数维度上足以支撑绝对标定。", indent_chars=2)
 
@@ -1043,19 +1071,19 @@ def _build_results(doc: Document, H, res: dict, consumer: dict, counters: Counte
                    "或锚点区间退化而判定不成立，其绝对分留空、仅提供相对分级，"
                    "失效原因在参数表中逐条记录。这一结果本身说明：在本数据集上，"
                    "化学信号与感官评分的联系只在少数维度上足以支撑绝对标定。"
-                   "需要再次强调，该轨是本文提出的一阶近似而非实测原分。", indent_chars=2)
+                   "因此，绝对轨应被理解为阈值约束下的近似标尺，而不是对缺失原始评分的替代。", indent_chars=2)
     tabpfn = res.get("q1_tabpfn")
     if tabpfn is not None and not tabpfn.empty:
         idx = tabpfn.index.astype(str)
         row = tabpfn[idx.str.contains("cv_mean", na=False)]
         if not row.empty:
             r = row.iloc[0]
-            _para(doc, "作为第三类归纳偏置的补充，本文在本机 CPU 环境完成了队友协议下 TabPFN 3.5 的五折全量复现"
+            _para(doc, "作为第三类归纳偏置的补充，本文在本机 CPU 环境完成了既有复现协议下 TabPFN 3.5 的五折全量复现"
                        f"（5 折 × 50 个目标共 250 个单元；该复现使用原始 231 特征与 KFold，"
                        f"不等同于主模型的 227 特征、固定 175/75 留出协议）。其五折平均决定系数为 {fmt(r.get('r2'), 4)}，"
                        f"宏平均绝对误差 {fmt(r.get('mae'), 4)}、宏平均均方根误差 {fmt(r.get('rmse'), 4)}，"
                        f"而同一协议下的训练折均值基线决定系数为 {fmt(r.get('baseline_r2'), 4)}，"
-                       "这些数值仅用于验证队友产物的复现忠实性，不作为相对于主模型的直接优越性证据；"
+                       "这些数值用于验证既有复现产物的可复算性，不作为相对于主模型的直接优越性证据；"
                        "其第一折的逐目标决定系数与远端归档结果逐位一致。", indent_chars=2)
     for folder, name, short, method in FIGURE_SPECS[:3]:
         _insert_figure(doc, counters, folder, name, short, method)
@@ -1107,7 +1135,9 @@ def _price_predictor_note(price: pd.DataFrame, common: List[str]) -> str:
         if t.empty:
             continue
         sig = int((t.abs() > 2).sum())
-        parts.append(f"在 {m} 规格下 {len(t)} 个实质项中只有 {sig} 项满足 |t| > 2，"
+        model_label = {"ols": "OLS", "ols_with_abv": "OLS + ABV",
+                       "fixed_effects": "风格固定效应"}.get(m, m)
+        parts.append(f"在 {model_label} 规格下 {len(t)} 个实质项中只有 {sig} 项满足 |t| > 2，"
                      f"即多数系数在常规显著性水平上与零无法区分，"
                      f"故本文只把价格回归当作**方向性**证据，而非精确的弹性估计。")
         break
@@ -1186,6 +1216,8 @@ def _build_consumer_results(doc: Document, consumer: dict, counters: Counters) -
         sub["term"] = sub["term"].astype(str)
         sub["model"] = sub["model"].astype(str)
         models = list(dict.fromkeys(sub["model"]))
+        model_labels = {"ols": "OLS", "ols_with_abv": "OLS + ABV",
+                        "fixed_effects": "风格固定效应"}
         # 风格虚拟变量不入表，只保留可跨模型比较的实质项
         sub = sub[~sub["term"].str.startswith("fe_")]
         term_sets = {m: set(sub.loc[sub["model"] == m, "term"]) for m in models}
@@ -1226,7 +1258,8 @@ def _build_consumer_results(doc: Document, consumer: dict, counters: Counters) -
                         + (f"（仅 {'、'.join(flips)} 发生符号改变）" if flips else "")
                         + "，说明化学—感知组合携带的信息不完全由酒精度与风格标签解释。")
         _para(doc, f"价格回归以可算几何均价的 {fmt(nmax, 0)} 款样品为样本，并列给出 {len(models)} 组模型："
-                   + "；".join(models) + f"（依次为不控变量、控制酒精度、控制酒精度并加入风格固定效应）。"
+                   + "；".join(model_labels.get(m, m) for m in models)
+                   + "（依次为不控变量、控制酒精度、控制酒精度并加入风格固定效应）。"
                    + (r2_txt + "，" if r2_txt else "") + sign_txt
                    + "需要强调其边界：价格来自同一附件内 7 家零售商的跨币种报价，且未做汇率换算，"
                    "是市场价值的代理，"
@@ -1502,11 +1535,9 @@ def _build_comparison_and_dose(doc: Document, res: dict, consumer: dict, counter
                        + "因此本文把上述剂量—响应结论作为方向性证据而非精确斜率，"
                        "并在讨论中说明风格构成混杂的风险。", indent_chars=2)
 
-    _para(doc, "最后必须再次强调：**原文结论链条中的「提升消费者喜爱度」一环在本附件条件下不可检验**——"
-               "附件既没有消费者评分标签，也没有购买行为数据，任何关于喜爱度提升幅度的数字都无从核验。"
-               "本文在该位置给出的只是两个可检验的替代证据：消费者描述符的可预测性，"
-               "以及化学谱对市场价值的解释力。二者都不等价于喜爱度，"
-               "因此本文既不复现原文的喜爱度结论，也不否定它，只把它标注为在本数据条件下不可检验。", indent_chars=2)
+    _para(doc, "附件没有消费者评分或购买行为数据，因此原文结论链条中的「提升消费者喜爱度」一环在本研究中无法检验。"
+               "本文提供的两类外部证据分别是消费者描述符的可预测性和化学谱对市场价值代理的解释力；"
+               "它们能够补充感知与市场层面的信息，但不等价于喜爱度测量，也不支持对喜爱度提升幅度作出判断。", indent_chars=2)
 
 
 def np_sign(x) -> int:
@@ -1615,10 +1646,11 @@ def _build_q2_results(doc: Document, res: dict, counters: Counters) -> None:
                   f"为检验上述候选项能否在独立样本中复现，本文仅在 175 个训练样本上重选 150 个 Top-3 候选，"
                   f"再在固定的 75 个留出样本上进行 {int(holdout.get('permutations', 0))} 次双侧置换检验，"
                   f"并对全部 {int(holdout.get('family_size', 0))} 项统一执行 Benjamini–Hochberg 校正。"
-                  f"其中 {int(holdout.get('fdr_0p05_rows', 0))} 项通过 q≤0.05；主结果中判为稳健的 "
+                  f"其中 {int(holdout.get('fdr_0p05_rows', 0))}/{int(holdout.get('family_size', 0))} 项通过 q≤0.05；主结果中判为稳健的 "
                   f"{int(review.get('published_robust_rows', 0))} 项全部被训练集重选保留且方向一致，"
-                  f"其中 {int(review.get('holdout_fdr_0p05_rows', 0))} 项通过留出集 FDR，"
-                  f"同时满足稳健与化学合理性的 {int(review.get('robust_and_chem_plausible_holdout_fdr_0p05_rows', 0))} 项全部通过。"
+                  f"其中 {int(review.get('holdout_fdr_0p05_rows', 0))}/{int(review.get('published_robust_rows', 0))} 项通过留出集 FDR，"
+                  f"同时满足稳健与化学合理性的 {int(review.get('robust_and_chem_plausible_holdout_fdr_0p05_rows', 0))}/"
+                  f"{int(review.get('robust_and_chem_plausible_rows', review.get('robust_and_chem_plausible_holdout_fdr_0p05_rows', 0)))} 项全部通过。"
                   "这只是关联的独立样本复现，不验证化学机理，也不构成因果证据。",
                   indent_chars=2)
     else:
@@ -1626,11 +1658,7 @@ def _build_q2_results(doc: Document, res: dict, counters: Counters) -> None:
 
 
 def _top3_joint_note(top3: pd.DataFrame, n_robust_dims: int) -> str:
-    """Top-3 表中「稳健判定」与「化学合理性」的联合统计（见 docs/review_round2.md W8、W22）。
-
-    表内两列可能互相矛盾（判为稳健关键因素，但化学合理性检验不通过），
-    只报「有多少个维度含稳健项」会掩盖这一点；同时须报出**没有任何稳健项的维度数**这一负结果。
-    """
+    """报告稳健判定与化学合理性的联合结果，并保留负结果。"""
     if top3 is None or top3.empty or "selection_status" not in top3.columns:
         return ""
     rob = top3["selection_status"].astype(str).str.contains("稳健")
@@ -1640,22 +1668,20 @@ def _top3_joint_note(top3: pd.DataFrame, n_robust_dims: int) -> str:
     if "chem_plausible" in top3.columns:
         chem = top3["chem_plausible"].astype(str).str.strip().str.lower().isin(["true", "1", "yes"])
         both = int((rob & chem).sum())
-        note += (f"须并列说明的是，「稳健」与「化学合理性」是**两道独立判据**："
-                 f"全表 {len(top3)} 行中仅 {int(chem.sum())} 行通过化学合理性检验，"
-                 f"被判为稳健关键因素的 {n_rob_rows} 行中只有 {both} 行同时通过（稳健且化学合理），"
-                 f"其余 {n_rob_rows - both} 行虽在统计判据上稳健，但其化学来源归属或载体类别论证不成立，"
-                 "本文在表中保留这些行以示区分，不把它们作为可采纳的造谱依据。")
+        note += (f"稳健判定与化学合理性是两道独立判据：全表 {len(top3)} 行中有 {int(chem.sum())} 行"
+                 f"通过化学合理性检验；稳健记录共 {n_rob_rows} 行，其中 {both} 行同时满足两项条件。"
+                 f"其余 {n_rob_rows - both} 行虽然满足统计稳定性标准，但缺少足够的化学来源或载体证据，"
+                 "因此在表中保留为候选关联，不将其解释为可直接采用的造谱配方。")
         if "rank_in_top3" in top3.columns:
             top1 = (pd.to_numeric(top3["rank_in_top3"], errors="coerce") == 1)
             t1 = int((top1 & rob & chem).sum())
             if t1:
-                note += (f"若只看每个感官维度排名第 1 的化合物，"
-                         f"同时满足「稳健」与「化学合理」的仅 {t1} 条，"
-                         "这正是本文把 Top-3 定位为「候选与稳健的参考集」而非可直接使用的造谱配方的原因。")
+                note += (f"若只看每个感官维度排名第 1 的化合物，同时满足两项条件的仅 {t1} 条；"
+                         "因此 Top-3 更适合作为候选关联的参考集，而不是直接用于配方设计的清单。")
     if n_dims:
         none = n_dims - n_robust_dims
-        note += (f"此外须报告一项负结果：{n_dims} 个感官维度中有 **{none} 个没有任何稳健关键化合物**，"
-                 "本文不对这些维度给出 Top-3 结论，以免把「排序靠前」误读为「可采纳」。")
+        note += (f"在 {n_dims} 个感官维度中，{n_robust_dims} 个维度至少有一条稳健记录，"
+                 f"另有 {none} 个维度没有稳健记录；后者只报告排序结果，不作关键化合物判断。")
     return note
 
 
@@ -1827,14 +1853,14 @@ def _build_discussion(doc: Document, H, res: dict, consumer: dict) -> None:
                "只能以 183 维论坛派生描述符作为感知代理；价格虽覆盖 7 个零售来源中 ≥2 家的 189 款，"
                "但 7 家零售商并非统一定价体系，价格只能作为市场价值代理而非消费者效用的直接测量；"
                "且 7 个来源分别以美元、英镑与欧元标价，附件不含汇率列，本文未做币种换算，"
-               "log 价格中混有币种与卖方价格水平差异，故价格回归的解释力只能视为上界而非精确估计。", indent_chars=2)
+               "log 价格中混有币种与卖方价格水平差异，因而价格回归只能提供方向性市场价值证据，不能作为精确的品质溢价估计。", indent_chars=2)
     _para(doc, "（4）**缺陷化合物的剂量—响应可能受风格构成混杂。** 同一种化合物在不同风格中的基线水平差异很大，"
                "混合回归得到的整体斜率可能主要由风格权重而非浓度驱动；本文以风格分层稳健性检验暴露这一点，"
-               "但在多数风格样本量不足 8 时，分层估计本身不稳定，结论只能作为方向性证据。", indent_chars=2)
+               "但多数风格样本量不足 8，分层估计仍不稳定，相关结果应理解为方向性证据。", indent_chars=2)
     _para(doc, "（5）**Copula 的边际拟合不等于留出真实性。** 全局高斯 Copula 以单一高斯相关矩阵刻画"
                "全部依赖结构，无法表达非高斯尾部依赖；经验边际可在拟合样本上被重放，但不能据此推断对新样本的还原度。"
                "留出检验中每个风格仅有 3–9 款真实啤酒，且受约束生成在 42/48 个评估单元上的能量距离和 MMD² 均劣于无约束生成，"
-               "所以本文只主张其具有结构性与约束可用性，不主张个体极端组合或完整真实分布已被还原。", indent_chars=2)
+               "因此，本文将其定位为具有结构性和约束可用性的生成参照；个体极端组合和完整真实分布仍需更多留出样本验证。", indent_chars=2)
 
     H(2, "6.2 改进方向")
     _para(doc, "其一，**补充原始品评分与重复测量**：若能取得受训品评小组的原始 0–6 打分及其重复测量，"
@@ -1873,18 +1899,20 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                "这为「共表达模块对应可追溯的化学来源」提供了直接支持；"
                "关键化合物的排序由自算全量相关与归因两路证据给出，"
                "并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性，"
-               "仅在两条判据同时满足时才标记为稳健。", indent_chars=2)
+               "仅在两条判据同时满足时才标记为稳健。50 个维度中有 22 个维度包含稳健记录，"
+               "28 个维度没有稳健记录；稳健记录共 32 条，其中 9 条同时通过化学合理性检验。"
+               "这些数字把稳定性、化学合理性和无稳健结果同时呈现，避免将排序靠前的候选误读为因果因素。", indent_chars=2)
     _para(doc, "（4）问题三以全局 Copula 结构加风格条件边际生成化合谱，在缺陷阈值约束下实现了零违规；"
-               "这里的零违规只表示硬约束合规，不等同于无约束生成真实性，且受约束后的边际会发生分布压缩。"
+               "零违规只表示硬约束合规，不能代表无约束生成的真实性，受约束后的边际还会发生分布压缩。"
                "在 48 个留出评估单元中，受约束生成的能量距离和 MMD² 均有 42 个劣于无约束生成，"
                "而约束合规率由 13.5% 提升至 100%，表明合规提升与真实性损失必须同时报告。"
                "并以秩—分位映射完成跨风格迁移，迁移后各缺陷化合物均不恶化。"
                "相关结构的保持程度需并置两个数字看：迁移前后斯皮尔曼相关系数的**平均**绝对偏差很小，"
                "但**单对化合物**的最大偏差明显更大（见 5.5 节），"
                "即整体分布形态得以保持而个别化合物对仍会被重排，故本文只作「整体结构基本保持」的表述。"
-               "本文通过并列给出不作约束的参照生成，发现其在当前参照下距离小于同分布随机重抽的期望距离，"
+               "无约束参照生成在当前评价中距离小于同分布随机重抽的期望距离，"
                "但与「完美复现风格经验边际」的经验匹配地板相比仍高出一个量级，"
-               "故本文只主张其在当前参照下具有结构性可用性，不主张精确还原真实边际；"
+               "因此它具有结构性参考价值，但尚不足以说明真实边际已被精确还原；"
                "受约束谱的边际偏移来自拒绝重抽对缺陷项低尾的条件化，而非生成器的还原能力不足。"
                "一个值得注意的发现是：约束对感官画像的影响方向随维度而异——"
                "对二甲基硫醚与 4-乙烯基愈创木酚压低浓度即拉低评分，"
@@ -1898,7 +1926,7 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                f"结论为{dose_txt}，并给出风格分层稳健性结果。"
                "由此，本文对原研究给出的结论做了一个明确的界定：**其「提升消费者喜爱度」一环"
                "在本附件条件下不可检验**，本文既不复现也不否定该结论，只把它标注为在现有数据下无法验证。", indent_chars=2)
-    _para(doc, "关于与原文的关系，需要再次申明：本文是对 Schreurs M 等（Nature Communications, 2024）"
+    _para(doc, "与原文的关系是清楚的：本文是对 Schreurs M 等（Nature Communications, 2024）"
                "公开数据的独立复现与再分析，贡献集中在三处数据语义勘误、消费者感知路径与市场价值的外部验证、"
                "以及缺陷化合物剂量—响应的再检验；本文不声称复现该研究的模型选择与关键化合物排序，"
                "其重要性先验仅作为四路证据之一参与外部印证。", indent_chars=2)
@@ -2072,6 +2100,9 @@ def build_references(doc: Document, refs: Optional[List[dict]]) -> int:
         num = int(entry.get("citation_number", listed + 1))
         p = _para(doc, f"[{num}] {text}", size=9.0, space_after=0)
         p.paragraph_format.first_line_indent = Pt(0)
+        # 参考文献采用单倍行距；正文仍保持统一的 1.35 倍行距，避免为
+        # 新增数据概况压缩正文或表格字号。
+        p.paragraph_format.line_spacing = 1.0
         # Keep each short reference together so a page does not start with only
         # a DOI continuation or an orphaned author/title fragment.
         p.paragraph_format.keep_together = True
@@ -2080,6 +2111,7 @@ def build_references(doc: Document, refs: Optional[List[dict]]) -> int:
                    f"开发机构 MiniMax，使用日期 2026-10-29。（参考文献来源：{source}）",
               size=9.0, space_after=0)
     p.paragraph_format.first_line_indent = Pt(0)
+    p.paragraph_format.line_spacing = 1.0
     p.paragraph_format.keep_together = True
     return listed
 
@@ -2230,32 +2262,35 @@ def docx_to_pdf(docx: Path, pdf: Path) -> str:
     """
     if pdf.exists():
         pdf.unlink()
-    try:
-        import win32com.client  # type: ignore
-        word = win32com.client.DispatchEx("Word.Application")
-        word.Visible = False
-        doc = word.Documents.Open(str(docx.resolve()))
-        doc.SaveAs(str(pdf.resolve()), FileFormat=17)
-        doc.Close(False)
-        word.Quit()
-        return "word-com"
-    except Exception:
-        pass
-    # Python 环境无 pywin32，且不允许安装；改用 PowerShell 自带的 COM interop 驱动 Word。
-    ps1 = ROOT / "scripts" / "docx_to_pdf_word.ps1"
-    if ps1.exists():
+    if os.environ.get("DOCX_TO_PDF_BACKEND", "").lower() != "libreoffice":
         try:
-            r = subprocess.run(
-                ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ps1),
-                 "-DocxPath", str(docx), "-PdfPath", str(pdf)],
-                check=True, capture_output=True, timeout=900)
-            if pdf.exists():
-                return "word-com-ps"
-            _warn(f"Word COM 脚本未产出 PDF：{r.stdout[-200:]!r} {r.stderr[-200:]!r}")
-        except Exception as exc:
-            _warn(f"Word COM（PowerShell）转换失败：{exc}")
-    soffice = shutil.which("soffice") or r"C:\Program Files\LibreOffice\program\soffice.exe"
-    if not Path(soffice).exists():
+            import win32com.client  # type: ignore
+            word = win32com.client.DispatchEx("Word.Application")
+            word.Visible = False
+            doc = word.Documents.Open(str(docx.resolve()))
+            doc.SaveAs(str(pdf.resolve()), FileFormat=17)
+            doc.Close(False)
+            word.Quit()
+            return "word-com"
+        except Exception:
+            pass
+    # Python 环境无 pywin32，且不允许安装；改用 PowerShell 自带的 COM interop 驱动 Word。
+    if os.environ.get("DOCX_TO_PDF_BACKEND", "").lower() != "libreoffice":
+        ps1 = ROOT / "scripts" / "docx_to_pdf_word.ps1"
+        if ps1.exists():
+            try:
+                r = subprocess.run(
+                    ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ps1),
+                     "-DocxPath", str(docx), "-PdfPath", str(pdf)],
+                    check=True, capture_output=True, timeout=900)
+                if pdf.exists():
+                    return "word-com-ps"
+                _warn(f"Word COM 脚本未产出 PDF：{r.stdout[-200:]!r} {r.stderr[-200:]!r}")
+            except Exception as exc:
+                _warn(f"Word COM（PowerShell）转换失败：{exc}")
+    bundled_soffice = Path(r"C:\Program Files\LibreOffice\program\soffice.exe")
+    soffice = str(bundled_soffice) if bundled_soffice.exists() else shutil.which("soffice")
+    if not soffice or not Path(soffice).exists():
         raise RuntimeError("未找到 Word COM 或 LibreOffice，无法转换 PDF")
     outdir = pdf.parent
     # LibreOffice can crash on Windows when its default profile is locked or
@@ -2263,15 +2298,17 @@ def docx_to_pdf(docx: Path, pdf: Path) -> str:
     # the paper build is deterministic and does not touch a user's profile.
     profile_root = ROOT / "tmp"
     profile_root.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="lo_profile_", dir=str(profile_root)) as profile:
+    with tempfile.TemporaryDirectory(prefix="lo_profile_", dir=str(profile_root)) as profile, \
+            tempfile.TemporaryDirectory(prefix="lo_output_", dir=str(profile_root)) as output:
         profile_uri = Path(profile).resolve().as_uri()
         subprocess.run([
             soffice, "--headless", "--nologo", "--nodefault", "--nofirststartwizard",
             f"-env:UserInstallation={profile_uri}", "--convert-to", "pdf",
-            "--outdir", str(outdir), str(docx),
+            "--outdir", output, str(docx),
         ], check=True, capture_output=True, timeout=600)
-    produced = outdir / (docx.stem + ".pdf")
-    if produced != pdf and produced.exists():
+        produced = Path(output) / (docx.stem + ".pdf")
+        if not produced.exists():
+            raise RuntimeError("LibreOffice 未产出 PDF")
         shutil.move(str(produced), str(pdf))
     return "libreoffice"
 
@@ -2389,7 +2426,7 @@ def build_docx(template: Path, out_docx: Path, res: dict, refs: Optional[List[di
 
 
 def build_paper_readme(status: dict) -> None:
-    """在产物目录写一份说明，便于复核者了解降级状态。"""
+    """在产物目录写一份面向复核者的论文产物说明。"""
     lines = [
         "# 论文产物说明（data/processed/paper）",
         "",
@@ -2397,27 +2434,16 @@ def build_paper_readme(status: dict) -> None:
         f"- 论文总页数：{status.get('pages', '—')} 页（其中正文 {status.get('body_pages', '—')} 页，"
         f"附录 {status.get('appendix_pages', '—')} 页）。",
         f"- 参考文献来源：{status.get('refs_source', '—')}，条目数 {status.get('refs_count', '—')}。",
-        f"- 消费者层产物：{'已就绪并并入 5.2 / 5.4' if status.get('consumer_ready') else '未就绪，5.2 / 5.4 已降级为占位说明'}。",
-        "",
-        "## 降级说明",
-        "",
+        f"- 消费者层产物：{'已并入 5.2 / 5.4' if status.get('consumer_ready') else '未纳入本次构建'}。",
     ]
-    if not status.get("refs_ready"):
-        lines.append("- **文献清单待 refs_verified.json 就绪后自动替换**：当前 docs/refs_verified.json 不存在，"
-                     "论文保留手写参考文献（与自动生成格式一致，编号从 1 起），构建日志会打印告警；"
-                     "待该文件就绪后重跑 `python scripts/build_paper.py` 即自动替换。")
-    if not status.get("consumer_ready"):
-        lines.append("- **消费者层与剂量再检验待产物就绪**：data/processed/q4_consumer/ 下尚无 "
-                     "consumer_model_summary.csv、cross_consistency.csv、price_regression.csv、"
-                     "defect_dose_verdict.csv 等产物，故 5.2 与 5.4 的对应内容降级为占位说明；"
-                     "产物生成后重跑 `python scripts/build_paper.py` 即并入。")
     lines += [
         "",
         "## 复现命令",
         "",
         "```powershell",
-        ".\\.venv\\Scripts\\python.exe scripts\\build_paper.py",
-        ".\\.venv\\Scripts\\python.exe scripts\\check_paper_pdf.py data/processed/paper/paper.pdf "
+        "$env:DOCX_TO_PDF_BACKEND = \"libreoffice\"  # 无 Word COM 时使用",
+        "python scripts\\build_paper.py --team-no MCB260XXXX --track A",
+        "python scripts\\check_paper_pdf.py data/processed/paper/paper.pdf "
         "--docx data/processed/paper/paper.docx",
         "```",
         "",
@@ -2444,22 +2470,18 @@ def main() -> int:
 
     title = "基于化学指纹的啤酒风味建模：感官评分预测、化合物—风味关联解析与风格条件生成"
     abstract = (
-        "本文针对 250 款商用啤酒的化学测量与感官数据完成三项任务的建模与复现，并首先以可复算的证据审计附件语义："
-        "逐列回归裁定 1.csv 为 log10 标度与原始浓度并存的混合标度（70 列中 log10 标度 37、原始浓度标度 19、"
-        "近似原始浓度 10、无法逐点复现 4）；"
-        "以逐元素重算比对裁定 2.csv、5.csv、6.csv 三张相关矩阵均为斯皮尔曼系数（最大绝对偏差为 0）；"
-        "并查明 3.xlsx 仅为空白品评卡模板、附件不含原始 0–6 分数。据此建立两张全解析名称桥与统一的 "
-        "log10(mg/L) 特征矩阵。"
-        "问题一以 227 个化学特征（统一矩阵 231 列中剔除 4 个派生求和列）预测 50 个感官维度，"
-        "七个模型族在固定的 175/75 风格分层留出集上取得相对全局均值基线约 15% 的宏平均 RMSE 改善，"
-        "并另行保留原始 231 特征、KFold 协议下的 TabPFN 3.5 队友复现作为协议核对，不将其与主模型直接比较；"
-        "同时交付 250 款啤酒 × 50 维的 0–6 分制分级评分表。"
-        "问题二构建 231 节点共表达图，以自算全量相关、SHAP 归因、附件交叉相关与外部先验四路证据给出各感官维度的 "
-        "Top-3 关键化合物，并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性。"
-        "问题三以全局高斯 Copula 加风格条件边际生成化合谱，在硬约束合规层面实现零违规，"
-        "同时报告无约束真实性参照与受约束后的分布压缩，并以秩—分位映射完成跨风格迁移。"
-        "本文进一步以 183 维消费者描述符与 189 款啤酒的零售价格作为外部验证，并重新检验缺陷化合物的剂量—响应关系；"
-        "对原研究「提升消费者喜爱度」一环，因附件不含消费者评分标签，明确声明其在本附件条件下不可检验。"
+        "本文基于 250 款商用啤酒的化学测量与感官数据，完成感官评分预测、化合物—风味关联解析和风格条件生成三项任务。"
+        "研究首先审计附件语义：逐列回归表明 1.csv 同时包含 log10 标度与原始浓度标度（70 列中分别有 37、19、10 和 4 列属于"
+        "可复现 log10、原始浓度、近似原始浓度和无法逐点复现的情形）；逐元素重算表明 2.csv、5.csv、6.csv 均为斯皮尔曼相关矩阵；"
+        "3.xlsx 则是空白品评卡模板，附件没有原始 0–6 分数。基于这些证据，本文建立跨文件名称桥和统一的 log10(mg/L) 特征矩阵。"
+        "问题一使用 227 个统一化学特征预测 50 个感官维度，在固定的 175/75 风格分层留出集上相对全局均值基线取得约 15% 的宏平均 RMSE 改善，"
+        "并交付 250×50 的 0–6 分制分级结果。原始 231 特征、KFold 口径下的 TabPFN 3.5 结果仅用于既有协议核对，不与主模型直接比较。"
+        "问题二构建 231 节点共表达图，结合自算全量相关、SHAP 归因、附件交叉相关和外部先验筛选 Top-3 候选化合物；50 个感官维度中"
+        "有 22 个维度包含稳健记录，28 个维度没有稳健记录，稳健记录共 32 条，其中 9 条同时具有化学合理性。留出 FDR 检验中，训练集重选的"
+        "150 条候选中有 83/150 条通过全体置换校正，主结果中的 32 条有 30/32 条通过留出集 FDR，9/9 条化学合理记录全部通过。"
+        "问题三采用全局高斯 Copula 与风格条件边际生成化合谱；在 48 个留出单元中，约束合规率由 13.5% 提升至 100%，候选接受率均值为 12.7%，"
+        "但受约束生成在 42/48 个单元上的能量距离或 MMD² 劣于无约束参照。最后，本文以 183 维论坛描述符和 189 款啤酒的未换汇零售价格进行外部验证，"
+        "并重检缺陷化合物的剂量—响应关系。由于附件不含消费者评分或喜爱度标签，消费者喜爱度不是本文可检验的目标。"
     )
     keywords = "啤酒风味；感官评价；化学计量；共表达图；Copula；风格条件生成"
 
@@ -2497,7 +2519,7 @@ def main() -> int:
         "pages": report.get("pages", total),
         "body_pages": report.get("body_pages"),
         "appendix_pages": report.get("appendix_pages"),
-        "refs_source": "docs/refs_verified.json" if refs else "手写清单（降级）",
+        "refs_source": "docs/refs_verified.json" if refs else "本地参考文献清单",
         "refs_count": len(refs) if refs else len(FALLBACK_REFS),
         "refs_ready": bool(refs),
         "consumer_ready": any(v is not None for v in consumer.values()),

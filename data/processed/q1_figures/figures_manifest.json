@@ -5,7 +5,7 @@
     {
       "file": "01_model_comparison_bootstrap_ci",
       "title": "模型对比",
-      "caption": "图 1  模型对比。留出集 Macro-RMSE 与 2000 次配对 bootstrap 的 95% 置信区间（区间重叠即不可宣称某模型显著更优），竖虚线为全局均值基线。",
+      "caption": "图 1  模型对比。留出集 Macro-RMSE 与 2000 次 bootstrap 的 95% 区间；虚线为全局均值基线。",
       "width_in": 5.0,
       "outputs": [
         "data/processed/q1_figures/01_model_comparison_bootstrap_ci.png",

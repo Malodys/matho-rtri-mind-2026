@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -73,8 +74,14 @@ ORIGIN_SHORT = {
 }
 
 
+def _wrap_full_label(text: str, width: int = 22) -> str:
+    """完整保留节点名称，并按图例宽度换行。"""
+    return "\n".join(textwrap.wrap(str(text), width=width, break_long_words=False,
+                                  break_on_hyphens=True))
+
+
 def _short(text: str, limit: int = 8) -> str:
-    """长标签截断（完整内容见支撑材料表）。"""
+    """热图坐标轴使用的紧凑标签；完整名称保留在 manifest 与支撑表。"""
     return text if len(text) <= limit else text[:limit - 1] + "…"
 
 
@@ -124,7 +131,10 @@ def _draw_network(ax, nodes: pd.DataFrame, edges: list, pos: dict, color_key: st
     """画共表达网络（边按 |rho| 定粗细，节点大小=度数，缺陷节点用强调色描边）。"""
     deg = dict(zip(nodes["node"], nodes["degree"]))
     max_deg = max(max(deg.values()), 1)
-    sizes = [40 + 320 * (deg.get(n, 0) / max_deg) for n in nodes["node"]]
+    # Use a restrained area scale so dense central communities remain legible.
+    # Degree is still encoded monotonically, but high-degree nodes no longer
+    # cover their neighbors in the exported static figure.
+    sizes = [18 + 160 * np.sqrt(deg.get(n, 0) / max_deg) for n in nodes["node"]]
     node_index = nodes.set_index("node")
     cols = [color_map.get(node_index.loc[n, color_key], ps.BASELINE) for n in nodes["node"]]
     defect = {n: bool(node_index.loc[n, "is_defect"]) if "is_defect" in node_index.columns
@@ -238,7 +248,7 @@ def fig_network(run: Path, out: Path, mode: str, records: list) -> None:
               fontsize=5.2, frameon=False, ncol=4, handlelength=1.1,
               labelspacing=0.25, borderpad=0.1, columnspacing=0.9)
     key_text = "度数最高节点\n" + "\n".join(
-        f"{i}  {_short(node, 24)}" for i, node in enumerate(top_nodes, start=1)
+        f"{i}  {_wrap_full_label(node)}" for i, node in enumerate(top_nodes, start=1)
     )
     fig.subplots_adjust(left=0.04, right=0.70, top=0.91, bottom=0.18)
     fig.text(0.72, 0.86, key_text, ha="left", va="top", fontsize=5.0,

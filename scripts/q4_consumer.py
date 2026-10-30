@@ -887,6 +887,10 @@ def make_figures(args, cache: Dict) -> List[str]:
             cache["panel_per_dim"] = pd.read_csv(panel_path)
     if "dose" not in cache and (out_dir / "defect_dose_response.csv").exists():
         cache["dose"] = pd.read_csv(out_dir / "defect_dose_response.csv")
+    if "cross" not in cache and (out_dir / "cross_consistency.csv").exists():
+        cache["cross"] = pd.read_csv(out_dir / "cross_consistency.csv")
+    if "verdict" not in cache and (out_dir / "defect_dose_verdict.csv").exists():
+        cache["verdict"] = pd.read_csv(out_dir / "defect_dose_verdict.csv")
     if "price_table" not in cache and (out_dir / "price_regression.csv").exists():
         cache["price_table"] = pd.read_csv(out_dir / "price_regression.csv")
 
@@ -987,6 +991,11 @@ def make_figures(args, cache: Dict) -> List[str]:
     fig, ax = plt.subplots(figsize=(ps.FIG_WIDTH_IN, 3.2))
     terms = [d for d in PRICE_DESCRIPTORS] + ["ABV"]
     models = ["ols", "ols_with_abv", "fixed_effects"]
+    model_labels = {
+        "ols": "OLS",
+        "ols_with_abv": "OLS + ABV",
+        "fixed_effects": "风格固定效应",
+    }
     colors = {"ols": ps.OKABE_ITO[0], "ols_with_abv": ps.OKABE_ITO[1],
               "fixed_effects": ps.OKABE_ITO[2]}
     markers = {"ols": "o", "ols_with_abv": "s", "fixed_effects": "^"}
@@ -998,7 +1007,8 @@ def make_figures(args, cache: Dict) -> List[str]:
         es = [float(sub.loc[t, "std_err"]) if t in sub.index else np.nan for t in terms]
         xs = [i + offsets[model] for i in range(len(terms))]
         ax.errorbar(xs, ys, yerr=es, fmt=markers[model], color=colors[model],
-                    markersize=3.4, capsize=2, linewidth=0.8, label=model)
+                    markersize=3.4, capsize=2, linewidth=0.8,
+                    label=model_labels[model])
     ax.axhline(0, color=ps.BASELINE, linewidth=0.8, linestyle="--")
     ax.set_xticks(range(len(terms)))
     ax.set_xticklabels(labels, rotation=30, ha="right")

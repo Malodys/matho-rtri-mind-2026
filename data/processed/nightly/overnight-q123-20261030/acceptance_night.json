@@ -1,0 +1,122 @@
+[
+  {
+    "id": "V1_venv",
+    "desc": "指定 Python 解释器存在且为 Python 3.12.x",
+    "passed": true,
+    "status": "PASS",
+    "detail": "python=C:\\Users\\10857\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe; 3.12.14"
+  },
+  {
+    "id": "V2_imports",
+    "desc": "全部目标包可导入",
+    "passed": true,
+    "status": "PASS",
+    "detail": "BAD="
+  },
+  {
+    "id": "V3_lock",
+    "desc": "requirements.lock.txt 存在且含 torch CPU 钉版",
+    "passed": true,
+    "status": "PASS",
+    "detail": "requirements.lock.txt 存在=True"
+  },
+  {
+    "id": "V4_torch_cpu",
+    "desc": "torch 为 CPU 轮子且 cuda 不可用",
+    "passed": true,
+    "status": "PASS",
+    "detail": "2.8.0+cpu False"
+  },
+  {
+    "id": "V5_cjk_plot",
+    "desc": "中文出图产物存在且非空",
+    "passed": true,
+    "status": "PASS",
+    "detail": "cjk_probe.png 20787 bytes"
+  },
+  {
+    "id": "V6_remote_tests",
+    "desc": "远端管线测试文件已就位（≥7 个）",
+    "passed": true,
+    "status": "PASS",
+    "detail": "8 个测试文件"
+  },
+  {
+    "id": "V7_tabpfn_repro",
+    "desc": "TabPFN 五折平均 R² 复现且落在容差内",
+    "passed": true,
+    "status": "PASS",
+    "detail": "q1_repro_tabpfn: 五折平均 R2=0.1865（参考 0.2055，容差 ±0.03 → 判定通过）；目标数=50"
+  },
+  {
+    "id": "V8_graph_stack",
+    "desc": "2.csv 相关矩阵 → 共表达图（|r|≥0.6）+ Leiden 社区发现",
+    "passed": true,
+    "status": "PASS",
+    "detail": "{'id': 'V8_graph_stack', 'desc': '2.csv 相关矩阵 → 共表达图（|r|≥0.6）+ Leiden 社区发现', 'nodes': 231, 'edges': 266, 'connected_components': 114, 'top_degrees': [16, 14, 14, 14, 13], 'top_community_sizes': [21, 17, 16, 15, 15], 'passed': True}"
+  },
+  {
+    "id": "V9_attribution_stack",
+    "desc": "GBDT 拟合 + shap 归因 + bootstrap Top-3 入选频率（目标：Aroma 首维度）",
+    "passed": true,
+    "status": "PASS",
+    "detail": "R2=0.3991, shap Top3=['color.EBC.', 'isoborneol', 'prenyl.isobutyrate']"
+  },
+  {
+    "id": "V10_generation_stack",
+    "desc": "copulas 高斯 Copula 拟合/采样 + 缺陷化合物阈值约束检查",
+    "passed": true,
+    "status": "PASS",
+    "detail": "cols=233, styles=22"
+  },
+  {
+    "id": "V11_docx_skill",
+    "desc": "最终 DOCX、PDF 与检查报告均已生成",
+    "passed": true,
+    "status": "PASS",
+    "detail": "docx=True；pdf=True；check=True"
+  },
+  {
+    "id": "V12_paper_pdf",
+    "desc": "论文 PDF 五项校验全部通过",
+    "passed": true,
+    "status": "PASS",
+    "detail": "page_count=PASS; chinese_extractable=PASS; footer_page_number=PASS; no_header=PASS; no_personal_info=PASS"
+  },
+  {
+    "id": "V13_ai_usage_doc",
+    "desc": "《AI 工具使用详情说明》PDF 生成且校验通过",
+    "passed": true,
+    "status": "PASS",
+    "detail": "pdf=True; page_count=PASS; chinese_extractable=PASS; footer_page_number=PASS; no_header=PASS; no_personal_info=PASS"
+  },
+  {
+    "id": "V16_literature",
+    "desc": "参考文献著录完整（≥14 条、字段齐、编号连续、主锚点核对通过）",
+    "passed": true,
+    "status": "PASS",
+    "detail": "文献 38 条；字段缺失=无；编号连续=True；主锚点[1]核对=True；缺 DOI/URL=无"
+  },
+  {
+    "id": "V17_figure_style",
+    "desc": "图表风格统一（PNG/PDF 成对 + 题注 manifest 齐备）",
+    "passed": true,
+    "status": "PASS",
+    "detail": "PNG/PDF 成对 17 张；缺失=无；缺 manifest 的目录=无"
+  },
+  {
+    "id": "V14_agents_md",
+    "desc": "AGENTS.md 章节齐全、含匿名化约束且无具体身份信息",
+    "passed": true,
+    "status": "PASS",
+    "detail": "缺失章节=无；身份值命中=无；含匿名化约束条款=True"
+  },
+  {
+    "id": "V15_git",
+    "desc": "分支/提交/worktree 就位，工作树干净，分支已在远端留存",
+    "passed": false,
+    "status": "FAIL",
+    "detail": "branch=night/overnight-q123-20261030, upstream=, 相对 origin/main 提交数=22, 跟踪文件改动=M .gitignore\n M README.md\n M data/processed/nightly/overnight-q123-20261030/q2/figure_audit.json\n M data/processed/paper/README.md\n M data/processed/paper/paper.docx\n M data/processed/paper/paper.pdf\n M data/processed/paper/paper_check.json\n M data/processed/paper/paper_check.txt\n M data/processed/q1_figures/figures_manifest.json\n M data/processed/q2_figures/fig1_coexpression_network_by_origin.pdf\n M data/processed/q2_figures/fig1_coexpression_network_by_origin.png\n M data/processed/q2_figures/fig2_coexpression_network_by_community.pdf\n M data/processed/q2_figures/fig2_coexpression_network_by_community.png\n M data/processed/q2_figures/fig3_community_composition_heatmap.pdf\n M data/processed/q2_figures/fig4_top3_bootstrap_frequency.pdf\n M data/processed/q2_figures/fig5_method_consistency_jaccard.pdf\n M data/processed/q2_figures/fig6_threshold_selection.pdf\n M data/processed/q4_figures/fig1_consumer_predictability.pdf\n M data/processed/q4_figures/fig2_cross_consistency.pdf\n M data/processed/q4_figures/fig3_dose_response.pdf\n M data/processed/q4_figures/fig4_price_effects.pdf\n M data/processed/q4_figures/fig4_price_effects.png\n M data/processed/q4_figures/figures_manifest.json\n M data/processed/release_manifest.json\n M scripts/acceptance_check.py\n M scripts/build_paper.py\n M scripts/build_release_manifest.py\n M scripts/q2_figures.py\n M scripts/q4_consumer.py\n M scripts/q4_figure_manifest.py, 非预期未跟踪=['tests/test_release_hardening.py'], 远端状态=unreachable，远端存在该分支=False，队友 worktree=F:\\cs\\mothercup\\matho-rtri-mind-2026\\worktrees\\prediction-models（登记=True），详情=fatal: unable to access 'https://github.com/Malodys/matho-rtri-mind-2026.git/': Failed to connect to github.com:443 after 25 ms: Could not connect to server",
+    "failure_class": "unreachable"
+  }
+]

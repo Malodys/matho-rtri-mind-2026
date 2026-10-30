@@ -1,67 +1,48 @@
-# overnight-q123-20261030 最终验收报告
+# overnight-q123-20261030 二次审稿与验收报告
 
-## 结论
+## 当前结论
 
-- 状态：`completed_with_known_failures`
-- 分支：`night/overnight-q123-20261030`
-- 验收开始前 HEAD：`f49581ff563f626abc10eb1727e0b5c07ead9d2d`
-- 验收时间：`2026-10-30T09:11:17+08:00`
-- 处置：允许提交已审计的报告、验证脚本、论文排版和图表硬化改动；不补造缺失的 Q1 模型工件，不新增或升级未经验证的科学结论。
+- 状态：`ready_for_local_release_pending_remote_push`
+- 夜间分支：`night/overnight-q123-20261030`
+- 本轮原则：先完成低风险、可复核的论文、图表、工件和验收修订；不重训主模型，不把实验性结果写入主结论，不生成提交包。
+- 当前仍保留 `MCB260XXXX` 开发版占位符；真实队号提供后再重建最终提交材料。
 
-全量测试仍有一个前序已记录的失败：默认 Q1 预测接口缺少 `data/processed/q1_final/model_independent_gbr.joblib`。该文件只能通过一致协议重训和工件审计获得，本阶段没有伪造或临时训练。除此之外，Q1 绝对指标回归、Q2/Q3 验证、图表风格和论文五项合规检查均通过。
+严格审稿后，论文的证据链已经具备提交前的基本完整性。新增的 3.3.1“样本概况与描述性统计”把样本规模、缺失结构、风格不均衡和感官目标离散程度放在模型之前说明，避免读者只看到模型分数而不了解评价范围。该节使用动态读取的统一数据契约和固定分层清单生成，不改变训练矩阵和主结果。
 
-## 明确环境
+## 本轮修订
 
-- Python：`C:\Users\10857\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe`，版本 3.12.14。
-- 项目依赖：通过 `PYTHONPATH=F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages` 显式加载锁定依赖。
-- 已核对版本：pytest 9.2.0、NumPy 2.4.6、pandas 2.3.3、SciPy 1.18.1、scikit-learn 1.9.1、python-docx 1.2.0、pypdf 6.21.3、torch 2.8.0+cpu。
-- Q3 验证器已新增 `--python` 参数，默认使用当前解释器，消除对不存在的工作树 `.venv` 的硬编码；未改模型或数值结果。
+1. Q1 模型工件已补齐并纳入接口回归：227 个特征、50 个目标、250 个训练样本；保留 TabPFN 的 231 特征/KFold 既有复现边界，不作直接优越性比较。
+2. 验收脚本 V1–V17 已统一为最终路径；V6 可定位正式 checkout 下的 detached teammate worktree，V11/V12 检查最终 DOCX/PDF/paper_check，V15 把远端不可达、远端分支不存在和本地环境损坏分开记录。
+3. Q2 网络图改为完整 Top-6 名称自动换行并减小中心节点遮挡；Q2 manifest、ARI 色标、候选空间说明和图表审计报告已同步。
+4. Q4 价格图例改为 `OLS`、`OLS + ABV`、`风格固定效应`，并保留跨币种未换汇和方向性市场价值限制。
+5. 正文补入 Q2 的 `22/50、28/50、32、9`，留出 FDR 的 `83/150、30/32、9/9`，以及 Q3 的 `48、13.5%→100%、12.7%、42/48`；所有结论仍限定为关联、合规或方向性证据。
+6. 论文用自然的正式学术段落重写工程化表达；删除正文中的“队友协议”、重复防御性句式和内部降级说明。参考文献改为单倍行距以容纳新增数据概况，未压缩正文或表格字号。
 
 ## 验收结果
 
-| 检查 | 结果 | 说明 |
+| 检查 | 结果 | 证据 |
 |---|---|---|
-| 全量 pytest | FAIL | 57 passed, 1 failed；唯一失败为缺少 `model_independent_gbr.joblib` |
-| Q1 绝对指标回归 | PASS | 1 passed |
-| Q2 验证 | PASS | 全部节点、边、Top-3、稳定性、化学合理性和产物检查通过 |
-| Q3 验证 | PASS | 7/7；三风格生成、阈值约束、迁移和脚本入口通过 |
-| 图表风格 | PASS | 10 passed；PNG/PDF 配对与 manifest 另由验收 V17 通过 |
-| 论文 PDF | PASS | 5/5；总 36 页，正文 30 页、前置 2 页、附录 4 页 |
-| `acceptance_check.py` | FAIL | 13 项通过，V6/V11/V12/V15 四项失败，见下节 |
-| `git diff --check` | PASS | 仅有 LF/CRLF 提示，无空白错误 |
+| 全量 pytest | PASS | 61 passed |
+| Q1 专项 | PASS | 10 passed；模型接口和绝对指标汇总回归均通过 |
+| Q2 验证 | PASS | 节点 231、边 266、连通分量 114；全部附加检查通过 |
+| Q3 验证 | PASS | 7/7；无约束/受约束、留出和迁移口径均通过 |
+| 图表契约 | PASS | Q1–Q4 共 17 组 PNG/PDF 成对，manifest 齐备 |
+| 论文 PDF | PASS | 总 36 页；正文 30 页、附录 4 页；五项检查全部通过 |
+| acceptance V1–V14、V16–V17 | PASS | 当前夜间运行均通过，V6 已识别 8 个队友测试文件 |
+| acceptance V15 | 待正式发布验收 | 夜间分支按约不推送；当前网络访问 GitHub 不可达，工作树尚未进入提交后清洁状态 |
 
-## acceptance_check 失败解释
+Q1/Q2/Q3 的数值结果没有因文字润色而改变。Q3 的零违规只解释为硬约束合规；受约束生成的真实性损失和接受率仍同时报告。Q4 没有消费者喜爱度标签，价格模型只提供未换汇的方向性市场价值代理。
 
-1. `V6_remote_tests`：旧验收项固定查找当前 worktree 内的 `worktrees/prediction-models/tests`，本次夜间 worktree 不嵌套队友 worktree；没有复制或触碰队友目录。
-2. `V11_docx_skill`：旧验收项要求历史 `data/processed/paper_smoke/paper_smoke.docx` 冒烟文件，本次最终论文不以该占位冒烟工件作为交付。
-3. `V12_paper_pdf`：旧验收项固定查找 `paper_smoke/paper_smoke_check.json`；实际最终论文检查位于 `data/processed/paper/paper_check.json`，本轮已独立 5/5 通过。
-4. `V15_git`：该项只允许 `feat/toolchain-env` 或 `release/toolchain-hardening-*`，并要求远端分支和嵌套 prediction-models worktree，与本次指定的 `night/overnight-q123-20261030`、只做本地提交且禁止 push 的任务冲突；其运行时还处于提交前工作树状态，网络也不可达。
+## 论文与图表视觉复核
 
-这些失败没有被改写为通过。V1–V5、V7–V10、V13、V14、V16、V17 均通过。
+- PDF 已逐页栅格化检查：未发现裁切、元素重叠、题注断裂、跨页表格无表头、孤立标题或页码中断。
+- 新增的描述性统计表位于数据处理章节前部，三行分别覆盖化学测量、感官目标和风格分层；数值与统一数据契约一致。
+- Q2 网络图的完整节点名放在右侧说明区，中心网络不再叠加长文本；Q4 价格图例使用正式名称。
+- 本机未使用 Word COM，论文通过隔离 LibreOffice 后端转换；本地 Poppler 不可用，逐页检查使用 pypdfium2 渲染，不影响最终 PDF 合规检查。
 
-## 论文工件核对
+## 交付边界
 
-| 工件 | 字节 | 页数口径 | 生成/修改时间 | SHA-256 |
-|---|---:|---|---|---|
-| `paper.pdf` | 2,128,684 | 36；正文 30、附录 4、前置 2 | PDF 元数据 `2026-10-30T07:53:31+08:00` | `540153755F7C8B8765C258FD1C0EF9F96A26001D3D28FA3B8DE5AB8EFCD8670A` |
-| `paper.docx` | 1,864,433 | Word 导出的 PDF 为 36；OOXML `Pages=3` 为陈旧模板属性，不作权威页数 | 文件修改 `2026-10-30T07:52:45+08:00` | `1BE0448DE772637DD66B2D865980CFFF89963A8071D13E24FBA9D7E9EE11DD9F` |
-| `paper_check.json` | 1,850 | 记录 36/30/4 | `generated_at_utc=2026-10-30T01:03:50Z` | `E61AD4978EC9D2768643A0461D2B6366AB6FE1DB6FA6D8CF0D0B2C02940EB5E6` |
-| `paper_check.txt` | 1,145 | 记录 36/30/4 | 与 JSON 同批生成 | `B48795802A3DCE63A8B476EBFB433B005B5A40F03FB1342A4A8A6C63AF15A1D5` |
-
-PDF 使用捆绑 Poppler 重新渲染为 36 张页面图并逐页目检；未见裁切、重叠、缺字、异常空白或页码中断。DOCX 的核心属性已清空最后修改者，但创建/修改时间和 `Pages=3` 仍含模板历史，故页数以 Word 2019 实际导出 PDF 和 PDF 校验器为准。
-
-## 数据与提交边界
-
-- `git diff HEAD -- data/raw` 为空，退出码 0；`data/raw` 未改变。
-- 仓库内没有 ZIP/7z/RAR/TAR 或提交目录；仅保留未执行的 `scripts/package_submission.py`，未生成真实或占位提交包。
-- `external/source_manifest.csv` 的五项来源均为 `not_downloaded`，用途限定为外部验证、元数据、基准复现或方法讨论；没有外部行进入训练、调参、补缺失或样本扩增。
-- 未执行 push、merge、rebase、`reset --hard`，未触碰队友 worktree，未提交秘密或 `data/raw`。
-- 首页的 `MCB260XXXX` 是赛规要求保留的匿名队伍编号占位，不是提交包；本轮未替换。
-
-## 可分享范围
-
-可分享：论文排版/题注硬化、Q2 图表修复、Q2/Q3 nightly 验证结果、Q3 验证器的解释器参数修复及本报告。
-
-不可宣称：全量测试全绿、Q1 默认预测接口可用、TabPFN 与主协议公平优胜、Q2 因果关系、Q3 硬约束等同于真实性、消费者喜爱度得到验证。
-
-最终本地 commit SHA 在提交完成后记录于 automation memory 和任务回执；提交对象自身无法可靠保存其自引用 SHA。
+- `data/raw` 未修改；外部数据仍仅用于验证、元数据或文献讨论，不进入主训练矩阵。
+- 队友 detached worktree 仅做只读检查，未复制、修改或合并其代码。
+- 未执行 reset、rebase 或 force-push；未生成真实或占位提交包。
+- 正式分支快进、两次本地提交和 GitHub 普通推送将在本地最终检查通过后执行；若 GitHub 仍不可达，只保留本地提交并报告原始错误。
