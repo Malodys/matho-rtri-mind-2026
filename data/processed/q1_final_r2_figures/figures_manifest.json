@@ -1,0 +1,12 @@
+[
+  {
+    "file": "model_r2.png",
+    "title": "感官预测比较",
+    "caption": "同一75款留出酒的50维平均R²；AI辅助：Codex，GPT-6，OpenAI，2026-10-30。"
+  },
+  {
+    "file": "target_r2.png",
+    "title": "逐维预测效果",
+    "caption": "最终TabPFN在75款留出酒上的逐维R²；AI辅助：Codex，GPT-6，OpenAI，2026-10-30。"
+  }
+]

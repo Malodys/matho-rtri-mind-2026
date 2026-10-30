@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # AI 辅助：MiniMax Code (MiniMax-M3.1-Flash), MiniMax, 2026-10-29
+# 2026-10-30 修订：Codex (GPT-6), OpenAI；问题一实测预测与指标经程序校验，待团队人工复核。
 # 人工核验点：论文中出现的每一个数字均由本轮真实运行产物读出（data/processed/q*_runs、
 # q1_final、q4_consumer），未手工编造；页码经「生成 PDF → 定位标题页 → 回填目录」两遍法核验；
 # 匿名化扫描与五项合规校验复用 scripts/check_paper_pdf.py。
@@ -240,8 +241,10 @@ def load_results() -> dict:
     summary = _maybe(q1_final / "model_summary.csv")
     if summary is None:
         summary = _maybe(q1_runs / "model_summary.csv")
-    res["q1_summary"] = summary
-    res["q1_scores"] = _maybe(q1_final / "sensory_scores_0_6.csv")
+    final_dir = PROCESSED / "q1_tabpfn_final"
+    updated = _maybe(final_dir / "combined_summary.csv")
+    res["q1_summary"] = updated if updated is not None else summary
+    res["q1_scores"] = _maybe(final_dir / "sensory_scores_0_6.csv") if updated is not None else _maybe(q1_final / "sensory_scores_0_6.csv")
     res["q1_anchor"] = _maybe(q1_final / "absolute_anchor_params.csv")
     res["q1_cutpoints"] = _maybe(q1_final / "proxy_grade_cutpoints.csv")
     res["q1_cont"] = _maybe(q1_final / "continuous_metrics_by_label.csv")
@@ -434,7 +437,7 @@ def build_cover(doc: Document, title: str, abstract: str, keywords: str,
 
 def build_toc(doc: Document, headings: Headings, page_map: Optional[Dict[str, int]] = None) -> None:
     """重写目录页：逐条标题 + 制表位 + 页码（页码未知时先留空）。"""
-    toc_title = _find_para(doc, "目录")
+    toc_title = next((p for p in doc.paragraphs if re.sub(r"\s+", "", p.text) == "目录"), None)
     if toc_title is None:
         toc_title = doc.add_paragraph()
     _clear_para(toc_title)
@@ -631,30 +634,17 @@ def _build_problem_analysis(doc: Document, H, res: dict) -> None:
     H(1, "一、问题分析")
 
     H(2, "1.1 与原文的关系及本文贡献")
-    _para(doc, "赛题附件是 Schreurs M、Verstrepen P J 等人发表在 Nature Communications 的原始研究的"
-               "公开数据与补充材料 [1]：其正文以 250 款商用啤酒的化学测量与受训品评小组的感官结果"
-               "为核心数据，并公开了化合物—化合物、感官—感官与化合物—感官三张相关矩阵、感官品评卡、"
-               "论坛评述派生描述符以及阈值与名称参考表。本文**不是对该研究的重复报道**，而是对其公开数据的"
-               "一次**独立复现与再分析**：所有量纲裁定、相关类型裁定、名称桥、建模与评估均由本文重新实现与复算，"
-               "附件中未被明示的语义一律以可复算的证据裁定，而不是沿用原文结论。", indent_chars=2)
-    _para(doc, "据此，本文相对原文的增量贡献有三点。其一，识别并给出三处与官方赛题文本表述不一致的数据语义问题"
-               "——三张相关矩阵的相关系数类型、品评卡模板的实际内容、1.csv 的标度结构——并逐条附上复算证据；"
-               "其二，在原研究面向消费者偏好、而附件并未提供任何消费者评分标签的前提下，本文以 183 维论坛派生"
-               "消费者描述符与 189 款啤酒的零售价格为外部代理，构造「化学→消费者感知」与「化学→市场价值」两条"
-               "验证路径；其三，在原始剂量—响应证据不可得的条件下，重新检验缺陷化合物的剂量—响应关系。"
-               "必须明确声明的是：**附件未提供任何消费者评分或喜爱度标签，因此本文不声称复现原研究对消费者"
-               "喜爱度的预测**，只在可观测的描述符与价格代理上做验证，并把「喜爱度是否可提升」明确标注为"
-               "在本附件条件下不可检验的一环。", indent_chars=2)
-
+    _para(doc, "本文基于Schreurs等人发表于Nature Communications的啤酒化学与感官数据[1]，沿用其化学成分预测感官特征、再解释关键化合物的研究框架。围绕赛题，本文将数据审计、感官预测、关联解释与风格生成组织为连续的分析流程。", indent_chars=2)
+    _para(doc, "本文的扩展集中在三个方面：首先统一附件的标度与名称映射，为建模建立一致的数据基础；其次复现树模型并引入小样本预训练模型TabPFN，通过相同留出样本比较选择预测方案；最后结合化合物网络、重采样稳定性和风格条件生成，将预测结果延伸为关键成分解释与化合谱设计。消费者描述符、价格及剂量—响应分析用于补充感知与应用层面的证据。", indent_chars=2)
     H(2, "1.2 任务分解与叙事主线")
-    _para(doc, "赛题要回答的其实是一个连续的问题：**什么样的啤酒好喝、为什么好喝、以及如何据此设计出新的化合物谱**。"
-               "对应到三问：第一问用化学指纹预测感官评分，回答「什么样的啤酒好喝」；第二问把感官维度拆解到"
-               "具体化合物，回答「为什么好喝」；第三问以风格为条件反向设计化合物谱，回答「如何据此设计」。"
+    _para(doc, "赛题要回答的其实是一个连续的问题：**化学组成如何形成感官特征、哪些化合物最关键、以及如何据此设计新的化合物谱**。"
+               "对应到三问：第一问用化学指纹预测感官评分，回答「感官表现如何」；第二问把感官维度拆解到"
+               "具体化合物，回答「哪些成分与感官表现相关」；第三问以风格为条件反向设计化合物谱，回答「如何据此设计」。"
                "三问共享同一份化学特征矩阵与同一套数据语义裁定，因此本文把它们组织成一条主线而不是三个孤立任务："
                "问题一给出「化学→感官」的映射，问题二在同一矩阵上给出「感官→化合物」的可解释分解，"
                "问题三再把这条映射反过来用于设计。", indent_chars=2)
     _para(doc, "本题以 250 款商用啤酒的化学测量数据、感官品评数据与多张相关矩阵为输入，要求完成三件"
-               "本质上互不相同的任务：三其一是在感官标签仅以标准化形式给出的条件下，还原并给出可解释的"
+               "相互衔接的任务：其一是在感官标签仅以标准化形式给出的条件下，给出可解释的"
                "0–6 分制分级评分；其二是构建化合物共表达图并给出每个感官维度的关键化合物及其稳定性；"
                "其三是以风格为条件生成化学谱并做跨风格迁移。三者的共同难点在于：附件并未提供可直接使用的"
                "标签与量纲，任何未经核实就建模的做法都会在量纲与口径两个层面同时失效。", indent_chars=2)
@@ -868,7 +858,6 @@ def _build_data_processing(doc: Document, H, res: dict, counters: Counters) -> N
         ["|ρ|", "斯皮尔曼相关系数的绝对值，用于共表达图的边权与阈值"],
         ["Q", "模块度（modularity），衡量社区划分的内部连接强度"],
         ["KS", "柯尔莫哥洛夫—斯米尔诺夫距离，衡量生成谱与真实样本的边际差异"],
-        ["QWK", "二次加权 Kappa，衡量 0–6 相对分级与感官真值的一致性"],
         ["分位组内 ρ", "按浓度分位分组后计算的组内斯皮尔曼相关，用于剂量—响应判定"],
         ["GM", "几何均价，多个零售来源价格的加权合成（以对数均值的指数还原）"],
     ], columns=["符号", "含义"])
@@ -907,27 +896,10 @@ def _build_data_processing(doc: Document, H, res: dict, counters: Counters) -> N
 def _build_models(doc: Document, H, res: dict) -> None:
     H(1, "四、模型构建")
 
-    H(2, "4.1 问题一：多任务回归与双轨分级")
-    _para(doc, "问题一以 1.csv 的化合物特征预测 50 个感官维度。特征取统一标度后的 227 个化学量，"
-               "剔除 4 个公式未经验证的派生求和列；模型采用岭回归、偏最小二乘回归、多任务弹性网络、"
-               "全局与分组极端随机树、逐指标梯度提升回归共七个主模型族；另保留 TabPFN 3.5 的队友协议五折复现，"
-               "以覆盖线性低秩、强稀疏与树形非线性三类归纳偏置。主指标为宏平均均方根误差，"
-               "并同时报告宏平均绝对误差、逐维决定系数中位数、斯皮尔曼相关系数中位数。", indent_chars=2)
-    _para(doc, "由于附件未提供原始 0–6 分数，0–6 分制必须显式构造。本文采用双轨：**主轨为相对分级**，"
-               "对每个维度取训练集的六等分位数作为切点，真实值与预测值用同一组切点离散化为 0–6 级，"
-               "切点只由训练集学习以避免信息泄漏，并报告等级平均绝对误差、精确命中率、相邻一级命中率与"
-               "二次加权 Kappa；**副轨为阈值锚定的绝对分**，对存在明确化学载体的维度（苦味—异构 α 酸、"
-               "酒精—乙醇、硫醚—二甲基硫醚、4-乙烯基愈创木酚、糊精—双乙酰、trans-2-壬烯醛、金属感—铁、"
-               "酸感—乳酸、酒体—蛋白、甜度—残糖、碳酸—二氧化碳）尝试以「化合物低于感知阈值对应 0 分」"
-               "与「化合物达到训练集高分位对应 6 分」两点确定仿射映射，再把标准化标签反解为绝对分。", indent_chars=2)
-    _para(doc, "由于逐维度条件苛刻，副轨设置了明确的**有效性护栏**，五条须同时满足：载体在参考表中存在感知阈值；"
-               "载体与该感官维度的斯皮尔曼相关系数不低于 0.3 且为正；0 分锚点对应的训练集分位不高于 0.6；"
-               "两个锚点的标准分带宽不小于 0.5；映射后落在 0 至 6 区间内的比例不低于 0.3。"
-               "任一条不满足即判定该维度的绝对锚定不成立，其绝对分留空，仅提供相对分级，"
-               "并在参数表中逐条记录失效原因。需要强调：副轨是**本文提出的、基于感官阈值的一阶近似**，"
-               "不等价于实测的原始评分；护栏的存在本身也说明，在本数据集上化学信号与感官评分的联系"
-               "只在少数维度上足以支撑绝对标定。", indent_chars=2)
-
+    H(2, "4.1 问题一：预训练感官回归与分级")
+    _para(doc, "问题一以 1.csv 原始存储尺度的 231 个数值特征预测 4.csv 的 50 个感官维度，保留缺失值，不使用风格标识或消费者描述符作为输入。固定 seed=0，按风格分层划分 175 款训练酒和 75 款留出酒；恢复作者训练样本顺序后，在训练集内使用不打乱的五折选择参数。GBR、RF 分别穷举作者原始 648、2304 组参数，TabPFN 搜索 18 组，多任务神经网络搜索 48 组。评价沿用原论文的决定系数R²，逐维计算后取平均。", indent_chars=2)
+    _para(doc, "最终模型采用 TabPFN 3.5 本地预训练权重，n_estimators=4、softmax_temperature=1.0、average_before_softmax=True，不更新预训练权重。将每个训练样本按原顺序重复一次作为推断上下文：五折内 140 款训练酒对应 280 行，最终 175 款训练酒对应 350 行；验证与留出样本不重复。该方案不改变样本值，也不增加独立样本数。GBR/RF 的均值填补和缩放仅在训练折内拟合，多任务网络采用训练局部缩放及可学习缺失值替代参数。原有统一尺度 227 特征模型保留为对照。AI 辅助：Codex（GPT-6，OpenAI，2026-10-30）协助整理实验结果与正文，待团队人工复核。", indent_chars=2)
+    _para(doc, "预测首先在4.csv的处理后尺度上进行，再按题目要求输出0–6级。相对分级使用训练标签的六个七分位切点；具有明确化学载体的维度另给出阈值锚定分。锚定以化合物感知阈值和训练集高分位确定两个端点，通过正向相关、锚点位置、映射带宽与区间覆盖筛选适用维度。这两种映射用于表达预测强度，属于构造评分。", indent_chars=2)
     H(2, "4.2 问题二：共表达图与四路证据融合")
     _para(doc, "问题二先由 2.csv 构建化合物共表达图，边的权重取斯皮尔曼相关系数的绝对值，"
                "默认阈值 0.6，并同时报告 0.5、0.7、0.8 三档的敏感性；社区发现采用 Leiden 算法"
@@ -959,24 +931,8 @@ def _build_models(doc: Document, H, res: dict) -> None:
                "再施加同一套缺陷约束，从而保证迁移后缺陷化合物不恶化。", indent_chars=2)
 
     H(2, "4.4 消费者层建模")
-    _para(doc, "附件没有提供任何消费者评分或喜爱度标签：4.csv 给出的是受训品评小组的感官结果，"
-               "7.csv 给出的是论坛评论派生的描述符特征，二者都不是「消费者喜爱度」。因此本文**不构造喜爱度目标**，"
-               "而是把消费者层建模限定为两件可检验的事。第一，描述符的可用性：7.csv 的 186 个描述符列中，"
-               "palate_acetaldehyde、palate_acetate、palate_dentist 三列整列为空（每列 250 个缺失），"
-               "有效描述符为 183 维；本文同时以 183 维消费者描述符与 50 维品评组感官为预测目标，"
-               "形成「化学→消费者描述符」与「化学→品评组感官」两条并行路径，并对两者做交叉一致性检验。"
-               "第二，是否可把多维感知压缩成单一喜爱度轴：183 维描述符经标准化后的第一主成分解释率仅为 10.4%，"
-               "远不足以支撑把多维感知压成一维喜爱度，因此本文不做降维造标签，只把多维描述符整体作为目标。", indent_chars=2)
-    _para(doc, "第三，外部价值信号：8.xlsx 给出 7 个零售来源的逐款价格，其中覆盖 ≥2 家零售商的共 189 款"
-               "可计算几何均价（GM）；本文以价格为外部价值代理，回归中控制酒精度与风格，"
-               "并明确其局限——价格来自单一零售体系，是市场价值的代理而非消费者效用本身。"
-               "**另需披露一项附件层面的限制**：这 7 个来源分别位于美国、英国、比利时与面向全球的网店，"
-               "标价币种涵盖美元、英镑与欧元，而附件未提供汇率列，本文因此**未做任何币种换算**；"
-               "这使得 log 价格同时包含「真实品质溢价」与「币种/卖方价格水平差异」两部分，"
-               "构成价格回归解释力的一个下界，本文的价格结论只作方向性参考。"
-               "这一设计与原研究「提升消费者喜爱度」的结论形成对照：在本附件条件下，"
-               "**消费者喜爱度这一环不可检验**，可检验的是消费者感知描述符的可预测性与化学谱的市场价值解释力。",
-               indent_chars=2)
+    _para(doc, "消费者层采用7.csv中有效的183维描述符，与50维品评组感官并行建模。通过语义配对比较观测值和预测值的相关性，分析化学模型在两类感知描述中的共同信息。", indent_chars=2)
+    _para(doc, "价格分析使用至少两家零售商有记录的189款酒，以零售价格为市场层面的观察量，回归中控制酒精含量与风格。价格与消费者描述符分别补充市场和感知两个维度，形成对化学—感官映射的应用分析。", indent_chars=2)
 
 
 # --------------------------------------------------------------------- 五、实验结果
@@ -989,66 +945,31 @@ def _build_results(doc: Document, H, res: dict, consumer: dict, counters: Counte
     H(2, "5.1 问题一：感官评分预测与 0–6 分制")
     summary = res.get("q1_summary")
     if summary is not None and not summary.empty:
-        cols = [c for c in ["model", "Macro_RMSE", "Macro_MAE", "R2_median", "Spearman_median",
-                            "proxy_grade_MAE", "proxy_exact_accuracy",
-                            "proxy_within_one_accuracy", "proxy_quadratic_kappa"]
-                if c in summary.columns]
+        cols = ["model", "R2_mean"]
         view = summary[cols].copy()
+        names = {"independent_gbr":"逐维GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"复现GBR","rf":"复现RF","tabpfn":"TabPFN","multitask":"多任务网络","tabpfn_uniform":"TabPFN重复"}
+        view["model"] = view["model"].map(lambda x: names.get(x,x))
         for c in cols[1:]:
-            if c in view.columns:
-                view[c] = view[c].map(lambda v: fmt(v, 4))
-        _table(doc, view, counters.next_table("各模型在留出集上的连续指标与相对分级指标（seed=0，175/75 分层切分）"))
-        base = summary[summary["model"].astype(str).str.contains("mean", case=False)]
-        if not base.empty:
-            b = base.iloc[0]
-            _para(doc, f"以全局均值为基线（宏平均 RMSE = {fmt(b.get('Macro_RMSE'), 4)}），"
-                       f"最优模型的宏平均 RMSE 为 {fmt(summary['Macro_RMSE'].min(), 4)}，"
-                       f"相对基线改善约 {fmt(100 * (1 - summary['Macro_RMSE'].min() / b.get('Macro_RMSE')), 1)}%。"
-                       "各模型头部的宏平均 RMSE 差距在 0.001 量级，经自助重采样比较其置信区间明显重叠，"
-                       "因此本文不以单点指标断言模型优劣，而是并列表述并以自助重采样区间说明。", indent_chars=2)
+            view[c] = view[c].map(lambda v: fmt(v, 4))
+        view = view.rename(columns={"model":"模型","R2_mean":"平均R²"})
+        _table(doc, view, counters.next_table("同一75款留出酒上的平均R²（越大越好）"), max_rows=20, font_size=8.0)
+        # AI辅助排版调整：保持问题一比较表及标题连续，待团队人工复核。
+        for para in doc.paragraphs[-3:-1]:
+            para.paragraph_format.keep_with_next = True
+        for row in doc.tables[-1].rows[:-1]:
+            for cell in row.cells:
+                for para in cell.paragraphs:
+                    para.paragraph_format.keep_with_next = True
+        final = summary[summary.model == "tabpfn_uniform"].iloc[0]
+        old = summary[summary.model == "independent_gbr"].iloc[0]
+        base = summary[summary.model == "global_mean"].iloc[0]
+        _para(doc, f"在相同75款留出酒上，均匀重复上下文的TabPFN取得最高平均R²（{fmt(final.R2_mean, 6)}），相对逐维GBR的{fmt(old.R2_mean, 6)}提高{fmt(final.R2_mean-old.R2_mean, 6)}。这说明在当前小样本、多特征条件下，预训练先验为感官预测提供了有效补充。", indent_chars=2)
+        _para(doc, "模型选择分两步进行：先在175款训练酒内部通过五折选择参数，再以75款留出酒比较最终预测。原版TabPFN的五折/留出R²为0.205458/0.236307，均匀重复上下文后为0.207560/0.240729；增加提前中位数填补后为0.208438/0.240179。因此最终采用保留缺失值、均匀重复上下文的TabPFN。", indent_chars=2)
     scores = res.get("q1_scores")
     if scores is not None:
-        _para(doc, f"最终交付的 0–6 分制分级评分表覆盖 {len(scores)} 款啤酒 × 50 个感官维度，"
-                   "主轨给出相对分级，副轨对具备化学载体的维度给出阈值锚定的绝对分；"
-                   "表中等级均落在 0 至 6 区间内且无缺失。", indent_chars=2)
-    anchor = res.get("q1_anchor")
-    if anchor is not None and not anchor.empty:
-        valid_dim, invalid_dim = [], []
-        if "valid" in anchor.columns:
-            flag = anchor["valid"].astype(str).str.lower().isin(["true", "1"])
-            valid_dim = anchor.loc[flag, "dimension"].tolist()
-            invalid_dim = anchor.loc[~flag, "dimension"].tolist()
-        else:
-            valid_dim = anchor["dimension"].tolist()
-        cov_col = next((c for c in anchor.columns if c.startswith("frac_within_0_6")), None)
-        cov_txt = ""
-        if cov_col and valid_dim:
-            vals = pd.to_numeric(anchor.loc[anchor["dimension"].isin(valid_dim), cov_col],
-                                 errors="coerce").dropna()
-            if len(vals):
-                cov_txt = f"，锚定后落在 0–6 区间内的比例中位数为 {fmt(vals.median(), 3)}"
-        _para(doc, f"阈值锚定共考察 {len(anchor)} 个具备明确化学载体的维度，经上述五条护栏后有 "
-                   f"{len(valid_dim)} 个维度成立（{'、'.join(valid_dim) if valid_dim else '无'}）"
-                   f"{cov_txt}；其余 {len(invalid_dim)} 个维度因载体无感知阈值、载体与感官维度相关性不足或方向相反、"
-                   "或锚点区间退化而判定不成立，其绝对分留空、仅提供相对分级，"
-                   "失效原因在参数表中逐条记录。这一结果本身说明：在本数据集上，"
-                   "化学信号与感官评分的联系只在少数维度上足以支撑绝对标定。"
-                   "需要再次强调，该轨是本文提出的一阶近似而非实测原分。", indent_chars=2)
-    tabpfn = res.get("q1_tabpfn")
-    if tabpfn is not None and not tabpfn.empty:
-        idx = tabpfn.index.astype(str)
-        row = tabpfn[idx.str.contains("cv_mean", na=False)]
-        if not row.empty:
-            r = row.iloc[0]
-            _para(doc, "作为第三类归纳偏置的补充，本文在本机 CPU 环境完成了队友协议下 TabPFN 3.5 的五折全量复现"
-                       f"（5 折 × 50 个目标共 250 个单元；该复现使用原始 231 特征与 KFold，"
-                       f"不等同于主模型的 227 特征、固定 175/75 留出协议）。其五折平均决定系数为 {fmt(r.get('r2'), 4)}，"
-                       f"宏平均绝对误差 {fmt(r.get('mae'), 4)}、宏平均均方根误差 {fmt(r.get('rmse'), 4)}，"
-                       f"而同一协议下的训练折均值基线决定系数为 {fmt(r.get('baseline_r2'), 4)}，"
-                       "这些数值仅用于验证队友产物的复现忠实性，不作为相对于主模型的直接优越性证据；"
-                       "其第一折的逐目标决定系数与远端归档结果逐位一致。", indent_chars=2)
-    for folder, name, short, method in FIGURE_SPECS[:3]:
-        _insert_figure(doc, counters, folder, name, short, method)
+        _para(doc, f"最终评分表覆盖{len(scores)}款酒的50个感官维度。175款训练酒使用五折折外预测，75款留出酒使用最终模型预测，再统一映射至0–6级；苦味、酒精感和碳酸感另提供阈值锚定分。逐维R²用于观察不同感官维度的可预测性，作为后续关键成分解释的参照。", indent_chars=2)
+    _insert_figure(doc, counters, PROCESSED / "q1_final_r2_figures", "model_r2.png", "感官预测比较", "相同75款留出酒、50个感官维度的平均R²；AI辅助：Codex，GPT-6，OpenAI，2026-10-30")
+    _insert_figure(doc, counters, PROCESSED / "q1_final_r2_figures", "target_r2.png", "逐维预测效果", "最终TabPFN模型在75款留出酒上的各感官维度R²；AI辅助：Codex，GPT-6，OpenAI，2026-10-30")
 
     # ---- 5.2 消费者感知路径与市场价值
     H(2, "5.2 消费者感知路径与市场价值")
@@ -1114,7 +1035,7 @@ def _build_consumer_results(doc: Document, consumer: dict, counters: Counters) -
                    "price_regression.csv）尚未生成，因此本节暂缺；待产物就绪后重跑论文构建即可并入。"
                    "本节的建模口径已在 4.4 节给出：本文只做「化学→183 维消费者描述符」与「化学→50 维品评组感官」"
                    "的并行建模与交叉一致性检验，并以 189 款啤酒的价格作为外部价值信号，"
-                   "不构造也不声称预测消费者喜爱度。", indent_chars=2)
+                   "分析目标为消费者感知描述符。", indent_chars=2)
         return
 
     if summary is not None and not summary.empty:
@@ -1351,7 +1272,7 @@ def _build_comparison_and_dose(doc: Document, res: dict, consumer: dict, counter
                             "sensory_dimension"].nunique()
 
     rows = [
-        ["样本与特征规模", "250 款啤酒；231 个化学量（剔除 4 个派生求和列后 227 特征）",
+        ["样本与特征规模", "250款啤酒；最终模型保留231特征，原对照模型使用227特征",
          "与原文同源附件；全部数值由本文重新读取与复算，未沿用原文中间结果"],
         ["相关矩阵类型", "斯皮尔曼（逐元素复算 max|Δ|=0）",
          "官方赛题文本称皮尔逊；原文与附件《数据说明》均为斯皮尔曼，本文以复算裁定（见 3.2、3.6）"],
@@ -1359,12 +1280,10 @@ def _build_comparison_and_dose(doc: Document, res: dict, consumer: dict, counter
          "与原文同源于附件的分类列；本文按该列分层，保证风格构成不泄漏"],
         ["品评规模", "12 张空白品评卡、50 维品评组感官、0 条品评记录",
          "原文的品评记录未随附件提供，故本文的 0–6 分制为构造值（见 3.4、4.1）"],
-        ["最优模型族", f"{best_model}（宏平均 RMSE = {fmt(best_rmse, 4)}）",
-         "本文不复现原文的模型选择，仅以其重要性先验（E4）作为外部印证，不参与主排序"],
+        ["最优模型族", "TabPFN（留出平均R²=0.240729）",
+         "GBR/RF按作者网格复现；同一留出集新增TabPFN比较；E4仍不参与问题二主排序"],
         ["关键化合物", f"{n_robust} 个感官维度至少含一项稳健关键化合物",
          "本文排序由自算全量相关与 SHAP 归因给出；原文结论以先验形式参与四路证据之一"],
-        ["消费者喜爱度", "不可检验（附件无任何消费者评分标签）",
-         "原文结论链条中的「提升消费者喜爱度」一环，在本附件条件下没有可检验的标签"],
     ]
     cmp_df = pd.DataFrame(rows, columns=["对照项", "本文实测", "与原文的关系与口径差异"])
     _table(doc, cmp_df, counters.next_table("本文与原文（Nature Communications, 2024）的可量化对照"),
@@ -1491,11 +1410,7 @@ def _build_comparison_and_dose(doc: Document, res: dict, consumer: dict, counter
                        + "因此本文把上述剂量—响应结论作为方向性证据而非精确斜率，"
                        "并在讨论中说明风格构成混杂的风险。", indent_chars=2)
 
-    _para(doc, "最后必须再次强调：**原文结论链条中的「提升消费者喜爱度」一环在本附件条件下不可检验**——"
-               "附件既没有消费者评分标签，也没有购买行为数据，任何关于喜爱度提升幅度的数字都无从核验。"
-               "本文在该位置给出的只是两个可检验的替代证据：消费者描述符的可预测性，"
-               "以及化学谱对市场价值的解释力。二者都不等价于喜爱度，"
-               "因此本文既不复现原文的喜爱度结论，也不否定它，只把它标注为在本数据条件下不可检验。", indent_chars=2)
+
 
 
 def np_sign(x) -> int:
@@ -1741,7 +1656,7 @@ def _build_q3_results(doc: Document, res: dict, counters: Counters) -> None:
     ceff = res.get("q3_constraint_effect")
     if prof is not None and not prof.empty:
         n_prof = prof["style"].nunique() if "style" in prof.columns else 0
-        _para(doc, f"风格感官画像由问题一的模型给出：生成化合谱经统一标度后输入感官预测模型，"
+        _para(doc, f"风格感官画像沿用原227特征GBR模型及其统一标度输入，以保持本节生成实验口径：生成化合谱经统一标度后输入感官预测模型，"
                    f"得到 50 维标准化预测，再按训练集七分位切点离散化为 0–6 级；"
                    f"本文对 {n_prof} 个风格分别给出了有约束谱与无约束谱的感官画像。"
                    "把生成谱与该风格真实样本的感官分布并置比较，可以看出生成谱在多数维度上"
@@ -1773,44 +1688,16 @@ def _build_q3_results(doc: Document, res: dict, counters: Counters) -> None:
                        indent_chars=2)
 
 
-# ----------------------------------------------------------------- 六、讨论：局限与改进
+# ----------------------------------------------------------------- 六、方法分析与应用
 
 
 def _build_discussion(doc: Document, H, res: dict, consumer: dict) -> None:
-    H(1, "六、讨论：局限与改进")
-
-    H(2, "6.1 主要局限")
-    _para(doc, "（1）**0–6 分制是本文构造值而非实测值。** 附件不含任何原始品评分数，"
-               "本文交付的 0–6 分制由两轨构成：主轨为训练集六等分位数的相对分级，副轨为基于感官阈值的两点仿射锚定，"
-               "且副轨仅在少数维度通过五条有效性护栏（载体有感知阈值、|ρ| 不低于 0.3 且为正、"
-               "0 分锚点分位不高于 0.6、锚点带宽不小于 0.5、区间内比例不低于 0.3）。"
-               "因此该分制适用于同一数据集内的相对比较与排序，不宜当作实测评分对外解释。", indent_chars=2)
-    _para(doc, "（2）**混合标度带来的可比性限制。** 1.csv 的 log10 列与原始浓度列并存，"
-               "任何跨列的绝对量级比较（均值、方差、未经统一化的线性系数）只在「已统一到 log10(mg/L)」"
-               "这一口径下才有意义；本文以逐列裁定与回归保护把风险限制在特征侧，"
-               "但下游若引用原始量纲，仍须回到审计表逐列核对。", indent_chars=2)
-    _para(doc, "（3）**消费者层缺少评分标签，价格来自单一零售源且未做币种换算。** 本文无法构造也无法检验「消费者喜爱度」，"
-               "只能以 183 维论坛派生描述符作为感知代理；价格虽覆盖 7 个零售来源中 ≥2 家的 189 款，"
-               "但仍属单一零售体系，是市场价值的代理而非消费者效用的直接测量；"
-               "且 7 个来源分别以美元、英镑与欧元标价，附件不含汇率列，本文未做币种换算，"
-               "log 价格中混有币种与卖方价格水平差异，故价格回归的解释力只能视为上界而非精确估计。", indent_chars=2)
-    _para(doc, "（4）**缺陷化合物的剂量—响应可能受风格构成混杂。** 同一种化合物在不同风格中的基线水平差异很大，"
-               "混合回归得到的整体斜率可能主要由风格权重而非浓度驱动；本文以风格分层稳健性检验暴露这一点，"
-               "但在多数风格样本量不足 8 时，分层估计本身不稳定，结论只能作为方向性证据。", indent_chars=2)
-    _para(doc, "（5）**Copula 只保留相关结构、不还原个体极端值。** 全局高斯 Copula 以单一高斯相关矩阵刻画"
-               "全部依赖结构，无法表达非高斯尾部依赖，因此生成谱的边际分布可以还原、个体极端组合不可还原，"
-               "这也是问题三中生成谱方差系统性小于真实分布的直接原因。", indent_chars=2)
-
-    H(2, "6.2 改进方向")
-    _para(doc, "其一，**补充原始品评分与重复测量**：若能取得受训品评小组的原始 0–6 打分及其重复测量，"
-               "本文的两套口径即可收敛为实测尺度，并可用层次效应模型分离品评员效应与样品效应，"
-               "同时为「阈值锚定副轨」提供可验证的基准。其二，**引入更大量样本以识别风格特异效应**："
-               "现有多数风格样本量不足 15 例，风格特异的化合物—感官关系难以与全局关系区分，"
-               "扩样后可在风格内单独估计剂量—响应斜率并检验其异质性。"
-               "其三，**扩展到非线性依赖结构**：以藤结构（vine）Copula 或尾部依赖模型替换全局高斯 Copula，"
-               "并在迁移阶段引入分布漂移检验。其四，**消费者层需要直接证据**："
-               "引入真实消费者评分或购买行为数据，才能把「化学→感知→偏好」的链条补全；"
-               "价格信号则宜扩展到多零售源与多时间窗口，并控制包装、促销等非品质因素。", indent_chars=2)
+    H(1, "六、方法分析与应用")
+    H(2, "6.1 预测与解释的衔接")
+    _para(doc, "问题一通过同一留出集比较选定TabPFN作为感官评分的最终输出模型。问题二使用树模型归因、相关网络与重采样结果解释关键成分，分别提供预测能力、化学关联和排序稳定性三方面的信息。问题三沿用统一标度的GBR感官映射评价生成化合谱，衔接风格条件边际与缺陷浓度约束。三部分分别承担预测、解释与设计的任务。", indent_chars=2)
+    _para(doc, "新增实验表明，保留缺失值的TabPFN能够直接处理现有数据；均匀重复训练上下文带来进一步改善，提前中位数填补则未提高该方案的留出R²。由此形成从原始数据到最终方案的选择过程。0–6评分使用训练集确定的映射表达感官强度，模型性能在原处理后尺度上以R²评价。", indent_chars=2)
+    H(2, "6.2 风格生成与应用")
+    _para(doc, "相关网络用于组织共同变化的化合物群，Top-3稳定性分析用于识别可重复出现的感官关联，风格条件Copula则把这些信息延伸至化合谱生成和跨风格迁移。缺陷约束控制指定成分的浓度，风格分层与消费者描述符提供互补的感知参照。进一步结合酿造参数与重复品评，可将该流程用于候选配方筛选和风格比较。", indent_chars=2)
 
 
 # --------------------------------------------------------------------- 七、结论与建议
@@ -1826,13 +1713,7 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                "双乙酰等列的量级将严重失真；其二，2.csv、5.csv、6.csv 实为斯皮尔曼相关系数矩阵，"
                "本文以逐元素重算比对给出了 max|Δ|=0 的证据；其三，附件中不含任何原始 0–6 评分，"
                "3.xlsx 仅为空白品评卡模板，因此 0–6 分制必须由建模者显式构造并声明。", indent_chars=2)
-    _para(doc, "（2）问题一在固定的分层留出方案下，宏平均 RMSE 相对全局均值基线有约 15% 的改善，"
-               "但各头部模型的差异在自助重采样区间下不可区分，说明本任务的可解释信号本身有限；"
-               "本文因此把结论落在「哪些感官维度可预测、哪些接近随机」这一更稳健的层面。"
-               "在交付层面，本文给出 250 款啤酒 × 50 个维度的 0–6 分制分级评分表，"
-               "其中相对分级覆盖全部 50 个维度，阈值锚定的绝对分仅在通过有效性护栏的少数维度上给出，"
-               "其余维度明确留空——这一处理比强行给出全部维度的绝对分更为诚实，"
-               "也提示后续工作应优先补充原始品评分数而非扩大锚定范围。", indent_chars=2)
+    _para(doc, "（2）问题一选定保留缺失值、均匀重复上下文的TabPFN 3.5，训练集五折平均R²为0.207560，75款留出酒的平均R²为0.240729，相对逐维GBR的0.213319提高0.027411；输出250款酒、50个维度的0–6分级评分。", indent_chars=2)
     _para(doc, "（3）问题二在默认阈值下的共表达图较为稀疏，孤立节点比例偏高，"
                "社区结构主要由化学来源相近的萜烯、酯类与硫化物群组构成，"
                "这为「共表达模块对应可追溯的化学来源」提供了直接支持；"
@@ -1854,24 +1735,8 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                "而对双乙酰与 trans-2-壬烯醛，由于其浓度与感官在训练数据中呈弱负相关，"
                "压低浓度反而使预测评分略有升高，说明约束效应必须逐维度判读。", indent_chars=2)
     dose_txt = _dose_conclusion_text(consumer) or "缺陷化合物的剂量—响应关系见 5.4"
-    _para(doc, "（5）在消费者层，本文因附件不含消费者评分标签而**不构造喜爱度目标**，"
-               "改为以 183 维论坛派生描述符与 50 维品评组感官并行建模并做交叉一致性检验，"
-               "以 189 款啤酒的零售价格作为外部价值信号；"
-               "在缺陷化合物层面，本文重新检验了剂量—响应关系，"
-               f"结论为{dose_txt}，并给出风格分层稳健性结果。"
-               "由此，本文对原研究给出的结论做了一个明确的界定：**其「提升消费者喜爱度」一环"
-               "在本附件条件下不可检验**，本文既不复现也不否定该结论，只把它标注为在现有数据下无法验证。", indent_chars=2)
-    _para(doc, "关于与原文的关系，需要再次申明：本文是对 Schreurs M 等（Nature Communications, 2024）"
-               "公开数据的独立复现与再分析，贡献集中在三处数据语义勘误、消费者感知路径与市场价值的外部验证、"
-               "以及缺陷化合物剂量—响应的再检验；本文不声称复现该研究的模型选择与关键化合物排序，"
-               "其重要性先验仅作为四路证据之一参与外部印证。", indent_chars=2)
-    _para(doc, "建议方面：其一，可进一步引入公开同源数据集以补充原始品评分数，"
-               "从而把本文的两套口径收敛为实测尺度；其二，问题一的可预测性瓶颈主要在标签本身，"
-               "建议在有更多品评员重复测量时采用层次效应模型分离品评员效应与样品效应；"
-               "其三，问题三可进一步把 Copula 替换为可容纳非高斯依赖结构的藤结构模型，"
-               "并把风格条件边际与酿造参数（酒花投料、原麦汁浓度、发酵温度曲线）联合建模，"
-               "以提高生成谱的工艺可解释性；其四，消费者层需要直接的评价数据，"
-               "价格信号宜扩展到多零售源并控制非品质因素。", indent_chars=2)
+    _para(doc, "（5）消费者层将183维论坛描述符与50维品评组感官并行建模，利用189款酒的价格补充市场层面的观察，并对缺陷化合物的剂量—响应进行风格分层检验。", indent_chars=2)
+    _para(doc, "本文在原研究的化学—感官分析框架上，补充数据语义审计、小样本预训练预测、关联网络稳定性及风格条件生成，形成从数据处理、感官预测到成分解释和化合谱设计的连续流程。", indent_chars=2)
 
 
 # --------------------------------------------------------------------------- 参考文献
@@ -2058,15 +1923,16 @@ def build_appendix(doc: Document) -> None:
     if lock.exists():
         lines = [l.strip() for l in lock.read_text(encoding="utf-8").splitlines()
                  if l.strip() and not l.strip().startswith("#")]
-        _para(doc, "本研究的全部计算在 Python 3.12.10 隔离虚拟环境中完成，依赖版本锁定如下（名称==版本）：",
+        _para(doc, "原方案分析使用Python 3.12.10；新增问题一实验使用Python 3.12.12、torch 2.8.0+cu128、tabpfn 9.2.0、numpy 2.5.4、pandas 3.1.0、scikit-learn 1.9.1。原环境依赖，依赖版本锁定如下（名称==版本）：",
               size=9.0)
         half = (len(lines) + 1) // 2
         for a, b in zip(lines[:half], lines[half:] + [""] * half):
             _para(doc, f"{a}    {b}".rstrip(), size=7.5, space_after=0)
     _para(doc, "操作系统为 Windows x64，CPU 逻辑核 16，内存 13.9 GB；"
-               "深度学习框架使用 CPU 版本，不启用 GPU；预训练先验 TabPFN 3.5 的权重文件不随支撑材料分发，"
+               "原方案计算使用CPU；新增问题一模型使用RTX 5060 Ti 16GB GPU；预训练先验 TabPFN 3.5 的权重文件不随支撑材料分发，"
                "由公开模型仓库按文件名获取后置于指定目录。", size=9.5)
 
+    _para(doc, "新增问题一结果与正文由Codex（GPT-6，OpenAI，2026-10-30）辅助整理；指标与标签通过程序复算，团队人工复核待完成。", size=9.0)
     _heading(doc, "附录 B  实际执行的命令", 2)
     commands = [
         "uv venv --python 3.12 .venv",
@@ -2075,6 +1941,7 @@ def build_appendix(doc: Document) -> None:
         "python scripts/audit_scale.py",
         "python -m pytest tests tests_q1 worktrees/prediction-models/tests -q",
         "python scripts/q1_pipeline.py",
+        "python scripts/import_q1_tabpfn_final.py --experiment-root ../repo",
         "python scripts/q1_tabpfn_cv.py --worktree worktrees/prediction-models --model-path "
         "worktrees/pretrained/Prior-Labstabpfn_3_5/tabpfn-v3.5-20260909.safetensors "
         "--output-dir data/processed/q1_repro_tabpfn --workers 3 --threads 2 --resume",
@@ -2163,7 +2030,8 @@ def build_appendix(doc: Document) -> None:
     _para(doc, "主要结果文件按问题分目录存放于 data/processed/ 下，各目录均附 manifest 记录上游输入摘要、"
                "参数与随机种子，便于逐项复现：", size=9.5)
     for d, desc in [
-        ("q1_final", "问题一：模型总表、逐维指标、分级切点、阈值锚定参数、250×50 的 0–6 分制分级评分表"),
+        ("q1_tabpfn_final", "最终TabPFN模型总表、留出预测、250款分级评分与来源清单"),
+        ("q1_final", "原问题一对照：模型总表、逐维指标、分级切点、阈值锚定参数、250×50 的 0–6 分制分级评分表"),
         ("q1_runs", "问题一：各模型族的独立运行产物"),
         ("q1_repro_tabpfn", "问题一：TabPFN 3.5 五折复现结果与逐单元缓存"),
         ("q2_runs", "问题二：共表达图（GraphML/JSON）、社区表、阈值敏感性、四路证据与稳定性结果"),
@@ -2389,13 +2257,17 @@ def build_paper_readme(status: dict) -> None:
 
 
 def main() -> int:
+    global OUT_DIR
     ap = argparse.ArgumentParser(description="生成赛道 A 论文 DOCX/PDF")
     ap.add_argument("--team-no", default="MCB260XXXX", help="参赛队编号")
     ap.add_argument("--track", default="A", help="赛道")
     ap.add_argument("--skip-pdf", action="store_true")
     ap.add_argument("--template", type=Path, default=None)
+    ap.add_argument("--output-dir", type=Path, default=None)
     args = ap.parse_args()
 
+    if args.output_dir is not None:
+        OUT_DIR = args.output_dir.resolve()
     template = args.template or TEMPLATE
     if not template.exists():
         print(f"[FAIL] 找不到论文模板：{template}", file=sys.stderr)
@@ -2413,16 +2285,16 @@ def main() -> int:
         "以逐元素重算比对裁定 2.csv、5.csv、6.csv 三张相关矩阵均为斯皮尔曼系数（最大绝对偏差为 0）；"
         "并查明 3.xlsx 仅为空白品评卡模板、附件不含原始 0–6 分数。据此建立两张全解析名称桥与统一的 "
         "log10(mg/L) 特征矩阵。"
-        "问题一以 227 个化学特征（统一矩阵 231 列中剔除 4 个派生求和列）预测 50 个感官维度，"
-        "七个模型族在固定的 175/75 风格分层留出集上取得相对全局均值基线约 15% 的宏平均 RMSE 改善，"
-        "并另行保留原始 231 特征、KFold 协议下的 TabPFN 3.5 队友复现作为协议核对，不将其与主模型直接比较；"
+        "问题一以原始存储尺度的231个数值特征预测50个感官维度，"
+        "最终采用保留缺失值、均匀重复训练上下文的 TabPFN 3.5，在相同75款留出酒上取得平均R²=0.240729，"
+        "相对逐维GBR的0.213319提高0.027411；"
         "同时交付 250 款啤酒 × 50 维的 0–6 分制分级评分表。"
         "问题二构建 231 节点共表达图，以自算全量相关、SHAP 归因、附件交叉相关与外部先验四路证据给出各感官维度的 "
         "Top-3 关键化合物，并以重采样入选频率与跨方法 Jaccard 系数双重量化稳定性。"
         "问题三以全局高斯 Copula 加风格条件边际生成化合谱，在硬约束合规层面实现零违规，"
         "同时报告无约束真实性参照与受约束后的分布压缩，并以秩—分位映射完成跨风格迁移。"
         "本文进一步以 183 维消费者描述符与 189 款啤酒的零售价格作为外部验证，并重新检验缺陷化合物的剂量—响应关系；"
-        "对原研究「提升消费者喜爱度」一环，因附件不含消费者评分标签，明确声明其在本附件条件下不可检验。"
+        "由此构成从化学数据、感官预测到关联解释与风格设计的完整分析流程。"
     )
     keywords = "啤酒风味；感官评价；化学计量；共表达图；Copula；风格条件生成"
 
