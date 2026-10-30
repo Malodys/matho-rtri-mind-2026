@@ -48,8 +48,8 @@
     },
     {
       "path": "scripts/build_release_manifest.py",
-      "bytes": 7985,
-      "sha256": "55b8d81f3eab22df566d26a06c76021428d1f3b225cdef5b82c02e543dd959c6"
+      "bytes": 7967,
+      "sha256": "5859a13f81c63ec4e02ae06c37c514bf50190f277bfa0254c750d423c4b3a75a"
     },
     {
       "path": "scripts/check_paper_pdf.py",
@@ -844,12 +844,12 @@
     {
       "path": "data/processed/paper/paper_check.json",
       "bytes": 1772,
-      "sha256": "b0bdf98235c926a919813c6a7cb0a910d63432112fc8126baf8bf7519731662d"
+      "sha256": "6ad0effaa1fe18c0ff416a501a9d48b0f47e46c20e93058c3738c4875fcb7ade"
     },
     {
       "path": "data/processed/paper/paper_check.txt",
       "bytes": 1121,
-      "sha256": "7334511a8cdf732b47263a8b4b01a2e343acc5ece4e49337e8af5757af87d4e3"
+      "sha256": "1d89bebd3b08747df05efc50a3ecd5ff032deefde4645343be4aa3e031ff3e04"
     },
     {
       "path": "data/processed/paper/README.md",
@@ -2198,8 +2198,8 @@
     },
     {
       "path": "data/processed/release_manifest.json",
-      "bytes": 12616,
-      "sha256": "2544f97f519d8039966896746baa766091ff1cf8077e8040afe9e4797eded6bd"
+      "bytes": 12660,
+      "sha256": "944433c7d1458bbc5c3488576f604bf3bb42086d150c10da8a794f99cdec0727"
     },
     {
       "path": "AGENTS.md",
