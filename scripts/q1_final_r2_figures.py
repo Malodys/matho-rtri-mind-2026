@@ -16,13 +16,13 @@ def main():
     out.mkdir(parents=True,exist_ok=True)
     apply_style()
     df=pd.read_csv(root/"data/processed/q1_tabpfn_final/combined_summary.csv").sort_values("R2_mean")
-    names={"independent_gbr":"原逐维GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"原网格GBR","rf":"原网格RF","tabpfn":"TabPFN","multitask":"多任务网络","tabpfn_uniform":"TabPFN重复"}
+    names={"independent_gbr":"原逐维GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"原网格GBR","rf":"原网格RF","tabpfn":"TabPFN","multitask":"多任务网络"}
     fig,ax=plt.subplots(figsize=(5,3.8))
-    ax.barh([names.get(x,x) for x in df.model],df.R2_mean,color=[ACCENT if x=="tabpfn_uniform" else BASELINE for x in df.model])
+    ax.barh([names.get(x,x) for x in df.model],df.R2_mean,color=[ACCENT if x=="tabpfn" else BASELINE for x in df.model])
     ax.set_xlabel("留出集平均R²"); ax.set_xlim(-.03,.28)
     simple_title(ax,"感官预测比较"); tidy(ax,grid_axis="x")
     fig.tight_layout(); save(fig,out/"model_r2.png"); plt.close(fig)
-    target=pd.read_csv(root/"data/processed/q1_tabpfn_final/tabpfn_uniform_per_target.csv").sort_values("R2_mean")
+    target=pd.read_csv(root/"data/processed/q1_tabpfn_final/tabpfn_per_target.csv").sort_values("R2_mean")
     fig,axes=plt.subplots(1,2,figsize=(5,5.7),sharex=True)
     for ax,part in zip(axes,[target.iloc[:25],target.iloc[25:]]):
         ax.barh([dim_cn(x) for x in part.target],part.R2_mean,color=ACCENT)

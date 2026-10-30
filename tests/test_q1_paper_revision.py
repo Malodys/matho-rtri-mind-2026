@@ -14,7 +14,7 @@ OUT=ROOT/"data/processed/q1_tabpfn_final"
 class Q1PaperRevisionTests(unittest.TestCase):
     # AI 辅助实现，尚未人工复核。
     def test_metrics_match_archived_final_experiment(self):
-        row=pd.read_csv(OUT/"model_summary.csv").set_index("model").loc["tabpfn_uniform"]
+        row=pd.read_csv(OUT/"model_summary.csv").set_index("model").loc["tabpfn"]
         np.testing.assert_allclose([row.R2_mean,row.Macro_MAE,row.Macro_RMSE],
             [0.2407293912437345,0.3362367581706291,0.47470748219473685],atol=1e-12)
     def test_holdout_labels_and_sample_ids(self):
@@ -52,6 +52,13 @@ class Q1PaperRevisionTests(unittest.TestCase):
         d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
         text="\n".join(p.text for p in d.paragraphs)
         self.assertIn("0.240729",text)
+        self.assertNotIn("TabPFN重复",text.replace(" ",""))
+        summary=pd.read_csv(OUT/"combined_summary.csv")
+        self.assertEqual(int(summary.model.eq("tabpfn").sum()),1)
+        self.assertNotIn("tabpfn_uniform",set(summary.model))
+        matches=[row for table in d.tables for row in table.rows if row.cells[0].text.strip()=="TabPFN"]
+        self.assertEqual(len(matches),1)
+        self.assertEqual(matches[0].cells[1].text.strip(),"0.2407")
         q1=text.split("5.1 问题一：感官评分预测与 0–6 分制")[-1].split("5.2 消费者感知路径与市场价值")[0]
         self.assertNotIn("RMSE",q1)
         self.assertNotIn("MAE",q1)

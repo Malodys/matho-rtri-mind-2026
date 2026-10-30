@@ -1,5 +1,5 @@
 {
-  "final_model": "tabpfn_uniform",
+  "final_model": "tabpfn",
   "features": 231,
   "targets": 50,
   "train": 175,
@@ -13,19 +13,20 @@
   "human_review": "pending",
   "test_previously_inspected": true,
   "files": {
-    "combined_summary.csv": "4a205b9633a840f9cc5b88f05d5337e9af2ce19be41cb90c48bc4c9d03cb8331",
-    "comparison.csv": "c8a06b31ab29a8ff0acd52f648c546c2c62e6266f79a898fa91e72f07b92677d",
+    "combined_summary.csv": "41aa37ed2365f859f617929c830779b8c6176bbaa8bb3a2a6fa4a40c549a1714",
+    "comparison.csv": "89594f9edebed504b99d3c3982620c6173c7804a1eb69e9e2b4d81611239b64c",
     "context_comparison.csv": "f29935052b5066d60420590919690e45316d729d1cf194ba7e6253f4c26a33a1",
     "frozen_selection.csv": "f181cfced1f9215ff452af27868f52f19c12c89c1a443b61b1a87a1d6d68a007",
     "gbr_per_target.csv": "84413e675dcda3fe6874a981b008daf2da29dd458e6c819fc9c5cd1b2abc8630",
+    "manifest.json": "a56bf9d9650a13d8aa2cc0d21d27674ab32277d73d4ac619d494f75e7b0e4336",
     "median_comparison.csv": "f0c75112d6d265dcffd005475c7a11793e547400cc8d892bd8814365a29d63a6",
-    "model_summary.csv": "ef6482e8c7856fc4232289d2540e855583b9f7dce1e89891d40173e867767510",
+    "model_summary.csv": "cfab374c129a342256b25e26f399da2ac92cdcbd0d4a4cd75a8ccc96c06678fc",
     "multitask_per_target.csv": "0fddf2d9691021ffeab442846ff19454da582988e689d159dc89c441c257beb1",
     "rf_per_target.csv": "213a75496758d10df4326c6734f35fb154edad06050ce0522a77502071f277f2",
     "sensory_scores_0_6.csv": "4afbf73634af6f3800f7902b92b9604dd24501ab3ac1eb17256c5400dbee1253",
-    "tabpfn_per_target.csv": "c16e76132380dca758c6375fe376b8c7f8c83ca24995bc409ca9eb1c71c57a33",
+    "tabpfn_per_target.csv": "1cdff013215f27a32f39aff7fcaf422c2329818b17ff892f0112c0ce61570fb9",
     "tabpfn_uniform_per_target.csv": "1cdff013215f27a32f39aff7fcaf422c2329818b17ff892f0112c0ce61570fb9",
-    "test_predictions.csv.gz": "13b6687cc44ffe213719f5d71b3e979efe5293c85b6d9047c6aa5064e0eca964",
+    "test_predictions.csv.gz": "99f6872eefe840ab30c79788c275705447df7a1e7c10472f75fdd443a98d7dd8",
     "uniform_median_comparison.csv": "b6207ee78493317be06a7b15432b325b1b575fc0372ae1656160a5fa7dd8a143"
   }
 }

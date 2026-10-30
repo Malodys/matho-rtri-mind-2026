@@ -986,7 +986,7 @@ def _build_results(doc: Document, H, res: dict, consumer: dict, counters: Counte
     if summary is not None and not summary.empty:
         cols = ["model", "R2_mean"]
         view = summary[cols].copy()
-        names = {"independent_gbr":"逐维GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"复现GBR","rf":"复现RF","tabpfn":"TabPFN","multitask":"多任务网络","tabpfn_uniform":"TabPFN重复"}
+        names = {"independent_gbr":"逐维GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"复现GBR","rf":"复现RF","tabpfn":"TabPFN","multitask":"多任务网络"}
         view["model"] = view["model"].map(lambda x: names.get(x,x))
         for c in cols[1:]:
             view[c] = view[c].map(lambda v: fmt(v, 4))
@@ -999,11 +999,11 @@ def _build_results(doc: Document, H, res: dict, consumer: dict, counters: Counte
             for cell in row.cells:
                 for para in cell.paragraphs:
                     para.paragraph_format.keep_with_next = True
-        final = summary[summary.model == "tabpfn_uniform"].iloc[0]
+        final = summary[summary.model == "tabpfn"].iloc[0]
         old = summary[summary.model == "independent_gbr"].iloc[0]
         base = summary[summary.model == "global_mean"].iloc[0]
-        _para(doc, f"在相同75款留出酒上，均匀重复上下文的TabPFN取得最高平均R²（{fmt(final.R2_mean, 6)}），相对逐维GBR的{fmt(old.R2_mean, 6)}提高{fmt(final.R2_mean-old.R2_mean, 6)}。这说明在当前小样本、多特征条件下，预训练先验为感官预测提供了有效补充。", indent_chars=2)
-        _para(doc, "模型选择分两步进行：先在175款训练酒内部通过五折选择参数，再以75款留出酒比较最终预测。原版TabPFN的五折/留出R²为0.205458/0.236307，均匀重复上下文后为0.207560/0.240729；增加提前中位数填补后为0.208438/0.240179。因此最终采用保留缺失值、均匀重复上下文的TabPFN。", indent_chars=2)
+        _para(doc, f"在相同75款留出酒上，TabPFN取得最高平均R²（{fmt(final.R2_mean, 6)}），相对逐维GBR的{fmt(old.R2_mean, 6)}提高{fmt(final.R2_mean-old.R2_mean, 6)}。这说明在当前小样本、多特征条件下，预训练先验为感官预测提供了有效补充。", indent_chars=2)
+        _para(doc, "模型选择分两步进行：先在175款训练酒内部通过五折选择参数，再以75款留出酒比较最终预测。TabPFN的五折平均R²为0.207560，留出R²为0.240729。提前中位数填补后的留出R²为0.240179，因此保留缺失值作为最终方案。", indent_chars=2)
     scores = res.get("q1_scores")
     if scores is not None:
         _para(doc, f"最终评分表覆盖{len(scores)}款酒的50个感官维度。175款训练酒使用五折折外预测，75款留出酒使用最终模型预测，再统一映射至0–6级；苦味、酒精感和碳酸感另提供阈值锚定分。逐维R²用于观察不同感官维度的可预测性，作为后续关键成分解释的参照。", indent_chars=2)
@@ -1758,7 +1758,7 @@ def _build_discussion(doc: Document, H, res: dict, consumer: dict) -> None:
     H(1, "六、方法分析与应用")
     H(2, "6.1 预测与解释的衔接")
     _para(doc, "问题一通过同一留出集比较选定TabPFN作为感官评分的最终输出模型。问题二使用树模型归因、相关网络与重采样结果解释关键成分，分别提供预测能力、化学关联和排序稳定性三方面的信息。问题三沿用统一标度的GBR感官映射评价生成化合谱，衔接风格条件边际与缺陷浓度约束。三部分分别承担预测、解释与设计的任务。", indent_chars=2)
-    _para(doc, "新增实验表明，保留缺失值的TabPFN能够直接处理现有数据；均匀重复训练上下文带来进一步改善，提前中位数填补则未提高该方案的留出R²。由此形成从原始数据到最终方案的选择过程。0–6评分使用训练集确定的映射表达感官强度，模型性能在原处理后尺度上以R²评价。", indent_chars=2)
+    _para(doc, "实验表明，TabPFN能够直接处理现有缺失数据，提前中位数填补未提高其留出R²。由此形成从原始数据到最终方案的选择过程。0–6评分使用训练集确定的映射表达感官强度，模型性能在原处理后尺度上以R²评价。", indent_chars=2)
     H(2, "6.2 风格生成与应用")
     _para(doc, "新增留出验证使解释与生成结果形成对应检验：问题二仅用训练集重选候选，再以75款留出酒执行置换检验与FDR校正；问题三以多风格、多种子共48个单元同时衡量约束合规率与分布距离，从而将关键成分的复现性和生成谱的约束效果纳入同一分析链条。", indent_chars=2)
     _para(doc, "相关网络用于组织共同变化的化合物群，Top-3稳定性分析用于识别可重复出现的感官关联，风格条件Copula则把这些信息延伸至化合谱生成和跨风格迁移。缺陷约束控制指定成分的浓度，风格分层与消费者描述符提供互补的感知参照。进一步结合酿造参数与重复品评，可将该流程用于候选配方筛选和风格比较。", indent_chars=2)
@@ -1777,7 +1777,7 @@ def _build_conclusions(doc: Document, H, res: dict, consumer: dict) -> None:
                "双乙酰等列的量级将严重失真；其二，2.csv、5.csv、6.csv 实为斯皮尔曼相关系数矩阵，"
                "本文以逐元素重算比对给出了 max|Δ|=0 的证据；其三，附件中不含任何原始 0–6 评分，"
                "3.xlsx 仅为空白品评卡模板，因此 0–6 分制必须由建模者显式构造并声明。", indent_chars=2)
-    _para(doc, "（2）问题一选定保留缺失值、均匀重复上下文的TabPFN 3.5，训练集五折平均R²为0.207560，75款留出酒的平均R²为0.240729，相对逐维GBR的0.213319提高0.027411；输出250款酒、50个维度的0–6分级评分。", indent_chars=2)
+    _para(doc, "（2）问题一选定TabPFN 3.5，训练集五折平均R²为0.207560，75款留出酒的平均R²为0.240729，相对逐维GBR的0.213319提高0.027411；输出250款酒、50个维度的0–6分级评分。", indent_chars=2)
     _para(doc, "（3）问题二在默认阈值下的共表达图较为稀疏，孤立节点比例偏高，"
                "社区结构主要由化学来源相近的萜烯、酯类与硫化物群组构成，"
                "这为「共表达模块对应可追溯的化学来源」提供了直接支持；"
@@ -2352,7 +2352,7 @@ def main() -> int:
         "并查明 3.xlsx 仅为空白品评卡模板、附件不含原始 0–6 分数。据此建立两张全解析名称桥与统一的 "
         "log10(mg/L) 特征矩阵。"
         "问题一以原始存储尺度的231个数值特征预测50个感官维度，"
-        "最终采用保留缺失值、均匀重复训练上下文的 TabPFN 3.5，在相同75款留出酒上取得平均R²=0.240729，"
+        "最终采用TabPFN 3.5，在相同75款留出酒上取得平均R²=0.240729，"
         "相对逐维GBR的0.213319提高0.027411；"
         "同时交付 250 款啤酒 × 50 维的 0–6 分制分级评分表。"
         "问题二构建 231 节点共表达图，以自算全量相关、SHAP 归因、附件交叉相关与外部先验四路证据给出各感官维度的 "

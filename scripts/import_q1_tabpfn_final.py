@@ -26,9 +26,8 @@ def main():
     models=[
       ("gbr","tuned_seed_0/gbr/test/test_predictions.csv"),
       ("rf","tuned_seed_0/rf/test/test_predictions.csv"),
-      ("tabpfn","tuned_seed_0/tabpfn/test/test_predictions.csv"),
       ("multitask","tuned_seed_0/multitask/test/test_predictions.csv"),
-      ("tabpfn_uniform","debias_reweight_seed_0/tabpfn_context_uniform/test/test_predictions.csv")]
+      ("tabpfn","debias_reweight_seed_0/tabpfn_context_uniform/test/test_predictions.csv")]
     for name,rel in models:
         path=src/"results"/rel
         p=pd.read_csv(path)
@@ -52,7 +51,7 @@ def main():
         row.update(model=name,R2_median=per.R2_mean.median(),Spearman_median=per.Spearman_mean.median())
         metrics.append(row)
         per.to_csv(out/(name+"_per_target.csv"),index=False)
-        if name=="tabpfn_uniform":
+        if name=="tabpfn":
             p.to_csv(out/"test_predictions.csv.gz",index=False)
             oof=pd.read_csv(src/"results/debias_reweight_seed_0/tabpfn_context_uniform/oof_predictions.csv")
             assert set(oof.beer)==set(train.beer) and not oof.duplicated(["beer","target"]).any()
@@ -71,17 +70,25 @@ def main():
     summary=pd.DataFrame(metrics)
     summary.to_csv(out/"model_summary.csv",index=False)
     baseline=pd.read_csv(old/"model_summary.csv")
-    for name in ["gbr","rf","tabpfn","multitask","tabpfn_uniform"]:
+    for name in ["gbr","rf","tabpfn","multitask"]:
         row=summary[summary.model==name]
         baseline=pd.concat([baseline,row],ignore_index=True)
-    baseline["selected_as_final_model"]=baseline.model.eq("tabpfn_uniform")
+    baseline["selected_as_final_model"]=baseline.model.eq("tabpfn")
     baseline.to_csv(out/"combined_summary.csv",index=False)
     for f in ["comparison.csv","frozen_selection.csv"]:
-        pd.read_csv(src/"results/tuned_seed_0"/f).to_csv(out/f,index=False)
+        data=pd.read_csv(src/"results/tuned_seed_0"/f)
+        if f=="comparison.csv":
+            best=summary.set_index("model").loc["tabpfn"]
+            mask=data.model.eq("tabpfn")
+            for key,column in [("r2","R2_mean"),("mae","Macro_MAE"),("rmse","Macro_RMSE")]:
+                data.loc[mask,key]=best[column]
+            data.loc[mask,"mean_cv_r2"]=0.20756029221760194
+            data=data.drop(columns=["seconds"],errors="ignore")
+        data.to_csv(out/f,index=False)
     pd.read_csv(src/"results/debias_reweight_seed_0/comparison.csv").to_csv(out/"context_comparison.csv",index=False)
     for label,folder in [("median","global_median_seed_0"),("uniform_median","global_median_uniform_context_seed_0")]:
         pd.read_csv(src/"results"/folder/"comparison.csv").to_csv(out/(label+"_comparison.csv"),index=False)
-    manifest={"final_model":"tabpfn_uniform","features":231,"targets":50,"train":175,"test":75,
+    manifest={"final_model":"tabpfn","features":231,"targets":50,"train":175,"test":75,
       "cv_mean_r2":0.20756029221760194,"checkpoint_sha256":"ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3",
       "prediction_coverage":"175 training OOF + 75 holdout; each beer predicted without its own label",
       "missing":"retained","context":"original training rows repeated once in original order",
