@@ -108,8 +108,8 @@ def main() -> int:
         ROOT / "data" / "processed" / "q1_fair_tabpfn_full" / "target_metrics.csv",
         ROOT / "data" / "processed" / "q1_fair_tabpfn_full" / "oof_predictions.csv",
         ROOT / "data" / "processed" / "q3_figures" / "figures_manifest.json",
-        ROOT / "data" / "processed" / "acceptance_report.json",
         ROOT / "code.zip",
+        ROOT / "submission" / "A2600116.pdf",
     ]
     head = git("rev-parse", "HEAD")
     status = git("status", "--short")
