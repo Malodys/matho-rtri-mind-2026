@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-10-30T11:34:06.120750+00:00",
+  "generated_at_utc": "2026-10-30T11:34:54.777442+00:00",
   "git": {
-    "head": "6a0c92620eaa7925b89ac2af12891bb4c384e970",
+    "head": "184cfcfe4fedcd436e325b68b6f282475b767eed",
     "branch": "release/final-submission-a2600116-20261030",
-    "status_clean": false,
-    "status_short": "M data/processed/paper/paper_check.json\n M data/processed/paper/paper_check.txt\n M scripts/build_release_manifest.py\n?? submission/"
+    "status_clean": true,
+    "status_short": ""
   },
   "python": {
     "executable": "C:\\Users\\10857\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
