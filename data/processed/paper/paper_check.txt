@@ -1,5 +1,5 @@
 PDF SHA256: 5a8bbfcd067ed7d12fa05d603ef106a17cf0816c47bb05b6455bf91e0795f11c
-生成时间(UTC): 2026-10-30T11:28:04+00:00
+生成时间(UTC): 2026-10-30T11:33:17+00:00
 论文 PDF 合规校验报告
 文件: data/processed/paper/paper.pdf
 总页数: 30（正文 23 页，附录 5 页）
