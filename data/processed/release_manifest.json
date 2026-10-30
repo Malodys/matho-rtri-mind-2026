@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-10-29T15:15:50.237495+00:00",
+  "generated_at_utc": "2026-10-30T07:31:11.016080+00:00",
   "git": {
-    "head": "d01eb42b22e97dff0277c1a8192c7385c9c252bb",
-    "branch": "release/toolchain-hardening-20261029",
+    "head": "8db9bc85c6939d24d9ae139b0ce11f61fdae8547",
+    "branch": "night/overnight-q123-20261030",
     "status_clean": false,
-    "status_short": "M README.md\n M \"data/processed/compliance/AI\\345\\267\\245\\345\\205\\267\\344\\275\\277\\347\\224\\250\\350\\257\\246\\346\\203\\205\\350\\257\\264\\346\\230\\216.docx\"\n M \"data/processed/compliance/AI\\345\\267\\245\\345\\205\\267\\344\\275\\277\\347\\224\\250\\350\\257\\246\\346\\203\\205\\350\\257\\264\\346\\230\\216.pdf\"\n M \"data/processed/compliance/AI\\345\\267\\245\\345\\205\\267\\344\\275\\277\\347\\224\\250\\350\\257\\246\\346\\203\\205\\350\\257\\264\\346\\230\\216_check.json\"\n M \"data/processed/compliance/AI\\345\\267\\245\\345\\205\\267\\344\\275\\277\\347\\224\\250\\350\\257\\246\\346\\203\\205\\350\\257\\264\\346\\230\\216_check.txt\"\n M data/processed/paper/README.md\n M data/processed/paper/paper.docx\n M data/processed/paper/paper.pdf\n M data/processed/paper/paper_check.json\n M data/processed/paper/paper_check.txt\n M data/processed/q1_final/README.md\n M data/processed/q1_final/model_summary.csv\n M data/processed/q1_final/run_config.json\n M data/processed/q1_final/test_predictions.csv.gz\n M docs/literature.md\n M docs/refs_verified.json\n M scripts/acceptance_check.py\n M scripts/build_ai_usage_doc.py\n M scripts/build_paper.py\n M scripts/check_paper_pdf.py\n M scripts/package_submission.py\n M scripts/q1_pipeline.py\n M scripts/q1_tabpfn_cv.py\n?? data/processed/release_manifest.json\n?? docs/external_data_policy.md\n?? docs/git_team_status.md\n?? external/\n?? scripts/build_release_manifest.py\n?? tests_q1/test_absolute_summary.py"
+    "status_short": "M data/processed/nightly/overnight-q123-20261030/acceptance_night.json\n M data/processed/paper/paper_check.json\n M data/processed/paper/paper_check.txt\n M data/processed/release_manifest.json"
   },
   "python": {
     "executable": "C:\\Users\\10857\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
@@ -27,7 +27,7 @@
   },
   "tests": {
     "status": "passed",
-    "summary": "86 passed in 58.13s; 1 PytestCacheWarning (cache directory permission)",
+    "summary": "pytest -q: 61 passed; Q1: 10 passed; Q2: all checks passed; Q3: 7/7; PDF: 5/5; acceptance V1-V14,V16-V17 passed; V15 deferred until formal release branch push",
     "command": "python -m pytest -q"
   },
   "git_diff_check": {
@@ -73,16 +73,16 @@
   },
   "artifact_hashes": {
     "requirements.lock.txt": {
-      "bytes": 1924,
-      "sha256": "f4616bf854947418ee7461800dbed08c8e42833d173d33c4bae6405aa2cc946e"
+      "bytes": 2019,
+      "sha256": "bf65a6f27d10d91491fc242621d4c488995823ab87bc64c4b3a9542014ca8143"
     },
     "README.md": {
-      "bytes": 2749,
-      "sha256": "9b23e31155e52cdfb665c2287b9be2a613850e0e00e46831926c399507e87d61"
+      "bytes": 2798,
+      "sha256": "f16df5242bc7c49bde52248c501270e20dc741dc1d0a209e312b9e46a1c4afa3"
     },
     "external/source_manifest.csv": {
-      "bytes": 1943,
-      "sha256": "3cdd6ad7302fb787c25dda6416f32f2d4aea9817313ec327afa3cb659762c5e1"
+      "bytes": 1949,
+      "sha256": "d9fd7d2dc95213af51dffb3c160d55ee73ccf1ab6cf098a2176fa6eef4342ee8"
     },
     "data/interim/chem_log10_matrix_v1.csv": {
       "bytes": 764100,
@@ -99,6 +99,14 @@
     "data/processed/q1_final/model_summary.csv": {
       "bytes": 5073,
       "sha256": "f208ef55b25572afe7504d6d0920237ca4aa15abe9cdb25b3d9769c0c1352d0a"
+    },
+    "data/processed/q1_final/model_independent_gbr.joblib": {
+      "bytes": 6197888,
+      "sha256": "69c9fdb8f30f5704324028250d575e1820af785ee8351da3a23609ed8b372991"
+    },
+    "data/processed/q1_final/model_independent_gbr_metadata.json": {
+      "bytes": 7054,
+      "sha256": "554a18c671f370df81de3c3e4a2b57657a46bc11da69a43441d3aba2559c05e9"
     },
     "data/processed/q1_final/absolute_grade_metrics_by_label.csv": {
       "bytes": 333,
@@ -117,41 +125,104 @@
       "sha256": "ee1167f92d1c581460286d3ec3b4eeffb4fcc9ae318a5be976dddab194b94d4c"
     },
     "data/processed/paper/paper.docx": {
-      "bytes": 1862312,
-      "sha256": "64cfb1362724d53ac1484025cd11f0edec02d7dd90340792ea268e73f950cfcc"
+      "bytes": 1873065,
+      "sha256": "043a8a82b255870b74cfe76eff1e6abeac30bfd4c527c9341709567611bf768e"
     },
     "data/processed/paper/paper.pdf": {
-      "bytes": 3081497,
-      "sha256": "c344896101c4bf73e38aa77d33be23acb0e19c61629a17a96e57a060f3d60695"
+      "bytes": 3113863,
+      "sha256": "a3b06e2c7f9c10bfde05933cbb8745d0f41b220ea700ea12d04bd25de1fff934"
     },
     "data/processed/paper/paper_check.json": {
       "bytes": 1850,
-      "sha256": "ff52fa743965dbf65bb642849347f93e4858b4295be1a2c09e1d106492130099"
+      "sha256": "1e5d8c087263dae33045200a8717e6203461625e22bdcfa775279b4b031f7027"
     },
     "data/processed/paper/paper_check.txt": {
       "bytes": 1145,
-      "sha256": "db20d710e3eea07260feeb5a51ef021f4bbbf1ee6684128fe3b8040aff974d16"
+      "sha256": "65d1269bf5d3f2d1faac40874bd839ca506217fb651b626539ab3fe1b21b46c0"
     }
+  },
+  "model_contract": {
+    "artifact": "data/processed/q1_final/model_independent_gbr.joblib",
+    "metadata": "data/processed/q1_final/model_independent_gbr_metadata.json",
+    "n_features": 227,
+    "n_targets": 50,
+    "n_training_rows": 250,
+    "holdout_protocol": "fixed style-stratified 175/75 split"
   },
   "external_sources": [
     {
       "source_id": "kaggle_top_beer_information",
+      "url": "https://www.kaggle.com/datasets/stephenpolozoff/top-beer-information",
+      "retrieved_at": "2026-10-29",
+      "license": "Kaggle dataset page; license must be confirmed before download",
+      "sha256": "not_downloaded",
+      "rows": "unknown",
+      "columns": "unknown",
+      "field_notes": "beer name/style, ABV, ratings and descriptions require schema and unit audit",
+      "match_rule": "no fuzzy join; exact curated identity only",
+      "matched_count": "not_run",
+      "unmatched_count": "not_run",
+      "allowed_use": "external_validation_metadata_only",
       "status": "schema_and_license_audit_required"
     },
     {
       "source_id": "zenodo_original_beer_data",
+      "url": "https://zenodo.org/records/10653704",
+      "retrieved_at": "2026-10-29",
+      "license": "Zenodo record; record rights field must be checked per file",
+      "sha256": "not_downloaded",
+      "rows": "unknown",
+      "columns": "unknown",
+      "field_notes": "original supplemental beer data and code; same source family as the attachment",
+      "match_rule": "no merge; benchmark reproduction only",
+      "matched_count": "not_applicable",
+      "unmatched_count": "not_applicable",
+      "allowed_use": "benchmark_reproduction_only",
       "status": "same_source_not_independent_data"
     },
     {
       "source_id": "zenodo_followup_beer_data",
+      "url": "https://zenodo.org/records/21811627",
+      "retrieved_at": "2026-10-29",
+      "license": "Zenodo record; restricted files and proprietary RateBeer field",
+      "sha256": "not_downloaded",
+      "rows": "unknown",
+      "columns": "unknown",
+      "field_notes": "chemical plus sensory data are described but files are restricted; RateBeer is proprietary",
+      "match_rule": "no download and no RateBeer retrieval",
+      "matched_count": "not_applicable",
+      "unmatched_count": "not_applicable",
+      "allowed_use": "method_discussion_only",
       "status": "restricted_do_not_depend_on_access"
     },
     {
       "source_id": "open_brewery_db",
+      "url": "https://api.openbrewerydb.org/docs/",
+      "retrieved_at": "2026-10-29",
+      "license": "Public API terms should be checked at time of use",
+      "sha256": "not_downloaded",
+      "rows": "unknown",
+      "columns": "unknown",
+      "field_notes": "brewery, country, location and type metadata; no chemical or sensory labels",
+      "match_rule": "exact brewery/beer identity after manual review only",
+      "matched_count": "not_run",
+      "unmatched_count": "not_run",
+      "allowed_use": "external_metadata_validation_only",
       "status": "not_downloaded"
     },
     {
       "source_id": "beer_db",
+      "url": "https://openbeer.github.io/",
+      "retrieved_at": "2026-10-29",
+      "license": "Public domain per project site",
+      "sha256": "not_downloaded",
+      "rows": "unknown",
+      "columns": "unknown",
+      "field_notes": "beer, brewery, country, style and ABV metadata; no chemical or consumer labels",
+      "match_rule": "exact curated identity only; no fuzzy join",
+      "matched_count": "not_run",
+      "unmatched_count": "not_run",
+      "allowed_use": "external_metadata_validation_only",
       "status": "not_downloaded"
     }
   ],
