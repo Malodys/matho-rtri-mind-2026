@@ -82,7 +82,7 @@ def _skip_path(rel: Path) -> bool:
             pass
         else:
             return True
-    if "q1_fair_tabpfn_full" in parts and "cache" in parts:
+    if parts[:2] == ("data", "processed") and "cache" in parts:
         return True
     for part in parts:
         if part in EXCLUDE_DIR_NAMES:
