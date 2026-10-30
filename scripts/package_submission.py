@@ -73,6 +73,12 @@ EXCLUDE_SUFFIXES = {".pyc", ".pyo", ".tmp"}
 def _skip_path(rel: Path) -> bool:
     """判断某个仓库相对路径是否应被排除。"""
     parts = rel.parts
+    if rel.as_posix() in {
+        "data/processed/acceptance_report.json",
+        "data/processed/acceptance_report.txt",
+        "data/processed/_acc_console.txt",
+    }:
+        return True
     # 打包产物目录本身绝不能被纳入：否则会把正在写的 ZIP 再打包进去（自包含，体积无限膨胀）。
     if parts[:3] == ("data", "processed", "submission"):
         return True
