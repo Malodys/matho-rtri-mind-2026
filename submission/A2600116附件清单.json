@@ -2189,7 +2189,7 @@
     {
       "path": "data/processed/release_manifest.json",
       "bytes": 12660,
-      "sha256": "c94fe56a053ff7d0f05098fddb3fa5630ed3f489959ab35cbef72285e07023d2"
+      "sha256": "52cc61f2e5109dd712114cb69391f55efaa924575b77274eeaaa42669868178d"
     },
     {
       "path": "AGENTS.md",
