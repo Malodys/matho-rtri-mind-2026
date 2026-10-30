@@ -1,0 +1,90 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "stage": "05_final_acceptance",
+  "status": "ready_for_local_release_pending_remote_push",
+  "generated_at": "2026-10-30T15:31:25+08:00",
+  "branch": "night/overnight-q123-20261030",
+  "commit_sha": "8db9bc85c6939d24d9ae139b0ce11f61fdae8547",
+  "commit_message": "fix(paper): revise prose and harden figure audits",
+  "checks": {
+    "full_pytest": {
+      "passed": true,
+      "passed_count": 61,
+      "summary": "61 passed in 46.46s"
+    },
+    "q1": {
+      "passed": true,
+      "passed_count": 10,
+      "model_contract": {
+        "features": 227,
+        "targets": 50,
+        "training_rows": 250,
+        "split": "175/75"
+      }
+    },
+    "q2": {
+      "passed": true,
+      "nodes": 231,
+      "edges_at_abs_rho_ge_0_6": 266,
+      "connected_components": 114,
+      "robust_dimensions": "22/50",
+      "dimensions_without_robust_item": "28/50",
+      "robust_records": 32,
+      "chemically_reasonable_records": 9
+    },
+    "q3": {
+      "passed": true,
+      "passed_count": 7,
+      "holdout_units": 48,
+      "compliance_rate_before_after": "13.5% -> 100%",
+      "acceptance_rate": "12.7%",
+      "units_with_distribution_loss": "42/48"
+    },
+    "figures": {
+      "passed": true,
+      "png_pdf_pairs": 17,
+      "q2_network_labels_complete": true,
+      "q4_price_legend_formalized": true
+    },
+    "paper_pdf": {
+      "passed": true,
+      "check_count": 5,
+      "total_pages": 36,
+      "body_pages": 30,
+      "appendix_pages": 4,
+      "pdf_sha256": "a3b06e2c7f9c10bfde05933cbb8745d0f41b220ea700ea12d04bd25de1fff934",
+      "check_generated_at_utc": "2026-10-30T07:30:12+00:00"
+    },
+    "acceptance": {
+      "passed_ids": [
+        "V1_venv", "V2_imports", "V3_lock", "V4_torch_cpu", "V5_cjk_plot",
+        "V6_remote_tests", "V7_tabpfn_repro", "V8_graph_stack", "V9_attribution_stack",
+        "V10_generation_stack", "V11_docx_skill", "V12_paper_pdf", "V13_ai_usage_doc",
+        "V14_agents_md", "V16_literature", "V17_figure_style"
+      ],
+      "deferred_ids": ["V15_git"],
+      "v15_failure_class": "unreachable",
+      "v15_reason": "night branch is intentionally not pushed; GitHub was unreachable"
+    },
+    "git_diff_check": true,
+    "raw_data_unchanged": true,
+    "submission_package_absent": true,
+    "external_data_policy_preserved": true,
+    "pdf_visual_pages_reviewed": 36
+  },
+  "paper_artifacts": {
+    "docx_sha256": "043a8a82b255870b74cfe76eff1e6abeac30bfd4c527c9341709567611bf768e",
+    "pdf_sha256": "a3b06e2c7f9c10bfde05933cbb8745d0f41b220ea700ea12d04bd25de1fff934",
+    "paper_check_json_sha256": "1e5d8c087263dae33045200a8717e6203461625e22bdcfa775279b4b031f7027",
+    "paper_check_txt_sha256": "65d1269bf5d3f2d1faac40874bd839ca506217fb651b626539ab3fe1b21b46c0",
+    "model_artifact_sha256": "69c9fdb8f30f5704324028250d575e1820af785ee8351da3a23609ed8b372991"
+  },
+  "guardrails": {
+    "scientific_claims_upgraded_after_failure": false,
+    "data_raw_added": false,
+    "teammate_worktree_added": false,
+    "submission_package_added": false,
+    "secrets_added": false,
+    "push_merge_rebase_or_hard_reset_run": false
+  }
+}

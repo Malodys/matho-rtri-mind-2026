@@ -1,0 +1,21 @@
+{
+  "recommended_primary_followup": "grouped_permutation_importance",
+  "group_definition": {
+    "primary": "abs_rho>=0.6 Leiden communities from q2_runs/graph/communities.csv",
+    "sensitivity": "repeat at abs_rho>=0.5 and report community-level agreement",
+    "singleton_policy": "isolated nodes remain singleton groups"
+  },
+  "evaluation_unit": "permute all columns in one correlated group jointly within a fixed validation fold",
+  "metrics": [
+    "delta holdout Spearman",
+    "delta holdout RMSE"
+  ],
+  "why_preferred": [
+    "227 chemical features contain strongly correlated communities",
+    "single-feature permutation can split credit arbitrarily among correlated proxies",
+    "the existing graph supplies auditable groups without fitting a new conditional density model"
+  ],
+  "conditional_shap_disposition": "not_run",
+  "conditional_shap_reason": "n=175 training samples is small relative to 227 features; no validated conditional sampler or cross-fitted conditional SHAP implementation is present. Running it now would add modeling risk and could be mistaken for confirmatory evidence.",
+  "causal_scope": "Both methods assess predictive attribution under correlation; neither identifies causality."
+}

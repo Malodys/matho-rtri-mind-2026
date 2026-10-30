@@ -1,0 +1,10 @@
+2026-10-30T03:32:00+08:00 | recovered | q2_robustness_audit.py first run
+Command: bundled Python q2_robustness_audit.py --permutations 5000 --seed 20261030
+Failure: ValueError: output array is read-only
+Location: rank_unit(), in-place centering of pandas to_numpy() result
+Recovery: changed the rank array to an explicit writable copy; reran the full command successfully.
+Impact: no main Q2 artifact was written; only the nightly signed-Spearman CSV had been created before failure and was overwritten by the successful rerun.
+
+2026-10-30T03:35:00+08:00 | not_run_guardrail | scripts/q2_verify.py
+Reason: the available bundled Python lacks scipy, while q2_verify.py imports q2_common.py (scipy dependency). More importantly, q2_verify.py writes acceptance_q2.txt to the fixed main q2_runs directory and has no output redirection option. Running it would violate this task's no-main-overwrite boundary.
+Recovery: reproduced its consequential count/domain checks with the nightly audit and performed read-only CSV/JSON/figure checks. No claim is made that q2_verify.py itself ran in this stage.

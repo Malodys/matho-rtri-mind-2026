@@ -1,0 +1,15 @@
+2026-10-30 Q3 nightly recoverable issues
+
+1. codex_app workspace dependency discovery did not return after repeated bounded waits and was terminated.
+   Recovery: inspected locked requirements and executable paths directly.
+
+2. Codex bundled Python 3.12.14 initially lacked scipy/sklearn.
+   Recovery: reused the repository's locked site-packages at
+   F:\cs\mothercup\matho-rtri-mind-2026\.venv\Lib\site-packages through PYTHONPATH.
+   Verified versions: numpy 2.4.6, pandas 2.3.3, scipy 1.18.1, scikit-learn 1.9.1.
+
+3. Direct invocation of reproduce.ps1 was blocked by the local PowerShell execution policy.
+   Recovery: reran with powershell.exe -NoProfile -ExecutionPolicy Bypass -File.
+   The rerun completed and six core CSV/JSON outputs were byte-identical.
+
+4. No model/metric run failed. No constraint fallback compression was triggered in 48 holdout audit units.

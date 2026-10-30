@@ -25,7 +25,7 @@ python scripts/acceptance_check.py --python <python-3.12-path> --json data/proce
 .\.venv\Scripts\python.exe -m pytest tests_q1 -q
 ```
 
-`model_summary.csv` 中 `abs_valid_*` 是三维有效绝对轨汇总；`abs_threshold_*` 和 `abs_fallback_*` 只表示各自子集，兼容字段 `abs_*` 等于 `abs_valid_*`。TabPFN 当前产物是原始 231 特征、KFold 的队友协议复现，不与主模型的 227 特征、固定 175/75 留出结果直接比较。
+`model_summary.csv` 中 `abs_valid_*` 是三维有效绝对轨汇总；`abs_threshold_*` 和 `abs_fallback_*` 只表示各自子集，兼容字段 `abs_*` 等于 `abs_valid_*`。TabPFN 当前产物采用原始 231 特征和 KFold 的既有复现协议，不与主模型的 227 特征、固定 175/75 留出结果直接比较。
 
 ## 论文与提交
 

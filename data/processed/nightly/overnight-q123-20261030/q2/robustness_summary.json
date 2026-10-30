@@ -1,0 +1,134 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "main_result_preserved": {
+    "graph_abs_rho_threshold": 0.6,
+    "graph_nodes": 231,
+    "graph_edges": 266,
+    "graph_components": 114
+  },
+  "required_invariants": {
+    "robust_rows": 32,
+    "robust_dimensions": 22,
+    "dimensions_without_robust_item": 28,
+    "robust_and_chem_plausible_rows": 9,
+    "robust_dimension_names": [
+      "A_esters_all",
+      "A_hops_all",
+      "A_hops_noble",
+      "A_malt_all",
+      "A_malt_burn",
+      "A_malt_cara",
+      "F_esters_all",
+      "F_esters_ethac",
+      "F_hops_all",
+      "F_hops_noble",
+      "F_malt_all",
+      "F_malt_burn",
+      "F_malt_cara",
+      "X4vg",
+      "acetic",
+      "alcohol",
+      "bitternes",
+      "body",
+      "co2",
+      "dms",
+      "lactic",
+      "sweetness"
+    ],
+    "dimensions_without_robust_item_names": [
+      "A_esters_ethac",
+      "A_esters_flower",
+      "A_esters_fruity",
+      "A_esters_isoaa",
+      "A_hops_citrus",
+      "A_hops_tropical",
+      "A_hops_woody",
+      "A_malt_bread",
+      "A_malt_grain",
+      "F_esters_flower",
+      "F_esters_fruity",
+      "F_esters_isoaa",
+      "F_hops_citrus",
+      "F_hops_tropical",
+      "F_hops_woody",
+      "F_malt_bread",
+      "F_malt_grain",
+      "acidity",
+      "aftertaste",
+      "barnyard",
+      "clove",
+      "coriander",
+      "diacetyl",
+      "metallic",
+      "orange",
+      "overall",
+      "stale_hops",
+      "t2n"
+    ],
+    "checks": {
+      "robust_dimensions_is_22": true,
+      "dimensions_without_robust_item_is_28": true,
+      "robust_and_chem_plausible_rows_is_9": true
+    }
+  },
+  "signed_spearman": {
+    "published_top3_positive": 129,
+    "published_top3_negative": 21,
+    "robust_positive": 31,
+    "robust_negative": 1
+  },
+  "train_selection_holdout_permutation": {
+    "permutations": 5000,
+    "seed": 20261030,
+    "family_size": 150,
+    "fdr_0p05_rows": 83,
+    "fdr_0p05_dimensions": 34,
+    "sign_consistent_rows": 130,
+    "sign_consistent_fraction": 0.8666666666666667,
+    "mean_published_vs_train_top3_jaccard": 0.628,
+    "dimensions_with_full_top3_overlap": 19,
+    "scope_note": "Top-3 is reselected using training-only E2 plus the existing training-fitted E3, then tested on the fixed 75-sample holdout. BH controls the 150 preselected holdout association tests; it does not validate chemistry or causality."
+  },
+  "published_main_robust_holdout_review": {
+    "published_robust_rows": 32,
+    "retained_by_train_only_top3": 32,
+    "sign_consistent_rows": 32,
+    "holdout_fdr_0p05_rows": 30,
+    "robust_and_chem_plausible_holdout_fdr_0p05_rows": 9,
+    "rows_not_passing_holdout_fdr": [
+      {
+        "sensory_dimension": "A_esters_all",
+        "compound": "n.hexanol",
+        "holdout_rho": 0.2021621621621622,
+        "holdout_bh_q_150": 0.12540045182452872,
+        "chem_plausibility": "弱"
+      },
+      {
+        "sensory_dimension": "dms",
+        "compound": "protein.g.L.",
+        "holdout_rho": -0.25023474340476703,
+        "holdout_bh_q_150": 0.054989002199560086,
+        "chem_plausibility": "弱"
+      }
+    ],
+    "scope_note": "This is an association robustness check. A row can reproduce statistically while remaining chemically weak, and no row is promoted to a causal claim."
+  },
+  "correlated_group_review": {
+    "dimensions_with_top3_group_redundancy": 23,
+    "dimensions_total": 50
+  },
+  "historical_discrepancy": {
+    "review_round2_claimed_robust_rows": 33,
+    "current_recomputed_robust_rows": 32,
+    "disposition": "report_only_do_not_overwrite_main_result"
+  },
+  "input_sha256": {
+    "summary": "ff8f82b9ee3cbc31abc3e9dab347f35b1fd93bd79c50189345fb508e4519d329",
+    "top3": "fa8773f54421aaa9b660b9c546d5514b043101b5a3a9b2ff352db7aabe0628c1",
+    "stability": "876f995045a973d8633c21f89283f07f6f5a34b4a5ceb4d10257d46a1df7538d",
+    "bootstrap": "b1893ea1697c309a4d04a8350ca57f011b3146d3ccccc9f375c1c0664f5c7701",
+    "e2": "3a0842563a2c59d25bbfee322c3795d1fc08644192a83f6280a282f6c54e88f8",
+    "e3": "745f26754c83c57de36ea5b7cb833f0c85ff93a7bd3428e0366885918bf29b4f",
+    "communities": "ed125f2f919c085f24f22ea3388d0fbd5a77b2c4f7b05091becdab3cb40fae1d"
+  }
+}

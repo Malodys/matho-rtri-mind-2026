@@ -37,7 +37,12 @@ TARGET_STYLES = ["Tripel", "Kriek", "Lambic"]
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="问题3 六条验收标准逐条重算")
-    parser.parse_args(argv)
+    parser.add_argument(
+        "--python",
+        default=sys.executable,
+        help="用于逐个执行 Q3 脚本 --help 的 Python 解释器（默认当前解释器）",
+    )
+    args = parser.parse_args(argv)
 
     data = q3.load_dataset()
     specs = q3.defect_specs(data.defects)
@@ -130,7 +135,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     scripts = ["q3_copula.py", "q3_generate.py", "q3_transfer.py",
                "q3_sensory_profile.py", "q3_figures.py", "q3_report.py",
                "q3_probe_env.py", "q3_verify.py"]
-    py = str(REPO_ROOT / ".venv" / "Scripts" / "python.exe")
+    py = str(Path(args.python).resolve())
     bad_scripts = []
     for s in scripts:
         p = REPO_ROOT / "scripts" / s

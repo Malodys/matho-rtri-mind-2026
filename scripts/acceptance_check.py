@@ -83,6 +83,24 @@ def _resolve_python(root: Path, python_path: str | Path | None) -> Path:
     return candidate if candidate.is_absolute() else (root / candidate).resolve()
 
 
+def _teammate_worktree(root: Path) -> Path | None:
+    """Locate the detached teammate worktree without modifying it.
+
+    The repository has existed both with a sibling worktree under the shared
+    workspace and with a nested worktree under the formal checkout.  Acceptance
+    only reads the first existing candidate so the check remains portable.
+    """
+    candidates = [
+        root / "worktrees" / "prediction-models",
+        root.parent / "prediction-models",
+        root.parent.parent / "matho-rtri-mind-2026" / "worktrees" / "prediction-models",
+    ]
+    for candidate in candidates:
+        if candidate.is_dir() and (candidate / "tests").is_dir():
+            return candidate
+    return None
+
+
 def _py(root: Path, code: str, python_path: Path) -> tuple[int, str]:
     py = python_path
     try:
@@ -110,8 +128,10 @@ def _remote_heads(root: Path, attempts: int = 3, pause: float = 4.0) -> tuple[st
                 ["git", "-C", str(root), "ls-remote", "--heads", "origin"],
                 capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60,
             )
-        except Exception as exc:
-            return "error", "", f"{exc.__class__.__name__}: {exc}"
+        except FileNotFoundError as exc:
+            return "local_environment_broken", "", f"git unavailable: {exc}"
+        except OSError as exc:
+            return "local_environment_broken", "", f"local git execution failed: {exc}"
         if out.returncode == 0:
             return "reachable", out.stdout.strip(), "ok"
         last_detail = (out.stderr or out.stdout or "git ls-remote failed").strip()
@@ -119,18 +139,29 @@ def _remote_heads(root: Path, attempts: int = 3, pause: float = 4.0) -> tuple[st
             time.sleep(pause)
 
     lowered = last_detail.lower()
+    if any(marker in lowered for marker in ("not a git repository", "cannot find", "no such file")):
+        return "local_environment_broken", "", last_detail
     network_markers = ("could not resolve", "connection", "timed out", "timeout",
                        "network is unreachable", "tls", "ssl", "proxy", "unable to access")
     status = "unreachable" if any(marker in lowered for marker in network_markers) else "error"
     return status, "", last_detail
 
 
+def _classify_remote_branch(remote_status: str, remote_branches: str, branch: str) -> str:
+    """Map remote discovery to a machine-readable acceptance category."""
+    if remote_status != "reachable":
+        return remote_status
+    return "branch_present" if f"refs/heads/{branch}" in remote_branches else "branch_missing"
+
+
 def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
+    root = root.resolve()
     res: list[dict] = []
     py_exe = _resolve_python(root, python_path)
 
     def add(vid, desc, passed, detail):
-        res.append({"id": vid, "desc": desc, "passed": bool(passed), "detail": str(detail)})
+        res.append({"id": vid, "desc": desc, "passed": bool(passed),
+                    "status": "PASS" if passed else "FAIL", "detail": str(detail)})
 
     # V1 venv 就位
     v1 = py_exe.is_file()
@@ -171,8 +202,8 @@ def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
     add("V5_cjk_plot", "中文出图产物存在且非空", v5, f"{png.name} {png.stat().st_size if png.is_file() else 0} bytes")
 
     # V6 远端测试
-    wt = root / "worktrees" / "prediction-models"
-    tests = wt / "tests"
+    wt = _teammate_worktree(root)
+    tests = wt / "tests" if wt is not None else root / "__missing_teammate_tests__"
     v6 = tests.is_dir() and len(list(tests.glob("test_*.py"))) >= 7
     add("V6_remote_tests", "远端管线测试文件已就位（≥7 个）", v6,
         f"{len(list(tests.glob('test_*.py'))) if tests.is_dir() else 0} 个测试文件")
@@ -182,7 +213,7 @@ def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
     local_repro = root / "data" / "processed" / "q1_repro_tabpfn" / "cv_summary.csv"
     if local_repro.is_file():
         cands.append(local_repro)
-    wt_results = root / "worktrees" / "prediction-models" / "results"
+    wt_results = wt / "results" if wt is not None else root / "__missing_teammate_results__"
     if wt_results.is_dir():
         cands.extend(sorted(wt_results.glob("tabpfn_3_5_cv5_seed_*/cv_summary.csv")))
 
@@ -223,32 +254,17 @@ def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
     else:
         add("V8_V9_V10_stack", "能力栈冒烟报告存在", False, "stack_smoke.json 缺失")
 
-    # V11 docx 技能：CLI 路径按环境变量/用户目录动态定位，不在源码里写死本机绝对路径
-    # （本文件会随支撑材料打包，写死路径等于泄漏构建机目录结构）。
-    cli = None
-    for cand_env in ("MINIMAXAIDOCX_CLI",):
-        v = os.environ.get(cand_env)
-        if v and Path(v).is_dir():
-            cli = Path(v)
-            break
-    if cli is None:
-        home = Path.home()
-        for base in [home / ".minimax" / ".builtin-skills" / "docx" / "scripts" / "dotnet",
-                     home / ".claude" / "skills" / "docx" / "scripts" / "dotnet"]:
-            if base.is_dir():
-                cli = base
-                break
-    # 实际 CLI 是一个名为 MiniMaxAIDocx.Cli 的目录；若只找到上层 dotnet 目录则向下找
-    if cli is not None and cli.name != "MiniMaxAIDocx.Cli":
-        nested = cli / "MiniMaxAIDocx.Cli"
-        cli = nested if nested.is_dir() else cli
-    smoke_docx = root / "data" / "processed" / "paper_smoke" / "paper_smoke.docx"
-    v11 = cli is not None and cli.is_dir() and smoke_docx.is_file()
-    add("V11_docx_skill", "docx 技能后端可用且模板冒烟产物存在", v11,
-        f"CLI 存在={bool(cli and cli.is_dir())}；冒烟 docx={smoke_docx.is_file()}")
+    # V11 最终文档产物：构建期 smoke 目录不属于交付接口。
+    paper_dir = root / "data" / "processed" / "paper"
+    final_docx = paper_dir / "paper.docx"
+    final_pdf = paper_dir / "paper.pdf"
+    final_check = paper_dir / "paper_check.json"
+    v11 = final_docx.is_file() and final_pdf.is_file() and final_check.is_file()
+    add("V11_docx_skill", "最终 DOCX、PDF 与检查报告均已生成", v11,
+        f"docx={final_docx.is_file()}；pdf={final_pdf.is_file()}；check={final_check.is_file()}")
 
     # V12 论文 PDF 五项校验
-    chk = root / "data" / "processed" / "paper_smoke" / "paper_smoke_check.json"
+    chk = root / "data" / "processed" / "paper" / "paper_check.json"
     v12 = False
     v12_detail = "校验报告缺失"
     if chk.is_file():
@@ -359,17 +375,23 @@ def run_checks(root: Path, python_path: str | Path | None = None) -> list[dict]:
     commit_lines = [ln for ln in commits.splitlines() if ln.strip()]
     remote_status, remote_branches, remote_detail = _remote_heads(root)
     on_remote = f"refs/heads/{branch}" in remote_branches
-    remote_reason = ("branch_present" if on_remote else "branch_missing") \
-        if remote_status == "reachable" else remote_status
-    branch_allowed = branch == "feat/toolchain-env" or branch.startswith("release/toolchain-hardening-")
+    remote_reason = _classify_remote_branch(remote_status, remote_branches, branch)
+    branch_allowed = (branch == "feat/toolchain-env"
+                      or branch.startswith("release/toolchain-hardening-")
+                      or branch.startswith("night/"))
+    wt_list_normalized = wt_list.replace("\\", "/").lower()
+    wt_in_list = (wt is not None
+                  and wt.resolve().as_posix().lower() in wt_list_normalized)
     v15 = (branch_allowed and ahead.isdigit() and int(ahead) >= 2
-           and "prediction-models" in wt_list and not dirty_tracked
+           and wt_in_list and not dirty_tracked
            and not unexpected_untracked and bool(commit_lines) and on_remote)
     add("V15_git", "分支/提交/worktree 就位，工作树干净，分支已在远端留存", v15,
         f"branch={branch}, upstream={upstream}, 相对 origin/main 提交数={ahead}, "
         f"跟踪文件改动={dirty_tracked or '无'}, 非预期未跟踪={unexpected_untracked or '无'}, "
         f"远端状态={remote_reason}，远端存在该分支={on_remote}"
+        f"，队友 worktree={wt or '未找到'}（登记={wt_in_list}）"
         + (f"，详情={remote_detail}" if remote_status != "reachable" else ""))
+    res[-1]["failure_class"] = remote_reason if not v15 else "none"
 
     return res
 

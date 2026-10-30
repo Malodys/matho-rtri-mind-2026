@@ -1,0 +1,8 @@
+[
+  {
+    "file": "holdout_energy_comparison",
+    "title": "留出分布距离",
+    "caption": "8 个风格在 3 个分层留出随机种子、2 种 Copula 相关结构下的 energy distance 均值与标准差；真实训练参照、无约束生成和受约束生成使用相同稳健标准化。误差条表示划分、抽样与模型选择的合并波动，不是置信区间。AI 辅助绘图，数值由审计脚本现场聚合。",
+    "source": "holdout_seed_metrics.csv"
+  }
+]

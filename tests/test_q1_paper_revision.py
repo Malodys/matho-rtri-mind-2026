@@ -2,6 +2,7 @@
 # AI 辅助：Codex (GPT-6), OpenAI, 2026-10-30
 # 人工复核状态：待团队核验；以下为产物一致性自动检查。
 import unittest
+import subprocess
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -33,6 +34,20 @@ class Q1PaperRevisionTests(unittest.TestCase):
         self.assertEqual(grades.shape,(250,50))
         self.assertTrue(grades.notna().all().all())
         self.assertTrue(((grades>=0)&(grades<=6)).all().all())
+    def test_collaborator_original_is_unchanged(self):
+        for name in ["README.md","paper.docx","paper.pdf","paper_check.json","paper_check.txt"]:
+            rel="data/processed/paper/"+name
+            remote=subprocess.check_output(["git","show","773269f:"+rel],cwd=ROOT)
+            actual=(ROOT/rel).read_bytes()
+            if name.endswith((".md",".json",".txt")):
+                actual=actual.replace(b"\r\n",b"\n")
+                remote=remote.replace(b"\r\n",b"\n")
+            self.assertEqual(actual,remote,name)
+    def test_collaborator_validation_is_in_revised_paper(self):
+        d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
+        text="".join(p.text for p in d.paragraphs).replace(" ","")
+        for value in ["83/150","30/32","FDR","48","12.7","0.240729"]:
+            self.assertIn(value,text)
     def test_document_uses_final_method_and_metrics(self):
         d=Document(ROOT/"data/processed/paper-q1-revised/paper.docx")
         text="\n".join(p.text for p in d.paragraphs)

@@ -134,12 +134,13 @@ def build_figures() -> list[dict]:
             "title": "价格部分效应",
             "caption": (
                 f"图 4  价格部分效应。三个设定下 log 价格对各感官维度的偏回归系数及 95% 置信区间："
-                f"ols（R²={_f(r2.get('ols', float('nan')), 3)}）、"
-                f"ols_with_abv（加入 ABV，R²={_f(r2.get('ols_with_abv', float('nan')), 3)}）、"
-                f"fixed_effects（再加入风格固定效应、按风格聚类稳健标准误，"
+                f"OLS（R²={_f(r2.get('ols', float('nan')), 3)}）、"
+                f"OLS + ABV（加入 ABV，R²={_f(r2.get('ols_with_abv', float('nan')), 3)}）、"
+                f"风格固定效应（再加入风格固定效应、按风格聚类稳健标准误，"
                 f"R²={_f(r2.get('fixed_effects', float('nan')), 3)}），"
                 f"样本量 n={n}（仅含 ≥2 家零售报价的啤酒）。"
-                f"价格来自单一零售源附件，此处仅作为外部价值信号，不作市场因果解释。"
+                f"价格来自同一附件内 7 家零售商的跨币种报价，未做汇率换算；"
+                f"此处仅作为外部价值信号，不作市场因果解释。"
             ),
             "width_in": 5.0,
             "outputs": _outputs("fig4_price_effects"),

@@ -1,0 +1,31 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "stage": "00_baseline",
+  "status": "completed",
+  "started_at": "2026-10-30T00:31:04.2049709+08:00",
+  "ended_at": "2026-10-30T00:32:09.4961926+08:00",
+  "branch": "night/overnight-q123-20261030",
+  "worktree": "F:\\cs\\mothercup\\worktrees\\overnight-q123-20261030",
+  "tests": [
+    "PASS: state and lock JSON parse",
+    "PASS: git diff --check"
+  ],
+  "changed_files": [
+    "data/processed/nightly/overnight-q123-20261030/00_baseline.md",
+    "state/00_baseline.json",
+    "state/locks/00_baseline.lock/owner.json"
+  ],
+  "failure_reason": null,
+  "commit_sha": "f49581ff563f626abc10eb1727e0b5c07ead9d2d",
+  "merge_base_origin_main": "10cfca621b9c92f28fc80d49ab15730101130a5c",
+  "observed_refs": {
+    "origin/main": "10cfca621b9c92f28fc80d49ab15730101130a5c",
+    "origin/experiments/prediction-models": "15d0c991ddccab012defcaf6ea31cea74ebb7aa0",
+    "origin/feat/initial-data-analysis": "2d72caea91292e847aaea97dbb638ebe59cadaec"
+  },
+  "environment": {
+    "powershell": "5.1.26100.9711",
+    "git": "2.55.0.windows.2",
+    "python": "3.12.13"
+  }
+}

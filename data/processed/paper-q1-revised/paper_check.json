@@ -48,7 +48,7 @@
       "id": "chinese_extractable",
       "desc": "中文可正常抽取，无替换符/缺字方块",
       "passed": true,
-      "detail": "中文字符占比 34.2%；异常字符 无"
+      "detail": "中文字符占比 34.9%；异常字符 无"
     },
     {
       "id": "footer_page_number",
@@ -70,6 +70,6 @@
     }
   ],
   "all_passed": true,
-  "pdf_sha256": "624ffa6eb28a327bfc3ec9856c5105a27a2bcd4b503c1543566ff9c53ed954f7",
-  "generated_at_utc": "2026-10-30T08:11:00+00:00"
+  "pdf_sha256": "60eecf16a3f5cd9675280d20f363aca83464899cb948c550a35c1c109ef7994e",
+  "generated_at_utc": "2026-10-30T08:21:05+00:00"
 }

@@ -1,0 +1,68 @@
+{
+  "scope": "data/processed/q2_figures",
+  "automated_checks": {
+    "manifest_entries": 6,
+    "png_count": 6,
+    "pdf_count": 6,
+    "all_stems_paired": true,
+    "all_pdf_headers_valid": true,
+    "all_manifest_outputs_exist": true,
+    "main_numeric_source": "data/processed/q2_runs",
+    "main_graph_values_match": {
+      "abs_rho_threshold": 0.6,
+      "nodes": 231,
+      "edges": 266,
+      "connected_components": 114,
+      "isolated_nodes": 101
+    },
+    "network_top6_names_complete": true,
+    "caption_manifest_consistent": true,
+    "ari_scale_consistent": true
+  },
+  "manual_visual_review": [
+    {
+      "figures": [
+        "fig1_coexpression_network_by_origin",
+        "fig2_coexpression_network_by_community"
+      ],
+      "severity": "PASS",
+      "finding": "Top-6 names are complete and wrapped in the right-side key; no truncation or key-label collision was observed. The dense central network remains intentionally unlabelled, while node size and color encode the declared graph attributes.",
+      "disposition": "accepted_after_regeneration"
+    },
+    {
+      "figures": [
+        "fig1_coexpression_network_by_origin",
+        "fig2_coexpression_network_by_community",
+        "fig3_community_composition_heatmap"
+      ],
+      "severity": "PASS",
+      "finding": "The network captions now direct the reader to the supporting community-member table for the 101 omitted isolated nodes; fig3 is explicitly limited to non-trivial communities and no longer claims to display singleton composition.",
+      "disposition": "accepted_after_caption_audit"
+    },
+    {
+      "figures": [
+        "fig6_threshold_selection"
+      ],
+      "severity": "PASS",
+      "finding": "The ARI caption and rendered sequential color scale agree: 0 is light and 1 is dark.",
+      "disposition": "accepted_after_regeneration"
+    },
+    {
+      "figures": [
+        "fig5_method_consistency_jaccard"
+      ],
+      "severity": "PASS",
+      "finding": "The caption states that E1 covers 44 mapped compounds whereas E2 and E3 cover 227 modeling features, so the coverage asymmetry is visible at the point of interpretation.",
+      "disposition": "accepted_after_caption_audit"
+    }
+  ],
+  "accepted_visuals": [
+    "fig1_coexpression_network_by_origin",
+    "fig2_coexpression_network_by_community",
+    "fig3_community_composition_heatmap",
+    "fig4_top3_bootstrap_frequency",
+    "fig5_method_consistency_jaccard",
+    "fig6_threshold_selection"
+  ],
+  "overall": "All Q2 figures have been regenerated as paired PNG/PDF outputs. Content, units, legends, captions, color scales, clipping and visible label collisions passed the review within the static-figure scope."
+}

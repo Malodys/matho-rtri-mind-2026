@@ -1,0 +1,71 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "stage": "04_paper",
+  "status": "completed_with_caveats",
+  "ended_at": "2026-10-30T07:58:18.7794113+08:00",
+  "branch": "night/overnight-q123-20261030",
+  "worktree": "F:\\cs\\mothercup\\worktrees\\overnight-q123-20261030",
+  "commit_sha": "f49581ff563f626abc10eb1727e0b5c07ead9d2d",
+  "scientific_results_recomputed": false,
+  "raw_data_modified": false,
+  "team_placeholder_replaced": false,
+  "submission_package_created": false,
+  "git_commit_created": false,
+  "git_push_run": false,
+  "paper": {
+    "docx": "data/processed/paper/paper.docx",
+    "pdf": "data/processed/paper/paper.pdf",
+    "check_json": "data/processed/paper/paper_check.json",
+    "check_txt": "data/processed/paper/paper_check.txt",
+    "pdf_backend": "Microsoft Word 2019",
+    "total_pages": 36,
+    "body_pages": 30,
+    "appendix_pages": 4,
+    "figures_in_body": 13,
+    "unique_media_hashes": 13,
+    "docx_core_metadata_scrubbed": true,
+    "placeholder_preserved": "MCB260XXXX"
+  },
+  "claim_boundaries": {
+    "q1_tabpfn": "231 features plus KFold; protocol check only, not ranked against 227-feature fixed 175/75 main models",
+    "q2": "holdout association replication only; no causal or mechanistic claim",
+    "q3": "zero violations mean hard-constraint compliance, while holdout realism worsened in 42 of 48 units",
+    "q4": "no consumer liking label; descriptors and cross-retailer prices are proxies only"
+  },
+  "figure_qa": {
+    "paired_png_pdf": {
+      "q1": 4,
+      "q2": 6,
+      "q3": 7,
+      "q4": 4,
+      "q3_nightly": 1
+    },
+    "all_pairs_complete": true,
+    "manifest_counts_match": true,
+    "all_final_pdf_pages_visually_reviewed": true,
+    "overlap_or_clipping_found_after_fix": false
+  },
+  "tests": {
+    "paper_check": "PASS: 5/5",
+    "targeted_plot_and_literature": "PASS: 19/19",
+    "full_pytest": "57 passed, 1 failed",
+    "full_pytest_failure": "tests_q1/test_q1_deliverables.py::test_predict_interface_contract: missing data/processed/q1_final/model_independent_gbr.joblib",
+    "git_diff_check": "PASS"
+  },
+  "known_caveats": [
+    "The canonical Q1 prediction model artifact is absent; it was not recreated or fabricated.",
+    "Q2 has correlated-group redundancy in 23 of 50 dimensions; conditional attribution was not run.",
+    "Q3 real holdouts contain only 3-9 beers per style; style-level rankings remain unstable.",
+    "Q4 lacks direct consumer liking or purchase labels, and prices mix currencies without conversion.",
+    "The bundled DOCX render helper could not rasterize because Poppler was absent from PATH; the final Word PDF was instead rasterized with pypdfium2 and all 36 pages were visually reviewed."
+  ],
+  "outputs": [
+    "data/processed/nightly/overnight-q123-20261030/04_peer_review.md",
+    "data/processed/nightly/overnight-q123-20261030/04_figure_qa.md",
+    "state/04_paper.json",
+    "data/processed/paper/paper.docx",
+    "data/processed/paper/paper.pdf",
+    "data/processed/paper/paper_check.json",
+    "data/processed/paper/paper_check.txt"
+  ]
+}

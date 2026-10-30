@@ -1,0 +1,139 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "stage": "01_q1",
+  "status": "dependency_missing",
+  "ended_at": "2026-10-30T01:37:08.0425251+08:00",
+  "branch": "night/overnight-q123-20261030",
+  "worktree": "F:\\cs\\mothercup\\worktrees\\overnight-q123-20261030",
+  "commit_sha": "f49581ff563f626abc10eb1727e0b5c07ead9d2d",
+  "dependency": {
+    "required_path": "data/processed/nightly/overnight-q123-20261030/state/00_baseline.json",
+    "exists": false,
+    "alternate_observed_path": "state/00_baseline.json",
+    "alternate_used_as_dependency": false,
+    "reason": "The required canonical baseline JSON is absent; the task contract requires dependency_missing and read-only review."
+  },
+  "execution": {
+    "mode": "read_only_review",
+    "bounded_recompute_run": false,
+    "model_fit_run": false,
+    "repeat_seeds_added": 0,
+    "official_q1_final_modified": false,
+    "raw_data_modified": false,
+    "tabpfn_fair_comparison_run": false,
+    "submission_package_created": false,
+    "git_push_run": false
+  },
+  "protocol_audit": {
+    "samples": 250,
+    "features": 227,
+    "targets": 50,
+    "train_n": 175,
+    "test_n": 75,
+    "split": "seed_0 style-stratified fixed holdout",
+    "tuning": "inner folds on training data",
+    "run_families": 7,
+    "holdout_prediction_rows_per_family": 3750,
+    "deliverable_shape": [250, 153]
+  },
+  "existing_metrics": {
+    "selected_model": "independent_gbr",
+    "selected_macro_rmse": 0.48795051796477407,
+    "selected_macro_mae": 0.3504743207665087,
+    "selected_r2_mean": 0.21331888708633165,
+    "selected_spearman_mean": 0.3937934775276933,
+    "global_mean_macro_rmse": 0.5762411578605328,
+    "abs_threshold": {
+      "dimensions": 2,
+      "mae": 0.6860248915597303,
+      "exact_accuracy": 0.45333333333333337,
+      "within_one_accuracy": 0.8866666666666667,
+      "qwk": 0.7920562874420969
+    },
+    "abs_fallback": {
+      "dimensions": 1,
+      "mae": 1.1553839969676738,
+      "exact_accuracy": 0.24,
+      "within_one_accuracy": 0.6933333333333334,
+      "qwk": 0.48936970051376294
+    },
+    "abs_valid": {
+      "dimensions": 3,
+      "mae": 0.8424779266957115,
+      "exact_accuracy": 0.38222222222222224,
+      "within_one_accuracy": 0.8222222222222223,
+      "qwk": 0.6911607584659856
+    },
+    "abs_alias_matches_abs_valid": true
+  },
+  "tabpfn": {
+    "existing_protocol": "legacy teammate protocol: 231 features, KFold 5, seed 0, 175 samples",
+    "existing_cv_mean_rmse": 0.4594967821869611,
+    "fair_output_exists": false,
+    "comparison_disposition": "队友协议复现，不可直接比较"
+  },
+  "tests": [
+    {
+      "command": "python -m pytest tests_q1 -q -p no:cacheprovider",
+      "status": "not_run_environment_error",
+      "exit_code": 1,
+      "detail": "LibreOffice embedded Python has no pytest"
+    },
+    {
+      "command": "Codex bundled Python -m pytest tests_q1 -q -p no:cacheprovider",
+      "status": "not_run_environment_error",
+      "exit_code": 1,
+      "detail": "pytest is not installed"
+    },
+    {
+      "command": "repository venv Python -m pytest tests_q1 -q -p no:cacheprovider",
+      "status": "not_run_environment_error",
+      "exit_code": 103,
+      "detail": "venv interpreter target is missing"
+    },
+    {
+      "command": "py -3.12 -m pytest tests_q1 -q -p no:cacheprovider",
+      "status": "not_run_environment_error",
+      "exit_code": 101,
+      "detail": "Python launcher could not create process"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "PowerShell static Q1 contract audit",
+      "status": "passed",
+      "exit_code": 0
+    }
+  ],
+  "anomalies": [
+    "Required canonical baseline JSON is missing while state/00_baseline.json exists elsewhere.",
+    "No usable Python environment was available to collect Q1 pytest tests.",
+    "Absolute-track metrics are calculated from independent_gbr once and repeated on every model_summary row; provenance should be explicit.",
+    "Existing TabPFN artifact uses 231 features and KFold, so it is not a fair main-protocol comparator."
+  ],
+  "recommended_changes": [
+    "Restore the canonical baseline dependency path before bounded recomputation.",
+    "Repair the locked Python 3.12 test environment and run Q1 regression tests.",
+    "Add explicit absolute-metric model provenance and subset denominators.",
+    "Write any future bounded or repeated-seed outputs only under the nightly q1 directory."
+  ],
+  "rejected_changes": [
+    "Do not overwrite data/processed/q1_final.",
+    "Do not run an unbounded grid search.",
+    "Do not compare legacy TabPFN results directly with the main holdout metrics.",
+    "Do not promote conformal intervals without coverage and width validation."
+  ],
+  "official_artifact_sha256": {
+    "data/processed/q1_final/model_summary.csv": "F208EF55B25572AFE7504D6D0920237CA4AA15ABE9CDB25B3D9769C0C1352D0A",
+    "data/processed/q1_final/run_config.json": "E0766E5502E2206D1C178148852A6CA4A8D96C16B2A6342E3BBE1AADFE64079E",
+    "data/processed/q1_final/sensory_scores_0_6.csv": "84D7C641D18D6CFE6F133A24EFD2608B83BCD76341E1C24408C1E2C44E4024B9"
+  },
+  "changed_files": [
+    "data/processed/nightly/overnight-q123-20261030/01_q1_report.md",
+    "state/01_q1.json"
+  ],
+  "failure_reason": "Canonical baseline dependency missing; bounded recomputation skipped by contract."
+}

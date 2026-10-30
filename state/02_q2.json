@@ -1,0 +1,91 @@
+{
+  "run_id": "overnight-q123-20261030",
+  "stage": "02_q2",
+  "status": "completed_with_caveats",
+  "started_at_observed": "2026-10-30T03:32:00+08:00",
+  "ended_at": "2026-10-30T03:42:26.5895311+08:00",
+  "branch": "night/overnight-q123-20261030",
+  "worktree": "F:\\cs\\mothercup\\worktrees\\overnight-q123-20261030",
+  "commit_sha": "f49581ff563f626abc10eb1727e0b5c07ead9d2d",
+  "main_results_modified": false,
+  "main_artifact_sha256": {
+    "data/processed/q2_runs/summary.json": "ff8f82b9ee3cbc31abc3e9dab347f35b1fd93bd79c50189345fb508e4519d329",
+    "data/processed/q2_runs/top3_by_sensory.csv": "fa8773f54421aaa9b660b9c546d5514b043101b5a3a9b2ff352db7aabe0628c1",
+    "data/processed/q2_runs/stability.csv": "876f995045a973d8633c21f89283f07f6f5a34b4a5ceb4d10257d46a1df7538d",
+    "data/processed/q2_figures/figures_manifest.json": "10241279a46014a80118afb455e7f95b526971ccb72191c0fe1577bac52b8ea9"
+  },
+  "raw_data_modified": false,
+  "submission_package_created": false,
+  "git_commit_created": false,
+  "git_push_run": false,
+  "required_invariants": {
+    "robust_rows": 32,
+    "robust_dimensions": 22,
+    "dimensions_without_robust_item": 28,
+    "robust_and_chem_plausible_rows": 9,
+    "all_required_checks_passed": true
+  },
+  "main_graph": {
+    "abs_rho_threshold": 0.6,
+    "nodes": 231,
+    "edges": 266,
+    "connected_components": 114,
+    "isolated_nodes": 101
+  },
+  "supplemental_review": {
+    "permutations": 5000,
+    "seed": 20261030,
+    "family_size": 150,
+    "holdout_fdr_0p05_rows": 83,
+    "holdout_fdr_0p05_dimensions": 34,
+    "train_holdout_sign_consistent_rows": 130,
+    "published_robust_retained_by_train_selection": 32,
+    "published_robust_sign_consistent_rows": 32,
+    "published_robust_holdout_fdr_0p05_rows": 30,
+    "robust_and_chem_plausible_holdout_fdr_0p05_rows": 9,
+    "dimensions_with_correlated_top3_group_redundancy": 23,
+    "conditional_shap_run": false,
+    "preferred_followup": "grouped permutation importance using existing abs_rho>=0.6 communities, with 0.5 sensitivity"
+  },
+  "figure_review": {
+    "png_pdf_pairs": 6,
+    "manifest_entries": 6,
+    "pdf_headers_valid": true,
+    "material_findings": 3,
+    "minor_findings": 1,
+    "main_figures_modified": false
+  },
+  "historical_discrepancy": {
+    "review_round2_robust_rows_claim": 33,
+    "current_recomputed_robust_rows": 32,
+    "disposition": "reported_only"
+  },
+  "tests": [
+    "PASS: branch and worktree identity",
+    "PASS: 22/50 robust dimensions, 28/50 without robust item, 9 robust-and-chem-plausible rows",
+    "PASS: 5000-permutation holdout screen with BH over 150 train-selected associations",
+    "PASS: nightly output row counts 150/150/50/50/32",
+    "PASS: 6 PNG/PDF pairs and valid PDF headers",
+    "PASS: git diff --check",
+    "NOT RUN: scripts/q2_verify.py (fixed main output path and unavailable scipy in safe Python runtime)"
+  ],
+  "recovered_failures": [
+    "First audit run failed on a read-only NumPy array during in-place rank centering; fixed with an explicit copy and reran successfully."
+  ],
+  "changed_files": [
+    "data/processed/nightly/overnight-q123-20261030/02_q2_report.md",
+    "data/processed/nightly/overnight-q123-20261030/q2/q2_robustness_audit.py",
+    "data/processed/nightly/overnight-q123-20261030/q2/reproduce.ps1",
+    "data/processed/nightly/overnight-q123-20261030/q2/failures.log",
+    "data/processed/nightly/overnight-q123-20261030/q2/figure_audit.json",
+    "data/processed/nightly/overnight-q123-20261030/q2/signed_spearman_main_top3.csv",
+    "data/processed/nightly/overnight-q123-20261030/q2/train_selected_holdout_permutation_fdr.csv",
+    "data/processed/nightly/overnight-q123-20261030/q2/published_robust_holdout_review.csv",
+    "data/processed/nightly/overnight-q123-20261030/q2/selection_stability_by_dimension.csv",
+    "data/processed/nightly/overnight-q123-20261030/q2/correlated_group_review.csv",
+    "data/processed/nightly/overnight-q123-20261030/q2/method_review.json",
+    "data/processed/nightly/overnight-q123-20261030/q2/robustness_summary.json",
+    "state/02_q2.json"
+  ],
+  "failure_reason": null
+}
