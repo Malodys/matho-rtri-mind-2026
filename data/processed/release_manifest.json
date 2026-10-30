@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-10-30T11:31:53.073247+00:00",
+  "generated_at_utc": "2026-10-30T11:34:06.120750+00:00",
   "git": {
-    "head": "d7b986f5a8d6adf884c30452b217ce1686663b30",
+    "head": "6a0c92620eaa7925b89ac2af12891bb4c384e970",
     "branch": "release/final-submission-a2600116-20261030",
-    "status_clean": true,
-    "status_short": ""
+    "status_clean": false,
+    "status_short": "M data/processed/paper/paper_check.json\n M data/processed/paper/paper_check.txt\n M scripts/build_release_manifest.py\n?? submission/"
   },
   "python": {
     "executable": "C:\\Users\\10857\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
@@ -27,7 +27,7 @@
   },
   "tests": {
     "status": "passed",
-    "summary": "pytest -q: 69 passed; paper_check: 5/5 passed; fair_main: 50 targets, R2 0.2386, Macro-RMSE 0.4748",
+    "summary": "pytest -q: 69 passed; paper_check: 5/5 passed; fair_main: 50 targets, R2 0.2386, Macro-RMSE 0.4748; submission package: 443 files, no raw/cache/signature",
     "command": "python -m pytest -q"
   },
   "git_diff_check": {
@@ -134,11 +134,11 @@
     },
     "data/processed/paper/paper_check.json": {
       "bytes": 1772,
-      "sha256": "252f704e1517c5ee2fe5eefb8524d77e83b711d8e0687306d7e977bdb007e9f9"
+      "sha256": "b0bdf98235c926a919813c6a7cb0a910d63432112fc8126baf8bf7519731662d"
     },
     "data/processed/paper/paper_check.txt": {
       "bytes": 1121,
-      "sha256": "e6f0da2ba36e07e6397328199b00d6218e7b714210b7f10b27e3a76208f70bdc"
+      "sha256": "7334511a8cdf732b47263a8b4b01a2e343acc5ece4e49337e8af5757af87d4e3"
     },
     "data/processed/paper/README.md": {
       "bytes": 266,
@@ -216,13 +216,13 @@
       "bytes": 4020,
       "sha256": "fba949736e7006c0a7201eb3470c35f93cfd8946f2dd5cc84d36f8390c621ee3"
     },
-    "data/processed/acceptance_report.json": {
-      "bytes": 5097,
-      "sha256": "a6e735d6471c6c27f8e9591f57cced24feafa00a93ec2b2a52c94ca01852c683"
-    },
     "code.zip": {
       "bytes": 441647,
       "sha256": "b9423d6a9e38fc341fb92b88c9ed05b1e6d54a7526528ab1c30f7d9144d45891"
+    },
+    "submission/A2600116.pdf": {
+      "bytes": 2830419,
+      "sha256": "5a8bbfcd067ed7d12fa05d603ef106a17cf0816c47bb05b6455bf91e0795f11c"
     }
   },
   "model_contract": {
