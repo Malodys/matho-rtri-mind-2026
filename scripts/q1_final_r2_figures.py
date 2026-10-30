@@ -16,7 +16,7 @@ def main():
     out.mkdir(parents=True,exist_ok=True)
     apply_style()
     df=pd.read_csv(root/"data/processed/q1_tabpfn_final/combined_summary.csv").sort_values("R2_mean")
-    names={"independent_gbr":"原逐维GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"原网格GBR","rf":"原网格RF","tabpfn":"TabPFN","multitask":"多任务网络"}
+    names={"independent_gbr":"逐维调参GBR","grouped_extra_trees":"分组ET","global_extra_trees":"全局ET","pls2":"PLS","multitask_elastic_net":"多任务弹性网","ridge":"岭回归","global_mean":"均值基线","gbr":"共享参数GBR","rf":"随机森林","tabpfn":"TabPFN","multitask":"多任务网络"}
     fig,ax=plt.subplots(figsize=(5,3.8))
     ax.barh([names.get(x,x) for x in df.model],df.R2_mean,color=[ACCENT if x=="tabpfn" else BASELINE for x in df.model])
     ax.set_xlabel("留出集平均R²"); ax.set_xlim(-.03,.28)

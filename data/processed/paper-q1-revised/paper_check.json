@@ -1,7 +1,7 @@
 {
   "pdf": "data/processed/paper-q1-revised/paper.pdf",
-  "pages": 34,
-  "body_pages": 27,
+  "pages": 29,
+  "body_pages": 22,
   "appendix_pages": 5,
   "footer_page_sequence": [
     1,
@@ -30,31 +30,26 @@
     24,
     25,
     26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32
+    27
   ],
   "results": [
     {
       "id": "page_count",
       "desc": "正文页数在 1..30 之间（正文上限 30 页，附录页数不限）",
       "passed": true,
-      "detail": "PDF 共 34 页；其中正文 27 页（附录 5 页，前置部分 2 页不计）"
+      "detail": "PDF 共 29 页；其中正文 22 页（附录 5 页，前置部分 2 页不计）"
     },
     {
       "id": "chinese_extractable",
       "desc": "中文可正常抽取，无替换符/缺字方块",
       "passed": true,
-      "detail": "中文字符占比 34.8%；异常字符 无"
+      "detail": "中文字符占比 28.4%；异常字符 无"
     },
     {
       "id": "footer_page_number",
       "desc": "页脚含页码且连续编号",
       "passed": true,
-      "detail": "各页页脚识别页码序列=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]；首页是否从 1 起=True"
+      "detail": "各页页脚识别页码序列=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]；首页是否从 1 起=True"
     },
     {
       "id": "no_header",
@@ -70,6 +65,6 @@
     }
   ],
   "all_passed": true,
-  "pdf_sha256": "a7ef0bf7649be8c951f878ec2a034264ed2836a90bf38544671f9f0c18102f37",
-  "generated_at_utc": "2026-10-30T08:39:27+00:00"
+  "pdf_sha256": "ad71e13efcfb2a76bddc3518a21d91d241b1598902fe5224da334d57df5fbe19",
+  "generated_at_utc": "2026-10-30T10:14:30+00:00"
 }
